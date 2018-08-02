@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="贪心," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="题目地址">
+<meta name="keywords" content="贪心">
+<meta property="og:type" content="article">
+<meta property="og:title" content="NOIP2011提高 观光公交">
+<meta property="og:url" content="http://yoursite.com/2018/08/02/89/index.html">
+<meta property="og:site_name" content="zqy1018的博客">
+<meta property="og:description" content="题目地址">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yoursite.com/2018/08/02/89/1.png">
+<meta property="og:updated_time" content="2018-08-02T09:05:05.299Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="NOIP2011提高 观光公交">
+<meta name="twitter:description" content="题目地址">
+<meta name="twitter:image" content="http://yoursite.com/2018/08/02/89/1.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/08/02/89/"/>
+
+
+
+
+
+  <title>NOIP2011提高 观光公交 | zqy1018的博客</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">zqy1018的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/02/89/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="z q y">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="zqy1018的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">NOIP2011提高 观光公交</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-02T16:58:42+08:00">
+                2018-08-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/NOIP题解/" itemprop="url" rel="index">
+                    <span itemprop="name">NOIP题解</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/NOIP题解/NOIP2011/" itemprop="url" rel="index">
+                    <span itemprop="name">NOIP2011</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><a href="https://www.luogu.org/problemnew/show/P1315" target="_blank" rel="noopener">题目地址</a><br><a id="more"></a></p>
+<h2 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h2><p>题目的意思就是选择若干条路，修改他们的长度，使得总的旅行时间最少。<br>具体的做法就是贪心，找省时间最多的路段用。<br>我们把道路分块，为什么要这么做呢？我们把本题第一个数据画成图。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">10 5 0</span><br><span class="line">5 7 2 4 8 2 8 3 1</span><br><span class="line">10 3 4</span><br><span class="line">1 1 3</span><br><span class="line">33 6 9</span><br><span class="line">14 4 8</span><br><span class="line">1 1 4</span><br></pre></td></tr></table></figure></p>
+<p><img src="/2018/08/02/89/1.png" alt="1"><br>上面的竖线表示到站的人的到站时间，点表示时间点。虚线部分是指车子到站之后还要等待虚线的时间才能等到人全部上齐。虚线左端是到站时间点，右端是发车时间点。<br>设一个站i中，来的最晚的人到达时间是$latest[i]$。然后，我们手算后可以发现一些性质：<br>性质1.如果车子到达i站的时间是$curt$，并且$curt\le latest[i]$，那么$i$前面和$i$后面，两个路段相互独立。<br>什么意思呢？我们可以感性地这么想：让一段路的长度减少，就相当于把这段路以及其后面的到站时间点往前拉。但是第i站的点永远不会动，因为他的到站时间点和发车时间点是用虚线连接着的，发车时间一定不变。所以对i前面的路修改，$i$后面的就不会受影响；同理对$i$后面的路修改，$i$前面的路也不会受影响。<br>我们称呼到达这样的站的路为隔离路。上图中，$5$-&gt;$6$就是隔离路。<br>根据这个性质，我们可以很方便的把路分块，分割成几个相互不影响的路块以及分隔他们的隔离路。<br>分完了块就可以计算优化一条路能节省的时间了。下面我们对一个路块进行探究：<br>设一个块中开头的站编号为$belong$，末尾的站是$tail$。显然，由上文，$tail$-&gt;$tail+1$的路是隔离路。<br>性质2.一个块中，如果优化$i$-&gt;$i+1$站的路，使其长度$-1$，可以节省的时间是在$i+1,i+2,…tail,tail+1$这些站下车的人数的总和。<br>这个性质很容易证明，由于这些人都已经上了车，所以优化这段路就相当于把后面站的到站时间点都$-1$，每一个人的到达时间就$-1$，所以省下的时间是人数的和，证毕。<br>根据这个性质，我们可以用后缀和计算出省下的时间，找到在块中最优的那段路。不在块中的隔离路也能优化，优化一次节省的时间是在隔离路通向的下一站下车的人数。<br>接下来的问题是一段路最多可以优化多少次。根据上图可以发现，一段路被优化一定次数，前面的某一段路就会变成隔离路。比如优化$1$-&gt;$2$的路后，$3$-&gt;$4$就变成了隔离路。所以在分块时还要对每一段路统计一个$mingap$，表示一段路最多优化几次就会导致后面的某段路变为隔离路。优化$mingap$次数之后，原来的块就失效了，需要对当前操作块进行重构。<br>如果一段路的长度变成了$0$，或者$mingap$为$0$，就称这一段路是无效路，在寻找最大值时忽略。<br>之后重复以上步骤即可。<br>分析一下时间复杂度：<br>每一轮我们找出一段可以修改的路，修改完成后，至少会使得一段路变为隔离路，或者使得一条隔离路变为无效路。所以每一条路最多被修改$2$次。一共有$O(n)$条路，所以最多做$O(n)$次，所有的路就被修改完了。<br>每一轮我们需要$O(n)$的时间找到省时间最多的路段，并且至多用$O(n)$的时间更新块的情况，结合上面可知，最多做$O(n)$轮，所以该算法的理论时间复杂度为$O(n^2)$。<br>贪心的正确性比较显然，在此不证明。<br>存在$O(nk)$的编程复杂度更低，但是可能会超时的做法。很可惜，本题数据太水，根本卡不掉。<br>事实上，本题存在时间运行上比本题解程序实现更优的程序实现。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdlib&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cctype&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> INF 1000000000</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">read</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> f=<span class="number">1</span>,x=<span class="number">0</span>;<span class="keyword">char</span> c=getchar();</span><br><span class="line">	<span class="keyword">while</span>(c&lt;<span class="string">'0'</span>||c&gt;<span class="string">'9'</span>)&#123;<span class="keyword">if</span>(c==<span class="string">'-'</span>)f=-f;c=getchar();&#125;</span><br><span class="line">	<span class="keyword">while</span>(c&gt;=<span class="string">'0'</span>&amp;&amp;c&lt;=<span class="string">'9'</span>)x=x*<span class="number">10</span>+c-<span class="string">'0'</span>,c=getchar();</span><br><span class="line">	<span class="keyword">return</span> f*x; </span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">int</span> n,m,K,dis[<span class="number">1005</span>],latest[<span class="number">1005</span>],dec[<span class="number">1005</span>],cost[<span class="number">1005</span>],cnt[<span class="number">1005</span>],cnt2[<span class="number">1005</span>];</span><br><span class="line"><span class="keyword">int</span> belong[<span class="number">1005</span>],mingap[<span class="number">1005</span>],tail[<span class="number">1005</span>],ans=<span class="number">0</span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">build_block</span><span class="params">(<span class="keyword">int</span> l,<span class="keyword">int</span> r)</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> bid=l,curt=latest[l];</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=l+<span class="number">1</span>;i&lt;=r;i++)&#123;</span><br><span class="line">		curt+=dis[i<span class="number">-1</span>];</span><br><span class="line">		<span class="keyword">if</span>(curt&gt;latest[i])belong[i<span class="number">-1</span>]=bid;</span><br><span class="line">		<span class="keyword">else</span>&#123;</span><br><span class="line">			belong[i<span class="number">-1</span>]=<span class="number">-1</span>,mingap[i<span class="number">-1</span>]=INF;</span><br><span class="line">			<span class="keyword">int</span> tmp=curt-dis[i<span class="number">-1</span>];</span><br><span class="line">			<span class="keyword">for</span>(<span class="keyword">int</span> j=i<span class="number">-2</span>;j&gt;=bid;j--)</span><br><span class="line">				mingap[j]=min(min(tmp-latest[j+<span class="number">1</span>],dis[j]),mingap[j+<span class="number">1</span>]),</span><br><span class="line">				tmp-=dis[j]; </span><br><span class="line">			curt=latest[i],tail[bid]=i<span class="number">-1</span>,bid=i;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span>(bid!=r)&#123;</span><br><span class="line">		<span class="keyword">int</span> bef=INF;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j=r<span class="number">-1</span>;j&gt;=bid;j--)</span><br><span class="line">			mingap[j]=min(bef,min(dis[j],curt-latest[j+<span class="number">1</span>])),</span><br><span class="line">			bef=min(bef,mingap[j]),curt-=dis[j];</span><br><span class="line">		tail[bid]=r;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">init</span><span class="params">()</span></span>&#123;</span><br><span class="line">	n=read(),m=read(),K=read();</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;n;i++)dis[i]=read();</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=m;i++)&#123;</span><br><span class="line">		<span class="keyword">int</span> Ti=read(),Ai=read(),Bi=read();</span><br><span class="line">		latest[Ai]=max(latest[Ai],Ti);</span><br><span class="line">		cost[Ai]+=Ti;</span><br><span class="line">		dec[Ai]++,dec[Bi]--,cnt[Ai]++,cnt2[Bi]++;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">2</span>;i&lt;=n+<span class="number">1</span>;i++)dec[i]+=dec[i<span class="number">-1</span>];</span><br><span class="line">	<span class="keyword">int</span> curt=latest[<span class="number">1</span>];</span><br><span class="line">	ans+=cnt[<span class="number">1</span>]*latest[<span class="number">1</span>]-cost[<span class="number">1</span>];</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;n;i++)&#123;</span><br><span class="line">		<span class="keyword">if</span>(latest[i+<span class="number">1</span>]&gt;curt+dis[i])&#123;</span><br><span class="line">			ans+=cnt2[i+<span class="number">1</span>]*dis[i]+(dec[i]-cnt2[i+<span class="number">1</span>])*(latest[i+<span class="number">1</span>]-curt);</span><br><span class="line">			ans+=cnt[i+<span class="number">1</span>]*latest[i+<span class="number">1</span>]-cost[i+<span class="number">1</span>]; </span><br><span class="line">			curt=latest[i+<span class="number">1</span>];</span><br><span class="line">		&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">			ans+=dec[i]*dis[i],curt+=dis[i];</span><br><span class="line">			ans+=cnt[i+<span class="number">1</span>]*curt-cost[i+<span class="number">1</span>]; </span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">//每一段路上坐车人数 </span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">solve</span><span class="params">()</span></span>&#123;</span><br><span class="line">	build_block(<span class="number">1</span>,n);</span><br><span class="line">	<span class="keyword">for</span>(;K;)&#123;</span><br><span class="line">		<span class="keyword">int</span> maxi=<span class="number">0</span>,maxid=<span class="number">-1</span>,curb=<span class="number">0</span>,bid,sum;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;n;i++)&#123;</span><br><span class="line">			bid=belong[i];</span><br><span class="line">			<span class="keyword">if</span>(bid&lt;<span class="number">0</span>)&#123;</span><br><span class="line">				<span class="keyword">if</span>(dis[i]&amp;&amp;cnt2[i+<span class="number">1</span>]&gt;maxi)maxi=cnt2[i+<span class="number">1</span>],maxid=i;</span><br><span class="line">			&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">				<span class="keyword">if</span>(curb!=bid)&#123;</span><br><span class="line">					curb=bid,sum=<span class="number">0</span>;</span><br><span class="line">					<span class="keyword">for</span>(<span class="keyword">int</span> j=tail[bid]+<span class="number">1</span>;j&gt;=i+<span class="number">1</span>;j--)sum+=cnt2[j];</span><br><span class="line">				&#125;</span><br><span class="line">				<span class="keyword">if</span>(mingap[i]&amp;&amp;sum&gt;maxi)maxi=sum,maxid=i;</span><br><span class="line">				sum-=cnt2[i+<span class="number">1</span>];</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span>(maxid&lt;<span class="number">0</span>)<span class="keyword">break</span>;</span><br><span class="line">		bid=belong[maxid];</span><br><span class="line">		<span class="keyword">if</span>(bid&lt;<span class="number">0</span>)&#123;</span><br><span class="line">			<span class="keyword">if</span>(K&gt;dis[maxid])</span><br><span class="line">				ans-=maxi*dis[maxid],K-=dis[maxid],dis[maxid]=<span class="number">0</span>;</span><br><span class="line">			<span class="keyword">else</span> &#123;</span><br><span class="line">				ans-=maxi*K;</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">			<span class="keyword">if</span>(K&gt;mingap[maxid])&#123;</span><br><span class="line">				ans-=maxi*mingap[maxid],K-=mingap[maxid],dis[maxid]-=mingap[maxid];</span><br><span class="line">			&#125;<span class="keyword">else</span> &#123;</span><br><span class="line">				ans-=maxi*K;</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			&#125;</span><br><span class="line">			build_block(bid,tail[bid]); </span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%d\n"</span>,ans);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	init();</span><br><span class="line">	solve();</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/贪心/" rel="tag"># 贪心</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/08/02/88/" rel="next" title="NOIP2011提高 聪明的质监员">
+                <i class="fa fa-chevron-left"></i> NOIP2011提高 聪明的质监员
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/08/02/90/" rel="prev" title="NOIP2010普及 三国游戏">
+                NOIP2010普及 三国游戏 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">z q y</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">94</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">52</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#题解"><span class="nav-number">1.</span> <span class="nav-text">题解</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">z q y</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+</body>
+</html>
