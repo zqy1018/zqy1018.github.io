@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="背包DP," />
 
 
 
@@ -79,14 +79,18 @@
 
 
 
+<meta name="description" content="题目地址">
+<meta name="keywords" content="背包DP">
 <meta property="og:type" content="article">
-<meta property="og:title" content="147">
+<meta property="og:title" content="POJ1285 Combinations, Once Again">
 <meta property="og:url" content="http://yoursite.com/2018/08/04/147/index.html">
 <meta property="og:site_name" content="zqy的博客">
+<meta property="og:description" content="题目地址">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-08-04T03:27:03.011Z">
+<meta property="og:updated_time" content="2018-08-04T08:08:53.631Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="147">
+<meta name="twitter:title" content="POJ1285 Combinations, Once Again">
+<meta name="twitter:description" content="题目地址">
 
 
 
@@ -122,7 +126,7 @@
 
 
 
-  <title>147 | zqy的博客</title>
+  <title>POJ1285 Combinations, Once Again | zqy的博客</title>
   
 
 
@@ -300,7 +304,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">147</h1>
+          <h1 class="post-title" itemprop="name headline">POJ1285 Combinations, Once Again</h1>
         
 
         <div class="post-meta">
@@ -322,6 +326,28 @@
             
           </span>
 
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/POJ/" itemprop="url" rel="index">
+                    <span itemprop="name">POJ</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -350,7 +376,9 @@
       
 
       
-        
+        <p><a href="http://poj.org/problem?id=1285" target="_blank" rel="noopener">题目地址</a><br><a id="more"></a></p>
+<h2 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h2><p>用基本的背包处理即可。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdlib&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cctype&gt; </span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">read</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> f=<span class="number">1</span>,x=<span class="number">0</span>;<span class="keyword">char</span> c=getchar();</span><br><span class="line">	<span class="keyword">while</span>(c&lt;<span class="string">'0'</span>||c&gt;<span class="string">'9'</span>)&#123;<span class="keyword">if</span>(c==<span class="string">'-'</span>)f=-f;c=getchar();&#125;</span><br><span class="line">	<span class="keyword">while</span>(c&gt;=<span class="string">'0'</span>&amp;&amp;c&lt;=<span class="string">'9'</span>)x=x*<span class="number">10</span>+c-<span class="string">'0'</span>,c=getchar();</span><br><span class="line">	<span class="keyword">return</span> f*x; </span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">int</span> n[<span class="number">56</span>],N,q,r;</span><br><span class="line">ll f[<span class="number">56</span>];</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">packX</span><span class="params">(<span class="keyword">int</span> d)</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> p=<span class="number">1</span>,_n,j;</span><br><span class="line">	<span class="keyword">for</span>(j=N;j&gt;=<span class="number">0</span>;j--)</span><br><span class="line">		<span class="keyword">for</span>(_n=<span class="number">1</span>;_n&lt;=min(n[d],j);_n++)</span><br><span class="line">			f[j]+=f[j-_n];</span><br><span class="line">&#125; </span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> i,j,T=<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">for</span>(;;T++)&#123;</span><br><span class="line">		<span class="built_in">memset</span>(n,<span class="number">0</span>,<span class="keyword">sizeof</span>(n));</span><br><span class="line">		<span class="built_in">memset</span>(f,<span class="number">0</span>,<span class="keyword">sizeof</span>(f));</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">"%d%d"</span>,&amp;N,&amp;q);</span><br><span class="line">		<span class="keyword">if</span>(!N&amp;&amp;!q)<span class="keyword">break</span>;</span><br><span class="line">		<span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;N;i++)</span><br><span class="line">			<span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;j),</span><br><span class="line">			n[j<span class="number">-1</span>]++;</span><br><span class="line">		<span class="keyword">for</span>(f[<span class="number">0</span>]=<span class="number">1l</span>l,i=<span class="number">0</span>;i&lt;N;i++)</span><br><span class="line">			packX(i);</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"Case %d:\n"</span>,T);</span><br><span class="line">		<span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;q;i++)</span><br><span class="line">			<span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;r),</span><br><span class="line">			<span class="built_in">printf</span>(<span class="string">"%lld\n"</span>,f[r]);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+
       
     </div>
     
@@ -364,6 +392,12 @@
     
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/背包DP/" rel="tag"># 背包DP</a>
+          
+        </div>
       
 
       
@@ -383,6 +417,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/08/04/148/" rel="prev" title="POJ1306 Combinations">
+                POJ1306 Combinations <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -434,8 +472,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -450,7 +497,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">143</span>
+                  <span class="site-state-item-count">161</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -461,7 +508,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">24</span>
+                  <span class="site-state-item-count">26</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -472,7 +519,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">66</span>
+                  <span class="site-state-item-count">69</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -495,6 +542,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#题解"><span class="nav-number">1.</span> <span class="nav-text">题解</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       

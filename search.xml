@@ -1,9 +1,214 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title><![CDATA[147]]></title>
+    <title><![CDATA[HDU4203 Doubloon Game]]></title>
+    <url>%2F2018%2F08%2F04%2F165%2F</url>
+    <content type="text"><![CDATA[题目地址 题解先大力打表，看SG函数有没有什么规律发现打表结果非常神奇：当$K$是奇数的时候，SG函数是$010101$变化的。$K$是偶数的时候，每逢$K$的倍数，$SG（x\cdot K）$就为$2$。否则仍然按照$010101$变化。比如$K=2:0,1,2,0,1,2 …$$K=4:0,1,0,1,2,0,1,0,1,2…$之后就简单了。123456789101112131415161718192021222324252627282930313233343536373839404142#include &lt;cstdio&gt;#include &lt;cstdlib&gt;#include &lt;algorithm&gt;#include &lt;cstring&gt;#include &lt;cctype&gt;#define INF 2000000000using namespace std;typedef long long ll;int read()&#123; int f=1,x=0;char c=getchar(); while(c&lt;'0'||c&gt;'9')&#123;if(c=='-')f=-f;c=getchar();&#125; while(c&gt;='0'&amp;&amp;c&lt;='9')x=x*10+c-'0',c=getchar(); return f*x; &#125;int S,k,T;int SG(int x)&#123; if(k%2)return x%2; else &#123; int mod=x%(k+1); if(mod&lt;k)return mod%2; else return 2; &#125; &#125;void solve()&#123; T=read(); while(T--)&#123; S=read(),k=read(); int ans=SG(S); if(ans!=2)printf("%d\n",ans); else &#123; for(int j=1;S-j&gt;=0;j*=k) if(!SG(S-j))&#123; printf("%d\n",j); break; &#125; &#125; &#125;&#125;int main()&#123; solve(); return 0;&#125;]]></content>
+      <categories>
+        <category>HDU</category>
+      </categories>
+      <tags>
+        <tag>博弈论</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[POJ1704 Georgia and Bob]]></title>
+    <url>%2F2018%2F08%2F04%2F164%2F</url>
+    <content type="text"><![CDATA[题目地址 题解这个模型，没记错是叫做阶梯博弈。他这个模型可以转化成Nim游戏。把每一对移动的棋子之间的间距看作是石头的数目，就可以依靠Nim游戏的结论进行解答。但是为什么这样的转化是正确的呢？首先两个棋子逼近，就相当于取走若干个石头；如果两个石头远离，那么不要紧，下一步可以把这个多出来的部分减掉去，所以还是相当于没有增加。如果石头个数是奇数就虚拟一个边界上的石头和他配对。1234567891011121314151617181920212223242526272829303132#include &lt;cstdio&gt;#include &lt;cstdlib&gt;#include &lt;algorithm&gt;#include &lt;cstring&gt;#include &lt;cctype&gt;#define INF 2000000000using namespace std;typedef long long ll;int read()&#123; int f=1,x=0;char c=getchar(); while(c&lt;'0'||c&gt;'9')&#123;if(c=='-')f=-f;c=getchar();&#125; while(c&gt;='0'&amp;&amp;c&lt;='9')x=x*10+c-'0',c=getchar(); return f*x; &#125;int T,n,a[1005];void solve()&#123; T=read(); while(T--)&#123; n=read(); for(int i=1;i&lt;=n;i++)a[i]=read(); if(n&amp;1)a[n+1]=0,n++; sort(a+1,a+n+1); int res=0; for(int i=1;i&lt;=n;i+=2) res^=(a[i+1]-a[i]-1); printf("%s\n",res?"Georgia will win":"Bob will win"); &#125;&#125;int main()&#123; solve(); return 0;&#125;]]></content>
+      <categories>
+        <category>POJ</category>
+      </categories>
+      <tags>
+        <tag>博弈论</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[HDU1079 Calendar Game]]></title>
+    <url>%2F2018%2F08%2F04%2F163%2F</url>
+    <content type="text"><![CDATA[题目地址 题解写成递推的形式即可。边界条件挺烦的，还好1A了。反正大力码1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253#include &lt;cstdio&gt;#include &lt;cstdlib&gt;#include &lt;algorithm&gt;#include &lt;cstring&gt;#include &lt;cctype&gt;#define INF 2000000000using namespace std;typedef long long ll;int read()&#123; int f=1,x=0;char c=getchar(); while(c&lt;'0'||c&gt;'9')&#123;if(c=='-')f=-f;c=getchar();&#125; while(c&gt;='0'&amp;&amp;c&lt;='9')x=x*10+c-'0',c=getchar(); return f*x; &#125;char dp[200][13][40]=&#123;0&#125;;//1900--&gt;0int days[]=&#123;0,31,28,31,30,31,30,31,31,30,31,30,31&#125;;int run(int x,int y)&#123; return (y==2&amp;&amp;x&amp;&amp;x%4==0);&#125;void init()&#123; dp[101][11][3]=1; int r1=0,r2=0; for(int i=101;i&gt;=0;i--) for(int j=12;j&gt;=1;j--) for(int d=31;d&gt;=1;d--)&#123; if(i==101&amp;&amp;(j==12||(j==11&amp;&amp;d&gt;=3)))continue; if(d&gt;days[j]+run(i,j))continue; if(i==101&amp;&amp;(j&gt;=11||(j==10&amp;&amp;d&gt;4)))r1=-1; else&#123; if(j==12)r1=dp[i+1][1][d]; else if(d&lt;=days[j+1]+run(i,j+1))r1=dp[i][j+1][d]; else r1=-1; &#125; if(d==days[j]+run(i,j))&#123; if(j==12)r2=dp[i+1][1][1]; else r2=dp[i][j+1][1]; &#125;else r2=dp[i][j][d+1]; if(!r1||!r2)dp[i][j][d]=1; else dp[i][j][d]=0; &#125;&#125;void solve()&#123; int T=read(),yy,mm,dd; while(T--)&#123; yy=read(),mm=read(),dd=read(); printf("%s\n",dp[yy-1900][mm][dd]==1?"YES":"NO"); &#125;&#125;int main()&#123; init(); solve(); return 0;&#125;]]></content>
+      <categories>
+        <category>HDU</category>
+      </categories>
+      <tags>
+        <tag>博弈论</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[POJ1740 A New Stone Game]]></title>
+    <url>%2F2018%2F08%2F04%2F162%2F</url>
+    <content type="text"><![CDATA[题目地址 题解一般而言，这种题目都需要一定的找规律的技巧。首先$n=1$，先手必胜，这是显然的。$n=2$,如果两堆石头一样多，那么先手必败，因为后手可以不断模仿先手的操作来使石头数始终相同，达到自己不败的目的。如果石头数不相等，那么先手可以转移到石头相同的状态。$n=3$，可以构造出$2$堆相同的情况，只要去掉最多的那一堆就行。$n=4$，只要可以拆成$2$个完全一样的子局面，先手就是必败态，其余是必胜态。归纳一下，$n$是奇数，先手必胜；$n$是偶数，除非局面对称，否则先手必胜。1234567891011121314151617181920212223242526272829303132333435363738394041#include &lt;cstdio&gt;#include &lt;cstdlib&gt;#include &lt;algorithm&gt;#include &lt;cstring&gt;#include &lt;cctype&gt;#define INF 2000000000using namespace std;typedef long long ll;int read()&#123; int f=1,x=0;char c=getchar(); while(c&lt;'0'||c&gt;'9')&#123;if(c=='-')f=-f;c=getchar();&#125; while(c&gt;='0'&amp;&amp;c&lt;='9')x=x*10+c-'0',c=getchar(); return f*x; &#125; int n,a[1005];void init()&#123; &#125;void solve()&#123; for(;;)&#123; n=read(); if(!n)break; for(int i=1;i&lt;=n;i++)a[i]=read(); if(n%2)&#123; printf("1\n"); continue; &#125; sort(a+1,a+1+n); int flag=0; for(int i=1;i+i&lt;=n;i+=2) if(a[i]!=a[i+1])&#123; flag=1;break; &#125; printf("%d\n",flag); &#125;&#125;int main()&#123; init(); solve(); return 0;&#125;]]></content>
+      <categories>
+        <category>POJ</category>
+      </categories>
+      <tags>
+        <tag>博弈论</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[HDU3863 No Gambling]]></title>
+    <url>%2F2018%2F08%2F04%2F161%2F</url>
+    <content type="text"><![CDATA[题目地址 题解由于后手只能不断采取行动去堵先手的路，而先手一定可以采取方式突破，所以先手必胜。1234567891011121314151617181920212223242526272829#include &lt;cstdio&gt;#include &lt;cstdlib&gt;#include &lt;algorithm&gt;#include &lt;cstring&gt;#include &lt;cctype&gt;#define INF 2000000000using namespace std;typedef long long ll;int read()&#123; int f=1,x=0;char c=getchar(); while(c&lt;'0'||c&gt;'9')&#123;if(c=='-')f=-f;c=getchar();&#125; while(c&gt;='0'&amp;&amp;c&lt;='9')x=x*10+c-'0',c=getchar(); return f*x; &#125; void init()&#123; &#125;void solve()&#123; for(int n;;)&#123; n=read(); if(n&lt;0)break; printf("I bet on Oregon Maple~\n"); &#125;&#125;int main()&#123; init(); solve(); return 0;&#125;]]></content>
+      <categories>
+        <category>HDU</category>
+      </categories>
+      <tags>
+        <tag>博弈论</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[POJ2234 Matches Game]]></title>
+    <url>%2F2018%2F08%2F04%2F160%2F</url>
+    <content type="text"><![CDATA[题目地址 题解简单的Nim游戏。推荐看国家集训队2002年张一飞的论文，他的论文深入浅出地用集合的观点解释了nim游戏和的原理。之后的很多博弈论的题目都建立在这么一个基本模型的基础上。12345678910111213141516171819202122232425262728293031#include &lt;cstdio&gt;#include &lt;cstdlib&gt;#include &lt;algorithm&gt;#include &lt;cstring&gt;#include &lt;cctype&gt;#define INF 2000000000using namespace std;typedef long long ll;int read()&#123; int f=1,x=0;char c=getchar(); while(c&lt;'0'||c&gt;'9')&#123;if(c=='-')f=-f;c=getchar();&#125; while(c&gt;='0'&amp;&amp;c&lt;='9')x=x*10+c-'0',c=getchar(); return f*x; &#125; void init()&#123; &#125;void solve()&#123; int M,a[25],res; while(~scanf("%d",&amp;M))&#123; res=0; for(int i=1;i&lt;=M;i++)a[i]=read(),res^=a[i]; printf("%s\n",res?"Yes":"No"); &#125;&#125;int main()&#123; init(); solve(); return 0;&#125;]]></content>
+      <categories>
+        <category>POJ</category>
+      </categories>
+      <tags>
+        <tag>博弈论</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[POJ1442 Black Box]]></title>
+    <url>%2F2018%2F08%2F04%2F159%2F</url>
+    <content type="text"><![CDATA[题目地址 题解方法一无脑平衡树。 方法二堆的神奇操作。发现这个求第$k$小$k$是递增的，所以可以维护一个大根堆和一个小根堆，然后在其中一个堆上维护前$k$个数，另一个堆上维护剩下的数，这样只要关注第$k$个数是什么即可，而不需要管在他前面的或者在他后面的是不是有序的。所以操作就很简单了，$k$加$1$的时候从某个堆弹一个走就行了。123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051#include &lt;cstdio&gt;#include &lt;algorithm&gt;#include &lt;queue&gt;#define l(x) (x&lt;&lt;1)+1#define r(x) (x&lt;&lt;1)+2using namespace std;int h[200005]=&#123;0&#125;,size=0,n,m,k[200005];priority_queue&lt;int&gt; pq;//pq下&lt;pq顶&lt;h顶&lt;h底 void up(int s)&#123; int at,tmp=h[s]; while(s&gt;0)&#123; at=(s-1)/2; if(h[at]&lt;=tmp)break; h[s]=h[at],s=at; &#125; h[s]=tmp;&#125;void down(int s,int e)&#123; int lch,rch,tmp=h[s]; while(l(s)&lt;e)&#123; lch=l(s),rch=r(s); if(rch&lt;e&amp;&amp;h[rch]&lt;h[lch]) lch=rch; if(tmp&lt;=h[lch])break; h[s]=h[lch],s=lch; &#125; h[s]=tmp;&#125;int main()&#123; scanf("%d%d",&amp;m,&amp;n); int i,j,at; for(i=0;i&lt;m;i++) scanf("%d",&amp;k[i]); pq.push(k[0]); for(i=0,j=1;i&lt;n;i++)&#123; scanf("%d",&amp;at); while(j&lt;at)&#123; if(pq.top()&gt;k[j])&#123; h[size++]=pq.top(),pq.pop(); pq.push(k[j]),up(size-1); &#125;else h[size++]=k[j],up(size-1); j++; &#125; printf("%d\n",pq.top()); if(!size)h[size++]=k[j++]; pq.push(h[0]),h[0]=h[--size],down(0,size); &#125; return 0;&#125;]]></content>
+      <categories>
+        <category>POJ</category>
+      </categories>
+      <tags>
+        <tag>堆</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[POJ2823 Sliding Window]]></title>
+    <url>%2F2018%2F08%2F04%2F158%2F</url>
+    <content type="text"><![CDATA[题目地址 题解经典的单调队列入门题。思路很简单，就是先判断队头是否“过期”，然后再在队尾进行比较。这里的代码是可以进行空间上的优化的。注意一个点：$k=1$时最好特判。12345678910111213141516171819202122232425262728293031323334353637#include &lt;cstdio&gt; #include &lt;cstdlib&gt; #include &lt;cstring&gt; int n,k,a[1000005],d1[1000005][2],d2[1000005][2],f1=0,f2=0,r1=1,r2=1,ans[1000005][2];void in(int at,int p)&#123; while(r1&gt;f1&amp;&amp;d1[f1][1]&lt;=at-k) f1++; while(r2&gt;f2&amp;&amp;d2[f2][1]&lt;=at-k) f2++; while(r1&gt;f1&amp;&amp;d1[r1-1][0]&gt;p) d1[r1-1][0]=d1[r1-1][1]=0,r1--; while(r2&gt;f2&amp;&amp;d2[r2-1][0]&lt;p) d2[r2-1][0]=d2[r2-1][1]=0,r2--; d1[r1][0]=p,d1[r1++][1]=at; d2[r2][0]=p,d2[r2++][1]=at;&#125;int main()&#123; scanf("%d%d",&amp;n,&amp;k); for(int i=0;i&lt;n;i++) scanf("%d",&amp;a[i]); i=(k==1)?0:1; d1[0][0]=d2[0][0]=a[0]; d1[0][1]=d2[0][1]=0; for(;i&lt;n;i++)&#123; in(i,a[i]); ans[i][0]=d1[f1][0]; ans[i][1]=d2[f2][0]; &#125; for(i=k-1;i&lt;n-1;i++) printf("%d ",ans[i][0]); printf("%d\n",ans[n-1][0]); for(i=k-1;i&lt;n-1;i++) printf("%d ",ans[i][1]); printf("%d\n",ans[n-1][1]); return 0; &#125;]]></content>
+      <categories>
+        <category>POJ</category>
+      </categories>
+      <tags>
+        <tag>单调队列</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[POJ3017 Cut the Sequence]]></title>
+    <url>%2F2018%2F08%2F04%2F157%2F</url>
+    <content type="text"><![CDATA[题目地址 题解第一次做这样的利用决策单调性来优化DP的题目。设$f(i)$表示分割到第$i$个元素时，最大和的最小值。很容易得到方程： f(i)=\min \limits_{sum[j+1...i]]]></content>
+      <categories>
+        <category>POJ</category>
+      </categories>
+      <tags>
+        <tag>线性DP</tag>
+        <tag>单调队列</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[POJ2918 Tudoku]]></title>
+    <url>%2F2018%2F08%2F04%2F156%2F</url>
+    <content type="text"><![CDATA[题目地址 题解基本同26761234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071#include &lt;cstdio&gt;#include &lt;cstring&gt;#include &lt;cstdlib&gt;#include &lt;algorithm&gt;using namespace std;int vis[3][11][11]=&#123;0&#125;,sd[10][10]=&#123;0&#125;;int lis[81][2],tot=0,flag=0;void get(int at)&#123; int i,mini=99,p,j,x,y,o; for(i=at+1;i&lt;tot;i++)&#123; x=lis[i][0],y=lis[i][1],o=0; for(j=1;j&lt;=9;j++)&#123; if(vis[0][x][j]||vis[1][y][j]||vis[2][(x/3)*3+y/3][j])continue; else o++; &#125; if(o&lt;mini) mini=o,p=i; &#125; x=lis[at+1][0],y=lis[at+1][1],lis[at+1][0]=lis[p][0]; lis[at+1][1]=lis[p][1],lis[p][0]=x,lis[p][1]=y;&#125;//0 行 1 列 2 宫void print()&#123; if(flag)return ; for(int i=0;i&lt;9;i++)&#123; for(int j=0;j&lt;9;j++) printf("%d",sd[i][j]); printf("\n"); &#125; flag=1;&#125;void dfs(int at)&#123; int i,x=lis[at][0],y=lis[at][1]; for(i=1;i&lt;=9;i++)&#123; if(vis[0][x][i]||vis[1][y][i]||vis[2][(x/3)*3+y/3][i])continue; vis[0][x][i]=vis[1][y][i]=vis[2][(x/3)*3+y/3][i]=1; sd[x][y]=i; if(at&lt;tot-1)&#123; if(at!=tot-2)get(at); dfs(at+1); &#125; else print(); vis[0][x][i]=vis[1][y][i]=vis[2][(x/3)*3+y/3][i]=0; sd[x][y]=0; if(flag)break; &#125;&#125;int main()&#123; int T,tmp; scanf("%d",&amp;T); for(int TT=1;TT&lt;=T;TT++)&#123; printf("Scenario #%d:\n",TT); tot=0,flag=0; memset(vis,0,sizeof(vis)); memset(sd,0,sizeof(sd)); memset(lis,0,sizeof(lis)); for(int i=0;i&lt;9;i++) for(int j=0;j&lt;9;j++)&#123; scanf("%1d",&amp;tmp); if(tmp) sd[i][j]=tmp,vis[0][i][tmp]= vis[1][j][tmp]=vis[2][(i/3)*3+j/3][tmp]=1; else lis[tot][0]=i,lis[tot++][1]=j; &#125; dfs(0); if(!tot&amp;&amp;!flag)print(); printf("\n"); &#125; return 0;&#125;]]></content>
+      <categories>
+        <category>POJ</category>
+      </categories>
+      <tags>
+        <tag>DFS</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[POJ2676 Sudoku]]></title>
+    <url>%2F2018%2F08%2F04%2F155%2F</url>
+    <content type="text"><![CDATA[题目地址 题解一道很经典的题。用的是NOIP2009的程序，没加修改就过了。总体上来说有2个大优化 记录了每一个空的位置 每次找可能的数字最少的空搜0ms过，还行1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768#include &lt;cstdio&gt;#include &lt;cstring&gt;#include &lt;cstdlib&gt;#include &lt;algorithm&gt;using namespace std;int vis[3][11][11]=&#123;0&#125;,sd[10][10]=&#123;0&#125;;int lis[81][2],tot=0,flag=0;void get(int at)&#123; int i,mini=99,p,j,x,y,o; for(i=at+1;i&lt;tot;i++)&#123; x=lis[i][0],y=lis[i][1],o=0; for(j=1;j&lt;=9;j++)&#123; if(vis[0][x][j]||vis[1][y][j]||vis[2][(x/3)*3+y/3][j])continue; else o++; &#125; if(o&lt;mini) mini=o,p=i; &#125; x=lis[at+1][0],y=lis[at+1][1],lis[at+1][0]=lis[p][0]; lis[at+1][1]=lis[p][1],lis[p][0]=x,lis[p][1]=y;&#125;//0 行 1 列 2 宫void print()&#123; if(flag)return ; for(int i=0;i&lt;9;i++)&#123; for(int j=0;j&lt;9;j++) printf("%d",sd[i][j]); printf("\n"); &#125; flag=1;&#125;void dfs(int at)&#123; int i,x=lis[at][0],y=lis[at][1]; for(i=1;i&lt;=9;i++)&#123; if(vis[0][x][i]||vis[1][y][i]||vis[2][(x/3)*3+y/3][i])continue; vis[0][x][i]=vis[1][y][i]=vis[2][(x/3)*3+y/3][i]=1; sd[x][y]=i; if(at&lt;tot-1)&#123; if(at!=tot-2)get(at); dfs(at+1); &#125; else print(); vis[0][x][i]=vis[1][y][i]=vis[2][(x/3)*3+y/3][i]=0; sd[x][y]=0; if(flag)break; &#125;&#125;int main()&#123; int T,tmp; scanf("%d",&amp;T); while(T--)&#123; tot=0,flag=0; memset(vis,0,sizeof(vis)); memset(sd,0,sizeof(sd)); memset(lis,0,sizeof(lis)); for(int i=0;i&lt;9;i++) for(int j=0;j&lt;9;j++)&#123; scanf("%1d",&amp;tmp); if(tmp) sd[i][j]=tmp,vis[0][i][tmp]= vis[1][j][tmp]=vis[2][(i/3)*3+j/3][tmp]=1; else lis[tot][0]=i,lis[tot++][1]=j; &#125; dfs(0); &#125; return 0;&#125;]]></content>
+      <categories>
+        <category>POJ</category>
+      </categories>
+      <tags>
+        <tag>DFS</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[POJ3764 The xor-longest Path]]></title>
+    <url>%2F2018%2F08%2F04%2F154%2F</url>
+    <content type="text"><![CDATA[题目地址 题解求出从根出发到每一个点的异或距离，然后问题转化为在这些距离中找两个异或值最大的。这是个经典问题，只需要在用trie树查询时进行反向行走即可。123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384#include &lt;cstdio&gt; #include &lt;cstdlib&gt; #include &lt;cstring&gt; #include &lt;algorithm&gt;using namespace std;typedef unsigned int ll;struct Tree&#123; int l,r; Tree()&#123;l=r=-1;&#125;&#125;;typedef struct&#123; int v,_next; ll cost;&#125;Edge;Edge edge[200005];int cnt=0,at[100005]; void addedge(int _u,int _v,ll _cost)&#123; edge[cnt].v=_v, edge[cnt].cost=_cost, edge[cnt]._next=at[_u], at[_u]=cnt++;&#125; int n,siz=1;Tree tr[3000005];ll vx[100005];bool vis[100005];void Trie_insert(ll num)&#123; //printf("%u\n",num); for(ll j=(1&lt;&lt;31),cur=0;j;j&gt;&gt;=1) if((j&amp;num)==0)&#123;//l:0 r:1 if(tr[cur].l&lt;0) tr[cur].l=siz++; cur=tr[cur].l; &#125;else&#123; if(tr[cur].r&lt;0) tr[cur].r=siz++; cur=tr[cur].r; &#125;&#125;ll Trie_search(ll x)&#123; ll res=0; for(ll j=1&lt;&lt;31,cur=0;j;j&gt;&gt;=1)&#123; if(x&amp;j)&#123; if(tr[cur].l&gt;0)res+=j,cur=tr[cur].l; else cur=tr[cur].r; &#125;else&#123; if(tr[cur].r&gt;0)res+=j,cur=tr[cur].r; else cur=tr[cur].l; &#125; &#125; return res;&#125;void dfs(int cur,ll val)&#123; for(int i=at[cur];i!=-1;i=edge[i]._next)&#123; int _v=edge[i].v; if(!vis[_v]) vis[_v]=1, vx[_v]=val^edge[i].cost, Trie_insert(vx[_v]), dfs(_v,vx[_v]); &#125;&#125;int main()&#123; while(~scanf("%d",&amp;n))&#123; for(int i=0;i&lt;siz;i++) tr[i].l=tr[i].r=-1; siz=1,cnt=0; memset(at,-1,sizeof(at)); memset(vis,0,sizeof(vis)); int u,v;ll c; for(int i=0;i&lt;n-1;i++) scanf("%d%d%u",&amp;u,&amp;v,&amp;c), addedge(u,v,c), addedge(v,u,c); dfs(0,0); vx[0]=0; //Trie_insert(0u); ll ans=0; for(int i=0;i&lt;n;i++) ans=max(ans,Trie_search(vx[i])); printf("%u\n",ans); &#125; return 0; &#125;]]></content>
+      <categories>
+        <category>POJ</category>
+      </categories>
+      <tags>
+        <tag>Trie树</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[POJ2142 The Balance]]></title>
+    <url>%2F2018%2F08%2F04%2F153%2F</url>
+    <content type="text"><![CDATA[题目地址 题解注意$a$,$b$可以交换位置。之后就是简单的解方程了。要使$|x|+|y|$最小，需要保证$x$最小，之后保证$y$最小即可。123456789101112131415161718192021222324252627282930313233343536373839#include &lt;cstdio&gt;#include &lt;cstdlib&gt;#include &lt;algorithm&gt;#include &lt;cstring&gt;#include &lt;cctype&gt;using namespace std;typedef long long ll;ll a,b,d,x1,x2,y1,y2;ll gcd(ll aa,ll bb)&#123; return bb?gcd(bb,aa%bb):aa;&#125;ll extgcd(ll aa,ll bb,ll &amp;xx,ll &amp;yy)&#123; if(!bb)&#123; xx=1,yy=0; return aa; &#125; ll dd=extgcd(bb,aa%bb,yy,xx); yy-=(aa/bb)*xx; return dd;&#125;ll Abs(ll x)&#123; return (x&lt;0)?(-x):x;&#125;void work(ll a_,ll b_,ll &amp;x,ll &amp;y)&#123; ll g=extgcd(a_,b_,x,y),t=b_/g; x*=d/g,x=(x%t+t)%t; y=Abs((a_*x-d)/b_);&#125;int main()&#123; for(;;)&#123; scanf("%lld%lld%lld",&amp;a,&amp;b,&amp;d); if(!a&amp;&amp;!b&amp;&amp;!d)break; work(a,b,x1,y1); work(b,a,x2,y2); if(x1+y1&lt;x2+y2)printf("%lld %lld\n",x1,y1); else printf("%lld %lld\n",y2,x2); &#125; return 0;&#125;]]></content>
+      <categories>
+        <category>POJ</category>
+      </categories>
+      <tags>
+        <tag>数论</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[POJ1811 Prime Test]]></title>
+    <url>%2F2018%2F08%2F04%2F152%2F</url>
+    <content type="text"><![CDATA[题目地址 题解算导上面有讲解。用MillerRabin和PollardRho合力解决。1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071727374757677787980818283848586878889909192#include &lt;cstdio&gt;#include &lt;cstdlib&gt;#include &lt;algorithm&gt;#include &lt;cstring&gt;#include &lt;cctype&gt;using namespace std;typedef long long ll;int T;ll prime[]=&#123;2,3,5,7,11,13,17,19,23,61&#125;;ll gcd(ll a,ll b)&#123; return (!b)?a:gcd(b,a%b);&#125;ll mul(ll a,ll b,ll c)&#123; ll res=0; while(b)&#123; if(b&amp;1)res=(res+a)%c; a=(a+a)%c,b&gt;&gt;=1; &#125; return res;&#125;ll Pow(ll a,ll b,ll c)&#123; ll res=1; a%=c; while(b)&#123; if(b&amp;1)res=mul(res,a,c); a=mul(a,a,c),b&gt;&gt;=1; &#125; return res;&#125;bool witness(ll a,ll n,ll d,ll r)&#123; ll t=Pow(a,d,n),_t=t; for(ll i=1;i&lt;=r;i++)&#123; t=mul(t,t,n); if(t==1&amp;&amp;_t!=1&amp;&amp;_t!=n-1) return 1; _t=t;//基于二次探测定理的操作 &#125; if(t!=1)return 1;//基于费马小定理的操作 return 0;&#125;bool Miller_Rabin(ll n)&#123;//1:质数 if(n==2)return 1; if(n&lt;=1||n%2==0)return 0; for(int i=0;i&lt;10;i++) if(n==prime[i])return 1; ll R=n-1,S=0; for(;R%2==0;R&gt;&gt;=1,S++);//n-1=d*2^r for(int i=0;i&lt;10;i++)//10:测试次数 if(witness(prime[i],n,R,S)) return 0; return 1;&#125;//根据算导，c最好不要是0或者2...//为什么呢？ ll Pollard_Rho(ll n,ll c)&#123; ll x=Pow(rand(),rand(),n),y=x,k=2,d=1,t; for(ll i=1;d==1;i++)&#123; x=(mul(x,x,n)+c)%n; if(x-y&lt;0)t=y-x; else t=x-y; d=gcd(t,n); if(i==k)y=x,k&lt;&lt;=1; &#125; return d;&#125;ll dfs(ll n)&#123; if(n==1)return 1; if(Miller_Rabin(n))return n; ll fac=n,Lans,Rans; while(fac==n) fac=Pollard_Rho(n,rand()%(n-1)+1); Lans=dfs(fac),Rans=dfs(n/fac); return min(Lans,Rans);&#125;void init()&#123; scanf("%d",&amp;T); srand('z'+'q'+'y'+'1'+'0'+'1'+'8'+1);&#125;void solve()&#123; while(T--)&#123; ll N; scanf("%lld",&amp;N); ll ans=dfs(N); if(ans==N)printf("Prime\n"); else printf("%lld\n",ans); &#125;&#125;int main()&#123; init(); solve(); return 0;&#125;]]></content>
+      <categories>
+        <category>POJ</category>
+      </categories>
+      <tags>
+        <tag>素性测试</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[POJ2774 Long Long Message]]></title>
+    <url>%2F2018%2F08%2F04%2F151%2F</url>
+    <content type="text"><![CDATA[题目地址 题解就是求最长公共子串哈希+排序+二分=暴力卡过哈希要用unsigned long long，用unsigned int极其容易撞车12345678910111213141516171819202122232425262728293031323334353637383940414243#include &lt;cstdio&gt;#include &lt;cstdlib&gt;#include &lt;algorithm&gt;#include &lt;cstring&gt;#include &lt;cctype&gt;using namespace std;typedef unsigned long long ui;char a[200005],b[200005];ui P=1000000007,list[200005],h1[200005],h2[200005],pow1[200005];int l1,l2;bool check(int c)&#123; int i,j;ui t; for(i=1;i&lt;=l1-c+1;i++) list[i-1]=h1[i+c-1]-h1[i-1]*pow1[c]; sort(list,list+l1-c); for(i=1;i&lt;=l2-c+1;i++)&#123; t=h2[i+c-1]-h2[i-1]*pow1[c]; if((*lower_bound(list,list+l1-c,t))==t) return true; &#125; return false;&#125;int main()&#123; scanf("%s%s",a,b); l1=strlen(a),l2=strlen(b); int i,j,l,r,md; for(pow1[0]=1,i=1;i&lt;=200000;i++) pow1[i]=pow1[i-1]*P; for(i=1;i&lt;=l1;i++) h1[i]=h1[i-1]*P+a[i-1]; for(i=1;i&lt;=l2;i++) h2[i]=h2[i-1]*P+b[i-1]; l=0,r=min(l1,l2); //用b匹配a while(l&lt;r)&#123; md=l+(r-l+1)/2; if(check(md)) l=md; else r=md-1; &#125; printf("%d\n",r); return 0;&#125;]]></content>
+      <categories>
+        <category>POJ</category>
+      </categories>
+      <tags>
+        <tag>Hash</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[POJ2348 Euclid's Game]]></title>
+    <url>%2F2018%2F08%2F04%2F150%2F</url>
+    <content type="text"><![CDATA[题目地址 题解假设$a&gt;b$。显然当$a\mod b=0$时，先手必胜。当$a\mod b\neq 0$时，若$a&gt;2b$，则可以证明在接下来先手所有可以采取的$k$种策略中必有必胜策略，故这个也是必胜态。我讲的比较浅显，各位不妨看下《挑战程序设计竞赛》的P310。123456789101112131415161718192021222324#include &lt;cstdio&gt;#include &lt;cstdlib&gt;#include &lt;algorithm&gt;#include &lt;cstring&gt;#include &lt;cctype&gt;using namespace std;typedef long long ll;ll a,b,f;int main()&#123; for(;;)&#123; scanf("%lld%lld",&amp;a,&amp;b); if(!a&amp;&amp;!b)break; f=1; for(;;)&#123; if(a&lt;b)swap(a,b); if(a%b==0)break; if(a&gt;2*b)break; a-=b,f^=1; &#125; if(f)printf("Stan wins\n"); else printf("Ollie wins\n"); &#125; return 0;&#125;]]></content>
+      <categories>
+        <category>POJ</category>
+      </categories>
+      <tags>
+        <tag>博弈论</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[POJ2484 A Funny Game]]></title>
+    <url>%2F2018%2F08%2F04%2F149%2F</url>
+    <content type="text"><![CDATA[题目地址 题解 当$n=1$或者$n=2$时，明显先手必胜。当$n=3$时，明显先手必败。由于每次只可取$1$或$2$个，而取$2$个时，$2$个必须相邻，推断有：当$n&gt;3$时，若$n$为偶数，先手无论如何取，后手可在先手对称的位置上取同等数量，于是先手必败。若$n$为奇数，先手取$1$个时，后手可在先手对称的位置上取$2$个，之后无论先手如何取，后手都可在先手对称的位置上取同等数量，先手必败。如果先手一开始取$2$个时，后手可在先手对称的位置上取$1$个,之后还剩下偶数个,可如上推出先手必败。故当$n&gt;3$时,先手必败(来自链接) 这种模仿对手以判断是否是必胜的思想方式很有效，学到了。12345678910111213141516#include &lt;cstdio&gt;#include &lt;cstdlib&gt;#include &lt;algorithm&gt;#include &lt;cstring&gt;#include &lt;cctype&gt;using namespace std;typedef long long ll;int main()&#123; int n; for(;;)&#123; scanf("%d",&amp;n); if(!n)break; printf("%s\n",(n&lt;=2)?"Alice":"Bob"); &#125; return 0;&#125;]]></content>
+      <categories>
+        <category>POJ</category>
+      </categories>
+      <tags>
+        <tag>博弈论</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[POJ1306 Combinations]]></title>
+    <url>%2F2018%2F08%2F04%2F148%2F</url>
+    <content type="text"><![CDATA[题目地址 题解计算组合数即可12345678910111213141516171819202122232425262728293031#include &lt;cstdio&gt;#include &lt;cstdlib&gt;#include &lt;algorithm&gt;#include &lt;cstring&gt;#include &lt;cctype&gt; using namespace std;typedef unsigned long long ll;ll C[105][105];ll read()&#123; ll x=0;char c=getchar(); while(c&lt;'0'||c&gt;'9')c=getchar(); while(c&gt;='0'&amp;&amp;c&lt;='9')x=x*10+c-'0',c=getchar(); return x; &#125;void build()&#123; for(ll i=0;i&lt;=100;i++) C[i][0]=1; for(ll i=1;i&lt;=100;i++) for(ll j=1;j&lt;=i;j++) C[i][j]=C[i-1][j]+C[i-1][j-1];&#125; int main()&#123; build(); ll u,v; for(;;)&#123; u=read(),v=read(); if(!u&amp;&amp;!v)return 0; printf("%llu things taken %llu at a time is %llu exactly.\n",u,v,C[u][v]); &#125; return 0;&#125;]]></content>
+      <categories>
+        <category>POJ</category>
+      </categories>
+      <tags>
+        <tag>排列组合</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[POJ1285 Combinations, Once Again]]></title>
     <url>%2F2018%2F08%2F04%2F147%2F</url>
-    <content type="text"></content>
+    <content type="text"><![CDATA[题目地址 题解用基本的背包处理即可。12345678910111213141516171819202122232425262728293031323334353637383940#include &lt;cstdio&gt;#include &lt;cstdlib&gt;#include &lt;algorithm&gt;#include &lt;cstring&gt;#include &lt;cctype&gt; using namespace std;typedef long long ll;int read()&#123; int f=1,x=0;char c=getchar(); while(c&lt;'0'||c&gt;'9')&#123;if(c=='-')f=-f;c=getchar();&#125; while(c&gt;='0'&amp;&amp;c&lt;='9')x=x*10+c-'0',c=getchar(); return f*x; &#125;int n[56],N,q,r;ll f[56];void packX(int d)&#123; int p=1,_n,j; for(j=N;j&gt;=0;j--) for(_n=1;_n&lt;=min(n[d],j);_n++) f[j]+=f[j-_n];&#125; int main()&#123; int i,j,T=1; for(;;T++)&#123; memset(n,0,sizeof(n)); memset(f,0,sizeof(f)); scanf("%d%d",&amp;N,&amp;q); if(!N&amp;&amp;!q)break; for(i=0;i&lt;N;i++) scanf("%d",&amp;j), n[j-1]++; for(f[0]=1ll,i=0;i&lt;N;i++) packX(i); printf("Case %d:\n",T); for(i=0;i&lt;q;i++) scanf("%d",&amp;r), printf("%lld\n",f[r]); &#125; return 0;&#125;]]></content>
+      <categories>
+        <category>POJ</category>
+      </categories>
+      <tags>
+        <tag>背包DP</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[USACO17OPEN Paired Up]]></title>
@@ -270,8 +475,8 @@
         <category>USACO</category>
       </categories>
       <tags>
-        <tag>二分</tag>
         <tag>最短路</tag>
+        <tag>二分</tag>
       </tags>
   </entry>
   <entry>
@@ -587,8 +792,8 @@
         <category>NOIP2010</category>
       </categories>
       <tags>
-        <tag>模拟</tag>
         <tag>堆</tag>
+        <tag>模拟</tag>
       </tags>
   </entry>
   <entry>
@@ -740,20 +945,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[NOIP2012提高 借教室]]></title>
-    <url>%2F2018%2F08%2F02%2F78%2F</url>
-    <content type="text"><![CDATA[题目地址 题解方法一维护一种数据结构，它支持： 1.区间减法2.检查最小值的正负性线段树即可。这种方法常数很大。时间复杂度：$O((n+m)logn)$。1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859#include &lt;cstdio&gt;#include &lt;cstdlib&gt;#include &lt;algorithm&gt;#include &lt;cstring&gt;#include &lt;cmath&gt;#define INF 2000000000using namespace std;typedef long long ll;int seg[2200000],tag[2200000]=&#123;0&#125;;int n,size,_a,_b,m,rec[3][1000005],_v;int read()&#123; int x=0;char ch=getchar(); while(ch&lt;'0'||ch&gt;'9')ch=getchar(); while(ch&gt;='0'&amp;&amp;ch&lt;='9')x=x*10+ch-'0',ch=getchar(); return x;&#125;void pushdown(int id)&#123; if(tag[id]&amp;&amp;id&lt;size) tag[id&lt;&lt;1]+=tag[id],tag[id&lt;&lt;1|1]+=tag[id], seg[id&lt;&lt;1]+=tag[id],seg[id&lt;&lt;1|1]+=tag[id], tag[id]=0; &#125;void init()&#123; int i; for(size=1;size&lt;n;size&lt;&lt;=1); for(i=size;i-size&lt;n;i++)seg[i]=read(); for(;i&lt;(size&lt;&lt;1);i++)seg[i]=INF; for(i=size-1;i&gt;=1;i--) seg[i]=min(seg[i&lt;&lt;1],seg[i&lt;&lt;1|1]);&#125;void minus(int id,int l,int r)&#123; if(l&gt;_b||r&lt;_a)return ; if(_a&lt;=l&amp;&amp;r&lt;=_b)&#123; tag[id]+=_v,seg[id]+=_v; return ; &#125; pushdown(id); minus(id&lt;&lt;1,l,(l+r)&gt;&gt;1); minus(id&lt;&lt;1|1,(l+r+1)&gt;&gt;1,r); seg[id]=min(seg[id&lt;&lt;1],seg[id&lt;&lt;1|1]);&#125;int solve()&#123; for(int i=0;i&lt;m;i++)&#123; _v=-rec[0][i],_a=rec[1][i],_b=rec[2][i], minus(1,1,size); if(seg[1]&lt;0)return i+1; &#125; return -1;&#125;int main()&#123; n=read(),m=read(); init(); for(int i=0;i&lt;m;i++) rec[0][i]=read(),rec[1][i]=read(),rec[2][i]=read(); int ans=solve(); if(ans&lt;0)printf("0\n"); else printf("-1\n%d\n",ans); return 0;&#125; 方法二我们发现随着订单的增多，可用教室的数量是只减不增的，所以我们尝试二分。二分一个最大订单量，然后区间减法用差分实现，最后扫一遍，看看是否存在负值即可。（差分：假设我们有一个数列，$a1,a_2,a_3,…,a_n$，定义它的差分数列是$a_1,a_2-a_1,a_3-a_2,…a_n-a{n-1}$，这样可以发现差分数列中前$n$个元素的和就是原来数列当前位置元素的值。然后为什么说他可以用来做区间减法呢？比方有$5$个数，$a_1,a_2,a_3,a_4,a_5$，差分数列就是$a_1,a_2-a_1,a_3-a_2,a_4-a_3,a_5-a_4$，然后第$2$到$4$个每一个减掉$p$，那么原数列就是 a_1,a_2-p,a_3-p,a_4-p,a_5新的差分数列就是 a_1,a_2-a_1-p,a_3-a_2,a_4-a_3,a_5-a_4+p可以发现，本来要修改多个元素，在差分数列里就只要修改2个元素。由于我们只要在处理完所有区间操作后再扫一遍查询负数，所以这么做能满足我们的需求。时间复杂度：$O((n+m)logn)$。123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960#include &lt;bits/stdc++.h&gt;#define N 1000005using namespace std;typedef long long ll;int read()&#123; int f=1,x=0;char c=getchar(); while(c&lt;'0'||c&gt;'9')&#123;if(c=='-')f=-f;c=getchar();&#125; while(c&gt;='0'&amp;&amp;c&lt;='9')x=x*10+c-'0',c=getchar(); return f*x; &#125;int n,m,d[N],q[N],s[N],e[N];int oold,nnew;void update()&#123; if(nnew&gt;oold)&#123; for(int i=oold+1;i&lt;=nnew;i++) d[s[i]]-=q[i],d[e[i]+1]+=q[i]; &#125;else&#123; for(int i=oold;i&gt;nnew;i--) d[s[i]]+=q[i],d[e[i]+1]-=q[i]; &#125;&#125;bool C()&#123; int flag=0,sum=0; update(); for(int i=1;i&lt;=n;i++)&#123; sum+=d[i]; if(sum&lt;0)&#123; flag=1; break; &#125; &#125; return flag;&#125;void init()&#123; n=read(),m=read(); int lst=read(); d[1]=lst; for(int i=2;i&lt;=n;i++) d[i]=read(),d[i]-=lst,lst+=d[i]; d[n+1]=-lst; for(int i=1;i&lt;=m;i++) q[i]=read(),s[i]=read(),e[i]=read();&#125;void solve()&#123; int L=1,R=m; oold=0; while(R&gt;L)&#123; nnew=(L+R)&gt;&gt;1; if(C())R=nnew; else L=nnew+1; oold=nnew; &#125; if(L==m)printf("0\n"); else printf("-1\n%d\n",L);&#125;int main()&#123; init(); solve(); return 0;&#125;]]></content>
-      <categories>
-        <category>NOIP题解</category>
-        <category>NOIP2012</category>
-      </categories>
-      <tags>
-        <tag>二分</tag>
-        <tag>差分</tag>
-        <tag>线段树</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[NOIP2012提高 同余方程]]></title>
     <url>%2F2018%2F08%2F02%2F77%2F</url>
     <content type="text"><![CDATA[题目地址 题解就是让你求一个逆元。用快速幂+欧拉函数或者扩欧都行。我只写了扩欧，但是前者应该好写一点。时间复杂度：$O(logn)$12345678910111213141516171819#include &lt;bits/stdc++.h&gt; using namespace std;typedef long long ll;ll extgcd(ll a,ll b,ll &amp;x,ll &amp;y)&#123; ll d=a; if(b)&#123; d=extgcd(b,a%b,y,x); y-=(a/b)*x; &#125;else x=1,y=0; return d; &#125;int main()&#123; ll a,m,x,y; scanf("%lld%lld",&amp;a,&amp;m); extgcd(a,m,x,y); x=(x%m+m)%m; printf("%lld\n",x); return 0; &#125;]]></content>
@@ -764,6 +955,20 @@
       <tags>
         <tag>扩展欧几里得</tag>
         <tag>逆元</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[NOIP2012提高 借教室]]></title>
+    <url>%2F2018%2F08%2F02%2F78%2F</url>
+    <content type="text"><![CDATA[题目地址 题解方法一维护一种数据结构，它支持:1.区间减法2.检查最小值的正负性线段树即可。这种方法常数很大。时间复杂度：$O((n+m)logn)$。1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859#include &lt;cstdio&gt;#include &lt;cstdlib&gt;#include &lt;algorithm&gt;#include &lt;cstring&gt;#include &lt;cmath&gt;#define INF 2000000000using namespace std;typedef long long ll;int seg[2200000],tag[2200000]=&#123;0&#125;;int n,size,_a,_b,m,rec[3][1000005],_v;int read()&#123; int x=0;char ch=getchar(); while(ch&lt;'0'||ch&gt;'9')ch=getchar(); while(ch&gt;='0'&amp;&amp;ch&lt;='9')x=x*10+ch-'0',ch=getchar(); return x;&#125;void pushdown(int id)&#123; if(tag[id]&amp;&amp;id&lt;size) tag[id&lt;&lt;1]+=tag[id],tag[id&lt;&lt;1|1]+=tag[id], seg[id&lt;&lt;1]+=tag[id],seg[id&lt;&lt;1|1]+=tag[id], tag[id]=0; &#125;void init()&#123; int i; for(size=1;size&lt;n;size&lt;&lt;=1); for(i=size;i-size&lt;n;i++)seg[i]=read(); for(;i&lt;(size&lt;&lt;1);i++)seg[i]=INF; for(i=size-1;i&gt;=1;i--) seg[i]=min(seg[i&lt;&lt;1],seg[i&lt;&lt;1|1]);&#125;void minus(int id,int l,int r)&#123; if(l&gt;_b||r&lt;_a)return ; if(_a&lt;=l&amp;&amp;r&lt;=_b)&#123; tag[id]+=_v,seg[id]+=_v; return ; &#125; pushdown(id); minus(id&lt;&lt;1,l,(l+r)&gt;&gt;1); minus(id&lt;&lt;1|1,(l+r+1)&gt;&gt;1,r); seg[id]=min(seg[id&lt;&lt;1],seg[id&lt;&lt;1|1]);&#125;int solve()&#123; for(int i=0;i&lt;m;i++)&#123; _v=-rec[0][i],_a=rec[1][i],_b=rec[2][i], minus(1,1,size); if(seg[1]&lt;0)return i+1; &#125; return -1;&#125;int main()&#123; n=read(),m=read(); init(); for(int i=0;i&lt;m;i++) rec[0][i]=read(),rec[1][i]=read(),rec[2][i]=read(); int ans=solve(); if(ans&lt;0)printf("0\n"); else printf("-1\n%d\n",ans); return 0;&#125; 方法二我们发现随着订单的增多，可用教室的数量是只减不增的，所以我们尝试二分。二分一个最大订单量，然后区间减法用差分实现，最后扫一遍，看看是否存在负值即可。（差分：假设我们有一个数列，$a1,a_2,a_3,…,a_n$，定义它的差分数列是$a_1,a_2-a_1,a_3-a_2,…a_n-a{n-1}$，这样可以发现差分数列中前$n$个元素的和就是原来数列当前位置元素的值。然后为什么说他可以用来做区间减法呢？比方有$5$个数，$a_1,a_2,a_3,a_4,a_5$，差分数列就是$a_1,a_2-a_1,a_3-a_2,a_4-a_3,a_5-a_4$，然后第$2$到$4$个每一个减掉$p$，那么原数列就是 a_1,a_2-p,a_3-p,a_4-p,a_5新的差分数列就是 a_1,a_2-a_1-p,a_3-a_2,a_4-a_3,a_5-a_4+p可以发现，本来要修改多个元素，在差分数列里就只要修改2个元素。由于我们只要在处理完所有区间操作后再扫一遍查询负数，所以这么做能满足我们的需求。时间复杂度：$O((n+m)logn)$。123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960#include &lt;bits/stdc++.h&gt;#define N 1000005using namespace std;typedef long long ll;int read()&#123; int f=1,x=0;char c=getchar(); while(c&lt;'0'||c&gt;'9')&#123;if(c=='-')f=-f;c=getchar();&#125; while(c&gt;='0'&amp;&amp;c&lt;='9')x=x*10+c-'0',c=getchar(); return f*x; &#125;int n,m,d[N],q[N],s[N],e[N];int oold,nnew;void update()&#123; if(nnew&gt;oold)&#123; for(int i=oold+1;i&lt;=nnew;i++) d[s[i]]-=q[i],d[e[i]+1]+=q[i]; &#125;else&#123; for(int i=oold;i&gt;nnew;i--) d[s[i]]+=q[i],d[e[i]+1]-=q[i]; &#125;&#125;bool C()&#123; int flag=0,sum=0; update(); for(int i=1;i&lt;=n;i++)&#123; sum+=d[i]; if(sum&lt;0)&#123; flag=1; break; &#125; &#125; return flag;&#125;void init()&#123; n=read(),m=read(); int lst=read(); d[1]=lst; for(int i=2;i&lt;=n;i++) d[i]=read(),d[i]-=lst,lst+=d[i]; d[n+1]=-lst; for(int i=1;i&lt;=m;i++) q[i]=read(),s[i]=read(),e[i]=read();&#125;void solve()&#123; int L=1,R=m; oold=0; while(R&gt;L)&#123; nnew=(L+R)&gt;&gt;1; if(C())R=nnew; else L=nnew+1; oold=nnew; &#125; if(L==m)printf("0\n"); else printf("-1\n%d\n",L);&#125;int main()&#123; init(); solve(); return 0;&#125;]]></content>
+      <categories>
+        <category>NOIP题解</category>
+        <category>NOIP2012</category>
+      </categories>
+      <tags>
+        <tag>二分</tag>
+        <tag>差分</tag>
+        <tag>线段树</tag>
       </tags>
   </entry>
   <entry>
@@ -1698,18 +1903,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[NOIP1996提高 挖地雷]]></title>
-    <url>%2F2018%2F07%2F08%2F1%2F</url>
-    <content type="text"><![CDATA[题目背景NOIp1996提高组第三题 题目描述在一个地图上有N个地窖（N&lt;=20），每个地窖中埋有一定数量的地雷。同时，给出地窖之间的连接路径。当地窖及其连接的数据给出之后，某人可以从第一个地窖开始挖地雷，然后可以沿着指出的连接往下挖（仅能选择一条路径），当无连接时挖地雷工作结束。设计一个挖地雷的方案，使某人能挖到最多的地雷。 输入输出格式输入格式：有若干行。第1行只有一个数字，表示地窖的个数N。第2行有N个数，分别表示每个地窖中的地雷个数。第3行至第N+1行表示地窖之间的连接情况：第3行有n-1个数（0或1），表示第一个地窖至第2个、第3个、…、第n个地窖有否路径连接。如第3行为1 1 0 0 0 … 0，则表示第1个地窖至第2个地窖有路径，至第3个地窖有路径，至第4个地窖、第5个、…、第n个地窖没有路径。第4行有n-2个数，表示第二个地窖至第3个、第4个、…、第n个地窖有否路径连接。… …第n+1行有1个数，表示第n-1个地窖至第n个地窖有否路径连接。（为0表示没有路径，为1表示有路径）。输出格式：有两行第一行表示挖得最多地雷时的挖地雷的顺序，各地窖序号间以一个空格分隔，不得有多余的空格。第二行只有一个数，表示能挖到的最多地雷数。 输入输出样例样例输入 Sample Input123456510 8 4 7 61 1 1 00 0 01 11 样例输出 Sample Output121 3 4 527 数据范围及提示 Data Size &amp; Hint（N&lt;=20） 题解题目已经帮你拓扑排序完了，直接转移就可以。123456789101112131415161718192021222324252627282930313233#include &lt;cstdio&gt;#include &lt;cstdlib&gt;#include &lt;cstring&gt;#include &lt;algorithm&gt;using namespace std;int n,V,mp[25][25]=&#123;0&#125;,m[25],dp[25]=&#123;0&#125;,pre[25],ans[25],maxi=0,at;int main()&#123; scanf("%d",&amp;n); int i,j; fill(pre,pre+n,-1);//记录路径 for(i=0;i&lt;n;i++) scanf("%d",&amp;m[i]); for(i=0;i&lt;n-1;i++) for(j=i+1;j&lt;n;j++) scanf("%d",&amp;mp[i][j]); dp[0]=maxi=m[0],at=0; for(i=1;i&lt;n;i++)&#123; for(j=i-1;j&gt;=0;j--) if(mp[j][i]&amp;&amp;dp[j]&gt;=dp[i]) dp[i]=dp[j],pre[i]=j; dp[i]+=m[i]; if(dp[i]&gt;maxi) maxi=dp[i],at=i; &#125; for(j=0,i=at;i!=-1;i=pre[i]) ans[j++]=i+1; for(i=j-1;i&gt;=0;i--)&#123; printf("%d",ans[i]); if(i)printf(" "); &#125; printf("\n%d\n",maxi); return 0;&#125;]]></content>
-      <categories>
-        <category>NOIP题解</category>
-        <category>NOIP1996</category>
-      </categories>
-      <tags>
-        <tag>图上DP</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[NOIP1996提高 砝码称重]]></title>
     <url>%2F2018%2F07%2F08%2F2%2F</url>
     <content type="text"><![CDATA[试题来源 NOIP1996 提高组 问题描述 设有1g、2g、3g、5g、10g、20g的砝码各若干枚（其总重&lt;=1000） 输入格式 a1 a2 a3 a4 a5 a6 （表示1g砝码有a1个，2g砝码有a2个，…，20g砝码有a6个） 输出格式 Total=N （N表示用这些砝码能称出的不同重量的个数，但不包括一个砝码也不用的情况） 样例输入11 1 0 0 0 0 样例输出1Total=3 数据规模和约定 总重&lt;=1000 题解用了完全背包，但是数据很弱，好像没有必要。可以暴力枚举。123456789101112131415161718192021222324252627282930#include &lt;cstdio&gt;#include &lt;cstdlib&gt;#include &lt;cstring&gt;#include &lt;algorithm&gt;using namespace std;int f[1005]=&#123;0&#125;,n,v[6],ans=0;void packX(int vv)&#123;//二进制枚举版本 int p=1,vi=vv,j; while(n&gt;=p)&#123; for(j=1000;j&gt;=vi;j--) f[j]=max(f[j],f[j-vi]); n-=p,p&lt;&lt;=1,vi&lt;&lt;=1; &#125; if(n)&#123; for(vi=n*vv,j=1000;j&gt;=vi;j--) f[j]=max(f[j],f[j-vi]); &#125;&#125;int main()&#123; v[0]=1,v[1]=2,v[2]=3,v[3]=5,v[4]=10,v[5]=20; f[0]=1; for(int i=0;i&lt;6;i++)&#123; scanf("%d",&amp;n); if(n)packX(v[i]); &#125; for(int i=1;i&lt;=1000;i++) ans+=f[i]; printf("Total=%d\n",ans); return 0;&#125;]]></content>
@@ -1720,6 +1913,18 @@
       <tags>
         <tag>背包DP</tag>
         <tag>生成函数</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[NOIP1996提高 挖地雷]]></title>
+    <url>%2F2018%2F07%2F08%2F1%2F</url>
+    <content type="text"><![CDATA[题目背景NOIp1996提高组第三题 题目描述在一个地图上有N个地窖（N&lt;=20），每个地窖中埋有一定数量的地雷。同时，给出地窖之间的连接路径。当地窖及其连接的数据给出之后，某人可以从第一个地窖开始挖地雷，然后可以沿着指出的连接往下挖（仅能选择一条路径），当无连接时挖地雷工作结束。设计一个挖地雷的方案，使某人能挖到最多的地雷。 输入输出格式输入格式：有若干行。第1行只有一个数字，表示地窖的个数N。第2行有N个数，分别表示每个地窖中的地雷个数。第3行至第N+1行表示地窖之间的连接情况：第3行有n-1个数（0或1），表示第一个地窖至第2个、第3个、…、第n个地窖有否路径连接。如第3行为1 1 0 0 0 … 0，则表示第1个地窖至第2个地窖有路径，至第3个地窖有路径，至第4个地窖、第5个、…、第n个地窖没有路径。第4行有n-2个数，表示第二个地窖至第3个、第4个、…、第n个地窖有否路径连接。… …第n+1行有1个数，表示第n-1个地窖至第n个地窖有否路径连接。（为0表示没有路径，为1表示有路径）。输出格式：有两行第一行表示挖得最多地雷时的挖地雷的顺序，各地窖序号间以一个空格分隔，不得有多余的空格。第二行只有一个数，表示能挖到的最多地雷数。 输入输出样例样例输入 Sample Input123456510 8 4 7 61 1 1 00 0 01 11 样例输出 Sample Output121 3 4 527 数据范围及提示 Data Size &amp; Hint（N&lt;=20） 题解题目已经帮你拓扑排序完了，直接转移就可以。123456789101112131415161718192021222324252627282930313233#include &lt;cstdio&gt;#include &lt;cstdlib&gt;#include &lt;cstring&gt;#include &lt;algorithm&gt;using namespace std;int n,V,mp[25][25]=&#123;0&#125;,m[25],dp[25]=&#123;0&#125;,pre[25],ans[25],maxi=0,at;int main()&#123; scanf("%d",&amp;n); int i,j; fill(pre,pre+n,-1);//记录路径 for(i=0;i&lt;n;i++) scanf("%d",&amp;m[i]); for(i=0;i&lt;n-1;i++) for(j=i+1;j&lt;n;j++) scanf("%d",&amp;mp[i][j]); dp[0]=maxi=m[0],at=0; for(i=1;i&lt;n;i++)&#123; for(j=i-1;j&gt;=0;j--) if(mp[j][i]&amp;&amp;dp[j]&gt;=dp[i]) dp[i]=dp[j],pre[i]=j; dp[i]+=m[i]; if(dp[i]&gt;maxi) maxi=dp[i],at=i; &#125; for(j=0,i=at;i!=-1;i=pre[i]) ans[j++]=i+1; for(i=j-1;i&gt;=0;i--)&#123; printf("%d",ans[i]); if(i)printf(" "); &#125; printf("\n%d\n",maxi); return 0;&#125;]]></content>
+      <categories>
+        <category>NOIP题解</category>
+        <category>NOIP1996</category>
+      </categories>
+      <tags>
+        <tag>图上DP</tag>
       </tags>
   </entry>
 </search>
