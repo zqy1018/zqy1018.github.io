@@ -1,6 +1,117 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[UVA455 Periodic Strings]]></title>
+    <url>%2F2018%2F08%2F06%2Fuva455%2F</url>
+    <content type="text"><![CDATA[题目链接 题解这题有多种做法123456789101112131415161718192021222324252627282930313233#include &lt;cstdio&gt;#include &lt;cstdlib&gt;#include &lt;algorithm&gt;#include &lt;cstring&gt;#include &lt;cctype&gt;#define INF 2000000000using namespace std;typedef long long ll;int read()&#123; int f=1,x=0;char c=getchar(); while(c&lt;'0'||c&gt;'9')&#123;if(c=='-')f=-f;c=getchar();&#125; while(c&gt;='0'&amp;&amp;c&lt;='9')x=x*10+c-'0',c=getchar(); return f*x; &#125;char s[1005];int main()&#123; int N=read(),flag=0; while(N--)&#123; scanf("%s",s); int len=strlen(s),ans=len; for(int i=1;i&lt;len;i++) if(len%i==0)&#123; int fl=1; for(int j=i;j&lt;len;j++) if(s[j]!=s[j%i])&#123;fl=0;break;&#125; if(fl)&#123;ans=i;break;&#125; &#125; if(!flag)flag=1; else putchar('\n'); printf("%d\n",ans); &#125;; return 0;&#125;]]></content>
+      <categories>
+        <category>UVa</category>
+      </categories>
+      <tags>
+        <tag>字符串</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[UVa1225 Digit Counting]]></title>
+    <url>%2F2018%2F08%2F06%2Fuva1225%2F</url>
+    <content type="text"><![CDATA[题目链接 题解模拟1234567891011121314151617181920212223242526272829303132333435363738394041#include &lt;cstdio&gt;#include &lt;cstdlib&gt;#include &lt;algorithm&gt;#include &lt;cstring&gt;#include &lt;cctype&gt;#define INF 2000000000using namespace std;typedef long long ll;int read()&#123; int f=1,x=0;char c=getchar(); while(c&lt;'0'||c&gt;'9')&#123;if(c=='-')f=-f;c=getchar();&#125; while(c&gt;='0'&amp;&amp;c&lt;='9')x=x*10+c-'0',c=getchar(); return f*x; &#125;int T,tab[10005]=&#123;0&#125;,ans[22][11],cnt[11]=&#123;0&#125;,maxn=0;void init()&#123; T=read(); for(int i=0;i&lt;T;i++)&#123; int t=read(); tab[t]=i+1,maxn=max(maxn,t); &#125;&#125;void solve()&#123; for(int i=1;i&lt;=maxn;i++)&#123; int tmp=i; while(tmp)cnt[tmp%10]++,tmp/=10; if(tab[i])&#123; int ind=tab[i]; for(int j=0;j&lt;10;j++)ans[ind][j]=cnt[j]; &#125; &#125; for(int i=1;i&lt;=T;i++)&#123; for(int j=0;j&lt;9;j++)printf("%d ",ans[i][j]); printf("%d\n",ans[i][9]); &#125;&#125;int main()&#123; init(); solve(); return 0;&#125;]]></content>
+      <categories>
+        <category>UVa</category>
+      </categories>
+      <tags>
+        <tag>模拟</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[UVa1586 Molar mass]]></title>
+    <url>%2F2018%2F08%2F06%2Fuva1586%2F</url>
+    <content type="text"><![CDATA[题目链接 题解模拟123456789101112131415161718192021222324252627282930313233343536373839404142#include &lt;cstdio&gt;#include &lt;cstdlib&gt;#include &lt;algorithm&gt;#include &lt;cstring&gt;#include &lt;cctype&gt;#define INF 2000000000using namespace std;typedef long long ll;int read()&#123; int f=1,x=0;char c=getchar(); while(c&lt;'0'||c&gt;'9')&#123;if(c=='-')f=-f;c=getchar();&#125; while(c&gt;='0'&amp;&amp;c&lt;='9')x=x*10+c-'0',c=getchar(); return f*x; &#125;char s[100];double mass[26];void init()&#123; scanf("%s",s);&#125;void solve()&#123; double ans=0.0; int len=strlen(s),tot=0,ind=0; for(int i=0;i&lt;len;i++)&#123; if(isalpha(s[i]))&#123; if(ind&amp;&amp;!tot)tot=1; ans+=tot*mass[ind],tot=0,ind=s[i]-'A'; &#125;else tot=tot*10+s[i]-'0'; &#125; if(ind&amp;&amp;!tot)tot=1; ans+=tot*mass[ind]; printf("%.3lf\n",ans);&#125;int main()&#123; mass[0]=0; mass[2]=12.010,mass[7]=1.008,mass[14]=16.000,mass[13]=14.010; for(int T=read();T;T--)&#123; init(); solve(); &#125; return 0;&#125;]]></content>
+      <categories>
+        <category>UVa</category>
+      </categories>
+      <tags>
+        <tag>模拟</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[UVa1585 Score]]></title>
+    <url>%2F2018%2F08%2F06%2Fuva1585%2F</url>
+    <content type="text"><![CDATA[题目链接 题解模拟123456789101112131415161718192021222324252627282930313233#include &lt;cstdio&gt;#include &lt;cstdlib&gt;#include &lt;algorithm&gt;#include &lt;cstring&gt;#include &lt;cctype&gt;#define INF 2000000000using namespace std;typedef long long ll;int read()&#123; int f=1,x=0;char c=getchar(); while(c&lt;'0'||c&gt;'9')&#123;if(c=='-')f=-f;c=getchar();&#125; while(c&gt;='0'&amp;&amp;c&lt;='9')x=x*10+c-'0',c=getchar(); return f*x; &#125;char s[100];void init()&#123; scanf("%s",s);&#125;void solve()&#123; int len=strlen(s),tot=0,sc=0; for(int i=0;i&lt;len;i++)&#123; if(s[i]=='O')tot++,sc+=tot; else tot=0; &#125; printf("%d\n",sc);&#125;int main()&#123; for(int T=read();T;T--)&#123; init(); solve(); &#125; return 0;&#125;]]></content>
+      <categories>
+        <category>UVa</category>
+      </categories>
+      <tags>
+        <tag>模拟</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[UVa1583 Digit Generator]]></title>
+    <url>%2F2018%2F08%2F06%2Fuva1583%2F</url>
+    <content type="text"><![CDATA[题目链接 题解模拟123456789101112131415161718192021222324252627282930#include &lt;cstdio&gt;#include &lt;cstdlib&gt;#include &lt;algorithm&gt;#include &lt;cstring&gt;#include &lt;cctype&gt;#define INF 2000000000using namespace std;typedef long long ll;int read()&#123; int f=1,x=0;char c=getchar(); while(c&lt;'0'||c&gt;'9')&#123;if(c=='-')f=-f;c=getchar();&#125; while(c&gt;='0'&amp;&amp;c&lt;='9')x=x*10+c-'0',c=getchar(); return f*x; &#125;int tab[100005]=&#123;0&#125;;void init()&#123; for(int i=1;i&lt;=100000;i++)&#123; int tmp=i,tot=i; while(tmp)tot+=tmp%10,tmp/=10; if(tot&lt;=100000&amp;&amp;!tab[tot])tab[tot]=i; &#125;&#125;void solve()&#123; for(int n=read();n;n--)printf("%d\n",tab[read()]);&#125;int main()&#123; init(); solve(); return 0;&#125;]]></content>
+      <categories>
+        <category>UVa</category>
+      </categories>
+      <tags>
+        <tag>模拟</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[UVa1584 Circular Sequence]]></title>
+    <url>%2F2018%2F08%2F06%2Fuva1584%2F</url>
+    <content type="text"><![CDATA[题目链接 题解模拟12345678910111213141516171819202122232425262728293031323334353637383940#include &lt;cstdio&gt;#include &lt;cstdlib&gt;#include &lt;algorithm&gt;#include &lt;cstring&gt;#include &lt;cctype&gt;#define INF 2000000000using namespace std;typedef long long ll;int read()&#123; int f=1,x=0;char c=getchar(); while(c&lt;'0'||c&gt;'9')&#123;if(c=='-')f=-f;c=getchar();&#125; while(c&gt;='0'&amp;&amp;c&lt;='9')x=x*10+c-'0',c=getchar(); return f*x; &#125;char s[1005];int len;void init()&#123; scanf("%s",s); len=strlen(s),memcpy(s+len,s,sizeof(char)*len);&#125;void solve()&#123; int ans=0; for(int t=1;t&lt;len;t++)&#123; int flag=1; for(int j=0;j&lt;len;j++) if(s[t+j]&lt;s[ans+j])&#123;flag=0;break;&#125; else if(s[t+j]&gt;s[ans+j])break; if(!flag)ans=t; &#125; for(int i=0;i&lt;len;i++) putchar(s[i+ans]); putchar('\n');&#125;int main()&#123; for(int T=read();T;T--)&#123; init(); solve(); &#125; return 0;&#125;]]></content>
+      <categories>
+        <category>UVa</category>
+      </categories>
+      <tags>
+        <tag>模拟</tag>
+        <tag>字符串</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[UVa340 Master-Mind Hints]]></title>
+    <url>%2F2018%2F08%2F06%2Fuva340%2F</url>
+    <content type="text"><![CDATA[题目链接 题解模拟123456789101112131415161718192021222324252627282930313233343536373839404142434445#include &lt;cstdio&gt;#include &lt;cstdlib&gt;#include &lt;algorithm&gt;#include &lt;cstring&gt;#include &lt;cctype&gt;#define INF 2000000000using namespace std;typedef long long ll;int read()&#123; int f=1,x=0;char c=getchar(); while(c&lt;'0'||c&gt;'9')&#123;if(c=='-')f=-f;c=getchar();&#125; while(c&gt;='0'&amp;&amp;c&lt;='9')x=x*10+c-'0',c=getchar(); return f*x; &#125;int n,numa[1005],numb[1005],co[10],ca[10],cb[10];void init()&#123; memset(co,0,sizeof(co)); for(int i=0;i&lt;n;i++) numa[i]=read(),co[numa[i]]++;&#125;void solve()&#123; for(;;)&#123; memset(cb,0,sizeof(cb)); memcpy(ca,co,sizeof(co)); int ans1=0,ans2=0; for(int i=0;i&lt;n;i++)&#123; numb[i]=read(),cb[numb[i]]++; if(numa[i]==numb[i])ans1++,ca[numa[i]]--,cb[numb[i]]--; &#125; if(!numb[0])break; for(int i=1;i&lt;=9;i++) ans2+=min(ca[i],cb[i]); printf(" (%d,%d)\n",ans1,ans2); &#125;&#125;int main()&#123; for(int T=1;;T++)&#123; n=read(); if(!n)break; printf("Game %d:\n",T); init(); solve(); &#125; return 0;&#125;]]></content>
+      <categories>
+        <category>UVa</category>
+      </categories>
+      <tags>
+        <tag>模拟</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[UVa401 Palindromes]]></title>
+    <url>%2F2018%2F08%2F06%2Fuva401%2F</url>
+    <content type="text"><![CDATA[题目链接 题解模拟常量数组技巧！123456789101112131415161718192021222324252627282930313233343536373839404142#include &lt;cstdio&gt;#include &lt;cstdlib&gt;#include &lt;algorithm&gt;#include &lt;cstring&gt;#include &lt;cctype&gt;#define INF 2000000000using namespace std;typedef long long ll;int read()&#123; int f=1,x=0;char c=getchar(); while(c&lt;'0'||c&gt;'9')&#123;if(c=='-')f=-f;c=getchar();&#125; while(c&gt;='0'&amp;&amp;c&lt;='9')x=x*10+c-'0',c=getchar(); return f*x; &#125;char rev_al[]="A 3 HIL JM O 2TUVWXY5",rev_num[]="1SE Z 8 ";char ask(char c)&#123; if(isalpha(c))return rev_al[c-'A']; if(isdigit(c))return rev_num[c-'1'];&#125;void init()&#123; &#125;void solve()&#123; char s[30]; while(scanf("%s",s)==1)&#123; int len=strlen(s),f1=1,f2=1; for(int i=0;i&lt;(len+1)/2;i++) if(s[i]!=s[len-i-1])&#123;f1=0;break;&#125; for(int i=0;i&lt;(len+1)/2;i++) if(s[len-i-1]!=ask(s[i]))&#123;f2=0;break;&#125; if(f1&amp;&amp;f2)printf("%s -- is a mirrored palindrome.\n",s); if((!f1)&amp;&amp;f2)printf("%s -- is a mirrored string.\n",s); if(f1&amp;&amp;(!f2))printf("%s -- is a regular palindrome.\n",s); if((!f1)&amp;&amp;(!f2))printf("%s -- is not a palindrome.\n",s); putchar('\n'); &#125;&#125;int main()&#123; init(); solve(); return 0;&#125;]]></content>
+      <tags>
+        <tag>模拟</tag>
+        <tag>字符串</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[UVa10082 WERTYU]]></title>
+    <url>%2F2018%2F08%2F06%2Fuva10082%2F</url>
+    <content type="text"><![CDATA[题目链接 题解模拟12345678910111213141516171819202122232425262728293031323334#include &lt;cstdio&gt;#include &lt;cstdlib&gt;#include &lt;algorithm&gt;#include &lt;cstring&gt;#include &lt;cctype&gt;#define INF 2000000000using namespace std;typedef long long ll;int read()&#123; int f=1,x=0;char c=getchar(); while(c&lt;'0'||c&gt;'9')&#123;if(c=='-')f=-f;c=getchar();&#125; while(c&gt;='0'&amp;&amp;c&lt;='9')x=x*10+c-'0',c=getchar(); return f*x; &#125;char s[]="`1234567890-=QWERTYUIOP[]\\ASDFGHJKL;'ZXCVBNM,./'";void init()&#123; &#125;void solve()&#123; char c; while((c=getchar())!=EOF)&#123; int ind; if(isspace(c))putchar(c); else&#123; for(ind=0;s[ind]!=c;ind++); putchar(s[ind-1]); &#125; &#125;&#125;int main()&#123; init(); solve(); return 0;&#125;]]></content>
+      <tags>
+        <tag>模拟</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[UVa272 TEX Quotes]]></title>
+    <url>%2F2018%2F08%2F06%2Fuva272%2F</url>
+    <content type="text"><![CDATA[题目链接 题解简单模拟123456789101112131415161718192021222324252627282930313233#include &lt;cstdio&gt;#include &lt;cstdlib&gt;#include &lt;algorithm&gt;#include &lt;cstring&gt;#include &lt;cctype&gt;#define INF 2000000000using namespace std;typedef long long ll;int read()&#123; int f=1,x=0;char c=getchar(); while(c&lt;'0'||c&gt;'9')&#123;if(c=='-')f=-f;c=getchar();&#125; while(c&gt;='0'&amp;&amp;c&lt;='9')x=x*10+c-'0',c=getchar(); return f*x; &#125;void init()&#123; &#125;void solve()&#123; char c; int flag=0; while((c=getchar())!=EOF)&#123; if(c!='"')putchar(c); else&#123; if(flag)putchar('\''),putchar('\''),flag=0; else putchar('`'),putchar('`'),flag=1; &#125; &#125;&#125;int main()&#123;、 init(); solve(); return 0;&#125;]]></content>
+      <tags>
+        <tag>模拟</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[洛谷1338 末日的传说]]></title>
+    <url>%2F2018%2F08%2F06%2Fluogu1338%2F</url>
+    <content type="text"><![CDATA[题目链接 题解这题其实可以这么考虑。我们考虑把这个问题缩小范围。比如$n=5$，在决定了最小的数”$1$”的位置之后，剩下的几个数是$2,3,4,5$，但是他们具体是多少没必要关心，我们只要关心他们的相对大小关系。所以考虑完当前最小的数，算出这个数对答案的贡献，然后减掉这个贡献，就可以转而解决一个更小的子问题。（即$n\rightarrow n-1$）回到题目上，要求是求一个有$m$个逆序对的字典序最小的排列。我们知道一个长度为$n$的排列最多有$\frac {n(n-1)}2$个逆序对，也知道一个排列的逆序对数越多，排列字典序越大。所以如果当前$m$不比当前的$\frac {(n-2)(n-1)}2$（也就是减少一个数之后的最多的逆序对数）大，就可以直接把当前的最小数放在最前面，这肯定是最优的。反之，则考虑最小数的放置位置。假设当前排列长为$n$，最小数为$a$，则$a$有$n$种放法，放在从左到右第$i$个位置时会生成$i-1$个逆序对（因为它左边有$i-1$个比他大）。因为$m$大于$n-1$长度排列最多所能产生的逆序数，所以$a$不可能放在最前面，否则不满足条件。怎么办呢？想到之前说的逆序对越多字典序越大，我们就必须让剩下的数能构成的逆序对数尽量小，所以$a$要放到最后，这样$m$减少的最多。放完了$a$，问题就变成了$n-1$和$m-(a$的贡献$)$的子问题，递归求解即可。时间复杂度$O(n)$。123456789101112131415#include &lt;cstdio&gt;using namespace std;typedef long long ll;ll n,m,a[50005];int main()&#123; scanf("%lld%lld\n",&amp;n,&amp;m); ll lst=n,fst=1; for(int i=1;i&lt;=n;i++)&#123; ll t=(ll)(n-i)*(n-i-1)/2; if(t&gt;=m)a[fst++]=i; else a[lst--]=i,m-=(lst-fst+1); &#125; for(int i=1;i&lt;=n;i++)printf("%d ",a[i]); return 0;&#125;]]></content>
+      <tags>
+        <tag>数学</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[模板 排序算法]]></title>
     <url>%2F2018%2F08%2F05%2Ftemplate-sort%2F</url>
     <content type="text"><![CDATA[不能忘的基本排序！ 插入排序重点在于：在排第$k$个元素的时候，前$k-1$个已经有序。因此只要把第$k$个元素放到它应该在的地方即可。123456789101112void sort1(int* a, int n)&#123; for(int i = 1; i &lt; n; ++i)&#123; int tmp = a[i], j; for(j = i; j &gt; 0; --j)&#123; if(tmp &lt; a[j - 1]) a[j] = a[j - 1];//向后面移动 else break; &#125;//寻找位置 a[j] = tmp;//插入 &#125;&#125; 选择排序简单直观的排序方法。始终寻找当前的最小值，放在它应当在的地方。12345void sort2(int *a, int n)&#123; for(int i = 0; i &lt; n - 1; ++i) for(int j = i + 1; j &lt; n; ++j) if(a[i] &gt; a[j])swap(a[i], a[j]);&#125; 冒泡排序比较相邻元素，调整顺序以达到排序的目的。123456void sort3(int *a, int n)&#123; for(int i = 0; i &lt; n - 1; ++i) for(int j = 0; j &lt; n - i; ++j) if(a[j] &gt; a[j + 1]) swap(a[j], a[j + 1]);//交换过程&#125; 希尔排序希尔排序使用了一个序列（称之为增量序列） h_1,h_2,h_3,...,h_n其中h_1=1。排序时将序列划为h_k组，元素之间间隔为h_k，然后每组内部进行一个插入排序。随着增量减小数据间的有序程度也就越高，最终在增量达到$1$时达到有序。增量序列的选择直接与算法的效率挂钩。此处用的为$Hibbard$增量，即$1,3,7,…,2^k-1$。123456789101112131415void sort4(int *a, int n)&#123; int h[] = &#123;1, 3, 7, 15, 31&#125;; for(int i = lower_bound(h, h + 5, n) - h - 1; i &gt;= 0; --i)&#123;//寻找最大增量 for(int j = h[i]; j &lt; n; ++j)&#123; int tmp = a[j], k; for(k = j; k &gt;= h[i]; k -= h[i])&#123; if(tmp &lt; a[k - h[i]]) a[k] = a[k - h[i]]; else break; &#125; a[k] = tmp; &#125; &#125;&#125; 以上为常见的$O(n^2)$排序算法。 归并排序分治算法的典型应用，将数据层层分割，直到最简单的两个一组的情况，然后不断进行二路归并。1234567891011121314151617181920void Merge(int *a, int *tmp, int lhead, int rhead, int rend)&#123; int lpos = lhead, rpos = rhead, tpos = lhead; while(lpos &lt; rhead &amp;&amp; rpos &lt; rend)&#123; if(a[lpos] &lt; a[rpos]) tmp[tpos++] = a[lpos++]; else tmp[tpos++] = a[rpos++]; &#125; while(lpos &lt; rhead)tmp[tpos++] = a[lpos++]; while(rpos &lt; rend)tmp[tpos++] = a[rpos++]; for(int i = lhead; i &lt; rend; ++i) a[i] = tmp[i];&#125;void MergeSort(int *a, int left, int right)&#123;//左闭右开 int n = right - left, mid = (right + left) &gt;&gt; 1; if(n == 1)return ; MergeSort(a, left, mid); MergeSort(a, mid, right); Merge(a, b, left, mid, right);&#125; 快速排序快速排序的关键在于选择基准以及分割策略，其余的工作交给递归即可。一种比较优秀的选择基准的方法是对最左端，最右端，和最中间的三个数排序，选择第二大（即中间大小）的数作为基准。这种选择比纯粹的随机选择和固定的选择更加高明。之后，将基准和当前序列的倒数第二个值交换。分割时，利用两个指针，其中一个（设为$i$）从最左边向右扫，另一个（设为$j$）从倒数第二个位置向左扫。$i$只会在大于或等于基准的位置停下，$j$只会在小于或等于基准的位置停下。此时若$i&lt;j$，那么交换$i$和$j$对应的数；若$i \ge j$，那么指针停止行动，本次分割结束。之后由于$i$指针左右分别为小于等于和大于等于基准的数，故把基准换到$i$所在位置，再对$i$两侧递归执行排序。 以上的做法避免了几个隐患： 基准换到倒数第二个位置，为$i$提供了一个界限；同时选择基准时进行的排序也为$j$提供了一个界限。 $i$和$j$在遇到等于基准的值时都会停下，这是因为当多个相同元素存在时，若$i$和$j$都不停下，那么$i$会一直进行到接近末尾的地方，导致分割出来的左右两边序列长度不均衡，进而导致算法实际运行效率变差。 123456789101112131415161718192021222324252627282930void Median3(int *a, int left, int right)&#123; int mid = (left + right) &gt;&gt; 1; if(a[left] &gt; a[mid])swap(a[left], a[mid]); if(a[mid] &gt; a[right])swap(a[mid], a[right]); if(a[left] &gt; a[mid])swap(a[left], a[mid]); swap(a[mid], a[right - 1]);&#125;void Qsort(int *a, int left, int right)&#123;// 闭区间 int len = right - left + 1, pivot; if(len &lt;= 1)return ; if(len == 2)&#123; if(a[right] &lt; a[left])swap(a[left], a[right]); return ; &#125; Median3(a, left, right); pivot = a[right - 1]; int i = left, j = right - 1; for(;;)&#123; while(a[++i] &lt; pivot) ; while(a[--j] &gt; pivot) ; if(i &gt;= j)break; swap(a[i], a[j]); &#125; swap(a[i], a[right - 1]); Qsort(a, left, i - 1); Qsort(a, i + 1, right);&#125;void QuickSort(int *a, int n)&#123; Qsort(a, 0, n - 1);&#125; 堆排序建立一个堆，直接操作即可。此处不再赘述。 以上为常见的$O(nlogn)$排序算法。 记数排序计数排序的中心思想是：对于每一个输入的元素$x$，确定小于或等于$x$的元素的个数。利用这一信息，即可把该元素放在他应在的位置。12345678910void CountingSort(int *a, int *cnt, int *ans, int n)&#123; for(int i = 0; i &lt;= 10; ++i) cnt[i] = 0; for(int i = 0; i &lt; n; ++i) cnt[a[i]]++; for(int i = 1; i &lt;= 10; ++i) cnt[i] += cnt[i - 1]; for(int i = n - 1; i &gt;= 0; --i) ans[--cnt[a[i]]] = a[i];&#125; 基数排序基数排序执行这样一个过程：对$n$个$d$位数，从最低位开始，一直到最高位，以数的当前位上的数字作为关键字进行排序。 桶排序桶排序将$n$个分布在$[0,1)$上的实数放入$m$个“桶”里，每个桶对应着一个区间，并且对每一个桶里的数据进行排序，以达到总体的有序。 以上为常见的线性时间复杂度排序算法。]]></content>
@@ -40,8 +151,8 @@
         <category>其他</category>
       </categories>
       <tags>
-        <tag>最短路</tag>
         <tag>经典问题</tag>
+        <tag>最短路</tag>
       </tags>
   </entry>
   <entry>
@@ -64,8 +175,8 @@
         <category>其他</category>
       </categories>
       <tags>
-        <tag>经典问题</tag>
         <tag>树形DP</tag>
+        <tag>经典问题</tag>
       </tags>
   </entry>
   <entry>
@@ -1076,16 +1187,17 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[NOIP2012提高 同余方程]]></title>
-    <url>%2F2018%2F08%2F02%2Fnoip2012tgt4%2F</url>
-    <content type="text"><![CDATA[题目地址 题解就是让你求一个逆元。用快速幂+欧拉函数或者扩欧都行。我只写了扩欧，但是前者应该好写一点。时间复杂度：$O(logn)$12345678910111213141516171819#include &lt;bits/stdc++.h&gt; using namespace std;typedef long long ll;ll extgcd(ll a,ll b,ll &amp;x,ll &amp;y)&#123; ll d=a; if(b)&#123; d=extgcd(b,a%b,y,x); y-=(a/b)*x; &#125;else x=1,y=0; return d; &#125;int main()&#123; ll a,m,x,y; scanf("%lld%lld",&amp;a,&amp;m); extgcd(a,m,x,y); x=(x%m+m)%m; printf("%lld\n",x); return 0; &#125;]]></content>
+    <title><![CDATA[NOIP2012提高 借教室]]></title>
+    <url>%2F2018%2F08%2F02%2Fnoip2012tgt5%2F</url>
+    <content type="text"><![CDATA[题目地址 题解方法一维护一种数据结构，它支持:1.区间减法2.检查最小值的正负性线段树即可。这种方法常数很大。时间复杂度：$O((n+m)logn)$。1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859#include &lt;cstdio&gt;#include &lt;cstdlib&gt;#include &lt;algorithm&gt;#include &lt;cstring&gt;#include &lt;cmath&gt;#define INF 2000000000using namespace std;typedef long long ll;int seg[2200000],tag[2200000]=&#123;0&#125;;int n,size,_a,_b,m,rec[3][1000005],_v;int read()&#123; int x=0;char ch=getchar(); while(ch&lt;'0'||ch&gt;'9')ch=getchar(); while(ch&gt;='0'&amp;&amp;ch&lt;='9')x=x*10+ch-'0',ch=getchar(); return x;&#125;void pushdown(int id)&#123; if(tag[id]&amp;&amp;id&lt;size) tag[id&lt;&lt;1]+=tag[id],tag[id&lt;&lt;1|1]+=tag[id], seg[id&lt;&lt;1]+=tag[id],seg[id&lt;&lt;1|1]+=tag[id], tag[id]=0; &#125;void init()&#123; int i; for(size=1;size&lt;n;size&lt;&lt;=1); for(i=size;i-size&lt;n;i++)seg[i]=read(); for(;i&lt;(size&lt;&lt;1);i++)seg[i]=INF; for(i=size-1;i&gt;=1;i--) seg[i]=min(seg[i&lt;&lt;1],seg[i&lt;&lt;1|1]);&#125;void minus(int id,int l,int r)&#123; if(l&gt;_b||r&lt;_a)return ; if(_a&lt;=l&amp;&amp;r&lt;=_b)&#123; tag[id]+=_v,seg[id]+=_v; return ; &#125; pushdown(id); minus(id&lt;&lt;1,l,(l+r)&gt;&gt;1); minus(id&lt;&lt;1|1,(l+r+1)&gt;&gt;1,r); seg[id]=min(seg[id&lt;&lt;1],seg[id&lt;&lt;1|1]);&#125;int solve()&#123; for(int i=0;i&lt;m;i++)&#123; _v=-rec[0][i],_a=rec[1][i],_b=rec[2][i], minus(1,1,size); if(seg[1]&lt;0)return i+1; &#125; return -1;&#125;int main()&#123; n=read(),m=read(); init(); for(int i=0;i&lt;m;i++) rec[0][i]=read(),rec[1][i]=read(),rec[2][i]=read(); int ans=solve(); if(ans&lt;0)printf("0\n"); else printf("-1\n%d\n",ans); return 0;&#125; 方法二我们发现随着订单的增多，可用教室的数量是只减不增的，所以我们尝试二分。二分一个最大订单量，然后区间减法用差分实现，最后扫一遍，看看是否存在负值即可。（差分：假设我们有一个数列:a_1,a_2,a_3,...,a_n 定义它的差分数列是a_1,a_2-a_1,a_3-a_2,...a_n-a_{n-1} 这样可以发现差分数列中前$n$个元素的和就是原来数列当前位置元素的值。然后为什么说他可以用来做区间减法呢？比方有$5$个数，$a_1,a_2,a_3,a_4,a_5$，差分数列就是$a_1,a_2-a_1,a_3-a_2,a_4-a_3,a_5-a_4$，然后第$2$到$4$个每一个减掉$p$，那么原数列就是 a_1,a_2-p,a_3-p,a_4-p,a_5新的差分数列就是 a_1,a_2-a_1-p,a_3-a_2,a_4-a_3,a_5-a_4+p可以发现，本来要修改多个元素，在差分数列里就只要修改$2$个元素。由于我们只要在处理完所有区间操作后再扫一遍查询负数，所以这么做能满足我们的需求。时间复杂度：$O((n+m)logn)$。123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960#include &lt;bits/stdc++.h&gt;#define N 1000005using namespace std;typedef long long ll;int read()&#123; int f=1,x=0;char c=getchar(); while(c&lt;'0'||c&gt;'9')&#123;if(c=='-')f=-f;c=getchar();&#125; while(c&gt;='0'&amp;&amp;c&lt;='9')x=x*10+c-'0',c=getchar(); return f*x; &#125;int n,m,d[N],q[N],s[N],e[N];int oold,nnew;void update()&#123; if(nnew&gt;oold)&#123; for(int i=oold+1;i&lt;=nnew;i++) d[s[i]]-=q[i],d[e[i]+1]+=q[i]; &#125;else&#123; for(int i=oold;i&gt;nnew;i--) d[s[i]]+=q[i],d[e[i]+1]-=q[i]; &#125;&#125;bool C()&#123; int flag=0,sum=0; update(); for(int i=1;i&lt;=n;i++)&#123; sum+=d[i]; if(sum&lt;0)&#123; flag=1; break; &#125; &#125; return flag;&#125;void init()&#123; n=read(),m=read(); int lst=read(); d[1]=lst; for(int i=2;i&lt;=n;i++) d[i]=read(),d[i]-=lst,lst+=d[i]; d[n+1]=-lst; for(int i=1;i&lt;=m;i++) q[i]=read(),s[i]=read(),e[i]=read();&#125;void solve()&#123; int L=1,R=m; oold=0; while(R&gt;L)&#123; nnew=(L+R)&gt;&gt;1; if(C())R=nnew; else L=nnew+1; oold=nnew; &#125; if(L==m)printf("0\n"); else printf("-1\n%d\n",L);&#125;int main()&#123; init(); solve(); return 0;&#125;]]></content>
       <categories>
         <category>NOIP题解</category>
         <category>NOIP2012</category>
       </categories>
       <tags>
-        <tag>扩展欧几里得</tag>
-        <tag>逆元</tag>
+        <tag>二分</tag>
+        <tag>线段树</tag>
+        <tag>差分</tag>
       </tags>
   </entry>
   <entry>
@@ -1103,17 +1215,16 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[NOIP2012提高 借教室]]></title>
-    <url>%2F2018%2F08%2F02%2Fnoip2012tgt5%2F</url>
-    <content type="text"><![CDATA[题目地址 题解方法一维护一种数据结构，它支持:1.区间减法2.检查最小值的正负性线段树即可。这种方法常数很大。时间复杂度：$O((n+m)logn)$。1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859#include &lt;cstdio&gt;#include &lt;cstdlib&gt;#include &lt;algorithm&gt;#include &lt;cstring&gt;#include &lt;cmath&gt;#define INF 2000000000using namespace std;typedef long long ll;int seg[2200000],tag[2200000]=&#123;0&#125;;int n,size,_a,_b,m,rec[3][1000005],_v;int read()&#123; int x=0;char ch=getchar(); while(ch&lt;'0'||ch&gt;'9')ch=getchar(); while(ch&gt;='0'&amp;&amp;ch&lt;='9')x=x*10+ch-'0',ch=getchar(); return x;&#125;void pushdown(int id)&#123; if(tag[id]&amp;&amp;id&lt;size) tag[id&lt;&lt;1]+=tag[id],tag[id&lt;&lt;1|1]+=tag[id], seg[id&lt;&lt;1]+=tag[id],seg[id&lt;&lt;1|1]+=tag[id], tag[id]=0; &#125;void init()&#123; int i; for(size=1;size&lt;n;size&lt;&lt;=1); for(i=size;i-size&lt;n;i++)seg[i]=read(); for(;i&lt;(size&lt;&lt;1);i++)seg[i]=INF; for(i=size-1;i&gt;=1;i--) seg[i]=min(seg[i&lt;&lt;1],seg[i&lt;&lt;1|1]);&#125;void minus(int id,int l,int r)&#123; if(l&gt;_b||r&lt;_a)return ; if(_a&lt;=l&amp;&amp;r&lt;=_b)&#123; tag[id]+=_v,seg[id]+=_v; return ; &#125; pushdown(id); minus(id&lt;&lt;1,l,(l+r)&gt;&gt;1); minus(id&lt;&lt;1|1,(l+r+1)&gt;&gt;1,r); seg[id]=min(seg[id&lt;&lt;1],seg[id&lt;&lt;1|1]);&#125;int solve()&#123; for(int i=0;i&lt;m;i++)&#123; _v=-rec[0][i],_a=rec[1][i],_b=rec[2][i], minus(1,1,size); if(seg[1]&lt;0)return i+1; &#125; return -1;&#125;int main()&#123; n=read(),m=read(); init(); for(int i=0;i&lt;m;i++) rec[0][i]=read(),rec[1][i]=read(),rec[2][i]=read(); int ans=solve(); if(ans&lt;0)printf("0\n"); else printf("-1\n%d\n",ans); return 0;&#125; 方法二我们发现随着订单的增多，可用教室的数量是只减不增的，所以我们尝试二分。二分一个最大订单量，然后区间减法用差分实现，最后扫一遍，看看是否存在负值即可。（差分：假设我们有一个数列:a_1,a_2,a_3,...,a_n 定义它的差分数列是a_1,a_2-a_1,a_3-a_2,...a_n-a_{n-1} 这样可以发现差分数列中前$n$个元素的和就是原来数列当前位置元素的值。然后为什么说他可以用来做区间减法呢？比方有$5$个数，$a_1,a_2,a_3,a_4,a_5$，差分数列就是$a_1,a_2-a_1,a_3-a_2,a_4-a_3,a_5-a_4$，然后第$2$到$4$个每一个减掉$p$，那么原数列就是 a_1,a_2-p,a_3-p,a_4-p,a_5新的差分数列就是 a_1,a_2-a_1-p,a_3-a_2,a_4-a_3,a_5-a_4+p可以发现，本来要修改多个元素，在差分数列里就只要修改$2$个元素。由于我们只要在处理完所有区间操作后再扫一遍查询负数，所以这么做能满足我们的需求。时间复杂度：$O((n+m)logn)$。123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960#include &lt;bits/stdc++.h&gt;#define N 1000005using namespace std;typedef long long ll;int read()&#123; int f=1,x=0;char c=getchar(); while(c&lt;'0'||c&gt;'9')&#123;if(c=='-')f=-f;c=getchar();&#125; while(c&gt;='0'&amp;&amp;c&lt;='9')x=x*10+c-'0',c=getchar(); return f*x; &#125;int n,m,d[N],q[N],s[N],e[N];int oold,nnew;void update()&#123; if(nnew&gt;oold)&#123; for(int i=oold+1;i&lt;=nnew;i++) d[s[i]]-=q[i],d[e[i]+1]+=q[i]; &#125;else&#123; for(int i=oold;i&gt;nnew;i--) d[s[i]]+=q[i],d[e[i]+1]-=q[i]; &#125;&#125;bool C()&#123; int flag=0,sum=0; update(); for(int i=1;i&lt;=n;i++)&#123; sum+=d[i]; if(sum&lt;0)&#123; flag=1; break; &#125; &#125; return flag;&#125;void init()&#123; n=read(),m=read(); int lst=read(); d[1]=lst; for(int i=2;i&lt;=n;i++) d[i]=read(),d[i]-=lst,lst+=d[i]; d[n+1]=-lst; for(int i=1;i&lt;=m;i++) q[i]=read(),s[i]=read(),e[i]=read();&#125;void solve()&#123; int L=1,R=m; oold=0; while(R&gt;L)&#123; nnew=(L+R)&gt;&gt;1; if(C())R=nnew; else L=nnew+1; oold=nnew; &#125; if(L==m)printf("0\n"); else printf("-1\n%d\n",L);&#125;int main()&#123; init(); solve(); return 0;&#125;]]></content>
+    <title><![CDATA[NOIP2012提高 同余方程]]></title>
+    <url>%2F2018%2F08%2F02%2Fnoip2012tgt4%2F</url>
+    <content type="text"><![CDATA[题目地址 题解就是让你求一个逆元。用快速幂+欧拉函数或者扩欧都行。我只写了扩欧，但是前者应该好写一点。时间复杂度：$O(logn)$12345678910111213141516171819#include &lt;bits/stdc++.h&gt; using namespace std;typedef long long ll;ll extgcd(ll a,ll b,ll &amp;x,ll &amp;y)&#123; ll d=a; if(b)&#123; d=extgcd(b,a%b,y,x); y-=(a/b)*x; &#125;else x=1,y=0; return d; &#125;int main()&#123; ll a,m,x,y; scanf("%lld%lld",&amp;a,&amp;m); extgcd(a,m,x,y); x=(x%m+m)%m; printf("%lld\n",x); return 0; &#125;]]></content>
       <categories>
         <category>NOIP题解</category>
         <category>NOIP2012</category>
       </categories>
       <tags>
-        <tag>二分</tag>
-        <tag>线段树</tag>
-        <tag>差分</tag>
+        <tag>扩展欧几里得</tag>
+        <tag>逆元</tag>
       </tags>
   </entry>
   <entry>
@@ -1421,8 +1532,8 @@
         <category>NOIP2015</category>
       </categories>
       <tags>
-        <tag>模拟</tag>
         <tag>数学</tag>
+        <tag>模拟</tag>
       </tags>
   </entry>
   <entry>
@@ -1917,8 +2028,8 @@
         <category>NOIP2001</category>
       </categories>
       <tags>
-        <tag>二分</tag>
         <tag>数学</tag>
+        <tag>二分</tag>
       </tags>
   </entry>
   <entry>
