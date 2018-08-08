@@ -1,6 +1,231 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[NOIP2006普及 数列]]></title>
+    <url>%2F2018%2F08%2F08%2Fnoip2006pjt4%2F</url>
+    <content type="text"><![CDATA[题目链接 题解容易证明 \forall b \in \mathbb{N}^*, k^b>\sum_{i=0}^{b-1} k^i令(N)_{10}=(a_na_{n-1}...a_1a_0)_2可以推出 \sum_{i=0}^n a_i \cdot k^i随着$N$递增。而$N$从$1$开始增加，因此该数列的第$N$项即为上式。12345678910111213141516#include &lt;cstdio&gt;int n,k,m=0,s=0;int p(int w)&#123; int res=1; for(int i=1;i&lt;=w;i++)res*=n; return res;&#125;int main()&#123; scanf("%d%d",&amp;n,&amp;k); while(k)&#123; if(k&amp;1)s+=p(m); m++,k&gt;&gt;=1; &#125; printf("%d\n",s); return 0;&#125;]]></content>
+      <categories>
+        <category>NOIP题解</category>
+        <category>NOIP2006</category>
+      </categories>
+      <tags>
+        <tag>数学</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[NOIP2006提高 作业调度方案]]></title>
+    <url>%2F2018%2F08%2F08%2Fnoip2006tgt3%2F</url>
+    <content type="text"><![CDATA[题目链接 题解模拟即可…千万不要考虑什么奇奇怪怪的优化12345678910111213141516171819202122232425262728293031323334353637383940414243444546#include &lt;cstdio&gt;#include &lt;algorithm&gt;using namespace std;typedef struct&#123; int gid,_id,p[2]; &#125;Move;Move move[405],*pt[25][25];int mac[25][455]=&#123;0&#125;,cnt[25]=&#123;0&#125;,m,n;int ok(int id,int l,int r)&#123; for(int i=l;i&lt;=r;i++) if(mac[id][i])return i; for(int i=l;i&lt;=r;i++) mac[id][i]=1; return 0;&#125; int solve()&#123; int i,j,k,u,v,id,ans=0; fill(cnt,cnt+24,1); for(i=1;i&lt;=m*n;i++)&#123; u=move[i].p[0],v=move[i].p[1], id=move[i].gid; for(j=cnt[id];;)&#123; k=ok(u,j,j+v-1); if(!k)&#123;cnt[id]=j+v;break;&#125; else j=k+1; &#125; &#125; for(i=1;i&lt;=n;i++) ans=max(ans,cnt[i]); return ans-1;&#125;int main()&#123; scanf("%d%d",&amp;m,&amp;n); int i,j,k; for(i=1;i&lt;=m*n;i++) scanf("%d",&amp;j), move[i].gid=j, move[i]._id=++cnt[j], pt[j][cnt[j]]=&amp;move[i]; for(k=0;k&lt;2;k++) for(i=1;i&lt;=n;i++) for(j=1;j&lt;=m;j++) scanf("%d",&amp;pt[i][j]-&gt;p[k]); printf("%d\n",solve()); return 0;&#125;]]></content>
+      <categories>
+        <category>NOIP题解</category>
+        <category>NOIP2006</category>
+      </categories>
+      <tags>
+        <tag>模拟</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[NOIP2007提高 统计数字]]></title>
+    <url>%2F2018%2F08%2F08%2Fnoip2007tgt1%2F</url>
+    <content type="text"><![CDATA[题目链接 题解模拟即可。123456789101112131415161718#include &lt;cstdio&gt;#include &lt;algorithm&gt;using namespace std; int n,k[200005],tot=1,last;int main()&#123; scanf("%d",&amp;n); for(int i=0;i&lt;n;i++) scanf("%d",&amp;k[i]); sort(k,k+n); last=k[0]; for(int i=1;i&lt;n;i++)&#123; if(last!=k[i]) printf("%d %d\n",last,tot),tot=1,last=k[i]; else tot++; &#125; printf("%d %d\n",last,tot); return 0;&#125;]]></content>
+      <categories>
+        <category>NOIP题解</category>
+        <category>NOIP2007</category>
+      </categories>
+      <tags>
+        <tag>模拟</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[NOIP2007 纪念品分组]]></title>
+    <url>%2F2018%2F08%2F08%2Fnoip2007pjt2%2F</url>
+    <content type="text"><![CDATA[题目链接 题解排序后大的尽量和小的组合，无法组合则直接退出。123456789101112131415#include &lt;cstdio&gt;#include &lt;algorithm&gt;int limit,n,k[30005],ans=0;int main()&#123; scanf("%d%d",&amp;limit,&amp;n); int i,at,o=0; for(i=0;i&lt;n;i++)scanf("%d",&amp;k[i]); std::sort(k,k+n); for(i=0;i&lt;n;i++)&#123; for(o=0,at=n-1;at&gt;i;at--) if(k[at]&lt;=limit-k[i])&#123;o=1;break;&#125; if(o)&#123;ans+=n-at;n=at;&#125;else&#123;ans+=n-i;break;&#125; &#125;printf("%d\n",ans); return 0;&#125;]]></content>
+      <categories>
+        <category>NOIP题解</category>
+        <category>NOIP2007</category>
+      </categories>
+      <tags>
+        <tag>贪心</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[NOIP2007普及 奖学金]]></title>
+    <url>%2F2018%2F08%2F08%2Fnoip2007pjt1%2F</url>
+    <content type="text"><![CDATA[题目链接 题解按照题意排序即可。1234567891011121314151617181920212223242526272829303132333435363738394041424344#include &lt;cstdio&gt;#include &lt;cstdlib&gt;#include &lt;algorithm&gt;#include &lt;cstring&gt;#include &lt;cctype&gt;#define INF 2000000000using namespace std;typedef long long ll;int read()&#123; int f = 1, x = 0; char c = getchar(); while(c &lt; '0' || c &gt; '9')&#123;if(c == '-') f = -f; c = getchar(); &#125; while(c &gt;= '0' &amp;&amp; c &lt;= '9')x = x * 10 + c - '0', c = getchar(); return f * x; &#125;struct Stu&#123; int all, chi, id;&#125;;struct cmp&#123; inline bool operator()(const Stu&amp; s1, const Stu&amp; s2)&#123; if(s1.all != s2.all)return s1.all &gt; s2.all; if(s1.chi != s2.chi)return s1.chi &gt; s2.chi; return s1.id &lt; s2.id; &#125;&#125;;Stu s[505];int n;void init()&#123; n = read(); for(int i = 0; i &lt; n; ++i) s[i].id = i + 1, s[i].all = s[i].chi = read(), s[i].all += read() + read(); sort(s, s + n, cmp());&#125;void solve()&#123; for(int i = 0; i &lt; 5; ++i) printf("%d %d\n", s[i].id, s[i].all);&#125;int main()&#123; init(); solve(); return 0;&#125;]]></content>
+      <categories>
+        <category>NOIP题解</category>
+        <category>NOIP2007</category>
+      </categories>
+      <tags>
+        <tag>模拟</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[UVa12096 The SetStack Computer]]></title>
+    <url>%2F2018%2F08%2F07%2Fuva12096%2F</url>
+    <content type="text"><![CDATA[题目链接 题解将集合映射成数，然后进行操作。非常好的练习STL的题。1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071727374757677787980818283848586878889909192#include &lt;cstdio&gt;#include &lt;cstdlib&gt;#include &lt;algorithm&gt;#include &lt;cstring&gt;#include &lt;cctype&gt;#include &lt;set&gt;#include &lt;map&gt;#define INF 2000000000using namespace std;typedef long long ll;int read()&#123; int f = 1, x = 0; char c = getchar(); while(c &lt; '0' || c &gt; '9')&#123;if(c == '-') f = -f; c = getchar(); &#125; while(c &gt;= '0' &amp;&amp; c &lt;= '9')x = x * 10 + c - '0', c = getchar(); return f * x; &#125;typedef set&lt;int&gt; Set;map&lt;Set, int&gt; mp;int n, stack[10005], top, tot;Set st[2005];int getID(Set *s)&#123; if(!mp.count(*s))&#123; mp[*s] = tot, tot++; return tot - 1; &#125; return mp[*s];&#125;void push()&#123; stack[top++] = 0;&#125;void dup()&#123; stack[top] = stack[top - 1]; top++;&#125;void _union()&#123; int xa, xb, id; xa = stack[--top], xb = stack[--top]; Set ss; set_union(st[xa].begin(), st[xa].end(), st[xb].begin(), st[xb].end(), inserter(ss, ss.begin())); id = getID(&amp;ss); st[id] = ss; stack[top++] = id;&#125;void _inter()&#123; int xa, xb, id; xa = stack[--top], xb = stack[--top]; Set ss; set_intersection(st[xa].begin(), st[xa].end(), st[xb].begin(), st[xb].end(), inserter(ss, ss.begin())); id = getID(&amp;ss); st[id] = ss; stack[top++] = id;&#125;void add()&#123; int xa, xb, id; xa = stack[--top], xb = stack[--top]; Set ss = st[xb]; ss.insert(xa); id = getID(&amp;ss); st[id] = ss; stack[top++] = id;&#125;void init()&#123; n = read(); top = tot = 1; mp.clear(); Set s; mp[s] = 0, st[0] = s;&#125;void solve()&#123; char opr[12]; for(int i = 0; i &lt; n; ++i)&#123; scanf("%s", opr); if(opr[0] == 'P')push(); if(opr[0] == 'D')dup(); if(opr[0] == 'U')_union(); if(opr[0] == 'I')_inter(); if(opr[0] == 'A')add(); printf("%d\n", st[stack[top - 1]].size()); &#125; printf("***\n");&#125;int main()&#123; freopen("a.in", "r", stdin); int T = read(); while(T--)&#123; init(); solve(); &#125; return 0;&#125;]]></content>
+      <categories>
+        <category>UVa</category>
+      </categories>
+      <tags>
+        <tag>模拟</tag>
+        <tag>栈</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[UVa815 Flooded!]]></title>
+    <url>%2F2018%2F08%2F07%2Fuva815%2F</url>
+    <content type="text"><![CDATA[题目链接 题解从最下方向上面淹即可。12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849#include &lt;cstdio&gt;#include &lt;cstdlib&gt;#include &lt;algorithm&gt;#include &lt;cstring&gt;#include &lt;cctype&gt;#define INF 2000000000using namespace std;typedef long long ll;int read()&#123; int f = 1, x = 0; char c = getchar(); while(c &lt; '0' || c &gt; '9')&#123;if(c == '-') f = -f; c = getchar(); &#125; while(c &gt;= '0' &amp;&amp; c &lt;= '9')x = x * 10 + c - '0', c = getchar(); return f * x; &#125;int n, m;double h[905], V;void init()&#123; for(int i = 0; i &lt; n; ++i) for(int j = 0; j &lt; m; ++j) h[i * m + j] = read(); V = read(), V /= 100.0; sort(h, h + n * m); h[n * m] = 100000000;&#125;void solve()&#123; double tot = 0.0, ans1, ans2; int i; for(i = 1; i &lt;= n * m; ++i)&#123; tot += h[i - 1]; if(V &lt; i * h[i] - tot) break; &#125; ans1 = (V + tot) / (double)i, ans2 = 100.0 * i / (n * m); printf("Water level is %.2lf meters.\n%.2lf percent of the region is under water.\n\n", ans1, ans2); &#125;int main()&#123; for(int T = 1; ; ++T)&#123; n = read(), m = read(); if(!n &amp;&amp; !m)break ; printf("Region %d\n", T); init(); solve(); &#125; return 0;&#125;]]></content>
+      <categories>
+        <category>UVa</category>
+      </categories>
+      <tags>
+        <tag>模拟</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[UVa509 RAID!]]></title>
+    <url>%2F2018%2F08%2F07%2Fuva509%2F</url>
+    <content type="text"><![CDATA[题目链接 题解模拟…即可1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071727374757677787980#include &lt;cstdio&gt;#include &lt;cstdlib&gt;#include &lt;algorithm&gt;#include &lt;cstring&gt;#include &lt;cctype&gt;#define INF 2000000000using namespace std;typedef long long ll;int read()&#123; int f = 1, x = 0; char c = getchar(); while(c &lt; '0' || c &gt; '9')&#123;if(c == '-') f = -f; c = getchar(); &#125; while(c &gt;= '0' &amp;&amp; c &lt;= '9')x = x * 10 + c - '0', c = getchar(); return f * x; &#125;int d, s, b, val, seq[100005];char data[7][6500];void init()&#123; char ord[3]; s = read(), b = read(); scanf("%s", ord); val = (ord[0] == 'E' ? 0 : 1); for(int i = 0; i &lt; d; ++i) scanf("%s", data[i]);&#125;void solve()&#123; int cur = 0, tot = 0; for(int i = 0; i &lt; b; ++i)&#123; for(int j = 0; j &lt; s; ++j)&#123; //当前的校验块在磁盘号为cur int c = 0, cnt = 0, id; for(int k = 0; k &lt; d; ++k)&#123; if(data[k][i * s + j] == 'x') cnt++, id = k;//坏的在id处 else c ^= (data[k][i * s + j] - '0'); &#125; if(cnt &gt;= 2) goto failed; else if(cnt == 1) data[id][i * s + j] = (c ^ val) + '0'; else&#123; if(c != val)//校验错误 goto failed; &#125; &#125; for(int j = 0; j &lt; d; ++j)&#123; if(j == cur)continue ; for(int k = 0; k &lt; s; ++k)&#123; if(data[j][i * s + k] - '0') seq[tot &gt;&gt; 2] += (1 &lt;&lt; (3 - (tot % 4))); tot++; &#125; &#125; cur = (cur + 1) % d; &#125; printf("valid, contents are: "); while(tot % 4)tot++; tot &gt;&gt;= 2; for(int i = 0; i &lt; tot; ++i)&#123; if(seq[i] &lt; 10)printf("%d", seq[i]); else putchar(seq[i] - 10 + 'A'); &#125; printf("\n"); return ; failed: printf("invalid.\n");&#125;int main()&#123; for(int T = 1; ; ++T)&#123; d = read(); if(!d)break ; printf("Disk set %d is ", T); init(); solve(); memset(seq, 0, sizeof(seq)); &#125; return 0;&#125;]]></content>
+      <categories>
+        <category>UVa</category>
+      </categories>
+      <tags>
+        <tag>模拟</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[UVa10474 Where is the Marble?]]></title>
+    <url>%2F2018%2F08%2F07%2Fuva10474%2F</url>
+    <content type="text"><![CDATA[题目链接 题解排序后二分查找即可。123456789101112131415161718192021222324252627282930313233343536373839404142#include &lt;cstdio&gt;#include &lt;cstdlib&gt;#include &lt;algorithm&gt;#include &lt;cstring&gt;#include &lt;cctype&gt;#define INF 2000000000using namespace std;typedef long long ll;int read()&#123; int f = 1, x = 0; char c = getchar(); while(c &lt; '0' || c &gt; '9')&#123;if(c == '-') f = -f; c = getchar(); &#125; while(c &gt;= '0' &amp;&amp; c &lt;= '9')x = x * 10 + c - '0', c = getchar(); return f * x; &#125;int n, q, st[10005];void init()&#123; for(int i = 0; i &lt; n; ++i) st[i] = read(); sort(st, st + n);&#125;void solve()&#123; int x; for(int i = 0; i &lt; q; ++i)&#123; x = read(); int index = lower_bound(st, st + n, x) - st; if(st[index] == x) printf("%d found at %d\n", x, index + 1); else printf("%d not found\n", x); &#125;&#125;int main()&#123; for(int T = 1; ; ++T)&#123; n = read(), q = read(); if(!n &amp;&amp; !q)break ; printf("CASE# %d:\n", T); init(); solve(); &#125; return 0;&#125;]]></content>
+      <categories>
+        <category>UVa</category>
+      </categories>
+      <tags>
+        <tag>二分</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[UVa1590 IP Networks]]></title>
+    <url>%2F2018%2F08%2F07%2Fuva1590%2F</url>
+    <content type="text"><![CDATA[题目链接 题解模拟即可熟悉位运算的好题12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849#include &lt;cstdio&gt;#include &lt;cstdlib&gt;#include &lt;algorithm&gt;#include &lt;cstring&gt;#include &lt;cctype&gt;#define INF 2000000000using namespace std;typedef long long ll;int read()&#123; int f = 1, x = 0; char c = getchar(); while(c &lt; '0' || c &gt; '9')&#123;if(c == '-') f = -f; c = getchar(); &#125; while(c &gt;= '0' &amp;&amp; c &lt;= '9')x = x * 10 + c - '0', c = getchar(); return f * x; &#125;typedef unsigned int u_int;u_int ip[1005] = &#123;0&#125;;int m;void init()&#123; memset(ip, 0, sizeof(ip)); for(int i = 0; i &lt; m; ++i) for(int j = 3; j &gt;= 0; --j)&#123; u_int t = read(); ip[i] += (t &lt;&lt; (j * 8)); &#125;&#125;void solve()&#123; int n = 0, i; for(; n &lt;= 31; ++n)&#123; u_int pp = ~((1 &lt;&lt; n) - 1); for(i = 1; i &lt; m; ++i) if((pp &amp; ip[i]) != (pp &amp; ip[i - 1]))break ; if(i == m)break ; &#125; u_int ans = ~((1 &lt;&lt; n) - 1), t = 0xff000000; ip[0] &amp;= ans; for(int j = 3; j &gt;= 0; --j) printf("%u%s", (ip[0] &amp; t) &gt;&gt; (j * 8), j ? "." : "\n"), t &gt;&gt;= 8; t = 0xff000000; for(int j = 3; j &gt;= 0; --j) printf("%u%s", (ans &amp; t) &gt;&gt; (j * 8), j ? "." : "\n"), t &gt;&gt;= 8;&#125;int main()&#123; while(scanf("%d", &amp;m) == 1)&#123; init(); solve(); &#125; return 0;&#125;]]></content>
+      <categories>
+        <category>UVa</category>
+      </categories>
+      <tags>
+        <tag>模拟</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[UVa227 Puzzle]]></title>
+    <url>%2F2018%2F08%2F07%2Fuva227%2F</url>
+    <content type="text"><![CDATA[题目链接 题解这题神坑 有可能拼图里面有字母Z 最后一行的空行不能有，不然无限WA1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071727374757677787980818283848586878889#include &lt;cstdio&gt;#include &lt;cstdlib&gt;#include &lt;algorithm&gt;#include &lt;cstring&gt;#include &lt;cctype&gt;#define INF 2000000000using namespace std;typedef long long ll;int read()&#123; int f=1,x=0;char c=getchar(); while(c&lt;'0'||c&gt;'9')&#123;if(c=='-')f=-f;c=getchar();&#125; while(c&gt;='0'&amp;&amp;c&lt;='9')x=x*10+c-'0',c=getchar(); return f*x; &#125;char puz[7][7],list[100005],tmp[100005];int len,x,y;bool readPuzzle()&#123; char c[10]; for(int i=0;i&lt;5;i++)&#123; fgets(c,10,stdin); if(c[0]=='Z'&amp;&amp;strlen(c)&lt;5)return false; for(int j=0;j&lt;5;j++) if(isalpha(c[j]))puz[i][j]=c[j]; else if(c[j]==' ')puz[(x=i)][(y=j)]=c[j]; &#125; return true;&#125;bool move(int id)&#123; if(list[id]=='A')&#123; if(!x)return false; swap(puz[x-1][y],puz[x][y]),x--; return true; &#125; if(list[id]=='B')&#123; if(x==4)return false; swap(puz[x+1][y],puz[x][y]),x++; return true; &#125; if(list[id]=='L')&#123; if(!y)return false; swap(puz[x][y],puz[x][y-1]),y--; return true; &#125; if(list[id]=='R')&#123; if(y==4)return false; swap(puz[x][y+1],puz[x][y]),y++; return true; &#125; return false;&#125;void solve()&#123; int flag=1; for(int _flag=1;_flag;)&#123; fgets(list,100000,stdin); int len=strlen(list); for(int i=0;i&lt;len;i++)&#123; //printf("%c",list[i]); if(isalpha(list[i]))&#123; if(!move(i)&amp;&amp;flag)&#123; printf("This puzzle has no final configuration.\n"); flag=0; &#125; &#125;else if(list[i]=='0')&#123; _flag=0; break; &#125;else if(!isspace(list[i]))&#123; if(flag) printf("This puzzle has no final configuration.\n"),flag=0; &#125; &#125; &#125; if(flag)&#123; for(int i=0;i&lt;5;i++)&#123; for(int j=0;j&lt;4;j++) printf("%c ",puz[i][j]); printf("%c\n",puz[i][4]); &#125; &#125;&#125;int main()&#123; int T=1; while(readPuzzle())&#123; if(T!=1)putchar('\n'); printf("Puzzle #%d:\n",T++); solve(); memset(puz,0,sizeof(puz)); &#125; return 0;&#125;]]></content>
+      <categories>
+        <category>UVa</category>
+      </categories>
+      <tags>
+        <tag>模拟</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[UVa202 Repeating Decimals]]></title>
+    <url>%2F2018%2F08%2F07%2Fuva202%2F</url>
+    <content type="text"><![CDATA[题目链接 题解模拟只要除出来了一样的余数就停止因为除数不是很大，所以余数不算多，可以完成12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455#include &lt;cstdio&gt;#include &lt;cstdlib&gt;#include &lt;algorithm&gt;#include &lt;cstring&gt;#include &lt;cctype&gt;#define INF 2000000000using namespace std;typedef long long ll;int read()&#123; int f=1,x=0;char c=getchar(); while(c&lt;'0'||c&gt;'9')&#123;if(c=='-')f=-f;c=getchar();&#125; while(c&gt;='0'&amp;&amp;c&lt;='9')x=x*10+c-'0',c=getchar(); return f*x; &#125;int m,n,vis[3005]=&#123;0&#125;,lis[3105];void init()&#123; printf("%d/%d = %d.",m,n,m/n); m%=n;&#125;void solve()&#123; int ans=1,pace=1; memset(vis,0,sizeof(vis)); for(;m;pace++)&#123; if(vis[m])break; vis[m]=pace,m*=10; lis[pace]=m/n,m%=n; &#125; if(!m)&#123; for(int i=1;i&lt;pace;i++) printf("%d",lis[i]); printf("(0)\n"); &#125;else &#123; for(int i=1;i&lt;vis[m];i++) printf("%d",lis[i]); printf("("); if(pace&lt;=50)&#123; for(int i=vis[m];i&lt;pace;i++) printf("%d",lis[i]); printf(")\n"); &#125;else&#123; for(int i=vis[m];i&lt;=50;i++) printf("%d",lis[i]); printf("...)\n"); &#125; ans=pace-vis[m]; &#125; printf(" %d = number of digits in repeating cycle\n\n",ans);&#125;int main()&#123; while(scanf("%d%d",&amp;m,&amp;n)==2)&#123; init(); solve(); &#125; return 0;&#125;]]></content>
+      <categories>
+        <category>UVa</category>
+      </categories>
+      <tags>
+        <tag>模拟</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[UVa133 The Dole Queue]]></title>
+    <url>%2F2018%2F08%2F07%2Fuva133%2F</url>
+    <content type="text"><![CDATA[题目链接 题解按照题意模拟即可。1234567891011121314151617181920212223242526272829303132#include &lt;bits/stdc++.h&gt;int p[25], n, k, m;int main()&#123; for(n = 0,scanf("%d%d%d", &amp;n, &amp;k, &amp;m); n != 0; n = 0,scanf("%d%d%d", &amp;n, &amp;k, &amp;m))&#123; for(int i = 1; i &lt;= n; ++i) p[i] = i; for(int l = 0, tmp = n, r = n + 1; tmp; )&#123; int s = k % tmp; if(!s)s = tmp; for(; s; )&#123; ++l; if(l &gt; n)l = 1; if(p[l])s--; &#125; s = m % tmp; if(!s)s = tmp; for(; s; )&#123; --r; if(r &lt; 1)r = n; if(p[r])s--; &#125; if(l != r) printf("%3d%3d", p[l], p[r]), tmp -= 2; else printf("%3d", p[l]), tmp--; p[l] = p[r] = 0; if(tmp)putchar(','); &#125; putchar('\n'); &#125; return 0;&#125;]]></content>
+      <categories>
+        <category>UVa</category>
+      </categories>
+      <tags>
+        <tag>模拟</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[UVa1589 Xiangqi]]></title>
+    <url>%2F2018%2F08%2F07%2Fuva1589%2F</url>
+    <content type="text"><![CDATA[题目链接 题解长的模拟注意当开始就将帅碰头的时候，不能认为黑方必胜。12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879808182838485868788899091929394959697#include &lt;cstdio&gt;#include &lt;cstdlib&gt;#include &lt;algorithm&gt;#include &lt;cstring&gt;#include &lt;cctype&gt;#define INF 2000000000using namespace std;typedef long long ll;int read()&#123; int f=1,x=0;char c=getchar(); while(c&lt;'0'||c&gt;'9')&#123;if(c=='-')f=-f;c=getchar();&#125; while(c&gt;='0'&amp;&amp;c&lt;='9')x=x*10+c-'0',c=getchar(); return f*x; &#125;int n,bx,by,loc[10][3],puz[15][15];//g 0 c 1 h 2 r 3int dx[]=&#123;-1,0,0,1&#125;,dy[]=&#123;0,1,-1,0&#125;;int ddx[]=&#123;-2,-2,-1,1,-1,1,2,2&#125;,ddy[]=&#123;-1,1,2,2,-2,-2,-1,1&#125;;bool ask(int cx,int cy)&#123; for(int i=0;i&lt;n;i++)&#123; int kx=loc[i][1],ky=loc[i][2]; if(kx==cx&amp;&amp;cy==ky)continue; if(loc[i][0]==0)&#123; int flag=1; if(cy!=ky)continue; for(int j=cx+1;j&lt;kx;j++) if(puz[j][cy])&#123; flag=0;break; &#125; if(flag)return true; &#125;else if(loc[i][0]==1)&#123; int cnt=0; if(cx==kx)&#123; for(int j=min(cy,ky)+1;j&lt;max(cy,ky);j++) if(puz[cx][j])cnt++; &#125;else if(cy==ky)&#123; for(int j=min(cx,kx)+1;j&lt;max(cx,kx);j++) if(puz[j][cy])cnt++; &#125; if(cnt==1)return true; &#125;else if(loc[i][0]==2)&#123; for(int j=0;j&lt;8;j++)&#123; int ccx=kx+ddx[j],ccy=ky+ddy[j]; if(ccx==cx&amp;&amp;ccy==cy&amp;&amp;!puz[kx+dx[j&gt;&gt;1]][ky+dy[j&gt;&gt;1]]) return true; &#125; &#125;else&#123; int flag=1; if(cx==kx)&#123; for(int j=min(cy,ky)+1;j&lt;max(cy,ky);j++) if(puz[cx][j])&#123; flag=0;break; &#125; &#125;else if(cy==ky)&#123; for(int j=min(cx,kx)+1;j&lt;max(cx,kx);j++) if(puz[j][cy])&#123; flag=0;break; &#125; &#125;else flag=0; if(flag)return true; &#125; &#125; return false;&#125;void init()&#123; memset(puz,0,sizeof(puz)); bx=read(),by=read(); char s[3]; for(int i=0;i&lt;n;i++)&#123; scanf("%s%d%d",s,&amp;loc[i][1],&amp;loc[i][2]); if(s[0]=='G')loc[i][0]=0; if(s[0]=='C')loc[i][0]=1; if(s[0]=='H')loc[i][0]=2; if(s[0]=='R')loc[i][0]=3; puz[loc[i][1]][loc[i][2]]=1; &#125;&#125;void solve()&#123; int ans=1; for(int i=0;i&lt;4;i++)&#123; int cx=bx+dx[i],cy=by+dy[i]; if(!cx||cx&gt;3||cy&lt;4||cy&gt;6)continue; puz[cx][cy]=1; if(!ask(cx,cy))&#123; ans=0;break; &#125; puz[cx][cy]=0; &#125; if(!ans)printf("NO\n"); else printf("YES\n");&#125;int main()&#123; while(n=read())&#123; init(); solve(); &#125; return 0;&#125;]]></content>
+      <categories>
+        <category>UVa</category>
+      </categories>
+      <tags>
+        <tag>模拟</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[UVa11809 Floating-Point Numbers]]></title>
+    <url>%2F2018%2F08%2F07%2Fuva11809%2F</url>
+    <content type="text"><![CDATA[题目链接 题解数字都很大，用数字的对数比较。事先对不同M和E打个表，然后比即可。12345678910111213141516171819202122232425262728293031323334353637383940414243444546#include &lt;cstdio&gt;#include &lt;cstdlib&gt;#include &lt;algorithm&gt;#include &lt;cstring&gt;#include &lt;cmath&gt;#define INF 2000000000using namespace std;typedef long long ll;int read()&#123; int f=1,x=0;char c=getchar(); while(c&lt;'0'||c&gt;'9')&#123;if(c=='-')f=-f;c=getchar();&#125; while(c&gt;='0'&amp;&amp;c&lt;='9')x=x*10+c-'0',c=getchar(); return f*x; &#125;double tab[11][50],eps=1e-6;//M Evoid init()&#123; double t=0.5,u=0.5; for(int i=0;i&lt;=9;i++)&#123; for(int j=1;j&lt;=30;j++)&#123; double k=(double)((1&lt;&lt;j)-1); tab[i][j]=k*log(2.0)+log(t); &#125; u*=0.5,t+=u; &#125;&#125;void solve()&#123; char s[50]; while(scanf("%s",s)==1)&#123; if(strlen(s)==3)break; s[17]=' '; double t,u,g; sscanf(s,"%lf%lf",&amp;t,&amp;u); g=u*log(10.0)+log(t); for(int i=0;i&lt;=9;i++) for(int j=1;j&lt;=30;j++) if(g-tab[i][j]&lt;eps&amp;&amp;g-tab[i][j]&gt;-eps)&#123; printf("%d %d\n",i,j); break; &#125; &#125;&#125;int main()&#123; init(); solve(); return 0;&#125;]]></content>
+      <categories>
+        <category>UVa</category>
+      </categories>
+      <tags>
+        <tag>数学</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[UVa100 The 3n + 1 problem]]></title>
+    <url>%2F2018%2F08%2F07%2Fuva100%2F</url>
+    <content type="text"><![CDATA[题目链接 题解模拟即可不需要RMQ也不需要记忆化…因为数据好像超出了1000012345678910111213141516171819202122232425262728293031323334353637383940414243#include &lt;cstdio&gt;#include &lt;cstdlib&gt;#include &lt;algorithm&gt;#include &lt;cstring&gt;#include &lt;cctype&gt;#define INF 2000000000using namespace std;typedef long long ll;int read()&#123; int f = 1, x = 0; char c = getchar(); while(c &lt; '0' || c &gt; '9')&#123;if(c == '-') f = -f; c = getchar(); &#125; while(c &gt;= '0' &amp;&amp; c &lt;= '9')x = x * 10 + c - '0', c = getchar(); return f * x; &#125;int rec(int cur)&#123; if(cur == 1)return 1; if(cur &amp; 1) return rec(3 * cur + 1) + 1; else return rec(cur &gt;&gt; 1) + 1;&#125;void init()&#123;&#125;void solve()&#123; int l, r; while(scanf("%d%d", &amp;l, &amp;r) == 2)&#123; int aans = 0; if(l &lt; r)&#123; for(int i = l; i &lt;= r; ++i) aans = max(aans, rec(i)); &#125;else &#123; for(int i = r; i &lt;= l; ++i) aans = max(aans, rec(i)); &#125; printf("%d %d %d\n", l, r, aans); &#125;&#125;int main()&#123; init(); solve(); return 0;&#125;]]></content>
+      <categories>
+        <category>UVa</category>
+      </categories>
+      <tags>
+        <tag>模拟</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[UVa253 Cube painting]]></title>
+    <url>%2F2018%2F08%2F07%2Fuva253%2F</url>
+    <content type="text"><![CDATA[题目链接 题解让第一个骰子不断向左/向上翻转，直到所有视图均被翻出位置。若此时所有翻出的可能的视图中没有第二个骰子的视图则认为两个骰子不等价。反之等价。12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849#include &lt;cstdio&gt;#include &lt;cstdlib&gt;#include &lt;algorithm&gt;#include &lt;cstring&gt;#include &lt;cctype&gt;#define INF 2000000000using namespace std;typedef long long ll;int read()&#123; int f=1,x=0;char c=getchar(); while(c&lt;'0'||c&gt;'9')&#123;if(c=='-')f=-f;c=getchar();&#125; while(c&gt;='0'&amp;&amp;c&lt;='9')x=x*10+c-'0',c=getchar(); return f*x; &#125;bool vis[1000];char s[15];int h2,k1[]=&#123;4,0,2,3,5,1&#125;,k2[]=&#123;0,2,4,1,3,5&#125;;int cg(char c)&#123; if(c=='r')return 0; if(c=='g')return 1; if(c=='b')return 2;&#125;void dfs(int hs)&#123; int bs[7],hh1=0,hh2=0; for(int i=5;i&gt;=0;i--)bs[i]=hs%3,hs/=3; for(int i=0;i&lt;6;i++)hh1=hh1*3+bs[k1[i]]; for(int i=0;i&lt;6;i++)hh2=hh2*3+bs[k2[i]]; if(!vis[hh1])vis[hh1]=1,dfs(hh1); if(!vis[hh2])vis[hh2]=1,dfs(hh2);&#125;void init()&#123; memset(vis,0,sizeof(vis)); int h1=0;h2=0; for(int i=0;i&lt;6;i++)h1=h1*3+cg(s[i]); for(int i=6;i&lt;12;i++)h2=h2*3+cg(s[i]); vis[h1]=1; dfs(h1);&#125;void solve()&#123; if(vis[h2])printf("TRUE\n"); else printf("FALSE\n");&#125;int main()&#123; while(scanf("%s",s)==1)&#123; init(); solve(); &#125; return 0;&#125;]]></content>
+      <categories>
+        <category>UVa</category>
+      </categories>
+      <tags>
+        <tag>搜索</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[模板 堆]]></title>
+    <url>%2F2018%2F08%2F06%2Ftemplate-heap%2F</url>
+    <content type="text"><![CDATA[堆包括二叉堆，二项堆，可并堆，斐波那契堆，等。 普通二叉堆最经典的堆结构。其本身为一颗完全二叉树，并且每一个节点都遵循着自身的值大于（或者小于）父节点的值的规律。至于出现重复的值该怎么办，这就要具体情况具体分析。一般而言不需要手写二叉堆，使用C++自带的即可。 以下操作默认为小根堆： 上浮操作让当前位置为$id$的节点不断与其父节点比较，若其比父节点大则符合小根堆的标准，停止上浮；若其小于父节点则与父节点相交换，实现上浮。12345678910void pushup(int *h, int id)&#123; int tmp = h[id]; while(id &gt;= 1)&#123; int par = id &gt;&gt; 1; if(h[par] &lt; tmp) break; h[id] = h[par], id &gt;&gt;= 1; &#125; h[id] = tmp;&#125; 下沉操作让当前位置为$id$的节点不断与其子节点比较，边界是其自身为叶子。若其只有一个子节点，且其小于子节点则符合堆的要求，停止下沉；否则其与子节点交换，下沉。若其有两个子节点且小于两个子节点，则停止下沉；否则让更小的那个子节点与自身交换，下沉。12345678910111213141516171819202122void pushdown(int *h, int id)&#123;//下称操作 int tmp = h[id]; while(id &lt;= (n &gt;&gt; 1))&#123; int lson = id &lt;&lt; 1, rson = id &lt;&lt; 1 | 1; if(rson &gt; n)&#123; if(tmp &lt; h[lson]) break; else h[id] = h[lson], id = lson; &#125;else&#123; if(tmp &lt; h[lson] &amp;&amp; tmp &lt; h[rson]) break; else &#123; if(h[lson] &lt; h[rson]) h[id] = h[lson], id = lson; else h[id] = h[rson], id = rson; &#125; &#125; &#125; h[id] = tmp;&#125; 插入操作将新数$val$插入堆的最底层中，从左到右第一个空出的位置（即堆的最后一个位置的后面）。然后执行上浮操作。12345void pushin(int *h, int val)&#123;//增加数操作 int id = ++n; h[id] = val; pushup(h, id);&#125; 弹出操作将堆最后一个位置的节点与根节点交换，删去最后一个位置的节点，然后让根下沉。123456int popout(int *h)&#123; int top = heap[1]; heap[1] = heap[n--]; pushdown(h, 1); return top;&#125; 建堆操作从底到顶，一层一层对非叶子节点进行下沉操作。1234void build_heap(int *h, int n)&#123;//建堆 for(int i = n &gt;&gt; 1; i &gt;= 1; --i) pushdown(heap, i);&#125; 斐波那契堆斐波那契堆是一种可并堆，虽然其的写法比较复杂，但是其的摊还时间复杂度比较优秀。许多操作可以做到平摊$O(1)$的时间复杂度。确切地说，一个斐波那契堆是一个具有最小堆序的有根树森林。]]></content>
+      <categories>
+        <category>堆</category>
+      </categories>
+  </entry>
+  <entry>
+    <title><![CDATA[NOI2001 反正切函数的应用]]></title>
+    <url>%2F2018%2F08%2F06%2Fnoi2001t1%2F</url>
+    <content type="text"><![CDATA[题目链接$O(\sqrt n)$乱搞。利用$(a-b)(a-c)=a^2+1$12345678910111213141516#include &lt;iostream&gt;#include &lt;cstdio&gt;#include &lt;cstdlib&gt;#include &lt;cstring&gt;#include &lt;algorithm&gt;using namespace std;typedef unsigned int uint;uint a,ans=4000000000u,d;int main()&#123; scanf("%u",&amp;a); d=a*a+1; for(uint i=1;i*i&lt;=d;i++) if(d%i==0)ans=min(ans,a+a+i+d/i); printf("%u\n",ans); return 0;&#125;]]></content>
+      <categories>
+        <category>NOI题解</category>
+        <category>NOI2001</category>
+      </categories>
+      <tags>
+        <tag>数学</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[NOI2002 调皮的小孩]]></title>
+    <url>%2F2018%2F08%2F06%2Fnoi2002t2%2F</url>
+    <content type="text"><![CDATA[找不到题目…显然你最多只能问一个人$2$遍。显然你问裁判同样问题$2$次他就会自爆。那就分类讨论。先随便找个人，然后对其他人问他是不是0队的。 $N$个人Yes$M$个No，那么这个人就有可能是0队的。（1）$N\neq M$，他就是0队的。（2）$N=M$，让他问1队的任意一个人是不是1队的$2$次，答案一样这个人就是0队的，反之就是裁判。 $N+1$个人No$M-1$个人Yes，那么这个人是1队的，去另外$N+1$个人问他是不是1队的即可。 $N$个人No$M$个人Yes，$N\neq M$他就是裁判，$N=M$就套用1的解决方法。]]></content>
+      <categories>
+        <category>NOI题解</category>
+        <category>NOI2002</category>
+      </categories>
+      <tags>
+        <tag>模拟</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[UVA455 Periodic Strings]]></title>
     <url>%2F2018%2F08%2F06%2Fuva455%2F</url>
     <content type="text"><![CDATA[题目链接 题解这题有多种做法123456789101112131415161718192021222324252627282930313233#include &lt;cstdio&gt;#include &lt;cstdlib&gt;#include &lt;algorithm&gt;#include &lt;cstring&gt;#include &lt;cctype&gt;#define INF 2000000000using namespace std;typedef long long ll;int read()&#123; int f=1,x=0;char c=getchar(); while(c&lt;'0'||c&gt;'9')&#123;if(c=='-')f=-f;c=getchar();&#125; while(c&gt;='0'&amp;&amp;c&lt;='9')x=x*10+c-'0',c=getchar(); return f*x; &#125;char s[1005];int main()&#123; int N=read(),flag=0; while(N--)&#123; scanf("%s",s); int len=strlen(s),ans=len; for(int i=1;i&lt;len;i++) if(len%i==0)&#123; int fl=1; for(int j=i;j&lt;len;j++) if(s[j]!=s[j%i])&#123;fl=0;break;&#125; if(fl)&#123;ans=i;break;&#125; &#125; if(!flag)flag=1; else putchar('\n'); printf("%d\n",ans); &#125;; return 0;&#125;]]></content>
@@ -82,6 +307,9 @@
     <title><![CDATA[UVa401 Palindromes]]></title>
     <url>%2F2018%2F08%2F06%2Fuva401%2F</url>
     <content type="text"><![CDATA[题目链接 题解模拟常量数组技巧！123456789101112131415161718192021222324252627282930313233343536373839404142#include &lt;cstdio&gt;#include &lt;cstdlib&gt;#include &lt;algorithm&gt;#include &lt;cstring&gt;#include &lt;cctype&gt;#define INF 2000000000using namespace std;typedef long long ll;int read()&#123; int f=1,x=0;char c=getchar(); while(c&lt;'0'||c&gt;'9')&#123;if(c=='-')f=-f;c=getchar();&#125; while(c&gt;='0'&amp;&amp;c&lt;='9')x=x*10+c-'0',c=getchar(); return f*x; &#125;char rev_al[]="A 3 HIL JM O 2TUVWXY5",rev_num[]="1SE Z 8 ";char ask(char c)&#123; if(isalpha(c))return rev_al[c-'A']; if(isdigit(c))return rev_num[c-'1'];&#125;void init()&#123; &#125;void solve()&#123; char s[30]; while(scanf("%s",s)==1)&#123; int len=strlen(s),f1=1,f2=1; for(int i=0;i&lt;(len+1)/2;i++) if(s[i]!=s[len-i-1])&#123;f1=0;break;&#125; for(int i=0;i&lt;(len+1)/2;i++) if(s[len-i-1]!=ask(s[i]))&#123;f2=0;break;&#125; if(f1&amp;&amp;f2)printf("%s -- is a mirrored palindrome.\n",s); if((!f1)&amp;&amp;f2)printf("%s -- is a mirrored string.\n",s); if(f1&amp;&amp;(!f2))printf("%s -- is a regular palindrome.\n",s); if((!f1)&amp;&amp;(!f2))printf("%s -- is not a palindrome.\n",s); putchar('\n'); &#125;&#125;int main()&#123; init(); solve(); return 0;&#125;]]></content>
+      <categories>
+        <category>UVa</category>
+      </categories>
       <tags>
         <tag>模拟</tag>
         <tag>字符串</tag>
@@ -91,6 +319,9 @@
     <title><![CDATA[UVa10082 WERTYU]]></title>
     <url>%2F2018%2F08%2F06%2Fuva10082%2F</url>
     <content type="text"><![CDATA[题目链接 题解模拟12345678910111213141516171819202122232425262728293031323334#include &lt;cstdio&gt;#include &lt;cstdlib&gt;#include &lt;algorithm&gt;#include &lt;cstring&gt;#include &lt;cctype&gt;#define INF 2000000000using namespace std;typedef long long ll;int read()&#123; int f=1,x=0;char c=getchar(); while(c&lt;'0'||c&gt;'9')&#123;if(c=='-')f=-f;c=getchar();&#125; while(c&gt;='0'&amp;&amp;c&lt;='9')x=x*10+c-'0',c=getchar(); return f*x; &#125;char s[]="`1234567890-=QWERTYUIOP[]\\ASDFGHJKL;'ZXCVBNM,./'";void init()&#123; &#125;void solve()&#123; char c; while((c=getchar())!=EOF)&#123; int ind; if(isspace(c))putchar(c); else&#123; for(ind=0;s[ind]!=c;ind++); putchar(s[ind-1]); &#125; &#125;&#125;int main()&#123; init(); solve(); return 0;&#125;]]></content>
+      <categories>
+        <category>UVa</category>
+      </categories>
       <tags>
         <tag>模拟</tag>
       </tags>
@@ -99,6 +330,9 @@
     <title><![CDATA[UVa272 TEX Quotes]]></title>
     <url>%2F2018%2F08%2F06%2Fuva272%2F</url>
     <content type="text"><![CDATA[题目链接 题解简单模拟123456789101112131415161718192021222324252627282930313233#include &lt;cstdio&gt;#include &lt;cstdlib&gt;#include &lt;algorithm&gt;#include &lt;cstring&gt;#include &lt;cctype&gt;#define INF 2000000000using namespace std;typedef long long ll;int read()&#123; int f=1,x=0;char c=getchar(); while(c&lt;'0'||c&gt;'9')&#123;if(c=='-')f=-f;c=getchar();&#125; while(c&gt;='0'&amp;&amp;c&lt;='9')x=x*10+c-'0',c=getchar(); return f*x; &#125;void init()&#123; &#125;void solve()&#123; char c; int flag=0; while((c=getchar())!=EOF)&#123; if(c!='"')putchar(c); else&#123; if(flag)putchar('\''),putchar('\''),flag=0; else putchar('`'),putchar('`'),flag=1; &#125; &#125;&#125;int main()&#123;、 init(); solve(); return 0;&#125;]]></content>
+      <categories>
+        <category>UVa</category>
+      </categories>
       <tags>
         <tag>模拟</tag>
       </tags>
@@ -1187,6 +1421,19 @@
       </tags>
   </entry>
   <entry>
+    <title><![CDATA[NOIP2012提高 同余方程]]></title>
+    <url>%2F2018%2F08%2F02%2Fnoip2012tgt4%2F</url>
+    <content type="text"><![CDATA[题目地址 题解就是让你求一个逆元。用快速幂+欧拉函数或者扩欧都行。我只写了扩欧，但是前者应该好写一点。时间复杂度：$O(logn)$12345678910111213141516171819#include &lt;bits/stdc++.h&gt; using namespace std;typedef long long ll;ll extgcd(ll a,ll b,ll &amp;x,ll &amp;y)&#123; ll d=a; if(b)&#123; d=extgcd(b,a%b,y,x); y-=(a/b)*x; &#125;else x=1,y=0; return d; &#125;int main()&#123; ll a,m,x,y; scanf("%lld%lld",&amp;a,&amp;m); extgcd(a,m,x,y); x=(x%m+m)%m; printf("%lld\n",x); return 0; &#125;]]></content>
+      <categories>
+        <category>NOIP题解</category>
+        <category>NOIP2012</category>
+      </categories>
+      <tags>
+        <tag>扩展欧几里得</tag>
+        <tag>逆元</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[NOIP2012提高 借教室]]></title>
     <url>%2F2018%2F08%2F02%2Fnoip2012tgt5%2F</url>
     <content type="text"><![CDATA[题目地址 题解方法一维护一种数据结构，它支持:1.区间减法2.检查最小值的正负性线段树即可。这种方法常数很大。时间复杂度：$O((n+m)logn)$。1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859#include &lt;cstdio&gt;#include &lt;cstdlib&gt;#include &lt;algorithm&gt;#include &lt;cstring&gt;#include &lt;cmath&gt;#define INF 2000000000using namespace std;typedef long long ll;int seg[2200000],tag[2200000]=&#123;0&#125;;int n,size,_a,_b,m,rec[3][1000005],_v;int read()&#123; int x=0;char ch=getchar(); while(ch&lt;'0'||ch&gt;'9')ch=getchar(); while(ch&gt;='0'&amp;&amp;ch&lt;='9')x=x*10+ch-'0',ch=getchar(); return x;&#125;void pushdown(int id)&#123; if(tag[id]&amp;&amp;id&lt;size) tag[id&lt;&lt;1]+=tag[id],tag[id&lt;&lt;1|1]+=tag[id], seg[id&lt;&lt;1]+=tag[id],seg[id&lt;&lt;1|1]+=tag[id], tag[id]=0; &#125;void init()&#123; int i; for(size=1;size&lt;n;size&lt;&lt;=1); for(i=size;i-size&lt;n;i++)seg[i]=read(); for(;i&lt;(size&lt;&lt;1);i++)seg[i]=INF; for(i=size-1;i&gt;=1;i--) seg[i]=min(seg[i&lt;&lt;1],seg[i&lt;&lt;1|1]);&#125;void minus(int id,int l,int r)&#123; if(l&gt;_b||r&lt;_a)return ; if(_a&lt;=l&amp;&amp;r&lt;=_b)&#123; tag[id]+=_v,seg[id]+=_v; return ; &#125; pushdown(id); minus(id&lt;&lt;1,l,(l+r)&gt;&gt;1); minus(id&lt;&lt;1|1,(l+r+1)&gt;&gt;1,r); seg[id]=min(seg[id&lt;&lt;1],seg[id&lt;&lt;1|1]);&#125;int solve()&#123; for(int i=0;i&lt;m;i++)&#123; _v=-rec[0][i],_a=rec[1][i],_b=rec[2][i], minus(1,1,size); if(seg[1]&lt;0)return i+1; &#125; return -1;&#125;int main()&#123; n=read(),m=read(); init(); for(int i=0;i&lt;m;i++) rec[0][i]=read(),rec[1][i]=read(),rec[2][i]=read(); int ans=solve(); if(ans&lt;0)printf("0\n"); else printf("-1\n%d\n",ans); return 0;&#125; 方法二我们发现随着订单的增多，可用教室的数量是只减不增的，所以我们尝试二分。二分一个最大订单量，然后区间减法用差分实现，最后扫一遍，看看是否存在负值即可。（差分：假设我们有一个数列:a_1,a_2,a_3,...,a_n 定义它的差分数列是a_1,a_2-a_1,a_3-a_2,...a_n-a_{n-1} 这样可以发现差分数列中前$n$个元素的和就是原来数列当前位置元素的值。然后为什么说他可以用来做区间减法呢？比方有$5$个数，$a_1,a_2,a_3,a_4,a_5$，差分数列就是$a_1,a_2-a_1,a_3-a_2,a_4-a_3,a_5-a_4$，然后第$2$到$4$个每一个减掉$p$，那么原数列就是 a_1,a_2-p,a_3-p,a_4-p,a_5新的差分数列就是 a_1,a_2-a_1-p,a_3-a_2,a_4-a_3,a_5-a_4+p可以发现，本来要修改多个元素，在差分数列里就只要修改$2$个元素。由于我们只要在处理完所有区间操作后再扫一遍查询负数，所以这么做能满足我们的需求。时间复杂度：$O((n+m)logn)$。123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960#include &lt;bits/stdc++.h&gt;#define N 1000005using namespace std;typedef long long ll;int read()&#123; int f=1,x=0;char c=getchar(); while(c&lt;'0'||c&gt;'9')&#123;if(c=='-')f=-f;c=getchar();&#125; while(c&gt;='0'&amp;&amp;c&lt;='9')x=x*10+c-'0',c=getchar(); return f*x; &#125;int n,m,d[N],q[N],s[N],e[N];int oold,nnew;void update()&#123; if(nnew&gt;oold)&#123; for(int i=oold+1;i&lt;=nnew;i++) d[s[i]]-=q[i],d[e[i]+1]+=q[i]; &#125;else&#123; for(int i=oold;i&gt;nnew;i--) d[s[i]]+=q[i],d[e[i]+1]-=q[i]; &#125;&#125;bool C()&#123; int flag=0,sum=0; update(); for(int i=1;i&lt;=n;i++)&#123; sum+=d[i]; if(sum&lt;0)&#123; flag=1; break; &#125; &#125; return flag;&#125;void init()&#123; n=read(),m=read(); int lst=read(); d[1]=lst; for(int i=2;i&lt;=n;i++) d[i]=read(),d[i]-=lst,lst+=d[i]; d[n+1]=-lst; for(int i=1;i&lt;=m;i++) q[i]=read(),s[i]=read(),e[i]=read();&#125;void solve()&#123; int L=1,R=m; oold=0; while(R&gt;L)&#123; nnew=(L+R)&gt;&gt;1; if(C())R=nnew; else L=nnew+1; oold=nnew; &#125; if(L==m)printf("0\n"); else printf("-1\n%d\n",L);&#125;int main()&#123; init(); solve(); return 0;&#125;]]></content>
@@ -1212,19 +1459,6 @@
         <tag>二分</tag>
         <tag>贪心</tag>
         <tag>倍增</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[NOIP2012提高 同余方程]]></title>
-    <url>%2F2018%2F08%2F02%2Fnoip2012tgt4%2F</url>
-    <content type="text"><![CDATA[题目地址 题解就是让你求一个逆元。用快速幂+欧拉函数或者扩欧都行。我只写了扩欧，但是前者应该好写一点。时间复杂度：$O(logn)$12345678910111213141516171819#include &lt;bits/stdc++.h&gt; using namespace std;typedef long long ll;ll extgcd(ll a,ll b,ll &amp;x,ll &amp;y)&#123; ll d=a; if(b)&#123; d=extgcd(b,a%b,y,x); y-=(a/b)*x; &#125;else x=1,y=0; return d; &#125;int main()&#123; ll a,m,x,y; scanf("%lld%lld",&amp;a,&amp;m); extgcd(a,m,x,y); x=(x%m+m)%m; printf("%lld\n",x); return 0; &#125;]]></content>
-      <categories>
-        <category>NOIP题解</category>
-        <category>NOIP2012</category>
-      </categories>
-      <tags>
-        <tag>扩展欧几里得</tag>
-        <tag>逆元</tag>
       </tags>
   </entry>
   <entry>
@@ -2028,8 +2262,8 @@
         <category>NOIP2001</category>
       </categories>
       <tags>
-        <tag>数学</tag>
         <tag>二分</tag>
+        <tag>数学</tag>
       </tags>
   </entry>
   <entry>
