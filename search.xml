@@ -1421,6 +1421,20 @@
       </tags>
   </entry>
   <entry>
+    <title><![CDATA[NOIP2012提高 疫情控制]]></title>
+    <url>%2F2018%2F08%2F02%2Fnoip2012tgt6%2F</url>
+    <content type="text"><![CDATA[题目地址 题解容易发现时间越多，控制疫情的任务越有可能完成。所以先二分一个答案$x$，然后判断他可不可行。显然，一个军队走的越高，他能控制的就越多，所以让军队尽量向上走，直到走到根或者时间不够为止。如果可以走到根就记录一下走到根的时候剩余的时间，走不到就给最后到的点打一个标记，这个向上走可以用倍增实现。还可以发现的是，与根直接相连的点很重要，我们称呼他们为关键点，只要全部控制了他们就完成了任务。而判断一个关键点是否被控制可以用一遍$DFS$实现。对于没被控制的关键点，我们把他们到根的路径长记录下来。我们要让可以到根的军队发配到相应的关键点，并且使得这个分配尽可能合理。怎么做呢？考虑贪心，让剩余时间少的军队去占领最近的关键点，时间多的去占领远的。所以给军队剩余时间和关键点的距离分别排序，做一个贪心即可。注意，如果当前扫到的军队无法前往最近的关键点，那就让他回到他之前到根的路上经过的关键点。这样可以最大程度的利用军队。综上，我们在$O(nlogn+mlognlogw)$的时间复杂度内完成了本题。123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899100101102103104105106107108109110111112113114115116117#include &lt;cstdio&gt;#include &lt;cstdlib&gt;#include &lt;algorithm&gt;#include &lt;cstring&gt;#include &lt;cctype&gt;#define INF 10000000000000ll#define LOG 17using namespace std;typedef long long ll;typedef pair&lt;int,int&gt; P;int read()&#123; int f=1,x=0;char c=getchar(); while(c&lt;'0'||c&gt;'9')&#123;if(c=='-')f=-f;c=getchar();&#125; while(c&gt;='0'&amp;&amp;c&lt;='9')x=x*10+c-'0',c=getchar(); return f*x; &#125;P left[50005],city[50005];int to[100005],nex[100005],at[50005],cnt=0;int n,m,p[100005],par[50005][20],secfa[50005];int cost[100005],depth[50005],maxd=0,dis[50005][20];int tot=0,totc=0;bool vis[50005];int query(int u,int t)&#123; if(depth[u]&lt;=t)return 1; for(int i=LOG;i&gt;=0;i--) if(par[u][i]&amp;&amp;dis[u][i]&lt;=t) t-=dis[u][i],u=par[u][i]; return u;&#125;void dfs2(int cur,int fa)&#123; if(vis[cur])return ; bool flag=1,isleaf=1; for(int i=at[cur];i;i=nex[i])&#123; if(to[i]==fa)continue ; dfs2(to[i],cur),flag&amp;=vis[to[i]]; isleaf=0; &#125; if(!isleaf)vis[cur]=flag;&#125;bool C(int x)&#123; tot=totc=0; memset(vis,0,sizeof(vis)); for(int i=1;i&lt;=m;i++)&#123; int goal=query(p[i],x); if(goal==1)left[++tot].first=x-depth[p[i]],left[tot].second=p[i]; else vis[goal]=1; //打标记 &#125; dfs2(1,0); if(vis[1])return 1;//根节点的子树全部被覆盖了 for(int i=at[1];i;i=nex[i]) if(!vis[to[i]])city[++totc].second=to[i],city[totc].first=cost[i]; sort(left+1,left+tot+1); sort(city+1,city+totc+1); int r=1,fr; for(int i=1;r&lt;=totc&amp;&amp;i&lt;=tot;i++)&#123; fr=left[i].second; if(left[i].first&lt;city[r].first)&#123; vis[secfa[fr]]=1; &#125;else&#123; vis[city[r].second]=1,r++; &#125; while(vis[city[r].second]&amp;&amp;r&lt;=totc)r++; &#125; if(r==totc+1)return 1; return 0;&#125;void addedge(int _u,int _v,int _c)&#123; to[++cnt]=_v,cost[cnt]=_c,nex[cnt]=at[_u],at[_u]=cnt;&#125;void dfs(int cur,int fa)&#123; par[cur][0]=fa,maxd=max(maxd,depth[cur]); for(int j=1;j&lt;=LOG;j++) if(par[cur][j-1]) par[cur][j]=par[par[cur][j-1]][j-1], dis[cur][j]=dis[cur][j-1]+dis[par[cur][j-1]][j-1]; for(int i=at[cur];i;i=nex[i])&#123; if(to[i]==fa)continue ; int _v=to[i],_c=cost[i]; depth[_v]=depth[cur]+_c, dis[_v][0]=_c; if(cur==1)secfa[_v]=_v; else secfa[_v]=secfa[cur]; dfs(_v,cur); &#125;&#125;void init()&#123; n=read(); int u,v,c; for(int i=1;i&lt;n;i++) u=read(),v=read(),c=read(), addedge(u,v,c),addedge(v,u,c); m=read(); for(int i=1;i&lt;=m;i++)p[i]=read(); dfs(1,0);&#125;void solve()&#123; int son=0; for(int i=at[1];i;i=nex[i])son++; if(son&gt;m)&#123; printf("-1\n"); return ; &#125; int L=0,R=2*maxd,M; while(R&gt;L)&#123; M=(L+R)&gt;&gt;1; if(C(M))R=M; else L=M+1; &#125; printf("%d\n",L);&#125;int main()&#123; init(); solve(); return 0;&#125;]]></content>
+      <categories>
+        <category>NOIP题解</category>
+        <category>NOIP2012</category>
+      </categories>
+      <tags>
+        <tag>二分</tag>
+        <tag>贪心</tag>
+        <tag>倍增</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[NOIP2012提高 同余方程]]></title>
     <url>%2F2018%2F08%2F02%2Fnoip2012tgt4%2F</url>
     <content type="text"><![CDATA[题目地址 题解就是让你求一个逆元。用快速幂+欧拉函数或者扩欧都行。我只写了扩欧，但是前者应该好写一点。时间复杂度：$O(logn)$12345678910111213141516171819#include &lt;bits/stdc++.h&gt; using namespace std;typedef long long ll;ll extgcd(ll a,ll b,ll &amp;x,ll &amp;y)&#123; ll d=a; if(b)&#123; d=extgcd(b,a%b,y,x); y-=(a/b)*x; &#125;else x=1,y=0; return d; &#125;int main()&#123; ll a,m,x,y; scanf("%lld%lld",&amp;a,&amp;m); extgcd(a,m,x,y); x=(x%m+m)%m; printf("%lld\n",x); return 0; &#125;]]></content>
@@ -1445,20 +1459,6 @@
         <tag>二分</tag>
         <tag>线段树</tag>
         <tag>差分</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[NOIP2012提高 疫情控制]]></title>
-    <url>%2F2018%2F08%2F02%2Fnoip2012tgt6%2F</url>
-    <content type="text"><![CDATA[题目地址 题解容易发现时间越多，控制疫情的任务越有可能完成。所以先二分一个答案$x$，然后判断他可不可行。显然，一个军队走的越高，他能控制的就越多，所以让军队尽量向上走，直到走到根或者时间不够为止。如果可以走到根就记录一下走到根的时候剩余的时间，走不到就给最后到的点打一个标记，这个向上走可以用倍增实现。还可以发现的是，与根直接相连的点很重要，我们称呼他们为关键点，只要全部控制了他们就完成了任务。而判断一个关键点是否被控制可以用一遍$DFS$实现。对于没被控制的关键点，我们把他们到根的路径长记录下来。我们要让可以到根的军队发配到相应的关键点，并且使得这个分配尽可能合理。怎么做呢？考虑贪心，让剩余时间少的军队去占领最近的关键点，时间多的去占领远的。所以给军队剩余时间和关键点的距离分别排序，做一个贪心即可。注意，如果当前扫到的军队无法前往最近的关键点，那就让他回到他之前到根的路上经过的关键点。这样可以最大程度的利用军队。综上，我们在$O(nlogn+mlognlogw)$的时间复杂度内完成了本题。123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899100101102103104105106107108109110111112113114115116117#include &lt;cstdio&gt;#include &lt;cstdlib&gt;#include &lt;algorithm&gt;#include &lt;cstring&gt;#include &lt;cctype&gt;#define INF 10000000000000ll#define LOG 17using namespace std;typedef long long ll;typedef pair&lt;int,int&gt; P;int read()&#123; int f=1,x=0;char c=getchar(); while(c&lt;'0'||c&gt;'9')&#123;if(c=='-')f=-f;c=getchar();&#125; while(c&gt;='0'&amp;&amp;c&lt;='9')x=x*10+c-'0',c=getchar(); return f*x; &#125;P left[50005],city[50005];int to[100005],nex[100005],at[50005],cnt=0;int n,m,p[100005],par[50005][20],secfa[50005];int cost[100005],depth[50005],maxd=0,dis[50005][20];int tot=0,totc=0;bool vis[50005];int query(int u,int t)&#123; if(depth[u]&lt;=t)return 1; for(int i=LOG;i&gt;=0;i--) if(par[u][i]&amp;&amp;dis[u][i]&lt;=t) t-=dis[u][i],u=par[u][i]; return u;&#125;void dfs2(int cur,int fa)&#123; if(vis[cur])return ; bool flag=1,isleaf=1; for(int i=at[cur];i;i=nex[i])&#123; if(to[i]==fa)continue ; dfs2(to[i],cur),flag&amp;=vis[to[i]]; isleaf=0; &#125; if(!isleaf)vis[cur]=flag;&#125;bool C(int x)&#123; tot=totc=0; memset(vis,0,sizeof(vis)); for(int i=1;i&lt;=m;i++)&#123; int goal=query(p[i],x); if(goal==1)left[++tot].first=x-depth[p[i]],left[tot].second=p[i]; else vis[goal]=1; //打标记 &#125; dfs2(1,0); if(vis[1])return 1;//根节点的子树全部被覆盖了 for(int i=at[1];i;i=nex[i]) if(!vis[to[i]])city[++totc].second=to[i],city[totc].first=cost[i]; sort(left+1,left+tot+1); sort(city+1,city+totc+1); int r=1,fr; for(int i=1;r&lt;=totc&amp;&amp;i&lt;=tot;i++)&#123; fr=left[i].second; if(left[i].first&lt;city[r].first)&#123; vis[secfa[fr]]=1; &#125;else&#123; vis[city[r].second]=1,r++; &#125; while(vis[city[r].second]&amp;&amp;r&lt;=totc)r++; &#125; if(r==totc+1)return 1; return 0;&#125;void addedge(int _u,int _v,int _c)&#123; to[++cnt]=_v,cost[cnt]=_c,nex[cnt]=at[_u],at[_u]=cnt;&#125;void dfs(int cur,int fa)&#123; par[cur][0]=fa,maxd=max(maxd,depth[cur]); for(int j=1;j&lt;=LOG;j++) if(par[cur][j-1]) par[cur][j]=par[par[cur][j-1]][j-1], dis[cur][j]=dis[cur][j-1]+dis[par[cur][j-1]][j-1]; for(int i=at[cur];i;i=nex[i])&#123; if(to[i]==fa)continue ; int _v=to[i],_c=cost[i]; depth[_v]=depth[cur]+_c, dis[_v][0]=_c; if(cur==1)secfa[_v]=_v; else secfa[_v]=secfa[cur]; dfs(_v,cur); &#125;&#125;void init()&#123; n=read(); int u,v,c; for(int i=1;i&lt;n;i++) u=read(),v=read(),c=read(), addedge(u,v,c),addedge(v,u,c); m=read(); for(int i=1;i&lt;=m;i++)p[i]=read(); dfs(1,0);&#125;void solve()&#123; int son=0; for(int i=at[1];i;i=nex[i])son++; if(son&gt;m)&#123; printf("-1\n"); return ; &#125; int L=0,R=2*maxd,M; while(R&gt;L)&#123; M=(L+R)&gt;&gt;1; if(C(M))R=M; else L=M+1; &#125; printf("%d\n",L);&#125;int main()&#123; init(); solve(); return 0;&#125;]]></content>
-      <categories>
-        <category>NOIP题解</category>
-        <category>NOIP2012</category>
-      </categories>
-      <tags>
-        <tag>二分</tag>
-        <tag>贪心</tag>
-        <tag>倍增</tag>
       </tags>
   </entry>
   <entry>
