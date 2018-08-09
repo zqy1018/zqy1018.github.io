@@ -1,6 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[USACO07JAN Balanced Lineup]]></title>
+    <url>%2F2018%2F08%2F09%2Fluogu2880%2F</url>
+    <content type="text"><![CDATA[题目链接 题解ST表模板题…线段树估计会挂，因为询问太多了。12345678910111213141516171819202122232425262728#include &lt;stdio.h&gt;#include &lt;stdlib.h&gt;#include &lt;string.h&gt;int f1[16][50005],dat[50005],f2[16][50005],N,Q; int max(int a,int b)&#123;return (a&gt;b)?a:b;&#125;int min(int a,int b)&#123;return (a&lt;b)?a:b;&#125;void sttable(int n)&#123; int i,j,p; memcpy(f1[0],dat,sizeof(dat)); memcpy(f2[0],dat,sizeof(dat)); for(i=1;(1&lt;&lt;i)&lt;=n;i++) for(j=0,p=(1&lt;&lt;(i-1));j&lt;n-p;j++) f1[i][j]=max(f1[i-1][j],f1[i-1][j+p]), f2[i][j]=min(f2[i-1][j],f2[i-1][j+p]);//同时对最大最小两个st表初始化，递推&#125;int rmq(int l,int r)&#123; int k=0;while((1&lt;&lt;(k+1))&lt;(r-l+1))k++; return max(f1[k][l],f1[k][r-(1&lt;&lt;k)+1])-min(f2[k][l],f2[k][r-(1&lt;&lt;k)+1]);//询问部分&#125;int main()&#123; scanf("%d%d",&amp;N,&amp;Q); int i,l,r; for(i=0;i&lt;N;i++) scanf("%d",&amp;dat[i]); sttable(N); for(i=0;i&lt;Q;i++) scanf("%d%d",&amp;l,&amp;r), printf("%d\n",rmq(l-1,r-1)); return 0;&#125;]]></content>
+      <categories>
+        <category>USACO</category>
+      </categories>
+      <tags>
+        <tag>RMQ</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[HNOI2008 遥远的行星]]></title>
+    <url>%2F2018%2F08%2F09%2Fluogu3198%2F</url>
+    <content type="text"><![CDATA[题目链接 题解看到数据规模就吓傻了这题暴力是根本过不动的。所以我们可以用一些玄学方法在这题中，有一个很关键的提示： 误差不超过$5\%$即可 可以发现在这种条件下正确答案的范围非常宽所以可以采用近似的方法，不必每一个$j-i$都计算，可以用一个值来代替某一个范围内的$j-i$。具体的程序实现是：对于一个$j$，有编号为i\in [1,a_j]的行星给他力将此区间分成$k$段，每段的分母$j-i$近似用该区间中点的分母表示$k$可以自行选一个定值，这里用的是100。可以往小里取，不TLE即可。12345678910111213141516171819202122232425262728293031323334353637383940#include &lt;cstdio&gt;#include &lt;cstdlib&gt;#include &lt;algorithm&gt;#include &lt;cstring&gt;#include &lt;cmath&gt;using namespace std;typedef long long ll;int n;double a,m[100005],sum[100005],f[100005];void init()&#123; scanf("%d%lf",&amp;n,&amp;a); sum[0]=m[0]=0; for(int i=1;i&lt;=n;i++) scanf("%lf",&amp;m[i]), sum[i]=sum[i-1]+m[i];&#125;void solve()&#123; for(int i=1;i&lt;=n;i++)&#123; double s=a*i,mid; int lim=floor(s);//[1,ai] if(lim&lt;=100)&#123;//区间长不足100直接算 for(int j=1;j&lt;=lim;j++) f[i]+=m[i]*m[j]/(i-j); &#125;else&#123; int l2=lim/100; for(int j=l2;j&lt;=l2*100;j+=l2) mid=(i-j+i-j+l2-1)*0.5,//算中点的分母 f[i]+=(sum[j]-sum[j-l2])*m[i]/mid; for(int j=l2*100+1;j&lt;=lim;j++)//不足100直接算 f[i]+=m[i]*m[j]/(i-j); &#125; &#125; for(int i=1;i&lt;=n;i++) printf("%.6lf\n",f[i]);&#125;int main()&#123; init(); solve(); return 0;&#125;]]></content>
+      <categories>
+        <category>各省省选</category>
+      </categories>
+      <tags>
+        <tag>非完美算法</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[SDOI2009 学校食堂Dining]]></title>
+    <url>%2F2018%2F08%2F09%2Fluogu2157%2F</url>
+    <content type="text"><![CDATA[题目链接 题解“写过小笼包你就会发现这是一道模板题”一开始我是这么想的，结果发现这样可能会出现没有头的情况。并且要找到头是一件非常困难的事。所以就用普通状压，设$f(i,j,k)$表示前$i-1$个人吃完，$i~i+7$个人吃饭的状态是$j$，上一个吃的人是$i+k$。就可以愉快的转移了。12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061#include &lt;cstdio&gt;#include &lt;cstdlib&gt;#include &lt;algorithm&gt;#include &lt;cstring&gt;#include &lt;cctype&gt;#define INF 1000000000#define offset 8using namespace std;typedef long long ll;int n,d[1005],t[1005],f[1005][257][17];int read()&#123; int f=1,x=0;char c=getchar(); while(c&lt;'0'||c&gt;'9')&#123;if(c=='-')f=-f;c=getchar();&#125; while(c&gt;='0'&amp;&amp;c&lt;='9')x=x*10+c-'0',c=getchar(); return f*x; &#125;int val(int x,int y)&#123; return (x&lt;=0)?0:(t[x]^t[y]);&#125;void solve()&#123; for(int i=1;i&lt;=n+1;i++) for(int j=0;j&lt;(1&lt;&lt;8);j++) for(int k=-8;k&lt;=7;k++) f[i][j][k+offset]=INF; f[1][0][-1+offset]=0; for(int i=1;i&lt;=n;i++)&#123; for(int j=0;j&lt;(1&lt;&lt;8);j++)&#123; for(int k=-8;k&lt;=7;k++)&#123; if(f[i][j][k+offset]&gt;=INF)continue; if(j&amp;1)//自己吃过了 f[i+1][j&gt;&gt;1][k-1+offset]=min(f[i+1][j&gt;&gt;1][k-1+offset],f[i][j][k+offset]); else&#123; int r=n+2; for(int u=1,v=0;v&lt;8;v++,u&lt;&lt;=1)&#123; if((j&amp;u)==0)&#123; if(i+v&gt;r)break; r=min(r,i+v+d[i+v]);//不能在这之后选人 f[i][j|u][v+offset]=min(f[i][j|u][v+offset],f[i][j][k+offset]+val(i+k,i+v)); &#125; &#125; &#125; &#125; &#125; &#125;&#125;void init()&#123; int T=read(); while(T--)&#123; n=read(),d[0]=n+2; for(int i=1;i&lt;=n;i++)t[i]=read(),d[i]=read(); solve(); int ans=INF; for(int i=-8;i&lt;=-1;i++) ans=min(ans,f[n+1][0][i+offset]); printf("%d\n",ans); &#125;&#125;int main()&#123; init(); return 0;&#125;]]></content>
+      <categories>
+        <category>各省省选</category>
+      </categories>
+      <tags>
+        <tag>状压DP</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[洛谷1999 高维正方体]]></title>
+    <url>%2F2018%2F08%2F09%2Fluogu1999%2F</url>
+    <content type="text"><![CDATA[题目链接 题解给出一种这个题的思考方法吧…设$f(i,j)$表示$i$维超立方体中$j$维元素的个数。先思考：点的个数如何变化？很显然，每升一维，点的个数就多一倍，故$f(i,0)=2^i$。而根据规律可以看出，某一维在升维之后，他自己这一维复制了一份，同时原来比他小一维德元素也升为了他这一维。故得到递推关系：$f(i,j)=2f(i-1,j)+f(i-1,j-1)$。结合以上两个方程，很容易想到这是一个$O(n^2)$的dp。但显然不行。这么做复杂度大的太可怕。可以发现，这个递推模型和杨辉三角很像。所以我们写一下：观察发现，每一斜列都构成一个高阶等差数列。换言之，第$q$个斜列上的数都可以表示成一个$q-1$次多项式。计算后可以发现，对于同样的$q$，右边的第$k$个位置的数总是比左边的同样位置的数大$2^{q-1}$倍。根据这个就可以发现，下面每一个数的通项为C_i^j\times 2^{i-j}所以答案就是C_a^b\times 2^{a-b}。之后组合数取模什么的拿线性逆元做即可。123456789101112131415161718192021222324252627282930313233343536373839#include &lt;cstdio&gt;#include &lt;cstdlib&gt;#include &lt;algorithm&gt;#include &lt;cstring&gt;#include &lt;cctype&gt;#define P 1000000007llusing namespace std;typedef long long ll;ll a,b,inv[100005];ll q_pow(ll a,ll b)&#123; ll res=1; while(b)&#123; if(b&amp;1)res=(res*a)%P; a=(a*a)%P,b&gt;&gt;=1; &#125; return res;&#125;void init()&#123; scanf("%lld%lld",&amp;a,&amp;b);&#125;void solve()&#123; if(a&lt;b)&#123; printf("0\n"); return ; &#125;//特判 inv[1]=1; for(ll i=2;i&lt;=100000;i++) inv[i]=(P-(P/i))*inv[P%i]%P;//逆元 ll ans=q_pow(2,a-b); for(int i=1;i&lt;=b;i++) ans=ans*(a-i+1)%P, ans=ans*inv[i]%P; printf("%lld\n",ans);&#125;int main()&#123; init(); solve(); return 0;&#125;]]></content>
+      <categories>
+        <category>其他</category>
+      </categories>
+      <tags>
+        <tag>数学</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[JOI2014预选 小笼包]]></title>
+    <url>%2F2018%2F08%2F09%2Fluogu2808%2F</url>
+    <content type="text"><![CDATA[题目链接 题解这题很厉害。我也是看了题解才知道怎么做的。（官网日文真心看不懂）（如果日语学的很6的话可以看这里：链接）我们看到这道题，首先想到的是什么？对！就是爆搜。…先留着这个看似不切实际的想法。我们暴力算排列，然后$O(n^2)$算结果，复杂度不用想，肯定上天。然后观察：$D$最大不过$7$，然后我们又有上面那个算法，所以现在考虑用这个条件来优化转移。设$dp(i,Perm)$，其中$Perm$表示从$i-maxd+1$吃到第$i$个小笼包的顺序，$i$表示当前正在处理第$i$个。则这样就可以状态转移了，每一次向前推进一位，然后对于前面的排列，我们试图插入新的小笼包，并且计算新的小笼包在其中造成的贡献。（被泼到，泼别的）时间复杂度O(D_{max}!P)（官方说是$P$一个多项式，算了也别管了）这种新的状压方式学到了。不过可能看的时候会有疑问：$k$为什么会到$7$呢？还是要考虑到原来整个排列全被枚举的情况。12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576#include &lt;cstdio&gt;#include &lt;cstdlib&gt;#include &lt;algorithm&gt;#include &lt;cstring&gt;#include &lt;cctype&gt;#define INF 2000000000using namespace std;typedef long long ll;int f[2][7000000]=&#123;0&#125;,permu[10],permu2[10];//在第i次吃第j个小笼包int n,d[105],a[105]; int read()&#123; int f=1,x=0;char c=getchar(); while(c&lt;'0'||c&gt;'9')&#123;if(c=='-')f=-f;c=getchar();&#125; while(c&gt;='0'&amp;&amp;c&lt;='9')x=x*10+c-'0',c=getchar(); return f*x; &#125; void init_permu()&#123; for(int j=0;j&lt;7;j++) permu[j]=j;&#125; int ptoi(int *L)&#123; int res=0; for(int i=0;i&lt;7;i++) res=res*10+L[i]; return res;&#125;void init()&#123; n=read(); for(int i=0;i&lt;n;i++)d[i]=read(); for(int i=0;i&lt;n;i++)a[i]=read();&#125;void solve()&#123; for(int i=0;i&lt;n;i++)&#123; init_permu(); int B=(i&amp;1),B_=(B^1),cnt,code1,code2; do&#123; code1=ptoi(permu); for(int k=0;k&lt;=7;k++)&#123; //枚举新加入的位置 cnt=0; int contribution=0; //在第i个被吃掉之前他被泼到的 for(int kk=0;kk&lt;k;kk++)&#123; int loc=i-1-permu[kk]; if(loc&gt;=0&amp;&amp;permu[kk]+1&lt;=d[loc]) contribution+=a[loc]; if(permu[kk]&lt;6) permu2[cnt++]=permu[kk]+1; &#125; permu2[cnt++]=0; //在第i个被吃掉之后他被泼到的 for(int kk=k;kk&lt;7;kk++)&#123; int loc=i-1-permu[kk]; if(loc&gt;=0&amp;&amp;permu[kk]+1&lt;=d[i]) contribution+=a[i]; if(permu[kk]&lt;6) permu2[cnt++]=permu[kk]+1; &#125; code2=ptoi(permu2); f[B_][code2]=max(f[B_][code2],f[B][code1]+contribution); &#125; f[B][code1]=0; &#125;while(next_permutation(permu,permu+7)); &#125; int ans=0; init_permu(); do&#123; ans=max(ans,f[n&amp;1][ptoi(permu)]); &#125;while(next_permutation(permu,permu+7)); printf("%d\n",ans);&#125;int main()&#123; init(); solve(); return 0;&#125;]]></content>
+      <categories>
+        <category>JOI</category>
+      </categories>
+      <tags>
+        <tag>状压DP</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[HNOI2013 数列]]></title>
     <url>%2F2018%2F08%2F09%2Fluogu3228%2F</url>
     <content type="text"><![CDATA[题目链接 题解这题我用了一种不够数学的方法来解。30分做法：DP，设$f(i,j)$表示第$i$天以$j$为当天股价的方案数，则 f(i,j)=\begin{cases} 1\quad (i=1)\\ \sum_{k=1}^M f(i-1,j-k) \quad(i>1)\end{cases}答案为$\sum_{j=1}^N f(K,j)$数据太大，只能拿30分。100分做法：在30分做法上做文章。可以发现，对于所有$i\le N-(K-1)M$的$f(0,i)$而言，他们对最终答案的贡献是一样的。（因为他们可以给出的贡献的上界都是$i+(K-1)M$，下界都是$i+K-1$）但对于更大的$i$，由于要求的答案范围的上界为$N$，所以他们对更高股价的贡献是要去掉的。问题转化为求$N-(K-1)M$个相同的贡献值的和以及$(K-1)M$个不同贡献值的和。对于前一个子问题，我们考虑一个等价的问题：从第一个格子出发，每一个格子有$M$条路通向下一个格子，问走$K-1$步的走法数，一种走法和另外一种走法相同当且仅当两条路径完全相同。由乘法原理知答案为$M^{K-1}$。所以前一个子问题的答案为$[N-(K-1)M]M^{K-1}$。后一个子问题不好办。怎么弄？假设，画图，观察。（这是我的方法，当然有其他方法发现这个规律。）设$M=3,K=4$，则作图：（$i$表示天数，这张表表示开始的某个$f(1,j)$对后面第$i$天答案的贡献）然后依次写出$j=N-(K-1)M+1,N-(K-1)M+2,…,N-(K-1)$时对答案的贡献。（$j&gt;N-(K-1)$时，$j$对答案贡献为$0$。）这是个很对称的图形，沿对角线翻折后发现每一列都变为了完整的一列。一列的和我们之前已经求了出来，就是$M^{K-1}$。设其内部所有数的和为$sum$，则 sum= \frac{(K-1)(M-1)}{2} M^{K-1}总答案即为 \left( N-\frac{(K-1)(M+1)}{2}\right)M^{K-1}使用快速幂和逆元计算即可。12345678910111213141516171819202122232425262728293031323334353637383940414243#include &lt;cstdio&gt;#include &lt;cstdlib&gt;#include &lt;algorithm&gt;#include &lt;cstring&gt;#include &lt;cctype&gt;#define INF 2000000000using namespace std;typedef long long ll;ll N,M,K,P;ll Pow(ll a,ll b,ll c)&#123; ll res=1; a%=c; while(b)&#123; if(b&amp;1)res=(res*a)%c; a=(a*a)%c,b&gt;&gt;=1; &#125; return res;&#125;int read()&#123; int f=1,x=0;char c=getchar(); while(c&lt;'0'||c&gt;'9')&#123;if(c=='-')f=-f;c=getchar();&#125; while(c&gt;='0'&amp;&amp;c&lt;='9')x=x*10+c-'0',c=getchar(); return f*x; &#125; void init()&#123; scanf("%lld%lld%lld%lld",&amp;N,&amp;K,&amp;M,&amp;P);&#125;void solve()&#123; ll ans1=Pow(M,K-1,P); ll inv2,ans; N%=P,ans=(N*ans1)%P; if(M&amp;1)inv2=(M+1)/2,inv2=inv2*M%P; else inv2=M/2,inv2=inv2*(M+1)%P; inv2=inv2*(K-1)%P; inv2=inv2*Pow(M,K-2,P)%P; ans+=P,ans=(ans-inv2)%P; printf("%lld\n",ans);&#125;int main()&#123; init(); solve(); return 0;&#125;]]></content>
@@ -121,8 +176,8 @@
         <category>各省省选</category>
       </categories>
       <tags>
-        <tag>递推</tag>
         <tag>矩阵乘法</tag>
+        <tag>递推</tag>
       </tags>
   </entry>
   <entry>
@@ -1721,17 +1776,16 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[NOIP2012提高 借教室]]></title>
-    <url>%2F2018%2F08%2F02%2Fnoip2012tgt5%2F</url>
-    <content type="text"><![CDATA[题目地址 题解方法一维护一种数据结构，它支持:1.区间减法2.检查最小值的正负性线段树即可。这种方法常数很大。时间复杂度：$O((n+m)logn)$。1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859#include &lt;cstdio&gt;#include &lt;cstdlib&gt;#include &lt;algorithm&gt;#include &lt;cstring&gt;#include &lt;cmath&gt;#define INF 2000000000using namespace std;typedef long long ll;int seg[2200000],tag[2200000]=&#123;0&#125;;int n,size,_a,_b,m,rec[3][1000005],_v;int read()&#123; int x=0;char ch=getchar(); while(ch&lt;'0'||ch&gt;'9')ch=getchar(); while(ch&gt;='0'&amp;&amp;ch&lt;='9')x=x*10+ch-'0',ch=getchar(); return x;&#125;void pushdown(int id)&#123; if(tag[id]&amp;&amp;id&lt;size) tag[id&lt;&lt;1]+=tag[id],tag[id&lt;&lt;1|1]+=tag[id], seg[id&lt;&lt;1]+=tag[id],seg[id&lt;&lt;1|1]+=tag[id], tag[id]=0; &#125;void init()&#123; int i; for(size=1;size&lt;n;size&lt;&lt;=1); for(i=size;i-size&lt;n;i++)seg[i]=read(); for(;i&lt;(size&lt;&lt;1);i++)seg[i]=INF; for(i=size-1;i&gt;=1;i--) seg[i]=min(seg[i&lt;&lt;1],seg[i&lt;&lt;1|1]);&#125;void minus(int id,int l,int r)&#123; if(l&gt;_b||r&lt;_a)return ; if(_a&lt;=l&amp;&amp;r&lt;=_b)&#123; tag[id]+=_v,seg[id]+=_v; return ; &#125; pushdown(id); minus(id&lt;&lt;1,l,(l+r)&gt;&gt;1); minus(id&lt;&lt;1|1,(l+r+1)&gt;&gt;1,r); seg[id]=min(seg[id&lt;&lt;1],seg[id&lt;&lt;1|1]);&#125;int solve()&#123; for(int i=0;i&lt;m;i++)&#123; _v=-rec[0][i],_a=rec[1][i],_b=rec[2][i], minus(1,1,size); if(seg[1]&lt;0)return i+1; &#125; return -1;&#125;int main()&#123; n=read(),m=read(); init(); for(int i=0;i&lt;m;i++) rec[0][i]=read(),rec[1][i]=read(),rec[2][i]=read(); int ans=solve(); if(ans&lt;0)printf("0\n"); else printf("-1\n%d\n",ans); return 0;&#125; 方法二我们发现随着订单的增多，可用教室的数量是只减不增的，所以我们尝试二分。二分一个最大订单量，然后区间减法用差分实现，最后扫一遍，看看是否存在负值即可。（差分：假设我们有一个数列:a_1,a_2,a_3,...,a_n 定义它的差分数列是a_1,a_2-a_1,a_3-a_2,...a_n-a_{n-1} 这样可以发现差分数列中前$n$个元素的和就是原来数列当前位置元素的值。然后为什么说他可以用来做区间减法呢？比方有$5$个数，$a_1,a_2,a_3,a_4,a_5$，差分数列就是$a_1,a_2-a_1,a_3-a_2,a_4-a_3,a_5-a_4$，然后第$2$到$4$个每一个减掉$p$，那么原数列就是 a_1,a_2-p,a_3-p,a_4-p,a_5新的差分数列就是 a_1,a_2-a_1-p,a_3-a_2,a_4-a_3,a_5-a_4+p可以发现，本来要修改多个元素，在差分数列里就只要修改$2$个元素。由于我们只要在处理完所有区间操作后再扫一遍查询负数，所以这么做能满足我们的需求。时间复杂度：$O((n+m)logn)$。123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960#include &lt;bits/stdc++.h&gt;#define N 1000005using namespace std;typedef long long ll;int read()&#123; int f=1,x=0;char c=getchar(); while(c&lt;'0'||c&gt;'9')&#123;if(c=='-')f=-f;c=getchar();&#125; while(c&gt;='0'&amp;&amp;c&lt;='9')x=x*10+c-'0',c=getchar(); return f*x; &#125;int n,m,d[N],q[N],s[N],e[N];int oold,nnew;void update()&#123; if(nnew&gt;oold)&#123; for(int i=oold+1;i&lt;=nnew;i++) d[s[i]]-=q[i],d[e[i]+1]+=q[i]; &#125;else&#123; for(int i=oold;i&gt;nnew;i--) d[s[i]]+=q[i],d[e[i]+1]-=q[i]; &#125;&#125;bool C()&#123; int flag=0,sum=0; update(); for(int i=1;i&lt;=n;i++)&#123; sum+=d[i]; if(sum&lt;0)&#123; flag=1; break; &#125; &#125; return flag;&#125;void init()&#123; n=read(),m=read(); int lst=read(); d[1]=lst; for(int i=2;i&lt;=n;i++) d[i]=read(),d[i]-=lst,lst+=d[i]; d[n+1]=-lst; for(int i=1;i&lt;=m;i++) q[i]=read(),s[i]=read(),e[i]=read();&#125;void solve()&#123; int L=1,R=m; oold=0; while(R&gt;L)&#123; nnew=(L+R)&gt;&gt;1; if(C())R=nnew; else L=nnew+1; oold=nnew; &#125; if(L==m)printf("0\n"); else printf("-1\n%d\n",L);&#125;int main()&#123; init(); solve(); return 0;&#125;]]></content>
+    <title><![CDATA[NOIP2012提高 同余方程]]></title>
+    <url>%2F2018%2F08%2F02%2Fnoip2012tgt4%2F</url>
+    <content type="text"><![CDATA[题目地址 题解就是让你求一个逆元。用快速幂+欧拉函数或者扩欧都行。我只写了扩欧，但是前者应该好写一点。时间复杂度：$O(logn)$12345678910111213141516171819#include &lt;bits/stdc++.h&gt; using namespace std;typedef long long ll;ll extgcd(ll a,ll b,ll &amp;x,ll &amp;y)&#123; ll d=a; if(b)&#123; d=extgcd(b,a%b,y,x); y-=(a/b)*x; &#125;else x=1,y=0; return d; &#125;int main()&#123; ll a,m,x,y; scanf("%lld%lld",&amp;a,&amp;m); extgcd(a,m,x,y); x=(x%m+m)%m; printf("%lld\n",x); return 0; &#125;]]></content>
       <categories>
         <category>NOIP题解</category>
         <category>NOIP2012</category>
       </categories>
       <tags>
-        <tag>二分</tag>
-        <tag>线段树</tag>
-        <tag>差分</tag>
+        <tag>扩展欧几里得</tag>
+        <tag>逆元</tag>
       </tags>
   </entry>
   <entry>
@@ -1749,16 +1803,17 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[NOIP2012提高 同余方程]]></title>
-    <url>%2F2018%2F08%2F02%2Fnoip2012tgt4%2F</url>
-    <content type="text"><![CDATA[题目地址 题解就是让你求一个逆元。用快速幂+欧拉函数或者扩欧都行。我只写了扩欧，但是前者应该好写一点。时间复杂度：$O(logn)$12345678910111213141516171819#include &lt;bits/stdc++.h&gt; using namespace std;typedef long long ll;ll extgcd(ll a,ll b,ll &amp;x,ll &amp;y)&#123; ll d=a; if(b)&#123; d=extgcd(b,a%b,y,x); y-=(a/b)*x; &#125;else x=1,y=0; return d; &#125;int main()&#123; ll a,m,x,y; scanf("%lld%lld",&amp;a,&amp;m); extgcd(a,m,x,y); x=(x%m+m)%m; printf("%lld\n",x); return 0; &#125;]]></content>
+    <title><![CDATA[NOIP2012提高 借教室]]></title>
+    <url>%2F2018%2F08%2F02%2Fnoip2012tgt5%2F</url>
+    <content type="text"><![CDATA[题目地址 题解方法一维护一种数据结构，它支持:1.区间减法2.检查最小值的正负性线段树即可。这种方法常数很大。时间复杂度：$O((n+m)logn)$。1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859#include &lt;cstdio&gt;#include &lt;cstdlib&gt;#include &lt;algorithm&gt;#include &lt;cstring&gt;#include &lt;cmath&gt;#define INF 2000000000using namespace std;typedef long long ll;int seg[2200000],tag[2200000]=&#123;0&#125;;int n,size,_a,_b,m,rec[3][1000005],_v;int read()&#123; int x=0;char ch=getchar(); while(ch&lt;'0'||ch&gt;'9')ch=getchar(); while(ch&gt;='0'&amp;&amp;ch&lt;='9')x=x*10+ch-'0',ch=getchar(); return x;&#125;void pushdown(int id)&#123; if(tag[id]&amp;&amp;id&lt;size) tag[id&lt;&lt;1]+=tag[id],tag[id&lt;&lt;1|1]+=tag[id], seg[id&lt;&lt;1]+=tag[id],seg[id&lt;&lt;1|1]+=tag[id], tag[id]=0; &#125;void init()&#123; int i; for(size=1;size&lt;n;size&lt;&lt;=1); for(i=size;i-size&lt;n;i++)seg[i]=read(); for(;i&lt;(size&lt;&lt;1);i++)seg[i]=INF; for(i=size-1;i&gt;=1;i--) seg[i]=min(seg[i&lt;&lt;1],seg[i&lt;&lt;1|1]);&#125;void minus(int id,int l,int r)&#123; if(l&gt;_b||r&lt;_a)return ; if(_a&lt;=l&amp;&amp;r&lt;=_b)&#123; tag[id]+=_v,seg[id]+=_v; return ; &#125; pushdown(id); minus(id&lt;&lt;1,l,(l+r)&gt;&gt;1); minus(id&lt;&lt;1|1,(l+r+1)&gt;&gt;1,r); seg[id]=min(seg[id&lt;&lt;1],seg[id&lt;&lt;1|1]);&#125;int solve()&#123; for(int i=0;i&lt;m;i++)&#123; _v=-rec[0][i],_a=rec[1][i],_b=rec[2][i], minus(1,1,size); if(seg[1]&lt;0)return i+1; &#125; return -1;&#125;int main()&#123; n=read(),m=read(); init(); for(int i=0;i&lt;m;i++) rec[0][i]=read(),rec[1][i]=read(),rec[2][i]=read(); int ans=solve(); if(ans&lt;0)printf("0\n"); else printf("-1\n%d\n",ans); return 0;&#125; 方法二我们发现随着订单的增多，可用教室的数量是只减不增的，所以我们尝试二分。二分一个最大订单量，然后区间减法用差分实现，最后扫一遍，看看是否存在负值即可。（差分：假设我们有一个数列:a_1,a_2,a_3,...,a_n 定义它的差分数列是a_1,a_2-a_1,a_3-a_2,...a_n-a_{n-1} 这样可以发现差分数列中前$n$个元素的和就是原来数列当前位置元素的值。然后为什么说他可以用来做区间减法呢？比方有$5$个数，$a_1,a_2,a_3,a_4,a_5$，差分数列就是$a_1,a_2-a_1,a_3-a_2,a_4-a_3,a_5-a_4$，然后第$2$到$4$个每一个减掉$p$，那么原数列就是 a_1,a_2-p,a_3-p,a_4-p,a_5新的差分数列就是 a_1,a_2-a_1-p,a_3-a_2,a_4-a_3,a_5-a_4+p可以发现，本来要修改多个元素，在差分数列里就只要修改$2$个元素。由于我们只要在处理完所有区间操作后再扫一遍查询负数，所以这么做能满足我们的需求。时间复杂度：$O((n+m)logn)$。123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960#include &lt;bits/stdc++.h&gt;#define N 1000005using namespace std;typedef long long ll;int read()&#123; int f=1,x=0;char c=getchar(); while(c&lt;'0'||c&gt;'9')&#123;if(c=='-')f=-f;c=getchar();&#125; while(c&gt;='0'&amp;&amp;c&lt;='9')x=x*10+c-'0',c=getchar(); return f*x; &#125;int n,m,d[N],q[N],s[N],e[N];int oold,nnew;void update()&#123; if(nnew&gt;oold)&#123; for(int i=oold+1;i&lt;=nnew;i++) d[s[i]]-=q[i],d[e[i]+1]+=q[i]; &#125;else&#123; for(int i=oold;i&gt;nnew;i--) d[s[i]]+=q[i],d[e[i]+1]-=q[i]; &#125;&#125;bool C()&#123; int flag=0,sum=0; update(); for(int i=1;i&lt;=n;i++)&#123; sum+=d[i]; if(sum&lt;0)&#123; flag=1; break; &#125; &#125; return flag;&#125;void init()&#123; n=read(),m=read(); int lst=read(); d[1]=lst; for(int i=2;i&lt;=n;i++) d[i]=read(),d[i]-=lst,lst+=d[i]; d[n+1]=-lst; for(int i=1;i&lt;=m;i++) q[i]=read(),s[i]=read(),e[i]=read();&#125;void solve()&#123; int L=1,R=m; oold=0; while(R&gt;L)&#123; nnew=(L+R)&gt;&gt;1; if(C())R=nnew; else L=nnew+1; oold=nnew; &#125; if(L==m)printf("0\n"); else printf("-1\n%d\n",L);&#125;int main()&#123; init(); solve(); return 0;&#125;]]></content>
       <categories>
         <category>NOIP题解</category>
         <category>NOIP2012</category>
       </categories>
       <tags>
-        <tag>扩展欧几里得</tag>
-        <tag>逆元</tag>
+        <tag>二分</tag>
+        <tag>线段树</tag>
+        <tag>差分</tag>
       </tags>
   </entry>
   <entry>
