@@ -1,6 +1,97 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[待更 斐波那契系列问题]]></title>
+    <url>%2F2018%2F08%2F10%2Fproblem-fibonacci%2F</url>
+    <content type="text"><![CDATA[我不会数学orz 题解首先看一个喜闻乐见的题目 $\forall x\in \mathbb{N}^*,(x,1)$可行。$x=1$时此数列即为斐波那契数列（以下用$F(n)$代替）。先证：$gcd(F(n),F(n-1)) = 1\quad (1)$证明：由辗转相除：$gcd(F(n), F(n-1))=gcd(F(n-1),F(n-2))=…=gcd(F(2),F(1))=1$ 再证：$F(m+n)=F(n+1)F(m)+F(m-1)F(n)\quad (2)$证明：$F(m+n)=F(m+n-1)+F(m+n-2)$$=2F(m+n-2)+F(m+n-3)$$=3F(m+n-3)+2F(m+n-4)$$=…=F(i+1)F(m+n-i)+F(i)F(m+n-i-1)$$=F(n+1)F(m)+F(m-1)F(n)$ 因此：$gcd(F(m),F(n))$$=gcd(F(n+1)F(m-n)+F(n)F(m-n-1),F(n))$（由$(2)$）$=gcd(F(n+1)F(m-n),F(n))$而由$(1)$，$F(n+1)$和$F(n)$互质故$gcd(F(m),F(n))=gcd(F(m-n),F(n))$相当于对$F$的下标做辗转相除所以最后的答案即为$F(gcd(m,n))$ $x\ge 2$时，$(1)(2)$也均满足$Q.E.D.$]]></content>
+      <categories>
+        <category>杂谈</category>
+      </categories>
+      <tags>
+        <tag>数学</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[UVa10763 Foreign Exchange]]></title>
+    <url>%2F2018%2F08%2F10%2Fuva10763%2F</url>
+    <content type="text"><![CDATA[题目链接 题解用multiset模拟即可12345678910111213141516171819202122232425262728293031323334353637383940414243444546#include &lt;cstdio&gt;#include &lt;cstdlib&gt;#include &lt;algorithm&gt;#include &lt;cstring&gt;#include &lt;cctype&gt;#include &lt;set&gt;#define INF 2000000000using namespace std;typedef long long ll;int read()&#123; int f = 1, x = 0; char c = getchar(); while(c &lt; '0' || c &gt; '9')&#123;if(c == '-') f = -f; c = getchar(); &#125; while(c &gt;= '0' &amp;&amp; c &lt;= '9')x = x * 10 + c - '0', c = getchar(); return f * x; &#125;int n;pair&lt;int, int&gt; p[500005];multiset&lt;pair&lt;int, int&gt; &gt; s;void init()&#123; for(int i = 0; i &lt; n; i++) p[i].first = read(), p[i].second = read();&#125;void solve()&#123; if(n &amp; 1)printf("NO\n"); else&#123; for(int i = 0; i &lt; n; ++i)&#123; pair&lt;int, int&gt; pp; pp.first = p[i].second, pp.second = p[i].first; if(!s.count(pp)) s.insert(p[i]); else s.erase(s.find(pp)); &#125; if(s.empty())printf("YES\n"); else printf("NO\n"); s.clear(); &#125;&#125;int main()&#123; while(n = read())&#123; init(); solve(); &#125; return 0;&#125;]]></content>
+      <categories>
+        <category>UVa</category>
+      </categories>
+      <tags>
+        <tag>模拟</tag>
+        <tag>STL</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[UVa10935 Throwing cards away I]]></title>
+    <url>%2F2018%2F08%2F10%2Fuva10935%2F</url>
+    <content type="text"><![CDATA[题目链接 题解用队列模拟即可123456789101112131415161718192021222324252627282930313233343536373839#include &lt;cstdio&gt;#include &lt;cstdlib&gt;#include &lt;algorithm&gt;#include &lt;cstring&gt;#include &lt;cctype&gt;#define INF 2000000000using namespace std;typedef long long ll;int read()&#123; int f = 1, x = 0; char c = getchar(); while(c &lt; '0' || c &gt; '9')&#123;if(c == '-') f = -f; c = getchar(); &#125; while(c &gt;= '0' &amp;&amp; c &lt;= '9')x = x * 10 + c - '0', c = getchar(); return f * x; &#125;int n, que[505], l, r;void init()&#123; for(int i = 0; i &lt; n; ++i) que[i] = i + 1; l = 0, r = n;&#125;void solve()&#123; printf("Discarded cards:"); while(r - l &gt; 1)&#123; int a = que[l++]; printf(" %d", a); if(r - l &gt;= 2)printf(","); int b = que[l++]; que[r++] = b; &#125; printf("\nRemaining card: %d\n", que[l]);&#125;int main()&#123; while(n = read())&#123; init(); solve(); &#125; return 0;&#125;]]></content>
+      <categories>
+        <category>UVa</category>
+      </categories>
+      <tags>
+        <tag>模拟</tag>
+        <tag>队列</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[UVa1594 Ducci Sequence]]></title>
+    <url>%2F2018%2F08%2F10%2Fuva1594%2F</url>
+    <content type="text"><![CDATA[题目链接 题解1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950#include &lt;cstdio&gt;#include &lt;cstdlib&gt;#include &lt;algorithm&gt;#include &lt;cstring&gt;#include &lt;cctype&gt;#define INF 2000000000using namespace std;typedef long long ll;int read()&#123; int f = 1, x = 0; char c = getchar(); while(c &lt; '0' || c &gt; '9')&#123;if(c == '-') f = -f; c = getchar(); &#125; while(c &gt;= '0' &amp;&amp; c &lt;= '9')x = x * 10 + c - '0', c = getchar(); return f * x; &#125;int n, d[20], dd[20];void init()&#123; n = read();&#125;void solve()&#123; bool ans = 0; for(int i = 0; i &lt; n; ++i) d[i] = read(); for(int i = 0; i &lt; 1001; ++i)&#123; int flag = 1; for(int j = 0; j &lt; n; ++j) if(d[j])&#123; flag = 0; break; &#125; if(flag)&#123; ans = 1; break; &#125;else &#123; for(int j = 0; j &lt; n - 1; ++j) dd[j] = abs(d[j] - d[j + 1]); dd[n - 1] = abs(d[n - 1] - d[0]); memcpy(d, dd, sizeof(d)); &#125; &#125; printf("%s\n", ans ? "ZERO" : "LOOP");&#125;int main()&#123; int T = read(); while(T--)&#123; init(); solve(); &#125; return 0;&#125;]]></content>
+      <categories>
+        <category>UVa</category>
+      </categories>
+      <tags>
+        <tag>模拟</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[HEOI2014 南园满地堆轻絮]]></title>
+    <url>%2F2018%2F08%2F10%2Fluogu4105%2F</url>
+    <content type="text"><![CDATA[题目链接 题解容易看出$Ans$越大，数列调整的余地越大，数列就越有可能变成一个不下降序列。所以考虑二分答案，然后从头到尾遍历，尽量保持数列的不下降性。无法保持则判断为当前答案过小。123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657#include &lt;cstdio&gt;#include &lt;cstdlib&gt;#include &lt;algorithm&gt;#include &lt;cstring&gt;#include &lt;cctype&gt;#define INF 2000000000using namespace std;typedef long long ll;int read()&#123; int f = 1, x = 0; char c = getchar(); while(c &lt; '0' || c &gt; '9')&#123;if(c == '-') f = -f; c = getchar(); &#125; while(c &gt;= '0' &amp;&amp; c &lt;= '9')x = x * 10 + c - '0', c = getchar(); return f * x; &#125;int n, s[5000005];ll a, b, c, d, mod;int f(ll x)&#123; ll res = (b + a * x) % mod; res = (res * x + c) % mod; res = (res * x + d) % mod; return (int)res;&#125;bool C(int g)&#123; int bef = max(1, s[1] - g); for(int i = 2; i &lt;= n; ++i)&#123; if(s[i] - g &gt;= bef) bef = s[i] - g; else if(s[i] + g &lt; bef) return false; &#125; return true;&#125;void init()&#123; n = read(); a = read(), b = read(), c = read(), d = read(); s[1] = read(), mod = read(); s[0] = 0; for(int i = 2; i &lt;= n; i++) s[i] = (f(s[i - 2]) + f(s[i - 1])) % mod;&#125;void solve()&#123; int l = 0, r = mod; while(r - l)&#123; int mid = (r + l) &gt;&gt; 1; if(C((r + l) &gt;&gt; 1)) r = mid; else l = mid + 1; &#125; printf("%d\n", r);&#125;int main()&#123; init(); solve(); return 0;&#125;]]></content>
+      <categories>
+        <category>各省省选</category>
+      </categories>
+      <tags>
+        <tag>二分</tag>
+        <tag>贪心</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[洛谷1382 楼房]]></title>
+    <url>%2F2018%2F08%2F09%2Fluogu1382%2F</url>
+    <content type="text"><![CDATA[题目链接 题解利用线段树进行区间取$max$和单点查询即可。1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071727374757677787980818283#include &lt;cstdio&gt;#include &lt;cstdlib&gt;#include &lt;algorithm&gt;#include &lt;cstring&gt;#include &lt;cctype&gt;#define INF 2000000000using namespace std;typedef long long ll;int read()&#123; int f = 1, x = 0; char c = getchar(); while(c &lt; '0' || c &gt; '9')&#123;if(c == '-') f = -f; c = getchar(); &#125; while(c &gt;= '0' &amp;&amp; c &lt;= '9')x = x * 10 + c - '0', c = getchar(); return f * x; &#125;int n, len, x[200005], xx[200005], h[100005];int size, seg[800005] = &#123;0&#125;, tag[800005] = &#123;0&#125;, _a, _b, val;int node[400005][2], tot = 0;void init()&#123; n = read(); for(int i = 0; i &lt; n; ++i) h[i] = read(), x[i &lt;&lt; 1] = read(), x[i &lt;&lt; 1 | 1] = read(); memcpy(xx, x, sizeof(xx)); sort(xx, xx + n + n); len = unique(xx, xx + n + n) - xx; for(size = 1; size &lt; len; size &lt;&lt;= 1);&#125;void pushdown(int id)&#123; if(tag[id])&#123; seg[id &lt;&lt; 1] = max(seg[id &lt;&lt; 1], tag[id]); tag[id &lt;&lt; 1] = max(tag[id &lt;&lt; 1], tag[id]); seg[id &lt;&lt; 1 | 1] = max(seg[id &lt;&lt; 1 | 1], tag[id]); tag[id &lt;&lt; 1 | 1] = max(tag[id &lt;&lt; 1 | 1], tag[id]); tag[id] = 0; &#125;&#125;void update(int id, int l, int r)&#123; if(l &gt; _b || r &lt; _a)return ; if(l &gt;= _a &amp;&amp; r &lt;= _b)&#123; seg[id] = max(seg[id], val); tag[id] = max(tag[id], val); return ; &#125; pushdown(id); update(id &lt;&lt; 1, l, (l + r) &gt;&gt; 1); update(id &lt;&lt; 1 | 1, (l + r + 1) &gt;&gt; 1, r); seg[id] = max(seg[id &lt;&lt; 1], seg[id &lt;&lt; 1 | 1]);&#125;int query(int id, int l, int r)&#123; if(l &gt; _b || r &lt; _a)return 0; if(l &gt;= _a &amp;&amp; r &lt;= _b)return seg[id]; pushdown(id); return max(query(id &lt;&lt; 1, l, (l + r) &gt;&gt; 1), query(id &lt;&lt; 1 | 1, (l + r + 1) &gt;&gt; 1, r));&#125;void solve()&#123; for(int i = 0; i &lt; n; ++i)&#123; _a = lower_bound(xx, xx + len, x[i &lt;&lt; 1]) - xx + 1; _b = lower_bound(xx, xx + len, x[i &lt;&lt; 1 | 1]) - xx; val = h[i]; update(1, 1, size); &#125; node[tot][0] = xx[0], node[tot++][1] = 0; _a = _b = 1; int h_last = query(1, 1, size); if(h_last) node[tot][0] = xx[0], node[tot++][1] = h_last; for(int i = 1; i &lt; len; ++i)&#123; _a = _b = i + 1; int h_cur = query(1, 1, size); if(h_cur != h_last) node[tot][0] = xx[i], node[tot++][1] = h_last, node[tot][0] = xx[i], node[tot++][1] = h_cur, h_last = h_cur; &#125; printf("%d\n", tot); for(int i = 0; i &lt; tot; ++i) printf("%d %d\n", node[i][0], node[i][1]);&#125;int main()&#123; init(); solve(); return 0;&#125;]]></content>
+      <categories>
+        <category>其他</category>
+      </categories>
+      <tags>
+        <tag>线段树</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[UVa221 Urban Elevations]]></title>
+    <url>%2F2018%2F08%2F09%2Fuva221%2F</url>
+    <content type="text"><![CDATA[题目链接 题解类似于扫描？对每一个建筑物左右两端的$x$坐标构成的序列排序去重，然后由于每两个$x$坐标之间的建筑物只会有一段，故使用一个数组保存坐标x_i右边这一段的高度。然后对建筑物从前往后（即按照$y$坐标升序）判断是否可见即可。123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172#include &lt;cstdio&gt;#include &lt;cstdlib&gt;#include &lt;algorithm&gt;#include &lt;cstring&gt;#include &lt;cctype&gt;#define INF 2000000000using namespace std;typedef long long ll;int read()&#123; int f = 1, x = 0; char c = getchar(); while(c &lt; '0' || c &gt; '9')&#123;if(c == '-') f = -f; c = getchar(); &#125; while(c &gt;= '0' &amp;&amp; c &lt;= '9')x = x * 10 + c - '0', c = getchar(); return f * x; &#125;double eps = 1e-5, xx[2005], zz[2005];struct City&#123; double x, y, lx, lz; int id, vis;&#125;;struct cmp&#123; inline bool operator()(const City&amp; c1, const City&amp; c2)&#123; if(c1.y - c2.y &lt; eps &amp;&amp; c1.y - c2.y &gt; -eps)return c1.x &lt; c2.x; return c1.y &lt; c2.y; &#125;&#125;;int n, len;City c[1005];void init()&#123; double tmp; for(int i = 0; i &lt; n; ++i) scanf("%lf%lf%lf%lf%lf", &amp;c[i].x, &amp;c[i].y, &amp;c[i].lx, &amp;tmp, &amp;c[i].lz), c[i].id = i + 1, c[i].vis = 0, xx[i &lt;&lt; 1] = c[i].x, xx[i &lt;&lt; 1 | 1] = c[i].x + c[i].lx; sort(c, c + n, cmp()); sort(xx, xx + n + n); len = unique(xx, xx + n + n) - xx; fill(zz, zz + len, 0.0);&#125;void solve()&#123; for(int i = 0; i &lt; n; ++i)&#123; int flag = 0, st = lower_bound(xx, xx + len, c[i].x) - xx; for(int j = st; xx[j] &lt; c[i].x + c[i].lx; ++j) if(c[i].lz &gt; zz[j]) flag = 1, zz[j] = c[i].lz; if(flag) c[i].vis = 1; &#125; for(int i = 0; i &lt; n; ++i) swap(c[i].x, c[i].y); sort(c, c + n, cmp()); int f = 0; for(int i = 0; i &lt; n; ++i) if(c[i].vis)&#123; if(f)printf(" "); printf("%d", c[i].id); if(!f)f = 1; &#125; printf("\n");&#125;int main()&#123; freopen("a.in", "r", stdin); for(int T = 1; ; ++T)&#123; n = read(); if(!n)break ; else if(T &gt; 1)printf("\n"); printf("For map #%d, the visible buildings are numbered as follows:\n", T); init(); solve(); &#125; return 0;&#125;]]></content>
+      <categories>
+        <category>UVa</category>
+      </categories>
+      <tags>
+        <tag>离散化</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[UVa1592 Database]]></title>
+    <url>%2F2018%2F08%2F09%2Fuva1592%2F</url>
+    <content type="text"><![CDATA[题目链接 题解先对每一个字符串进行处理，将字符串映射为数后枚举c_1,c_2，然后从上到下扫描每一行，对同一行的两个格子打包成一个pair，然后再对pair进行映射，映射为当前的行号。之后即可判断是否有符合条件的r_1,r_2。和集合栈计算机那道题有异曲同工之妙。1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071#include &lt;cstdio&gt;#include &lt;cstdlib&gt;#include &lt;algorithm&gt;#include &lt;cstring&gt;#include &lt;cctype&gt;#include &lt;map&gt;#include &lt;string&gt;#define INF 2000000000using namespace std;typedef long long ll;int read()&#123; int f = 1, x = 0; char c = getchar(); while(c &lt; '0' || c &gt; '9')&#123;if(c == '-') f = -f; c = getchar(); &#125; while(c &gt;= '0' &amp;&amp; c &lt;= '9')x = x * 10 + c - '0', c = getchar(); return f * x; &#125;int n, m, tab[10005][11];char s[110];map&lt;string, int&gt; mp1;map&lt;pair&lt;int, int&gt;, int&gt; mp2;void init()&#123; mp1.clear(); int tots = 0; for(int i = 0; i &lt; n; ++i)&#123; fgets(s, 99, stdin); int len = strlen(s); for(; isspace(s[len - 1]); --len) s[len - 1] = '\0'; for(int j = 0, k = 0, l = 0; j &lt; len; j = k, ++l)&#123; while(s[j] != ',' &amp;&amp; s[j] != '\0') ++j; s[j] = '\0'; string ss(s + k); if(!mp1.count(ss)) tab[i][l] = mp1[ss] = ++tots; else tab[i][l] = mp1[ss]; k = j + 1; &#125; &#125;&#125;void solve()&#123; int r1, r2, c1, c2; for(int i = 0; i &lt; m - 1; ++i) for(int j = i + 1; j &lt; m; ++j)&#123; mp2.clear(); for(int k = 0; k &lt; n; ++k)&#123; pair&lt;int,int&gt; pp(tab[k][i], tab[k][j]); if(!mp2.count(pp)) mp2[pp] = k + 1; else&#123; r1 = mp2[pp], r2 = k + 1, c1 = i + 1, c2 = j + 1; goto printans; &#125; &#125; &#125; printf("YES\n"); return ; printans: printf("NO\n%d %d\n%d %d\n", r1, r2, c1, c2);&#125;int main()&#123; while(scanf("%d", &amp;n) == 1)&#123; m = read(); init(); solve(); &#125; return 0;&#125;]]></content>
+      <categories>
+        <category>UVa</category>
+      </categories>
+      <tags>
+        <tag>STL</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[USACO07JAN Balanced Lineup]]></title>
     <url>%2F2018%2F08%2F09%2Fluogu2880%2F</url>
     <content type="text"><![CDATA[题目链接 题解ST表模板题…线段树估计会挂，因为询问太多了。12345678910111213141516171819202122232425262728#include &lt;stdio.h&gt;#include &lt;stdlib.h&gt;#include &lt;string.h&gt;int f1[16][50005],dat[50005],f2[16][50005],N,Q; int max(int a,int b)&#123;return (a&gt;b)?a:b;&#125;int min(int a,int b)&#123;return (a&lt;b)?a:b;&#125;void sttable(int n)&#123; int i,j,p; memcpy(f1[0],dat,sizeof(dat)); memcpy(f2[0],dat,sizeof(dat)); for(i=1;(1&lt;&lt;i)&lt;=n;i++) for(j=0,p=(1&lt;&lt;(i-1));j&lt;n-p;j++) f1[i][j]=max(f1[i-1][j],f1[i-1][j+p]), f2[i][j]=min(f2[i-1][j],f2[i-1][j+p]);//同时对最大最小两个st表初始化，递推&#125;int rmq(int l,int r)&#123; int k=0;while((1&lt;&lt;(k+1))&lt;(r-l+1))k++; return max(f1[k][l],f1[k][r-(1&lt;&lt;k)+1])-min(f2[k][l],f2[k][r-(1&lt;&lt;k)+1]);//询问部分&#125;int main()&#123; scanf("%d%d",&amp;N,&amp;Q); int i,l,r; for(i=0;i&lt;N;i++) scanf("%d",&amp;dat[i]); sttable(N); for(i=0;i&lt;Q;i++) scanf("%d%d",&amp;l,&amp;r), printf("%d\n",rmq(l-1,r-1)); return 0;&#125;]]></content>
@@ -152,8 +243,8 @@
         <category>各省省选</category>
       </categories>
       <tags>
-        <tag>二分</tag>
         <tag>MST</tag>
+        <tag>二分</tag>
       </tags>
   </entry>
   <entry>
@@ -176,8 +267,8 @@
         <category>各省省选</category>
       </categories>
       <tags>
-        <tag>矩阵乘法</tag>
         <tag>递推</tag>
+        <tag>矩阵乘法</tag>
       </tags>
   </entry>
   <entry>
@@ -740,8 +831,8 @@
         <category>其他</category>
       </categories>
       <tags>
-        <tag>经典问题</tag>
         <tag>最短路</tag>
+        <tag>经典问题</tag>
       </tags>
   </entry>
   <entry>
@@ -764,8 +855,8 @@
         <category>其他</category>
       </categories>
       <tags>
-        <tag>树形DP</tag>
         <tag>经典问题</tag>
+        <tag>树形DP</tag>
       </tags>
   </entry>
   <entry>
@@ -1561,8 +1652,8 @@
         <category>NOIP2010</category>
       </categories>
       <tags>
-        <tag>搜索</tag>
         <tag>贪心</tag>
+        <tag>搜索</tag>
       </tags>
   </entry>
   <entry>
@@ -1776,19 +1867,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[NOIP2012提高 同余方程]]></title>
-    <url>%2F2018%2F08%2F02%2Fnoip2012tgt4%2F</url>
-    <content type="text"><![CDATA[题目地址 题解就是让你求一个逆元。用快速幂+欧拉函数或者扩欧都行。我只写了扩欧，但是前者应该好写一点。时间复杂度：$O(logn)$12345678910111213141516171819#include &lt;bits/stdc++.h&gt; using namespace std;typedef long long ll;ll extgcd(ll a,ll b,ll &amp;x,ll &amp;y)&#123; ll d=a; if(b)&#123; d=extgcd(b,a%b,y,x); y-=(a/b)*x; &#125;else x=1,y=0; return d; &#125;int main()&#123; ll a,m,x,y; scanf("%lld%lld",&amp;a,&amp;m); extgcd(a,m,x,y); x=(x%m+m)%m; printf("%lld\n",x); return 0; &#125;]]></content>
-      <categories>
-        <category>NOIP题解</category>
-        <category>NOIP2012</category>
-      </categories>
-      <tags>
-        <tag>扩展欧几里得</tag>
-        <tag>逆元</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[NOIP2012提高 疫情控制]]></title>
     <url>%2F2018%2F08%2F02%2Fnoip2012tgt6%2F</url>
     <content type="text"><![CDATA[题目地址 题解容易发现时间越多，控制疫情的任务越有可能完成。所以先二分一个答案$x$，然后判断他可不可行。显然，一个军队走的越高，他能控制的就越多，所以让军队尽量向上走，直到走到根或者时间不够为止。如果可以走到根就记录一下走到根的时候剩余的时间，走不到就给最后到的点打一个标记，这个向上走可以用倍增实现。还可以发现的是，与根直接相连的点很重要，我们称呼他们为关键点，只要全部控制了他们就完成了任务。而判断一个关键点是否被控制可以用一遍$DFS$实现。对于没被控制的关键点，我们把他们到根的路径长记录下来。我们要让可以到根的军队发配到相应的关键点，并且使得这个分配尽可能合理。怎么做呢？考虑贪心，让剩余时间少的军队去占领最近的关键点，时间多的去占领远的。所以给军队剩余时间和关键点的距离分别排序，做一个贪心即可。注意，如果当前扫到的军队无法前往最近的关键点，那就让他回到他之前到根的路上经过的关键点。这样可以最大程度的利用军队。综上，我们在$O(nlogn+mlognlogw)$的时间复杂度内完成了本题。123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899100101102103104105106107108109110111112113114115116117#include &lt;cstdio&gt;#include &lt;cstdlib&gt;#include &lt;algorithm&gt;#include &lt;cstring&gt;#include &lt;cctype&gt;#define INF 10000000000000ll#define LOG 17using namespace std;typedef long long ll;typedef pair&lt;int,int&gt; P;int read()&#123; int f=1,x=0;char c=getchar(); while(c&lt;'0'||c&gt;'9')&#123;if(c=='-')f=-f;c=getchar();&#125; while(c&gt;='0'&amp;&amp;c&lt;='9')x=x*10+c-'0',c=getchar(); return f*x; &#125;P left[50005],city[50005];int to[100005],nex[100005],at[50005],cnt=0;int n,m,p[100005],par[50005][20],secfa[50005];int cost[100005],depth[50005],maxd=0,dis[50005][20];int tot=0,totc=0;bool vis[50005];int query(int u,int t)&#123; if(depth[u]&lt;=t)return 1; for(int i=LOG;i&gt;=0;i--) if(par[u][i]&amp;&amp;dis[u][i]&lt;=t) t-=dis[u][i],u=par[u][i]; return u;&#125;void dfs2(int cur,int fa)&#123; if(vis[cur])return ; bool flag=1,isleaf=1; for(int i=at[cur];i;i=nex[i])&#123; if(to[i]==fa)continue ; dfs2(to[i],cur),flag&amp;=vis[to[i]]; isleaf=0; &#125; if(!isleaf)vis[cur]=flag;&#125;bool C(int x)&#123; tot=totc=0; memset(vis,0,sizeof(vis)); for(int i=1;i&lt;=m;i++)&#123; int goal=query(p[i],x); if(goal==1)left[++tot].first=x-depth[p[i]],left[tot].second=p[i]; else vis[goal]=1; //打标记 &#125; dfs2(1,0); if(vis[1])return 1;//根节点的子树全部被覆盖了 for(int i=at[1];i;i=nex[i]) if(!vis[to[i]])city[++totc].second=to[i],city[totc].first=cost[i]; sort(left+1,left+tot+1); sort(city+1,city+totc+1); int r=1,fr; for(int i=1;r&lt;=totc&amp;&amp;i&lt;=tot;i++)&#123; fr=left[i].second; if(left[i].first&lt;city[r].first)&#123; vis[secfa[fr]]=1; &#125;else&#123; vis[city[r].second]=1,r++; &#125; while(vis[city[r].second]&amp;&amp;r&lt;=totc)r++; &#125; if(r==totc+1)return 1; return 0;&#125;void addedge(int _u,int _v,int _c)&#123; to[++cnt]=_v,cost[cnt]=_c,nex[cnt]=at[_u],at[_u]=cnt;&#125;void dfs(int cur,int fa)&#123; par[cur][0]=fa,maxd=max(maxd,depth[cur]); for(int j=1;j&lt;=LOG;j++) if(par[cur][j-1]) par[cur][j]=par[par[cur][j-1]][j-1], dis[cur][j]=dis[cur][j-1]+dis[par[cur][j-1]][j-1]; for(int i=at[cur];i;i=nex[i])&#123; if(to[i]==fa)continue ; int _v=to[i],_c=cost[i]; depth[_v]=depth[cur]+_c, dis[_v][0]=_c; if(cur==1)secfa[_v]=_v; else secfa[_v]=secfa[cur]; dfs(_v,cur); &#125;&#125;void init()&#123; n=read(); int u,v,c; for(int i=1;i&lt;n;i++) u=read(),v=read(),c=read(), addedge(u,v,c),addedge(v,u,c); m=read(); for(int i=1;i&lt;=m;i++)p[i]=read(); dfs(1,0);&#125;void solve()&#123; int son=0; for(int i=at[1];i;i=nex[i])son++; if(son&gt;m)&#123; printf("-1\n"); return ; &#125; int L=0,R=2*maxd,M; while(R&gt;L)&#123; M=(L+R)&gt;&gt;1; if(C(M))R=M; else L=M+1; &#125; printf("%d\n",L);&#125;int main()&#123; init(); solve(); return 0;&#125;]]></content>
@@ -1811,9 +1889,22 @@
         <category>NOIP2012</category>
       </categories>
       <tags>
-        <tag>二分</tag>
         <tag>线段树</tag>
+        <tag>二分</tag>
         <tag>差分</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[NOIP2012提高 同余方程]]></title>
+    <url>%2F2018%2F08%2F02%2Fnoip2012tgt4%2F</url>
+    <content type="text"><![CDATA[题目地址 题解就是让你求一个逆元。用快速幂+欧拉函数或者扩欧都行。我只写了扩欧，但是前者应该好写一点。时间复杂度：$O(logn)$12345678910111213141516171819#include &lt;bits/stdc++.h&gt; using namespace std;typedef long long ll;ll extgcd(ll a,ll b,ll &amp;x,ll &amp;y)&#123; ll d=a; if(b)&#123; d=extgcd(b,a%b,y,x); y-=(a/b)*x; &#125;else x=1,y=0; return d; &#125;int main()&#123; ll a,m,x,y; scanf("%lld%lld",&amp;a,&amp;m); extgcd(a,m,x,y); x=(x%m+m)%m; printf("%lld\n",x); return 0; &#125;]]></content>
+      <categories>
+        <category>NOIP题解</category>
+        <category>NOIP2012</category>
+      </categories>
+      <tags>
+        <tag>扩展欧几里得</tag>
+        <tag>逆元</tag>
       </tags>
   </entry>
   <entry>
