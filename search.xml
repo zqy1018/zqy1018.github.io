@@ -1,6 +1,93 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[UVa489 Hangman Judge]]></title>
+    <url>%2F2018%2F08%2F11%2Fuva489%2F</url>
+    <content type="text"><![CDATA[题目链接 题解模拟即可。1234567891011121314151617181920212223242526272829303132333435363738#include &lt;stdio.h&gt; #include &lt;string.h&gt; #include &lt;stdlib.h&gt; #include &lt;ctype.h&gt; #include &lt;math.h&gt; char b1[27]=&#123;0&#125;,n1[100005],n2[100005];int n=-1,solve(),res,lim1,i;int solve()&#123; int chance=6,all=0; lim1=strlen(n1); for(i=0;i&lt;lim1;i++)&#123; if(!b1[n1[i]-'a'])&#123; b1[n1[i]-'a']++;all++; &#125; &#125; lim1=strlen(n2); for(i=0;i&lt;lim1;i++)&#123; if(b1[n2[i]-'a'])&#123; b1[n2[i]-'a']--;all--; if(all==0&amp;&amp;(chance&gt;=0))return 1; &#125; else chance--; &#125; if(chance&lt;0)return -1; if(all&gt;0)return 0;&#125;int main()&#123; for(scanf("%d",&amp;n);n!=-1;n=-1,scanf("%d",&amp;n))&#123; scanf("%s%s",n1,n2); res=solve(); printf("Round %d\n",n); if(res==1)printf("You win.\n"); if(res==0)printf("You chickened out.\n"); if(res==-1)printf("You lose.\n"); memset(b1,0,sizeof(b1)); &#125; return 0; &#125;]]></content>
+      <categories>
+        <category>UVa</category>
+      </categories>
+      <tags>
+        <tag>模拟</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[uva11997]]></title>
+    <url>%2F2018%2F08%2F11%2Fuva11997%2F</url>
+    <content type="text"></content>
+  </entry>
+  <entry>
+    <title><![CDATA[UVa514 Rails]]></title>
+    <url>%2F2018%2F08%2F11%2Fuva514%2F</url>
+    <content type="text"><![CDATA[题目链接 题解用栈模拟即可。对于要求顺序的第$i$项，只有$2$种可能： 它不在栈里，那么把它前面的全部入栈。 它在栈里，那么除非它在栈顶，不然不可能满足此顺序。 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657#include &lt;cstdio&gt;#include &lt;cstdlib&gt;#include &lt;algorithm&gt;#include &lt;cstring&gt;#include &lt;cctype&gt;#define INF 2000000000using namespace std;typedef long long ll;int read()&#123; int f = 1, x = 0; char c = getchar(); while(c &lt; '0' || c &gt; '9')&#123;if(c == '-') f = -f; c = getchar(); &#125; while(c &gt;= '0' &amp;&amp; c &lt;= '9')x = x * 10 + c - '0', c = getchar(); return f * x; &#125;int n, permu[1005], st[1005], top, in[1005];void solve()&#123; top = 0; memset(in, 0, sizeof(in)); int cur = 1, ans = 1; for(int i = 1; i &lt;= n; ++i)&#123; if(!in[permu[i]])&#123; for(; cur &lt; permu[i]; ++cur) st[top++] = cur, in[cur] = 1; cur++; &#125;else&#123; if(st[top - 1] == permu[i]) top--, in[permu[i]] = 0; else&#123; ans = 0; break; &#125; &#125; &#125; printf("%s\n", ans ? "Yes" : "No");&#125;void init()&#123; for(; ; )&#123; if(permu[1] = read())&#123; for(int i = 2; i &lt;= n; ++i) permu[i] = read(); solve(); &#125;else &#123; printf("\n"); break ; &#125; &#125;&#125;int main()&#123; for(; ; )&#123; n = read(); if(!n)break ; init(); &#125; return 0;&#125;]]></content>
+      <categories>
+        <category>UVa</category>
+      </categories>
+      <tags>
+        <tag>模拟</tag>
+        <tag>栈</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[ProjectEuler 1-5题解]]></title>
+    <url>%2F2018%2F08%2F11%2Fpe1-5%2F</url>
+    <content type="text"><![CDATA[探索新领域PE的前几道题还是很简单的。 PE1直接枚举即可。1234567void solve()&#123; int sum = 0; for(int i = 3; i &lt; 1000; ++i) if(i % 3 == 0 || i % 5 == 0) sum += i; printf("%d\n", sum);&#125; 答案：233168 PE2直接枚举即可。1234567891011int fib[1005];void solve()&#123; int i, sum = 0; fib[0] = 1, fib[1] = 2; for(i = 2; fib[i - 1] &lt; 4000000; ++i) fib[i] = fib[i - 1] + fib[i - 2]; for(; i &gt;= 0; --i) if(fib[i] &lt;= 4000000 &amp;&amp; fib[i] % 2 == 0) sum += fib[i]; printf("%d\n", sum);&#125; 答案：4613732 PE3本来可以直接上Pollard-Rho，后来想了一下其实不用。因为这个数还是比较小的。1234567891011ll c = 600851475143;void solve()&#123; ll tmp = c; for(ll i = 2; i * i &lt;= c; ++i) if(tmp % i == 0)&#123; while(tmp % i == 0 &amp;&amp; tmp / i != 1) tmp /= i; if(tmp / i == 1)break ; &#125; printf("%d\n", tmp);&#125; 答案：6857 PE4枚举即可。1234567891011121314151617bool isP(int t)&#123; char s[8]; sprintf(s, "%d", t); int len = strlen(s); for(int i = 0; i &lt; (len &gt;&gt; 1); ++i) if(s[i] != s[len - i -1]) return false; return true;&#125;void solve()&#123; int ans = 0; for(int i = 100; i &lt; 1000; ++i) for(int j = 100; j &lt; 1000; ++j) if(isP(i * j)) ans = max(ans, i * j); printf("%d\n", ans);&#125; 答案：906609 PE5可以手算出答案。答案：232792560]]></content>
+      <categories>
+        <category>ProjectEuler</category>
+      </categories>
+      <tags>
+        <tag>数学</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[UVa1596 Bug Hunt]]></title>
+    <url>%2F2018%2F08%2F11%2Fuva1596%2F</url>
+    <content type="text"><![CDATA[题目链接 题解很神奇的模拟题。注意细节即可。在bug里找bug其乐无穷12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879808182838485868788899091929394#include &lt;cstdio&gt;#include &lt;cstdlib&gt;#include &lt;algorithm&gt;#include &lt;cstring&gt;#include &lt;cctype&gt;#include &lt;map&gt;#define INF 2000000000using namespace std;typedef long long ll;int read()&#123; int f = 1, x = 0; char c = getchar(); while(c &lt; '0' || c &gt; '9')&#123;if(c == '-') f = -f; c = getchar(); &#125; while(c &gt;= '0' &amp;&amp; c &lt;= '9')x = x * 10 + c - '0', c = getchar(); return f * x; &#125;char s[1005][85];int line;struct Arr&#123; int size; map&lt;int, int&gt; mp;&#125;;Arr arr[130];int getVal(int id, int st)&#123; if(isalpha(s[id][st + 1]))&#123; int _val = getVal(id, st + 2); char c = s[id][st + 1]; if(_val &lt; 0 || arr[c].size &lt; 0 || _val &gt;= arr[c].size || !arr[c].mp.count(_val)) return -1; else return arr[c].mp[_val]; &#125;else&#123; int x = 0; for(st++; s[id][st] != ']'; ++st) x = x * 10 + s[id][st] - '0'; return x; &#125;&#125;bool getInitalized(int id)&#123; char c = s[id][0]; arr[c].mp.clear(); int val = getVal(id, 1); if(val &lt; 0)return false; arr[c].size = val; //printf("%d\n", val); return true;&#125;void solve()&#123; for(int i = 0; i &lt; 127; ++i) arr[i].size = -1; int ans; for(ans = 0; ans &lt; line; ++ans)&#123; char *sp = strchr(s[ans], '='); if(sp != NULL)&#123; int index = getVal(ans, 1); char c = s[ans][0]; if(index &lt; 0 || arr[c].size &lt; 0 || index &gt;= arr[c].size) break; else&#123; if(isalpha(*(sp + 1)))&#123; char cc = *(sp + 1); int x = getVal(ans, sp - s[ans] + 2); if(x &lt; 0 || arr[cc].size &lt; 0 || x &gt;= arr[cc].size || !arr[cc].mp.count(x)) break; else arr[c].mp[index] = arr[cc].mp[x]; &#125;else&#123; int x = 0; for(int st = sp - s[ans] + 1; isdigit(s[ans][st]); ++st) x = x * 10 + s[ans][st] - '0'; arr[c].mp[index] = x; &#125; &#125; &#125;else&#123; if(!getInitalized(ans)) break ; &#125; &#125; printf("%d\n", ans == line ? 0 : (ans + 1));&#125;int main()&#123; for(; ; )&#123; line = 0; for(; ; )&#123; fgets(s[line], 82, stdin); if(s[line][0] == '.') break; line++; &#125; if(!line)break; solve(); &#125; return 0;&#125;]]></content>
+      <categories>
+        <category>UVa</category>
+      </categories>
+      <tags>
+        <tag>模拟</tag>
+        <tag>STL</tag>
+        <tag>字符串</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[UVa12100 Printer Queue]]></title>
+    <url>%2F2018%2F08%2F11%2Fuva12100%2F</url>
+    <content type="text"><![CDATA[题目链接 题解用一个队列模拟即可1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253#include &lt;cstdio&gt;#include &lt;cstdlib&gt;#include &lt;algorithm&gt;#include &lt;cstring&gt;#include &lt;cctype&gt;#define INF 2000000000using namespace std;typedef long long ll;int read()&#123; int f = 1, x = 0; char c = getchar(); while(c &lt; '0' || c &gt; '9')&#123;if(c == '-') f = -f; c = getchar(); &#125; while(c &gt;= '0' &amp;&amp; c &lt;= '9')x = x * 10 + c - '0', c = getchar(); return f * x; &#125;int pcnt[11], n, m;int que[10005][2], l, r;void init()&#123; n = read(), m = read(); memset(pcnt, 0, sizeof(pcnt)); for(int i = 0; i &lt; n; ++i) que[i][1] = i, pcnt[que[i][0] = read()]++; l = 0, r = n;&#125;void solve()&#123; int t; for(t = 1; r &gt; l; t++)&#123; for(; ; )&#123; int cur = que[l][0], flag = 0; for(int i = cur + 1; i &lt; 10; ++i) if(pcnt[i])&#123; flag = 1; break; &#125; if(flag) que[r][0] = cur, que[r++][1] = que[l][1], l++; else break; &#125; if(que[l][1] == m)break; pcnt[que[l][0]]--, l++; &#125; printf("%d\n", t);&#125;int main()&#123; int T = read(); while(T--)&#123; init(); solve(); &#125; return 0;&#125;]]></content>
+      <categories>
+        <category>UVa</category>
+      </categories>
+      <tags>
+        <tag>模拟</tag>
+        <tag>队列</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[UVa10391 Compound Words]]></title>
+    <url>%2F2018%2F08%2F11%2Fuva10391%2F</url>
+    <content type="text"><![CDATA[题目链接 题解用string类提供的各种方法即可。从每个词开始向下遍历，看看下面的词是不是以自己为前缀。如果不是就停止遍历，如果是那就看以自己为前缀的那个词的后缀是不是一个词（用set判断）。1234567891011121314151617181920212223242526272829303132333435363738394041424344#include &lt;iostream&gt;#include &lt;cstdlib&gt;#include &lt;algorithm&gt;#include &lt;cstring&gt;#include &lt;cctype&gt;#include &lt;set&gt;#include &lt;string&gt;#define INF 2000000000using namespace std;typedef long long ll;int read()&#123; int f = 1, x = 0; char c = getchar(); while(c &lt; '0' || c &gt; '9')&#123;if(c == '-') f = -f; c = getchar(); &#125; while(c &gt;= '0' &amp;&amp; c &lt;= '9')x = x * 10 + c - '0', c = getchar(); return f * x; &#125;string s[120005];bool vis[120005] = &#123;0&#125;;int n;set&lt;string&gt; ss;void init()&#123; n = 0; while(cin &gt;&gt; s[n]) n++, ss.insert(s[n - 1]);&#125;void solve()&#123; for(int i = 0; i &lt; n; ++i)&#123; for(int j = i + 1; j &lt; n; ++j)&#123; if(s[j].find(s[i]) == 0)&#123; string suff(s[j], s[i].length()); if(ss.count(suff)) vis[j] = 1; &#125;else break; &#125; &#125; for(int i = 0; i &lt; n; ++i) if(vis[i])cout &lt;&lt; s[i] &lt;&lt; endl;&#125;int main()&#123; init(); solve(); return 0;&#125;]]></content>
+      <categories>
+        <category>UVa</category>
+      </categories>
+      <tags>
+        <tag>模拟</tag>
+        <tag>STL</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[UVa1595 Symmetry]]></title>
+    <url>%2F2018%2F08%2F11%2Fuva1595%2F</url>
+    <content type="text"><![CDATA[题目链接 题解先判断是否有这么一条竖线可以使得点的左右分布对称，再看是不是完全对称。方法很多，我采用了一个比较简单的写法。123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354#include &lt;cstdio&gt;#include &lt;cstdlib&gt;#include &lt;algorithm&gt;#include &lt;cstring&gt;#include &lt;cctype&gt;#define INF 2000000000using namespace std;typedef long long ll;int read()&#123; int f = 1, x = 0; char c = getchar(); while(c &lt; '0' || c &gt; '9')&#123;if(c == '-') f = -f; c = getchar(); &#125; while(c &gt;= '0' &amp;&amp; c &lt;= '9')x = x * 10 + c - '0', c = getchar(); return f * x; &#125;int n;pair&lt;int, int&gt; p[1005];void init()&#123; n = read(); for(int i = 0; i &lt; n; ++i) p[i].first = read(), p[i].second = read(); sort(p, p + n);&#125;void solve()&#123; int flag = 1, half; if(n &amp; 1) half = p[n &gt;&gt; 1].first &lt;&lt; 1; else half = p[(n &gt;&gt; 1) - 1].first + p[n &gt;&gt; 1].first ; for(int i = 0; i &lt; (n &gt;&gt; 1); ++i) if(p[n - i - 1].first + p[i].first != half)&#123; flag = 0; break; &#125; if(flag)&#123; for(int i = (n &gt;&gt; 1); i &lt; n; ++i) p[i].second = -p[i].second; sort(p + (n &gt;&gt; 1), p + n); for(int i = (n &gt;&gt; 1); i &lt; n; ++i) if(p[i].second + p[n - i - 1].second != 0 &amp;&amp; p[i].first * 2 != half)&#123; flag = 0; break; &#125; &#125; printf("%s\n", flag ? "YES" : "NO");&#125;int main()&#123; int T = read(); while(T--)&#123; init(); solve(); &#125; return 0;&#125;]]></content>
+      <categories>
+        <category>UVa</category>
+      </categories>
+      <tags>
+        <tag>模拟</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[待更 斐波那契系列问题]]></title>
     <url>%2F2018%2F08%2F10%2Fproblem-fibonacci%2F</url>
     <content type="text"><![CDATA[我不会数学orz 题解首先看一个喜闻乐见的题目 $\forall x\in \mathbb{N}^*,(x,1)$可行。$x=1$时此数列即为斐波那契数列（以下用$F(n)$代替）。先证：$gcd(F(n),F(n-1)) = 1\quad (1)$证明：由辗转相除：$gcd(F(n), F(n-1))=gcd(F(n-1),F(n-2))=…=gcd(F(2),F(1))=1$ 再证：$F(m+n)=F(n+1)F(m)+F(m-1)F(n)\quad (2)$证明：$F(m+n)=F(m+n-1)+F(m+n-2)$$=2F(m+n-2)+F(m+n-3)$$=3F(m+n-3)+2F(m+n-4)$$=…=F(i+1)F(m+n-i)+F(i)F(m+n-i-1)$$=F(n+1)F(m)+F(m-1)F(n)$ 因此：$gcd(F(m),F(n))$$=gcd(F(n+1)F(m-n)+F(n)F(m-n-1),F(n))$（由$(2)$）$=gcd(F(n+1)F(m-n),F(n))$而由$(1)$，$F(n+1)$和$F(n)$互质故$gcd(F(m),F(n))=gcd(F(m-n),F(n))$相当于对$F$的下标做辗转相除所以最后的答案即为$F(gcd(m,n))$ $x\ge 2$时，$(1)(2)$也均满足$Q.E.D.$]]></content>
@@ -243,8 +330,8 @@
         <category>各省省选</category>
       </categories>
       <tags>
-        <tag>MST</tag>
         <tag>二分</tag>
+        <tag>MST</tag>
       </tags>
   </entry>
   <entry>
@@ -267,8 +354,8 @@
         <category>各省省选</category>
       </categories>
       <tags>
-        <tag>递推</tag>
         <tag>矩阵乘法</tag>
+        <tag>递推</tag>
       </tags>
   </entry>
   <entry>
@@ -831,8 +918,8 @@
         <category>其他</category>
       </categories>
       <tags>
-        <tag>最短路</tag>
         <tag>经典问题</tag>
+        <tag>最短路</tag>
       </tags>
   </entry>
   <entry>
@@ -855,8 +942,8 @@
         <category>其他</category>
       </categories>
       <tags>
-        <tag>经典问题</tag>
         <tag>树形DP</tag>
+        <tag>经典问题</tag>
       </tags>
   </entry>
   <entry>
@@ -918,8 +1005,8 @@
         <category>NOIP2009</category>
       </categories>
       <tags>
-        <tag>其他DP</tag>
         <tag>单调队列</tag>
+        <tag>其他DP</tag>
       </tags>
   </entry>
   <entry>
@@ -1652,8 +1739,8 @@
         <category>NOIP2010</category>
       </categories>
       <tags>
-        <tag>贪心</tag>
         <tag>搜索</tag>
+        <tag>贪心</tag>
       </tags>
   </entry>
   <entry>
@@ -2825,6 +2912,18 @@
       </tags>
   </entry>
   <entry>
+    <title><![CDATA[NOIP1996提高 挖地雷]]></title>
+    <url>%2F2018%2F07%2F08%2Fnoip1996tgt3%2F</url>
+    <content type="text"><![CDATA[题目背景NOIp1996提高组第三题 题目描述在一个地图上有N个地窖（N&lt;=20），每个地窖中埋有一定数量的地雷。同时，给出地窖之间的连接路径。当地窖及其连接的数据给出之后，某人可以从第一个地窖开始挖地雷，然后可以沿着指出的连接往下挖（仅能选择一条路径），当无连接时挖地雷工作结束。设计一个挖地雷的方案，使某人能挖到最多的地雷。 输入输出格式输入格式：有若干行。第1行只有一个数字，表示地窖的个数N。第2行有N个数，分别表示每个地窖中的地雷个数。第3行至第N+1行表示地窖之间的连接情况：第3行有n-1个数（0或1），表示第一个地窖至第2个、第3个、…、第n个地窖有否路径连接。如第3行为1 1 0 0 0 … 0，则表示第1个地窖至第2个地窖有路径，至第3个地窖有路径，至第4个地窖、第5个、…、第n个地窖没有路径。第4行有n-2个数，表示第二个地窖至第3个、第4个、…、第n个地窖有否路径连接。… …第n+1行有1个数，表示第n-1个地窖至第n个地窖有否路径连接。（为0表示没有路径，为1表示有路径）。输出格式：有两行第一行表示挖得最多地雷时的挖地雷的顺序，各地窖序号间以一个空格分隔，不得有多余的空格。第二行只有一个数，表示能挖到的最多地雷数。 输入输出样例样例输入 Sample Input123456510 8 4 7 61 1 1 00 0 01 11 样例输出 Sample Output121 3 4 527 数据范围及提示 Data Size &amp; Hint（N&lt;=20） 题解题目已经帮你拓扑排序完了，直接转移就可以。123456789101112131415161718192021222324252627282930313233#include &lt;cstdio&gt;#include &lt;cstdlib&gt;#include &lt;cstring&gt;#include &lt;algorithm&gt;using namespace std;int n,V,mp[25][25]=&#123;0&#125;,m[25],dp[25]=&#123;0&#125;,pre[25],ans[25],maxi=0,at;int main()&#123; scanf("%d",&amp;n); int i,j; fill(pre,pre+n,-1);//记录路径 for(i=0;i&lt;n;i++) scanf("%d",&amp;m[i]); for(i=0;i&lt;n-1;i++) for(j=i+1;j&lt;n;j++) scanf("%d",&amp;mp[i][j]); dp[0]=maxi=m[0],at=0; for(i=1;i&lt;n;i++)&#123; for(j=i-1;j&gt;=0;j--) if(mp[j][i]&amp;&amp;dp[j]&gt;=dp[i]) dp[i]=dp[j],pre[i]=j; dp[i]+=m[i]; if(dp[i]&gt;maxi) maxi=dp[i],at=i; &#125; for(j=0,i=at;i!=-1;i=pre[i]) ans[j++]=i+1; for(i=j-1;i&gt;=0;i--)&#123; printf("%d",ans[i]); if(i)printf(" "); &#125; printf("\n%d\n",maxi); return 0;&#125;]]></content>
+      <categories>
+        <category>NOIP题解</category>
+        <category>NOIP1996</category>
+      </categories>
+      <tags>
+        <tag>图上DP</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[NOIP1996提高 砝码称重]]></title>
     <url>%2F2018%2F07%2F08%2Fnoip1996tgt4%2F</url>
     <content type="text"><![CDATA[试题来源 NOIP1996 提高组 问题描述 设有1g、2g、3g、5g、10g、20g的砝码各若干枚（其总重&lt;=1000） 输入格式 a1 a2 a3 a4 a5 a6 （表示1g砝码有a1个，2g砝码有a2个，…，20g砝码有a6个） 输出格式 Total=N （N表示用这些砝码能称出的不同重量的个数，但不包括一个砝码也不用的情况） 样例输入11 1 0 0 0 0 样例输出1Total=3 数据规模和约定 总重&lt;=1000 题解用了完全背包，但是数据很弱，好像没有必要。可以暴力枚举。123456789101112131415161718192021222324252627282930#include &lt;cstdio&gt;#include &lt;cstdlib&gt;#include &lt;cstring&gt;#include &lt;algorithm&gt;using namespace std;int f[1005]=&#123;0&#125;,n,v[6],ans=0;void packX(int vv)&#123;//二进制枚举版本 int p=1,vi=vv,j; while(n&gt;=p)&#123; for(j=1000;j&gt;=vi;j--) f[j]=max(f[j],f[j-vi]); n-=p,p&lt;&lt;=1,vi&lt;&lt;=1; &#125; if(n)&#123; for(vi=n*vv,j=1000;j&gt;=vi;j--) f[j]=max(f[j],f[j-vi]); &#125;&#125;int main()&#123; v[0]=1,v[1]=2,v[2]=3,v[3]=5,v[4]=10,v[5]=20; f[0]=1; for(int i=0;i&lt;6;i++)&#123; scanf("%d",&amp;n); if(n)packX(v[i]); &#125; for(int i=1;i&lt;=1000;i++) ans+=f[i]; printf("Total=%d\n",ans); return 0;&#125;]]></content>
@@ -2835,18 +2934,6 @@
       <tags>
         <tag>背包DP</tag>
         <tag>生成函数</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[NOIP1996提高 挖地雷]]></title>
-    <url>%2F2018%2F07%2F08%2Fnoip1996tgt3%2F</url>
-    <content type="text"><![CDATA[题目背景NOIp1996提高组第三题 题目描述在一个地图上有N个地窖（N&lt;=20），每个地窖中埋有一定数量的地雷。同时，给出地窖之间的连接路径。当地窖及其连接的数据给出之后，某人可以从第一个地窖开始挖地雷，然后可以沿着指出的连接往下挖（仅能选择一条路径），当无连接时挖地雷工作结束。设计一个挖地雷的方案，使某人能挖到最多的地雷。 输入输出格式输入格式：有若干行。第1行只有一个数字，表示地窖的个数N。第2行有N个数，分别表示每个地窖中的地雷个数。第3行至第N+1行表示地窖之间的连接情况：第3行有n-1个数（0或1），表示第一个地窖至第2个、第3个、…、第n个地窖有否路径连接。如第3行为1 1 0 0 0 … 0，则表示第1个地窖至第2个地窖有路径，至第3个地窖有路径，至第4个地窖、第5个、…、第n个地窖没有路径。第4行有n-2个数，表示第二个地窖至第3个、第4个、…、第n个地窖有否路径连接。… …第n+1行有1个数，表示第n-1个地窖至第n个地窖有否路径连接。（为0表示没有路径，为1表示有路径）。输出格式：有两行第一行表示挖得最多地雷时的挖地雷的顺序，各地窖序号间以一个空格分隔，不得有多余的空格。第二行只有一个数，表示能挖到的最多地雷数。 输入输出样例样例输入 Sample Input123456510 8 4 7 61 1 1 00 0 01 11 样例输出 Sample Output121 3 4 527 数据范围及提示 Data Size &amp; Hint（N&lt;=20） 题解题目已经帮你拓扑排序完了，直接转移就可以。123456789101112131415161718192021222324252627282930313233#include &lt;cstdio&gt;#include &lt;cstdlib&gt;#include &lt;cstring&gt;#include &lt;algorithm&gt;using namespace std;int n,V,mp[25][25]=&#123;0&#125;,m[25],dp[25]=&#123;0&#125;,pre[25],ans[25],maxi=0,at;int main()&#123; scanf("%d",&amp;n); int i,j; fill(pre,pre+n,-1);//记录路径 for(i=0;i&lt;n;i++) scanf("%d",&amp;m[i]); for(i=0;i&lt;n-1;i++) for(j=i+1;j&lt;n;j++) scanf("%d",&amp;mp[i][j]); dp[0]=maxi=m[0],at=0; for(i=1;i&lt;n;i++)&#123; for(j=i-1;j&gt;=0;j--) if(mp[j][i]&amp;&amp;dp[j]&gt;=dp[i]) dp[i]=dp[j],pre[i]=j; dp[i]+=m[i]; if(dp[i]&gt;maxi) maxi=dp[i],at=i; &#125; for(j=0,i=at;i!=-1;i=pre[i]) ans[j++]=i+1; for(i=j-1;i&gt;=0;i--)&#123; printf("%d",ans[i]); if(i)printf(" "); &#125; printf("\n%d\n",maxi); return 0;&#125;]]></content>
-      <categories>
-        <category>NOIP题解</category>
-        <category>NOIP1996</category>
-      </categories>
-      <tags>
-        <tag>图上DP</tag>
       </tags>
   </entry>
 </search>
