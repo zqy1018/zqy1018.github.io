@@ -362,6 +362,16 @@
 
           
             
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/08/16/uva10976/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2018/08/16/uva10976/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
           
 
           
@@ -418,8 +428,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/08/16/uva11059/" rel="next" title="UVa11059 Maximum Product">
-                <i class="fa fa-chevron-left"></i> UVa11059 Maximum Product
+              <a href="/2018/08/16/uva140/" rel="next" title="UVa140 Bandwidth">
+                <i class="fa fa-chevron-left"></i> UVa140 Bandwidth
               </a>
             
           </div>
@@ -428,8 +438,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/08/16/uva140/" rel="prev" title="UVa140 Bandwidth">
-                UVa140 Bandwidth <i class="fa fa-chevron-right"></i>
+              <a href="/2018/08/17/uva524/" rel="prev" title="UVa524 Prime Ring Problem">
+                UVa524 Prime Ring Problem <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -459,6 +469,9 @@
 
           
 
+  
+    <div class="comments" id="comments">
+    </div>
   
 
 
@@ -518,7 +531,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">40</span>
+                  <span class="site-state-item-count">39</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -743,6 +756,28 @@
 
 
 
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'X4PSdvLViY4pfjyqvDEkpvIN-gzGzoHsz',
+        appKey: 'IR3NlAjCwyRMypA2bbGW5GC1',
+        placeholder: 'aaaa',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
 
 
 

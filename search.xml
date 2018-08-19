@@ -58,17 +58,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[UVa140 Bandwidth]]></title>
-    <url>%2F2018%2F08%2F16%2Fuva140%2F</url>
-    <content type="text"><![CDATA[题目链接 题解枚举全排列，然后模拟即可。12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970#include &lt;cstdio&gt;#include &lt;cstdlib&gt;#include &lt;algorithm&gt;#include &lt;cstring&gt;#include &lt;cctype&gt;#define INF 2000000000using namespace std;typedef long long ll;int read()&#123; int f = 1, x = 0; char c = getchar(); while(c &lt; '0' || c &gt; '9')&#123;if(c == '-') f = -f; c = getchar(); &#125; while(c &gt;= '0' &amp;&amp; c &lt;= '9')x = x * 10 + c - '0', c = getchar(); return f * x; &#125;char s[1005];bool mat[50][50], vis[50];int p[10], n, b[10], ansp[10];void init()&#123; memset(mat, 0, sizeof(mat)); memset(vis, 0, sizeof(vis)); for(int i = 0; isalpha(s[i]); ++i)&#123; int cur = s[i++] - 'A'; vis[cur] = 1; for(i++; isalpha(s[i]); ++i)&#123; int to = s[i] - 'A'; mat[cur][to] = mat[to][cur] = 1; vis[to] = 1; &#125; &#125;&#125;void solve()&#123; n = 0; for(int i = 0; i &lt; 26; ++i) if(vis[i]) p[n++] = i; int ans = INF; do&#123; int cur = 0; memset(b, 0, sizeof(b)); for(int i = 0; i &lt; n; ++i)&#123; for(int j = i - 1; j &gt;= 0; --j) if(mat[p[i]][p[j]]) b[i] = max(b[i], i - j); for(int j = i + 1; j &lt; n; ++j) if(mat[p[i]][p[j]]) b[i] = max(b[i], j - i); cur = max(cur, b[i]); if(cur &gt;= ans) break; &#125; if(cur &lt; ans)&#123; memcpy(ansp, p, sizeof(p)); ans = cur; &#125; &#125;while(next_permutation(p, p + n)); for(int i = 0; i &lt; n; ++i) printf("%c ", ansp[i] + 'A'); printf("-&gt; %d\n", ans);&#125;int main()&#123; for(; ; )&#123; scanf("%s", s); if(s[0] == '#')break; init(); solve(); memset(s, 0, sizeof(s)); &#125; return 0;&#125;]]></content>
-      <categories>
-        <category>UVa</category>
-      </categories>
-      <tags>
-        <tag>搜索</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[UVa10976 Fractions Again?!]]></title>
     <url>%2F2018%2F08%2F16%2Fuva10976%2F</url>
     <content type="text"><![CDATA[题目链接 题解由于$x \ge y$可以发现$\frac{1}{x} \le \frac{1}{y}$。故$y$的下限为$k+1$，上限为$2k$。将$y$从$k+1$开始枚举到$2k$即可。12345678910111213141516171819202122232425262728293031323334#include &lt;cstdio&gt;#include &lt;cstdlib&gt;#include &lt;algorithm&gt;#include &lt;cstring&gt;#include &lt;cctype&gt;#define INF 2000000000using namespace std;typedef long long ll;int read()&#123; int f = 1, x = 0; char c = getchar(); while(c &lt; '0' || c &gt; '9')&#123;if(c == '-') f = -f; c = getchar(); &#125; while(c &gt;= '0' &amp;&amp; c &lt;= '9')x = x * 10 + c - '0', c = getchar(); return f * x; &#125;int n, ans[10005][2], cnt;void solve()&#123; cnt = 0; for(int i = n + 1; i &lt;= n + n; ++i)&#123; int fz = i - n, fm = n * i; if(fm % fz == 0) ans[cnt][0] = fm / fz, ans[cnt++][1] = i; &#125; printf("%d\n", cnt); for(int i = 0; i &lt; cnt; ++i) printf("1/%d = 1/%d + 1/%d\n", n, ans[i][0], ans[i][1]);&#125;int main()&#123; while(scanf("%d", &amp;n) == 1)&#123; solve(); &#125; return 0;&#125;]]></content>
@@ -80,9 +69,20 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[UVa11059 Maximum Product]]></title>
-    <url>%2F2018%2F08%2F16%2Fuva11059%2F</url>
-    <content type="text"><![CDATA[题目链接 题解枚举两端即可。数据比较小，直接用long long。123456789101112131415161718192021222324252627282930313233343536373839404142#include &lt;cstdio&gt;#include &lt;cstdlib&gt;#include &lt;algorithm&gt;#include &lt;cstring&gt;#include &lt;cctype&gt;#define INF 2000000000using namespace std;typedef long long ll;int read()&#123; int f = 1, x = 0; char c = getchar(); while(c &lt; '0' || c &gt; '9')&#123;if(c == '-') f = -f; c = getchar(); &#125; while(c &gt;= '0' &amp;&amp; c &lt;= '9')x = x * 10 + c - '0', c = getchar(); return f * x; &#125;int n;ll seq[50];void init()&#123; for(int i = 0; i &lt; n; ++i) seq[i] = read();&#125;void solve()&#123; ll ans = 0; for(int i = 0; i &lt; n; ++i) for(int j = i; j &lt; n; ++j)&#123; ll st = 1; for(int k = i; k &lt;= j; ++k) st *= seq[k]; ans = max(ans, st); &#125; printf("%lld.\n\n", ans);&#125;int main()&#123; int T = 0; while(scanf("%d", &amp;n) == 1)&#123; T++; printf("Case #%d: The maximum product is ", T); init(); solve(); &#125; return 0;&#125;]]></content>
+    <title><![CDATA[UVa140 Bandwidth]]></title>
+    <url>%2F2018%2F08%2F16%2Fuva140%2F</url>
+    <content type="text"><![CDATA[题目链接 题解枚举全排列，然后模拟即可。12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970#include &lt;cstdio&gt;#include &lt;cstdlib&gt;#include &lt;algorithm&gt;#include &lt;cstring&gt;#include &lt;cctype&gt;#define INF 2000000000using namespace std;typedef long long ll;int read()&#123; int f = 1, x = 0; char c = getchar(); while(c &lt; '0' || c &gt; '9')&#123;if(c == '-') f = -f; c = getchar(); &#125; while(c &gt;= '0' &amp;&amp; c &lt;= '9')x = x * 10 + c - '0', c = getchar(); return f * x; &#125;char s[1005];bool mat[50][50], vis[50];int p[10], n, b[10], ansp[10];void init()&#123; memset(mat, 0, sizeof(mat)); memset(vis, 0, sizeof(vis)); for(int i = 0; isalpha(s[i]); ++i)&#123; int cur = s[i++] - 'A'; vis[cur] = 1; for(i++; isalpha(s[i]); ++i)&#123; int to = s[i] - 'A'; mat[cur][to] = mat[to][cur] = 1; vis[to] = 1; &#125; &#125;&#125;void solve()&#123; n = 0; for(int i = 0; i &lt; 26; ++i) if(vis[i]) p[n++] = i; int ans = INF; do&#123; int cur = 0; memset(b, 0, sizeof(b)); for(int i = 0; i &lt; n; ++i)&#123; for(int j = i - 1; j &gt;= 0; --j) if(mat[p[i]][p[j]]) b[i] = max(b[i], i - j); for(int j = i + 1; j &lt; n; ++j) if(mat[p[i]][p[j]]) b[i] = max(b[i], j - i); cur = max(cur, b[i]); if(cur &gt;= ans) break; &#125; if(cur &lt; ans)&#123; memcpy(ansp, p, sizeof(p)); ans = cur; &#125; &#125;while(next_permutation(p, p + n)); for(int i = 0; i &lt; n; ++i) printf("%c ", ansp[i] + 'A'); printf("-&gt; %d\n", ans);&#125;int main()&#123; for(; ; )&#123; scanf("%s", s); if(s[0] == '#')break; init(); solve(); memset(s, 0, sizeof(s)); &#125; return 0;&#125;]]></content>
+      <categories>
+        <category>UVa</category>
+      </categories>
+      <tags>
+        <tag>搜索</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[UVa725 Division]]></title>
+    <url>%2F2018%2F08%2F16%2Fuva725%2F</url>
+    <content type="text"><![CDATA[题目链接 题解直接枚举除数即可。1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950#include &lt;cstdio&gt;#include &lt;cstdlib&gt;#include &lt;algorithm&gt;#include &lt;cstring&gt;#include &lt;cctype&gt;#define INF 2000000000using namespace std;typedef long long ll;int read()&#123; int f = 1, x = 0; char c = getchar(); while(c &lt; '0' || c &gt; '9')&#123;if(c == '-') f = -f; c = getchar(); &#125; while(c &gt;= '0' &amp;&amp; c &lt;= '9')x = x * 10 + c - '0', c = getchar(); return f * x; &#125;int n, cnt[20];void solve()&#123; int flag = 0; for(int i = 1234; ; ++i)&#123; int j = i * n; if(j &lt; 10000 &amp;&amp; i &lt; 10000) continue; int tot = 0; while(j) cnt[tot++] = j % 10, j /= 10; j = i; while(j) cnt[tot++] = j % 10, j /= 10; if(i &lt; 10000)cnt[tot++] = 0; if(tot &gt; 10)break; sort(cnt, cnt + 10); for(j = 0; j &lt; 10; ++j) if(cnt[j] != j) break; if(j == 10) printf("%d / %05d = %d\n", i * n, i, n), flag = 1; &#125; if(!flag) printf("There are no solutions for %d.\n", n);&#125;int main()&#123; for(int T = 1; ; ++T)&#123; n = read(); if(!n)break; if(T &gt; 1)printf("\n"); solve(); &#125; return 0;&#125;]]></content>
       <categories>
         <category>UVa</category>
       </categories>
@@ -91,9 +91,9 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[UVa725 Division]]></title>
-    <url>%2F2018%2F08%2F16%2Fuva725%2F</url>
-    <content type="text"><![CDATA[题目链接 题解直接枚举除数即可。1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950#include &lt;cstdio&gt;#include &lt;cstdlib&gt;#include &lt;algorithm&gt;#include &lt;cstring&gt;#include &lt;cctype&gt;#define INF 2000000000using namespace std;typedef long long ll;int read()&#123; int f = 1, x = 0; char c = getchar(); while(c &lt; '0' || c &gt; '9')&#123;if(c == '-') f = -f; c = getchar(); &#125; while(c &gt;= '0' &amp;&amp; c &lt;= '9')x = x * 10 + c - '0', c = getchar(); return f * x; &#125;int n, cnt[20];void solve()&#123; int flag = 0; for(int i = 1234; ; ++i)&#123; int j = i * n; if(j &lt; 10000 &amp;&amp; i &lt; 10000) continue; int tot = 0; while(j) cnt[tot++] = j % 10, j /= 10; j = i; while(j) cnt[tot++] = j % 10, j /= 10; if(i &lt; 10000)cnt[tot++] = 0; if(tot &gt; 10)break; sort(cnt, cnt + 10); for(j = 0; j &lt; 10; ++j) if(cnt[j] != j) break; if(j == 10) printf("%d / %05d = %d\n", i * n, i, n), flag = 1; &#125; if(!flag) printf("There are no solutions for %d.\n", n);&#125;int main()&#123; for(int T = 1; ; ++T)&#123; n = read(); if(!n)break; if(T &gt; 1)printf("\n"); solve(); &#125; return 0;&#125;]]></content>
+    <title><![CDATA[UVa11059 Maximum Product]]></title>
+    <url>%2F2018%2F08%2F16%2Fuva11059%2F</url>
+    <content type="text"><![CDATA[题目链接 题解枚举两端即可。数据比较小，直接用long long。123456789101112131415161718192021222324252627282930313233343536373839404142#include &lt;cstdio&gt;#include &lt;cstdlib&gt;#include &lt;algorithm&gt;#include &lt;cstring&gt;#include &lt;cctype&gt;#define INF 2000000000using namespace std;typedef long long ll;int read()&#123; int f = 1, x = 0; char c = getchar(); while(c &lt; '0' || c &gt; '9')&#123;if(c == '-') f = -f; c = getchar(); &#125; while(c &gt;= '0' &amp;&amp; c &lt;= '9')x = x * 10 + c - '0', c = getchar(); return f * x; &#125;int n;ll seq[50];void init()&#123; for(int i = 0; i &lt; n; ++i) seq[i] = read();&#125;void solve()&#123; ll ans = 0; for(int i = 0; i &lt; n; ++i) for(int j = i; j &lt; n; ++j)&#123; ll st = 1; for(int k = i; k &lt;= j; ++k) st *= seq[k]; ans = max(ans, st); &#125; printf("%lld.\n\n", ans);&#125;int main()&#123; int T = 0; while(scanf("%d", &amp;n) == 1)&#123; T++; printf("Case #%d: The maximum product is ", T); init(); solve(); &#125; return 0;&#125;]]></content>
       <categories>
         <category>UVa</category>
       </categories>
@@ -857,7 +857,7 @@
     <url>%2F2018%2F08%2F06%2Ftemplate-heap%2F</url>
     <content type="text"><![CDATA[堆包括二叉堆，二项堆，可并堆，斐波那契堆，等。 普通二叉堆最经典的堆结构。其本身为一颗完全二叉树，并且每一个节点都遵循着自身的值大于（或者小于）父节点的值的规律。至于出现重复的值该怎么办，这就要具体情况具体分析。一般而言不需要手写二叉堆，使用C++自带的即可。 以下操作默认为小根堆： 上浮操作让当前位置为$id$的节点不断与其父节点比较，若其比父节点大则符合小根堆的标准，停止上浮；若其小于父节点则与父节点相交换，实现上浮。12345678910void pushup(int *h, int id)&#123; int tmp = h[id]; while(id &gt;= 1)&#123; int par = id &gt;&gt; 1; if(h[par] &lt; tmp) break; h[id] = h[par], id &gt;&gt;= 1; &#125; h[id] = tmp;&#125; 下沉操作让当前位置为$id$的节点不断与其子节点比较，边界是其自身为叶子。若其只有一个子节点，且其小于子节点则符合堆的要求，停止下沉；否则其与子节点交换，下沉。若其有两个子节点且小于两个子节点，则停止下沉；否则让更小的那个子节点与自身交换，下沉。12345678910111213141516171819202122void pushdown(int *h, int id)&#123;//下称操作 int tmp = h[id]; while(id &lt;= (n &gt;&gt; 1))&#123; int lson = id &lt;&lt; 1, rson = id &lt;&lt; 1 | 1; if(rson &gt; n)&#123; if(tmp &lt; h[lson]) break; else h[id] = h[lson], id = lson; &#125;else&#123; if(tmp &lt; h[lson] &amp;&amp; tmp &lt; h[rson]) break; else &#123; if(h[lson] &lt; h[rson]) h[id] = h[lson], id = lson; else h[id] = h[rson], id = rson; &#125; &#125; &#125; h[id] = tmp;&#125; 插入操作将新数$val$插入堆的最底层中，从左到右第一个空出的位置（即堆的最后一个位置的后面）。然后执行上浮操作。12345void pushin(int *h, int val)&#123;//增加数操作 int id = ++n; h[id] = val; pushup(h, id);&#125; 弹出操作将堆最后一个位置的节点与根节点交换，删去最后一个位置的节点，然后让根下沉。123456int popout(int *h)&#123; int top = heap[1]; heap[1] = heap[n--]; pushdown(h, 1); return top;&#125; 建堆操作从底到顶，一层一层对非叶子节点进行下沉操作。1234void build_heap(int *h, int n)&#123;//建堆 for(int i = n &gt;&gt; 1; i &gt;= 1; --i) pushdown(heap, i);&#125; 斐波那契堆斐波那契堆是一种可并堆，虽然其的写法比较复杂，但是其的摊还时间复杂度比较优秀。许多操作可以做到平摊$O(1)$的时间复杂度。确切地说，一个斐波那契堆是一个具有最小堆序的有根树森林。]]></content>
       <categories>
-        <category>堆</category>
+        <category>模板</category>
       </categories>
   </entry>
   <entry>
@@ -1068,8 +1068,8 @@
         <category>其他</category>
       </categories>
       <tags>
-        <tag>经典问题</tag>
         <tag>树形DP</tag>
+        <tag>经典问题</tag>
       </tags>
   </entry>
   <entry>
@@ -1080,8 +1080,8 @@
         <category>COCI</category>
       </categories>
       <tags>
-        <tag>单调栈</tag>
         <tag>经典问题</tag>
+        <tag>单调栈</tag>
       </tags>
   </entry>
   <entry>
@@ -2114,8 +2114,8 @@
         <category>NOIP2012</category>
       </categories>
       <tags>
-        <tag>二分</tag>
         <tag>线段树</tag>
+        <tag>二分</tag>
         <tag>差分</tag>
       </tags>
   </entry>
@@ -3050,18 +3050,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[NOIP1996提高 挖地雷]]></title>
-    <url>%2F2018%2F07%2F08%2Fnoip1996tgt3%2F</url>
-    <content type="text"><![CDATA[题目背景NOIp1996提高组第三题 题目描述在一个地图上有N个地窖（N&lt;=20），每个地窖中埋有一定数量的地雷。同时，给出地窖之间的连接路径。当地窖及其连接的数据给出之后，某人可以从第一个地窖开始挖地雷，然后可以沿着指出的连接往下挖（仅能选择一条路径），当无连接时挖地雷工作结束。设计一个挖地雷的方案，使某人能挖到最多的地雷。 输入输出格式输入格式：有若干行。第1行只有一个数字，表示地窖的个数N。第2行有N个数，分别表示每个地窖中的地雷个数。第3行至第N+1行表示地窖之间的连接情况：第3行有n-1个数（0或1），表示第一个地窖至第2个、第3个、…、第n个地窖有否路径连接。如第3行为1 1 0 0 0 … 0，则表示第1个地窖至第2个地窖有路径，至第3个地窖有路径，至第4个地窖、第5个、…、第n个地窖没有路径。第4行有n-2个数，表示第二个地窖至第3个、第4个、…、第n个地窖有否路径连接。… …第n+1行有1个数，表示第n-1个地窖至第n个地窖有否路径连接。（为0表示没有路径，为1表示有路径）。输出格式：有两行第一行表示挖得最多地雷时的挖地雷的顺序，各地窖序号间以一个空格分隔，不得有多余的空格。第二行只有一个数，表示能挖到的最多地雷数。 输入输出样例样例输入 Sample Input123456510 8 4 7 61 1 1 00 0 01 11 样例输出 Sample Output121 3 4 527 数据范围及提示 Data Size &amp; Hint（N&lt;=20） 题解题目已经帮你拓扑排序完了，直接转移就可以。123456789101112131415161718192021222324252627282930313233#include &lt;cstdio&gt;#include &lt;cstdlib&gt;#include &lt;cstring&gt;#include &lt;algorithm&gt;using namespace std;int n,V,mp[25][25]=&#123;0&#125;,m[25],dp[25]=&#123;0&#125;,pre[25],ans[25],maxi=0,at;int main()&#123; scanf("%d",&amp;n); int i,j; fill(pre,pre+n,-1);//记录路径 for(i=0;i&lt;n;i++) scanf("%d",&amp;m[i]); for(i=0;i&lt;n-1;i++) for(j=i+1;j&lt;n;j++) scanf("%d",&amp;mp[i][j]); dp[0]=maxi=m[0],at=0; for(i=1;i&lt;n;i++)&#123; for(j=i-1;j&gt;=0;j--) if(mp[j][i]&amp;&amp;dp[j]&gt;=dp[i]) dp[i]=dp[j],pre[i]=j; dp[i]+=m[i]; if(dp[i]&gt;maxi) maxi=dp[i],at=i; &#125; for(j=0,i=at;i!=-1;i=pre[i]) ans[j++]=i+1; for(i=j-1;i&gt;=0;i--)&#123; printf("%d",ans[i]); if(i)printf(" "); &#125; printf("\n%d\n",maxi); return 0;&#125;]]></content>
-      <categories>
-        <category>NOIP题解</category>
-        <category>NOIP1996</category>
-      </categories>
-      <tags>
-        <tag>图上DP</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[NOIP1996提高 砝码称重]]></title>
     <url>%2F2018%2F07%2F08%2Fnoip1996tgt4%2F</url>
     <content type="text"><![CDATA[试题来源 NOIP1996 提高组 问题描述 设有1g、2g、3g、5g、10g、20g的砝码各若干枚（其总重&lt;=1000） 输入格式 a1 a2 a3 a4 a5 a6 （表示1g砝码有a1个，2g砝码有a2个，…，20g砝码有a6个） 输出格式 Total=N （N表示用这些砝码能称出的不同重量的个数，但不包括一个砝码也不用的情况） 样例输入11 1 0 0 0 0 样例输出1Total=3 数据规模和约定 总重&lt;=1000 题解用了完全背包，但是数据很弱，好像没有必要。可以暴力枚举。123456789101112131415161718192021222324252627282930#include &lt;cstdio&gt;#include &lt;cstdlib&gt;#include &lt;cstring&gt;#include &lt;algorithm&gt;using namespace std;int f[1005]=&#123;0&#125;,n,v[6],ans=0;void packX(int vv)&#123;//二进制枚举版本 int p=1,vi=vv,j; while(n&gt;=p)&#123; for(j=1000;j&gt;=vi;j--) f[j]=max(f[j],f[j-vi]); n-=p,p&lt;&lt;=1,vi&lt;&lt;=1; &#125; if(n)&#123; for(vi=n*vv,j=1000;j&gt;=vi;j--) f[j]=max(f[j],f[j-vi]); &#125;&#125;int main()&#123; v[0]=1,v[1]=2,v[2]=3,v[3]=5,v[4]=10,v[5]=20; f[0]=1; for(int i=0;i&lt;6;i++)&#123; scanf("%d",&amp;n); if(n)packX(v[i]); &#125; for(int i=1;i&lt;=1000;i++) ans+=f[i]; printf("Total=%d\n",ans); return 0;&#125;]]></content>
@@ -3072,6 +3060,18 @@
       <tags>
         <tag>背包DP</tag>
         <tag>生成函数</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[NOIP1996提高 挖地雷]]></title>
+    <url>%2F2018%2F07%2F08%2Fnoip1996tgt3%2F</url>
+    <content type="text"><![CDATA[题目背景NOIp1996提高组第三题 题目描述在一个地图上有N个地窖（N&lt;=20），每个地窖中埋有一定数量的地雷。同时，给出地窖之间的连接路径。当地窖及其连接的数据给出之后，某人可以从第一个地窖开始挖地雷，然后可以沿着指出的连接往下挖（仅能选择一条路径），当无连接时挖地雷工作结束。设计一个挖地雷的方案，使某人能挖到最多的地雷。 输入输出格式输入格式：有若干行。第1行只有一个数字，表示地窖的个数N。第2行有N个数，分别表示每个地窖中的地雷个数。第3行至第N+1行表示地窖之间的连接情况：第3行有n-1个数（0或1），表示第一个地窖至第2个、第3个、…、第n个地窖有否路径连接。如第3行为1 1 0 0 0 … 0，则表示第1个地窖至第2个地窖有路径，至第3个地窖有路径，至第4个地窖、第5个、…、第n个地窖没有路径。第4行有n-2个数，表示第二个地窖至第3个、第4个、…、第n个地窖有否路径连接。… …第n+1行有1个数，表示第n-1个地窖至第n个地窖有否路径连接。（为0表示没有路径，为1表示有路径）。输出格式：有两行第一行表示挖得最多地雷时的挖地雷的顺序，各地窖序号间以一个空格分隔，不得有多余的空格。第二行只有一个数，表示能挖到的最多地雷数。 输入输出样例样例输入 Sample Input123456510 8 4 7 61 1 1 00 0 01 11 样例输出 Sample Output121 3 4 527 数据范围及提示 Data Size &amp; Hint（N&lt;=20） 题解题目已经帮你拓扑排序完了，直接转移就可以。123456789101112131415161718192021222324252627282930313233#include &lt;cstdio&gt;#include &lt;cstdlib&gt;#include &lt;cstring&gt;#include &lt;algorithm&gt;using namespace std;int n,V,mp[25][25]=&#123;0&#125;,m[25],dp[25]=&#123;0&#125;,pre[25],ans[25],maxi=0,at;int main()&#123; scanf("%d",&amp;n); int i,j; fill(pre,pre+n,-1);//记录路径 for(i=0;i&lt;n;i++) scanf("%d",&amp;m[i]); for(i=0;i&lt;n-1;i++) for(j=i+1;j&lt;n;j++) scanf("%d",&amp;mp[i][j]); dp[0]=maxi=m[0],at=0; for(i=1;i&lt;n;i++)&#123; for(j=i-1;j&gt;=0;j--) if(mp[j][i]&amp;&amp;dp[j]&gt;=dp[i]) dp[i]=dp[j],pre[i]=j; dp[i]+=m[i]; if(dp[i]&gt;maxi) maxi=dp[i],at=i; &#125; for(j=0,i=at;i!=-1;i=pre[i]) ans[j++]=i+1; for(i=j-1;i&gt;=0;i--)&#123; printf("%d",ans[i]); if(i)printf(" "); &#125; printf("\n%d\n",maxi); return 0;&#125;]]></content>
+      <categories>
+        <category>NOIP题解</category>
+        <category>NOIP1996</category>
+      </categories>
+      <tags>
+        <tag>图上DP</tag>
       </tags>
   </entry>
 </search>

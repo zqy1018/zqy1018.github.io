@@ -86,7 +86,7 @@
 <meta property="og:site_name" content="zqy的博客">
 <meta property="og:description" content="堆包括二叉堆，二项堆，可并堆，斐波那契堆，等。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-08-07T07:36:17.303Z">
+<meta property="og:updated_time" content="2018-08-19T14:08:03.584Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="模板 堆">
 <meta name="twitter:description" content="堆包括二叉堆，二项堆，可并堆，斐波那契堆，等。">
@@ -348,8 +348,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/堆/" itemprop="url" rel="index">
-                    <span itemprop="name">堆</span>
+                  <a href="/categories/模板/" itemprop="url" rel="index">
+                    <span itemprop="name">模板</span>
                   </a>
                 </span>
 
@@ -360,6 +360,16 @@
           
 
           
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/08/06/template-heap/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2018/08/06/template-heap/" itemprop="commentCount"></span>
+                </a>
+              </span>
             
           
 
@@ -460,6 +470,9 @@
           
 
   
+    <div class="comments" id="comments">
+    </div>
+  
 
 
 
@@ -518,7 +531,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">40</span>
+                  <span class="site-state-item-count">39</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -743,6 +756,28 @@
 
 
 
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'X4PSdvLViY4pfjyqvDEkpvIN-gzGzoHsz',
+        appKey: 'IR3NlAjCwyRMypA2bbGW5GC1',
+        placeholder: 'aaaa',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
 
 
 
