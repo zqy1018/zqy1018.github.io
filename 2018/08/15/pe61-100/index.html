@@ -1,0 +1,1163 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="数学," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="继续探索">
+<meta name="keywords" content="数学">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ProjectEuler 61-100题解">
+<meta property="og:url" content="http://yoursite.com/2018/08/15/pe61-100/index.html">
+<meta property="og:site_name" content="zqy的博客">
+<meta property="og:description" content="继续探索">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-08-18T11:08:15.019Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ProjectEuler 61-100题解">
+<meta name="twitter:description" content="继续探索">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/08/15/pe61-100/"/>
+
+
+
+
+
+  <title>ProjectEuler 61-100题解 | zqy的博客</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">zqy的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/15/pe61-100/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="z q y">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="zqy的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">ProjectEuler 61-100题解</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-15T22:31:56+08:00">
+                2018-08-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/ProjectEuler/" itemprop="url" rel="index">
+                    <span itemprop="name">ProjectEuler</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>继续探索<br><a id="more"></a></p>
+<h2 id="PE61"><a href="#PE61" class="headerlink" title="PE61"></a>PE61</h2><p>先枚举排列，然后按照排列顺序进行搜索即可。<br>或者按照图论，构图搜索也可以。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> p[<span class="number">6</span>][<span class="number">10005</span>], cnt[<span class="number">6</span>] = &#123;<span class="number">0</span>&#125;;</span><br><span class="line"><span class="keyword">int</span> per[] = &#123;<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>&#125;;</span><br><span class="line"><span class="keyword">int</span> ans[<span class="number">6</span>], t_ans[<span class="number">6</span>];</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">init</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i;</span><br><span class="line">    <span class="keyword">for</span>(i = <span class="number">1</span>; (i * (i + <span class="number">1</span>) &gt;&gt; <span class="number">1</span>) &lt; <span class="number">1000</span>; ++i);</span><br><span class="line">    <span class="keyword">for</span>(; (i * (i + <span class="number">1</span>) &gt;&gt; <span class="number">1</span>) &lt; <span class="number">10000</span>; ++i)</span><br><span class="line">        p[<span class="number">0</span>][cnt[<span class="number">0</span>]++] = (i * (i + <span class="number">1</span>) &gt;&gt; <span class="number">1</span>);</span><br><span class="line">    <span class="keyword">for</span>(i = <span class="number">1</span>; i * i &lt; <span class="number">1000</span>; ++i);</span><br><span class="line">    <span class="keyword">for</span>(; i * i &lt; <span class="number">10000</span>; ++i)</span><br><span class="line">        p[<span class="number">1</span>][cnt[<span class="number">1</span>]++] = i * i;</span><br><span class="line">    <span class="keyword">for</span>(i = <span class="number">1</span>; (i * (i * <span class="number">3</span> - <span class="number">1</span>) &gt;&gt; <span class="number">1</span>) &lt; <span class="number">1000</span>; ++i);</span><br><span class="line">    <span class="keyword">for</span>(; (i * (i * <span class="number">3</span> - <span class="number">1</span>) &gt;&gt; <span class="number">1</span>) &lt; <span class="number">10000</span>; ++i)</span><br><span class="line">        p[<span class="number">2</span>][cnt[<span class="number">2</span>]++] = (i * (i * <span class="number">3</span> - <span class="number">1</span>) &gt;&gt; <span class="number">1</span>);</span><br><span class="line">    <span class="keyword">for</span>(i = <span class="number">1</span>; i * (<span class="number">2</span> * i - <span class="number">1</span>) &lt; <span class="number">1000</span>; ++i);</span><br><span class="line">    <span class="keyword">for</span>(; i * (<span class="number">2</span> * i - <span class="number">1</span>) &lt; <span class="number">10000</span>; ++i)</span><br><span class="line">        p[<span class="number">3</span>][cnt[<span class="number">3</span>]++] = i * (<span class="number">2</span> * i - <span class="number">1</span>);</span><br><span class="line">    <span class="keyword">for</span>(i = <span class="number">1</span>; (i * (i * <span class="number">5</span> - <span class="number">3</span>) &gt;&gt; <span class="number">1</span>) &lt; <span class="number">1000</span>; ++i);</span><br><span class="line">    <span class="keyword">for</span>(; (i * (i * <span class="number">5</span> - <span class="number">3</span>) &gt;&gt; <span class="number">1</span>) &lt; <span class="number">10000</span>; ++i)</span><br><span class="line">        p[<span class="number">4</span>][cnt[<span class="number">4</span>]++] = (i * (i * <span class="number">5</span> - <span class="number">3</span>) &gt;&gt; <span class="number">1</span>);</span><br><span class="line">    <span class="keyword">for</span>(i = <span class="number">1</span>; i * (i * <span class="number">3</span> - <span class="number">2</span>) &lt; <span class="number">1000</span>; ++i);</span><br><span class="line">    <span class="keyword">for</span>(; i * (i * <span class="number">3</span> - <span class="number">2</span>) &lt; <span class="number">10000</span>; ++i)</span><br><span class="line">        p[<span class="number">5</span>][cnt[<span class="number">5</span>]++] = i * (i * <span class="number">3</span> - <span class="number">2</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">getN</span><span class="params">(<span class="keyword">int</span> index, <span class="keyword">int</span> tail)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(index == <span class="number">6</span>)&#123;</span><br><span class="line">        <span class="keyword">if</span>(ans[<span class="number">5</span>] % <span class="number">100</span> == ans[<span class="number">0</span>] / <span class="number">100</span>)</span><br><span class="line">            <span class="built_in">memcpy</span>(t_ans, ans, <span class="keyword">sizeof</span>(ans));</span><br><span class="line">        <span class="keyword">return</span> ;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> id = per[index], hd = tail * <span class="number">100</span>;</span><br><span class="line">    <span class="keyword">int</span> _index = lower_bound(p[id], p[id] + cnt[id], hd) - p[id];</span><br><span class="line">    <span class="keyword">if</span>(p[id][_index] / <span class="number">100</span> != tail)</span><br><span class="line">        <span class="keyword">return</span> ;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = _index; i &lt; cnt[id]; ++i)&#123;</span><br><span class="line">        <span class="keyword">if</span>(p[id][i] / <span class="number">100</span> != tail)</span><br><span class="line">            <span class="keyword">break</span> ;</span><br><span class="line">        ans[index] = p[id][i];</span><br><span class="line">        getN(index + <span class="number">1</span>, p[id][i] % <span class="number">100</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">solve</span><span class="params">()</span></span>&#123;   </span><br><span class="line">    <span class="keyword">do</span>&#123;</span><br><span class="line">        <span class="keyword">int</span> st = per[<span class="number">0</span>];</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; cnt[st]; ++i)</span><br><span class="line">            ans[<span class="number">0</span>] = p[st][i],</span><br><span class="line">            getN(<span class="number">1</span>, p[st][i] % <span class="number">100</span>);</span><br><span class="line">    &#125;<span class="keyword">while</span>(next_permutation(per, per + <span class="number">6</span>));</span><br><span class="line">    <span class="keyword">int</span> sum = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">6</span>; ++i)</span><br><span class="line">        sum += t_ans[i];</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%d\n"</span>, sum);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>答案：28684</p>
+<h2 id="PE62"><a href="#PE62" class="headerlink" title="PE62"></a>PE62</h2><p>一个一个长度去试<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">map</span>&lt;<span class="built_in">string</span>, <span class="keyword">int</span>&gt; mp;</span><br><span class="line"><span class="built_in">map</span>&lt;<span class="built_in">string</span>, ll&gt; mp2;</span><br><span class="line">ll ans = INF;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">solve</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">char</span> s[<span class="number">20</span>];</span><br><span class="line">    <span class="keyword">for</span>(ll i = <span class="number">4642l</span>l; i * i * i &lt; <span class="number">1000000000000l</span>l; ++i)&#123;</span><br><span class="line">        <span class="built_in">sprintf</span>(s, <span class="string">"%lld"</span>, i * i * i);</span><br><span class="line">        sort(s, s + <span class="number">12</span>);</span><br><span class="line">        <span class="function"><span class="built_in">string</span> <span class="title">ss</span><span class="params">(s)</span></span>;</span><br><span class="line">        <span class="keyword">if</span>(!mp.count(ss))</span><br><span class="line">            mp[ss] = <span class="number">1</span>, mp2[ss] = i;</span><br><span class="line">        <span class="keyword">else</span>&#123;</span><br><span class="line">            mp[ss]++;</span><br><span class="line">            <span class="keyword">if</span>(mp[ss] == <span class="number">5</span>)</span><br><span class="line">                ans = min(ans, mp2[ss]);</span><br><span class="line">        &#125; </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%lld\n"</span>, ans * ans * ans);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>答案：127035954683</p>
+<h2 id="PE63"><a href="#PE63" class="headerlink" title="PE63"></a>PE63</h2><p>拿python水过<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">ans = <span class="number">0</span></span><br><span class="line"><span class="keyword">for</span> n <span class="keyword">in</span> range(<span class="number">1</span>, <span class="number">22</span>, <span class="number">1</span>):</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, <span class="number">10</span>, <span class="number">1</span>):</span><br><span class="line">        x = i ** n</span><br><span class="line">        <span class="keyword">if</span> len(str(x)) == n:</span><br><span class="line">            ans += <span class="number">1</span></span><br><span class="line"></span><br><span class="line">print(ans)</span><br></pre></td></tr></table></figure></p>
+<p>答案：49</p>
+<h2 id="PE64"><a href="#PE64" class="headerlink" title="PE64"></a>PE64</h2><p>这个连分数的构造方法一开始还不太容易看出来。。。<br>答案写在另一篇博文里了。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure></p>
+<p>答案：</p>
+<h2 id="PE65"><a href="#PE65" class="headerlink" title="PE65"></a>PE65</h2><p>用python水过<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">p = <span class="number">1</span></span><br><span class="line">q = <span class="number">1</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">gcd</span><span class="params">(a, b)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> b == <span class="number">0</span>:</span><br><span class="line">        <span class="keyword">return</span> a</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">return</span> gcd(b, a % b)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, <span class="number">99</span>, <span class="number">1</span>):</span><br><span class="line">    a = <span class="number">0</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="number">99</span> - i) % <span class="number">3</span> == <span class="number">2</span>:</span><br><span class="line">        a = ((<span class="number">98</span> - i) / <span class="number">3</span> + <span class="number">1</span>) * <span class="number">2</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        a = <span class="number">1</span></span><br><span class="line">    pp = q</span><br><span class="line">    qq = p + q * a</span><br><span class="line">    p = pp</span><br><span class="line">    q = qq</span><br><span class="line"></span><br><span class="line">p = p + q + q</span><br><span class="line">p /= gcd(p, q)</span><br><span class="line"></span><br><span class="line">ans = <span class="number">0</span></span><br><span class="line"><span class="keyword">while</span> p &gt; <span class="number">0</span>:</span><br><span class="line">    ans += p % <span class="number">10</span></span><br><span class="line">    p /= <span class="number">10</span></span><br><span class="line">print(ans)</span><br></pre></td></tr></table></figure></p>
+<p>答案：272</p>
+<h2 id="PE66"><a href="#PE66" class="headerlink" title="PE66"></a>PE66</h2><p>这个方程有名字，叫做<strong>佩尔方程</strong>。<br>它的解和连分数有着很大的关系，将其写在了另一篇博文里<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure></p>
+<h2 id="PE67"><a href="#PE67" class="headerlink" title="PE67"></a>PE67</h2><p>水DP<br>答案：7273</p>
+<h2 id="PE68"><a href="#PE68" class="headerlink" title="PE68"></a>PE68</h2><h2 id="PE69"><a href="#PE69" class="headerlink" title="PE69"></a>PE69</h2><p>筛出欧拉函数然后直接枚举。。。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">solve</span><span class="params">()</span></span>&#123;</span><br><span class="line">    getPhi();</span><br><span class="line">    <span class="keyword">int</span> maxi;</span><br><span class="line">    <span class="keyword">double</span> d = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">2</span>; i &lt;= <span class="number">1000000</span>; ++i)</span><br><span class="line">        <span class="keyword">if</span>(d &lt; <span class="number">1.0</span> * i / phi[i])</span><br><span class="line">            d = <span class="number">1.0</span> * i / phi[i], maxi = i;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%d\n"</span>, maxi);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>答案：510510</p>
+<h2 id="PE70"><a href="#PE70" class="headerlink" title="PE70"></a>PE70</h2><p>枚举即可<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">solve</span><span class="params">()</span></span>&#123;</span><br><span class="line">    getPhi();</span><br><span class="line">    <span class="keyword">int</span> maxi;</span><br><span class="line">    <span class="keyword">double</span> d = <span class="number">10000000</span>;</span><br><span class="line">    <span class="keyword">char</span> s1[<span class="number">10</span>], s2[<span class="number">10</span>];</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">2</span>; i &lt; <span class="number">10000000</span>; ++i)&#123;</span><br><span class="line">        <span class="built_in">sprintf</span>(s1, <span class="string">"%d"</span>, i);</span><br><span class="line">        <span class="built_in">sprintf</span>(s2, <span class="string">"%d"</span>, phi[i]);</span><br><span class="line">        <span class="keyword">int</span> len1 = <span class="built_in">strlen</span>(s1), len2 = <span class="built_in">strlen</span>(s2);</span><br><span class="line">        <span class="keyword">if</span>(len1 == len2)&#123;</span><br><span class="line">            sort(s1, s1 + len1);</span><br><span class="line">            sort(s2, s2 + len2);</span><br><span class="line">            <span class="keyword">if</span>(!<span class="built_in">strcmp</span>(s1, s2))&#123;</span><br><span class="line">                <span class="keyword">double</span> dd = <span class="number">1.0</span> * i / phi[i];</span><br><span class="line">                <span class="keyword">if</span>(dd &lt; d)</span><br><span class="line">                    d = dd, maxi = i;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%d\n"</span>, maxi);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>答案：8319823</p>
+<h2 id="PE71"><a href="#PE71" class="headerlink" title="PE71"></a>PE71</h2><p>对于每一个$d$二分即可<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">solve</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">double</span> rd = <span class="number">1.0</span> * <span class="number">3</span> / <span class="number">7</span>, eps = <span class="number">1e6</span>;</span><br><span class="line">    <span class="keyword">int</span> fz, fm;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> d = <span class="number">9</span>; d &lt;= <span class="number">1000000</span>; ++d)&#123;</span><br><span class="line">        <span class="keyword">if</span>(d % <span class="number">7</span> == <span class="number">0</span>)<span class="keyword">continue</span>;</span><br><span class="line">        <span class="keyword">int</span> l = <span class="number">1</span>, r = d - <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">while</span>(r - l)&#123;</span><br><span class="line">            <span class="keyword">int</span> mid = (r + l + <span class="number">1</span>) &gt;&gt; <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">double</span> rr = <span class="number">1.0</span> * mid / d;</span><br><span class="line">            <span class="keyword">if</span>(rr &gt; rd)r = mid - <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">else</span> l = mid;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">double</span> rr = <span class="number">1.0</span> * r / d;</span><br><span class="line">        <span class="keyword">if</span>(rd - rr &lt; eps)</span><br><span class="line">            eps = rd - rr, fz = r, fm = d;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%d %d\n"</span>, fz, fm);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>答案：428570</p>
+<h2 id="PE72"><a href="#PE72" class="headerlink" title="PE72"></a>PE72</h2><p>就是对1~1000000的欧拉函数求和。。。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">bool</span> vis[<span class="number">1000005</span>] = &#123;<span class="number">0</span>&#125;;</span><br><span class="line"><span class="keyword">int</span> prime[<span class="number">500005</span>], tot = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">int</span> phi[<span class="number">1000005</span>];</span><br><span class="line">ll sum = <span class="number">0</span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">getPhi</span><span class="params">()</span></span>&#123;</span><br><span class="line">    phi[<span class="number">1</span>] = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">2</span>; i &lt;= <span class="number">1000000</span>; ++i)&#123;</span><br><span class="line">        <span class="keyword">if</span>(!vis[i])</span><br><span class="line">            phi[i] = i - <span class="number">1</span>, prime[++tot] = i;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= tot; ++j)&#123;</span><br><span class="line">            <span class="keyword">if</span>(<span class="number">1l</span>l * prime[j] * i &gt; <span class="number">1000000</span>)</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            vis[prime[j] * i] = <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">if</span>(i % prime[j] == <span class="number">0</span>)&#123;</span><br><span class="line">                phi[i * prime[j]] = phi[i] * prime[j];</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;<span class="keyword">else</span></span><br><span class="line">                phi[i * prime[j]] = phi[i] * (prime[j] - <span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        sum += <span class="number">1l</span>l * phi[i];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">solve</span><span class="params">()</span></span>&#123;</span><br><span class="line">    getPhi();</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%lld\n"</span>, sum);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>答案：303963552391</p>
+<h2 id="PE73"><a href="#PE73" class="headerlink" title="PE73"></a>PE73</h2><p>注意分数为不可约。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> ans = <span class="number">0</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">gcd</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> (!b) ? a : gcd(b, a % b);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">solve</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">double</span> l = <span class="number">1.0</span> / <span class="number">3</span>, r = <span class="number">1.0</span> / <span class="number">2</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">4</span>; i &lt;= <span class="number">12000</span>; ++i)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">1</span>; j &lt; i; ++j)&#123;</span><br><span class="line">            <span class="keyword">if</span>(gcd(i, j) &gt; <span class="number">1</span>)</span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            <span class="keyword">double</span> cur = <span class="number">1.0</span> * j / i;</span><br><span class="line">            <span class="keyword">if</span>(<span class="built_in">abs</span>(cur - l) &lt; <span class="number">1e-7</span> || <span class="built_in">abs</span>(cur - r) &lt; <span class="number">1e-7</span>)</span><br><span class="line">                <span class="keyword">continue</span> ;</span><br><span class="line">            <span class="keyword">if</span>(cur &gt; l &amp;&amp; cur &lt; r)</span><br><span class="line">                ans++;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%d\n"</span>, ans);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>答案：7295372</p>
+<h2 id="PE74"><a href="#PE74" class="headerlink" title="PE74"></a>PE74</h2><p>虽然这道题我给出了一个正确的答案但我还是觉得我写错了。。。<br>怎么回事？<br>做法就是顺着一个数DFS下去，然后记录步数。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> fac[] = &#123;<span class="number">1</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">6</span>, <span class="number">24</span>, <span class="number">120</span>, <span class="number">720</span>, <span class="number">5040</span>, <span class="number">40320</span>, <span class="number">362880</span>&#125;;</span><br><span class="line"><span class="keyword">int</span> d[<span class="number">10000005</span>], ans = <span class="number">0</span>, st[<span class="number">10000005</span>] = &#123;<span class="number">0</span>&#125;;</span><br><span class="line"><span class="keyword">bool</span> vis[<span class="number">10000005</span>] = &#123;<span class="number">0</span>&#125;;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">getD</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; ++i)</span><br><span class="line">        d[i] = fac[i];</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">10</span>; i &lt;= <span class="number">10000000</span>; ++i)</span><br><span class="line">        d[i] = d[i / <span class="number">10</span>] + fac[i % <span class="number">10</span>];</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;</span><br><span class="line">    vis[x] = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">int</span> nx = d[x];</span><br><span class="line">    <span class="keyword">if</span>(!vis[nx])</span><br><span class="line">        dfs(nx);</span><br><span class="line">    <span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(!st[nx])&#123;</span><br><span class="line">            st[x] = <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">return</span> ;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    st[x] = st[nx] + <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">solve</span><span class="params">()</span></span>&#123;</span><br><span class="line">    getD();</span><br><span class="line">    vis[<span class="number">1</span>] = vis[<span class="number">2</span>] = <span class="literal">true</span>;</span><br><span class="line">    st[<span class="number">1</span>] = st[<span class="number">2</span>] = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">3</span>; i &lt; <span class="number">1000000</span>; ++i)</span><br><span class="line">        <span class="keyword">if</span>(!vis[i])</span><br><span class="line">            dfs(i);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">3</span>; i &lt; <span class="number">1000000</span>; ++i)</span><br><span class="line">        <span class="keyword">if</span>(st[i] == <span class="number">60</span>)</span><br><span class="line">            ans++;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%d\n"</span>, ans);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>答案：402</p>
+<h2 id="PE75"><a href="#PE75" class="headerlink" title="PE75"></a>PE75</h2><p>一开始我写了一个暴力枚举，然后很干脆的挂掉了。。。<br>后来我想到可以枚举所有的<strong>素毕达哥拉斯三元数</strong>， 然后用类似筛法的方法让其倍数的方法数$+1$， 最后统计方法数仅为$1$的对数。<br>这样做就快多了。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> ans = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">int</span> cnt[<span class="number">1500005</span>] = &#123;<span class="number">0</span>&#125;;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">gcd</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> (!b) ? a : gcd(b, a % b);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">pre</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> v = <span class="number">2</span>; v &lt;= <span class="number">1000</span>; ++v)</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> u = <span class="number">1</span>; u &lt; v; ++u)&#123;</span><br><span class="line">            <span class="keyword">if</span>((u &amp; <span class="number">1</span>) &amp;&amp; (v &amp; <span class="number">1</span>))<span class="keyword">continue</span>;</span><br><span class="line">            <span class="keyword">if</span>(gcd(u, v) != <span class="number">1</span>)<span class="keyword">continue</span>;</span><br><span class="line">            <span class="keyword">int</span> dis = <span class="number">2</span> * v * v + <span class="number">2</span> * u * v;</span><br><span class="line">            <span class="keyword">if</span>(dis &gt; <span class="number">1500000</span>)</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> i = dis; i &lt;= <span class="number">1500000</span>; i += dis)</span><br><span class="line">                cnt[i]++;</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">solve</span><span class="params">()</span></span>&#123;</span><br><span class="line">    pre();</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">12</span>; i &lt;= <span class="number">1500000</span>; i += <span class="number">2</span>)</span><br><span class="line">        <span class="keyword">if</span>(cnt[i] == <span class="number">1</span>)</span><br><span class="line">            ans++;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%d\n"</span>, ans);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>答案：161667</p>
+<h2 id="PE79"><a href="#PE79" class="headerlink" title="PE79"></a>PE79</h2><p>…手算…?<br>对所有询问排个序，去个重，就差不多可以发现一些问题了。<br>答案：73162890</p>
+<h2 id="PE80"><a href="#PE80" class="headerlink" title="PE80"></a>PE80</h2><p>考虑到精度问题，我们考虑对一个大整数开根号。<br>比如计算$\sqrt 2$的前一百位，可以改为计算$10^{100}\times \sqrt 2$的前一百位。<br>即先把根号的值放大，然后二分出具体的值即可。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">x = <span class="number">10</span> ** <span class="number">300</span></span><br><span class="line">ans = <span class="number">0</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">2</span>, <span class="number">100</span>, <span class="number">1</span>):</span><br><span class="line">    y = math.floor(math.sqrt(i) + <span class="number">0.5</span>)</span><br><span class="line">    <span class="keyword">if</span> y * y != i:</span><br><span class="line">        z = i * x</span><br><span class="line">        l = <span class="number">1</span></span><br><span class="line">        r = z</span><br><span class="line">        <span class="keyword">while</span> r - l &gt; <span class="number">0</span>:</span><br><span class="line">            mid = (r + l) &gt;&gt; <span class="number">1</span></span><br><span class="line">            <span class="keyword">if</span> mid * mid &lt; z:</span><br><span class="line">                l = mid + <span class="number">1</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                r = mid</span><br><span class="line">        s = str(l)</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">0</span>, <span class="number">100</span>, <span class="number">1</span>):</span><br><span class="line">            ans += eval(s[j: j + <span class="number">1</span>])</span><br><span class="line"></span><br><span class="line">print(ans)</span><br></pre></td></tr></table></figure></p>
+<p>答案：40886</p>
+<h2 id="PE81"><a href="#PE81" class="headerlink" title="PE81"></a>PE81</h2><p>水DP<br>答案：427337</p>
+<h2 id="PE82"><a href="#PE82" class="headerlink" title="PE82"></a>PE82</h2><p>根据矩阵和走路的方式建图，跑最短路即可。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure></p>
+<p>答案：</p>
+<h2 id="PE83"><a href="#PE83" class="headerlink" title="PE83"></a>PE83</h2><p>同上。</p>
+<h2 id="PE84"><a href="#PE84" class="headerlink" title="PE84"></a>PE84</h2><p>我不会这样的神奇概率题。。。<br>我就模拟这个游戏足够多次，然后根据访问次数判断哪三个地方访问概率最大。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> vis[<span class="number">49</span>] = &#123;<span class="number">0</span>&#125;, cur = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">int</span> curc = <span class="number">0</span>, curh = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">int</span> cc[<span class="number">20</span>] = &#123;<span class="number">0</span>&#125;, ch[<span class="number">20</span>] = &#123;<span class="number">0</span>&#125;;</span><br><span class="line">pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt; pp[<span class="number">45</span>];</span><br><span class="line">pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt; getS()&#123;</span><br><span class="line">    <span class="keyword">int</span> i = <span class="number">1</span> + rand() % <span class="number">4</span>, j = <span class="number">1</span> + rand() % <span class="number">4</span>;</span><br><span class="line">    <span class="keyword">return</span> make_pair(i, j);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">getR</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(x == <span class="number">7</span>)<span class="keyword">return</span> <span class="number">15</span>;</span><br><span class="line">    <span class="keyword">if</span>(x == <span class="number">22</span>)<span class="keyword">return</span> <span class="number">25</span>;</span><br><span class="line">    <span class="keyword">if</span>(x == <span class="number">36</span>)<span class="keyword">return</span> <span class="number">5</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">getU</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(x == <span class="number">7</span>)<span class="keyword">return</span> <span class="number">12</span>;</span><br><span class="line">    <span class="keyword">if</span>(x == <span class="number">22</span>)<span class="keyword">return</span> <span class="number">28</span>;</span><br><span class="line">    <span class="keyword">if</span>(x == <span class="number">36</span>)<span class="keyword">return</span> <span class="number">12</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">init</span><span class="params">()</span></span>&#123;</span><br><span class="line">    srand(time(<span class="literal">NULL</span>));</span><br><span class="line">    cc[rand() % <span class="number">16</span>] = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">int</span> i = rand() % <span class="number">16</span>;</span><br><span class="line">    <span class="keyword">while</span>(cc[i])</span><br><span class="line">        i = rand() % <span class="number">16</span>;</span><br><span class="line">    cc[i] = <span class="number">2</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= <span class="number">10</span>; ++j)&#123;</span><br><span class="line">        i = rand() % <span class="number">16</span>;</span><br><span class="line">        <span class="keyword">while</span>(ch[i])</span><br><span class="line">            i = rand() % <span class="number">16</span>;</span><br><span class="line">        ch[i] = j;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">solve</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> lst = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= <span class="number">100000000</span>; ++i)&#123;</span><br><span class="line">        pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt; p = getS();</span><br><span class="line">        <span class="keyword">int</span> d = p.first + p.second;</span><br><span class="line">        <span class="keyword">if</span>(p.first == p.second)</span><br><span class="line">            lst++;</span><br><span class="line">        <span class="keyword">else</span> lst = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(lst == <span class="number">3</span>)&#123;</span><br><span class="line">            cur = <span class="number">10</span>, lst = <span class="number">0</span>;</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="keyword">int</span> to = (cur + d) % <span class="number">40</span>;</span><br><span class="line">            <span class="keyword">if</span>(to == <span class="number">2</span> || to == <span class="number">17</span> || to == <span class="number">33</span>)&#123;</span><br><span class="line">                <span class="keyword">int</span> id = cc[curc];</span><br><span class="line">                curc = (curc + <span class="number">1</span>) % <span class="number">16</span>;</span><br><span class="line">                <span class="keyword">if</span>(id == <span class="number">1</span>)&#123;</span><br><span class="line">                    cur = <span class="number">0</span>;</span><br><span class="line">                &#125;<span class="keyword">else</span> <span class="keyword">if</span>(id == <span class="number">2</span>)&#123;</span><br><span class="line">                    cur = <span class="number">10</span>;</span><br><span class="line">                &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                    cur = to;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;<span class="keyword">else</span> <span class="keyword">if</span>(to == <span class="number">7</span> || to == <span class="number">22</span> || to == <span class="number">36</span>)&#123;</span><br><span class="line">                <span class="keyword">int</span> id = ch[curh];</span><br><span class="line">                curh = (curh + <span class="number">1</span>) % <span class="number">16</span>;</span><br><span class="line">                <span class="keyword">if</span>(id == <span class="number">1</span>)&#123;</span><br><span class="line">                    cur = <span class="number">0</span>;</span><br><span class="line">                &#125;<span class="keyword">else</span> <span class="keyword">if</span>(id == <span class="number">2</span>)&#123;</span><br><span class="line">                    cur = <span class="number">10</span>;</span><br><span class="line">                &#125;<span class="keyword">else</span> <span class="keyword">if</span>(id == <span class="number">3</span>)&#123;</span><br><span class="line">                    cur = <span class="number">11</span>;</span><br><span class="line">                &#125;<span class="keyword">else</span> <span class="keyword">if</span>(id == <span class="number">4</span>)&#123;</span><br><span class="line">                    cur = <span class="number">24</span>;</span><br><span class="line">                &#125;<span class="keyword">else</span> <span class="keyword">if</span>(id == <span class="number">5</span>)&#123;</span><br><span class="line">                    cur = <span class="number">39</span>;</span><br><span class="line">                &#125;<span class="keyword">else</span> <span class="keyword">if</span>(id == <span class="number">6</span>)&#123;</span><br><span class="line">                    cur = <span class="number">5</span>;</span><br><span class="line">                &#125;<span class="keyword">else</span> <span class="keyword">if</span>(id == <span class="number">7</span> || id == <span class="number">8</span>)&#123;</span><br><span class="line">                    cur = getR(to);</span><br><span class="line">                &#125;<span class="keyword">else</span> <span class="keyword">if</span>(id == <span class="number">9</span>)&#123;</span><br><span class="line">                    cur = getU(to);</span><br><span class="line">                &#125;<span class="keyword">else</span> <span class="keyword">if</span>(id == <span class="number">10</span>)&#123;</span><br><span class="line">                    cur = to - <span class="number">3</span>;</span><br><span class="line">                &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                    cur = to;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;<span class="keyword">else</span> <span class="keyword">if</span>(to == <span class="number">30</span>)&#123;</span><br><span class="line">                cur = <span class="number">10</span>;</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                cur = to;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        vis[cur]++;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">40</span>; ++i)</span><br><span class="line">        pp[i] = make_pair(vis[i], i);</span><br><span class="line">    sort(pp, pp + <span class="number">40</span>);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">39</span>; i &gt; <span class="number">36</span>; --i)</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"%d"</span>, pp[i].second);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>答案：101524</p>
+<h2 id="PE85"><a href="#PE85" class="headerlink" title="PE85"></a>PE85</h2><p>小学奥数题。<br>边长为$n,m$的矩形内部有<script type="math/tex">C_{n+1}^2 C_{m+1}^2</script>个小矩形。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">ll ans = INF, maxi;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">solve</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= <span class="number">2000</span>; ++i)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= <span class="number">2000</span>; ++j)&#123;</span><br><span class="line">            ll pp = <span class="number">1l</span>l * i * j * (i + <span class="number">1</span>) * (j + <span class="number">1</span>);</span><br><span class="line">            pp &gt;&gt;= <span class="number">2</span>;</span><br><span class="line">            <span class="keyword">if</span>(<span class="built_in">abs</span>(pp - <span class="number">2000000</span>) &lt; ans)</span><br><span class="line">                ans = <span class="built_in">abs</span>(pp - <span class="number">2000000</span>), maxi = <span class="number">1l</span>l * i * j;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%lld\n"</span>, maxi);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>答案：2772</p>
+<h2 id="PE87"><a href="#PE87" class="headerlink" title="PE87"></a>PE87</h2><p>直接3重循环，算出所有可能即可。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">bool</span> vis[<span class="number">10005</span>] = &#123;<span class="number">0</span>&#125;;</span><br><span class="line"><span class="keyword">int</span> prime[<span class="number">4</span>][<span class="number">10005</span>], tot[<span class="number">4</span>] = &#123;<span class="number">0</span>&#125;;</span><br><span class="line"><span class="keyword">bool</span> dd[<span class="number">50000005</span>] = &#123;<span class="number">0</span>&#125;;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">getP</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">2</span>; i &lt;= <span class="number">8000</span>; ++i)</span><br><span class="line">        <span class="keyword">if</span>(!vis[i])&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j = i + i; j &lt;= <span class="number">8000</span>; j += i)</span><br><span class="line">                vis[j] = <span class="number">1</span>;</span><br><span class="line">            prime[<span class="number">0</span>][++tot[<span class="number">0</span>]] = i;</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">solve</span><span class="params">()</span></span>&#123;</span><br><span class="line">    getP();</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; <span class="number">4</span>; ++i)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= tot[i - <span class="number">1</span>]; ++j)&#123;</span><br><span class="line">            <span class="keyword">if</span>(<span class="number">1l</span>l * prime[<span class="number">0</span>][j] * prime[i - <span class="number">1</span>][j] &gt;= <span class="number">50000000l</span>l)&#123;</span><br><span class="line">                tot[i] = j - <span class="number">1</span>;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            prime[i][j] = prime[<span class="number">0</span>][j] * prime[i - <span class="number">1</span>][j];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> k = <span class="number">1</span>; k &lt;= tot[<span class="number">1</span>]; ++k)</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= tot[<span class="number">2</span>]; ++i)</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= tot[<span class="number">3</span>]; ++j)</span><br><span class="line">                <span class="keyword">if</span>(prime[<span class="number">1</span>][k] + prime[<span class="number">2</span>][i] + prime[<span class="number">3</span>][j] &lt; <span class="number">50000000</span>)</span><br><span class="line">                    dd[prime[<span class="number">1</span>][k] + prime[<span class="number">2</span>][i] + prime[<span class="number">3</span>][j]] = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">int</span> ans = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; <span class="number">50000000</span>; ++i)</span><br><span class="line">        ans += dd[i];</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%d\n"</span>, ans);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>答案：1097343</p>
+<h2 id="PE90"><a href="#PE90" class="headerlink" title="PE90"></a>PE90</h2><p>生成组合，然后测试即可。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> cb[<span class="number">2</span>][<span class="number">10</span>], ans = <span class="number">0</span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">judge</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> l[<span class="number">2</span>];</span><br><span class="line">    l[<span class="number">0</span>] = l[<span class="number">1</span>] = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> o = <span class="number">0</span>; o &lt; <span class="number">2</span>; ++o)&#123;</span><br><span class="line">        <span class="keyword">int</span> flag = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">6</span>; ++i)&#123;</span><br><span class="line">            l[o] |= (<span class="number">1</span> &lt;&lt; cb[o][i]);</span><br><span class="line">            <span class="keyword">if</span>(cb[o][i] == <span class="number">6</span> || cb[o][i] == <span class="number">9</span>)</span><br><span class="line">                flag += cb[o][i];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(flag == <span class="number">6</span>)</span><br><span class="line">            l[o] |= (<span class="number">1</span> &lt;&lt; <span class="number">9</span>);</span><br><span class="line">        <span class="keyword">if</span>(flag == <span class="number">9</span>)</span><br><span class="line">            l[o] |= (<span class="number">1</span> &lt;&lt; <span class="number">6</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> flag = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; <span class="number">10</span>; ++i)&#123;</span><br><span class="line">        <span class="keyword">int</span> g = (i * i) % <span class="number">10</span>, s = (i * i) / <span class="number">10</span>;</span><br><span class="line">        g = <span class="number">1</span> &lt;&lt; g, s = <span class="number">1</span> &lt;&lt; s;</span><br><span class="line">        <span class="keyword">if</span>(((s &amp; l[<span class="number">0</span>]) &amp;&amp; (g &amp; l[<span class="number">1</span>])) || (s &amp; l[<span class="number">1</span>]) &amp;&amp; (g &amp; l[<span class="number">0</span>]))&#123;</span><br><span class="line">            <span class="keyword">continue</span>;</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            flag = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    ans += flag;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">getC</span><span class="params">(<span class="keyword">int</span> o, <span class="keyword">int</span> index, <span class="keyword">int</span> left)</span></span>&#123;</span><br><span class="line">    cb[o][<span class="number">5</span> - left] = index;</span><br><span class="line">    <span class="keyword">if</span>(!left)&#123;</span><br><span class="line">        <span class="keyword">if</span>(!o)</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= <span class="number">4</span>; ++i)</span><br><span class="line">                getC(<span class="number">1</span>, i, <span class="number">5</span>);</span><br><span class="line">        <span class="keyword">else</span>&#123;</span><br><span class="line">            judge();      </span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = index + <span class="number">1</span>; i &lt;= <span class="number">10</span> - left; ++i)</span><br><span class="line">        getC(o, i, left - <span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">solve</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= <span class="number">4</span>; ++i)</span><br><span class="line">        getC(<span class="number">0</span>, i, <span class="number">5</span>);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%d\n"</span>, ans &gt;&gt; <span class="number">1</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>答案：1217</p>
+<h2 id="PE91"><a href="#PE91" class="headerlink" title="PE91"></a>PE91</h2><p>四重循环。。。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> ans = <span class="number">0</span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">solve</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= <span class="number">50</span>; ++i)</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt;= <span class="number">50</span>; ++j)</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> k = <span class="number">0</span>; k &lt;= <span class="number">50</span>; ++k)</span><br><span class="line">                <span class="keyword">for</span>(<span class="keyword">int</span> l = <span class="number">0</span>; l &lt;= <span class="number">50</span>; ++l)&#123;</span><br><span class="line">                    <span class="keyword">if</span>(!i &amp;&amp; !j)<span class="keyword">continue</span>;</span><br><span class="line">                    <span class="keyword">if</span>(!k &amp;&amp; !l)<span class="keyword">continue</span>;</span><br><span class="line">                    <span class="keyword">if</span>(i == k &amp;&amp; j == l)<span class="keyword">continue</span>;</span><br><span class="line">                    <span class="keyword">int</span> a = i * i + j * j, b = k * k + l * l,</span><br><span class="line">                    c = (i - k) *(i - k) + (j - l) * (j - l);</span><br><span class="line">                    <span class="keyword">if</span>(a + b == c || a + c == b || b + c == a)</span><br><span class="line">                        ans++;</span><br><span class="line">                &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%d\n"</span>, ans &gt;&gt; <span class="number">1</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>答案：14234</p>
+<h2 id="PE92"><a href="#PE92" class="headerlink" title="PE92"></a>PE92</h2><p>直接模拟即可。。<br>89的比例还是挺高的。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> ans = <span class="number">0</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">sqr</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> x * x;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">solve</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">2</span>; i &lt; <span class="number">10000000</span>; ++i)&#123;</span><br><span class="line">        <span class="keyword">int</span> j = i;</span><br><span class="line">        <span class="keyword">for</span>(; j != <span class="number">1</span> &amp;&amp; j != <span class="number">89</span>; )&#123;</span><br><span class="line">            <span class="keyword">int</span> sum = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">while</span>(j)</span><br><span class="line">                sum += sqr(j % <span class="number">10</span>), j /= <span class="number">10</span>;</span><br><span class="line">            j = sum;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(j == <span class="number">89</span>)ans++;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%d\n"</span>, ans);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>答案：8581146</p>
+<h2 id="PE94"><a href="#PE94" class="headerlink" title="PE94"></a>PE94</h2><p>做一些数学上的分析<br>根据海伦公式有：<br>$S=\sqrt{p(p-a)(p-b)(p-c)}$<br>其中$a,b,c$均为边长<br>在这道题中上式可以化为<br>$S=(p-i)\sqrt{p(p-i-1)}$<br>或$S=(p-i)\sqrt{p(p-i+1)}$<br>然后由于面积要求为正整数，所以需要$p(p-i+1)$为完全平方数<br>按照这个枚举即可。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">sqr</span><span class="params">(ll x)</span></span>&#123;</span><br><span class="line">    ll r = (ll)<span class="built_in">floor</span>(<span class="built_in">sqrt</span>(x) + <span class="number">0.5</span>);</span><br><span class="line">    <span class="keyword">return</span> r * r == x;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">solve</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> ans = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">3</span>; i &lt;= <span class="number">333333333</span>; i += <span class="number">2</span>)&#123;</span><br><span class="line">        ll p = (<span class="number">3</span> * i - <span class="number">1</span>) &gt;&gt; <span class="number">1</span>;</span><br><span class="line">        p *= (i + <span class="number">1</span>) &gt;&gt; <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">if</span>(sqr(p))</span><br><span class="line">            ans += <span class="number">3</span> * i - <span class="number">1</span>;</span><br><span class="line">        p = (<span class="number">3</span> * i + <span class="number">1</span>) &gt;&gt; <span class="number">1</span>;</span><br><span class="line">        p *= (i - <span class="number">1</span>) &gt;&gt; <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">if</span>(sqr(p))</span><br><span class="line">            ans += <span class="number">3</span> * i + <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%d\n"</span>, ans);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>答案：518408346</p>
+<h2 id="PE95"><a href="#PE95" class="headerlink" title="PE95"></a>PE95</h2><p>对每一个数DFS一遍即可。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> d[<span class="number">1000005</span>] = &#123;<span class="number">0</span>&#125;;</span><br><span class="line"><span class="keyword">int</span> ans = <span class="number">0</span>, mini;</span><br><span class="line"><span class="keyword">int</span> vis[<span class="number">1000005</span>] = &#123;<span class="number">0</span>&#125;, tot = <span class="number">0</span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">getD</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">2</span>; i &lt;= <span class="number">1000000</span>; ++i)&#123;</span><br><span class="line">        <span class="keyword">int</span> j;</span><br><span class="line">        <span class="keyword">for</span>(j = <span class="number">1</span>; j * j &lt; i; ++j)</span><br><span class="line">            <span class="keyword">if</span>(i % j == <span class="number">0</span>)</span><br><span class="line">                d[i] += j + i / j;</span><br><span class="line">        <span class="keyword">if</span>(j * j == i)d[i] += j;</span><br><span class="line">        d[i] -= i;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> st)</span></span>&#123;</span><br><span class="line">    vis[x] = tot;</span><br><span class="line">    <span class="keyword">if</span>(d[x] &gt; <span class="number">1000000</span> || !d[x])</span><br><span class="line">        <span class="keyword">return</span> ;</span><br><span class="line">    <span class="keyword">if</span>(vis[d[x]] == tot)&#123;</span><br><span class="line">        <span class="keyword">if</span>(st &gt; ans)</span><br><span class="line">            ans = st, mini = d[x];</span><br><span class="line">        <span class="keyword">return</span> ;</span><br><span class="line">    &#125;<span class="keyword">else</span> <span class="keyword">if</span>(!vis[d[x]])&#123;</span><br><span class="line">        dfs(d[x], st + <span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">solve</span><span class="params">()</span></span>&#123;</span><br><span class="line">    getD();</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">2</span>; i &lt;= <span class="number">1000000</span>; ++i)</span><br><span class="line">        <span class="keyword">if</span>(!vis[i])</span><br><span class="line">            tot++, dfs(i, <span class="number">1</span>);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%d %d\n"</span>, mini, ans);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>答案：14316</p>
+<h2 id="PE96"><a href="#PE96" class="headerlink" title="PE96"></a>PE96</h2><p>把现成的数独模板丢上去即可。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">int</span> vis[<span class="number">3</span>][<span class="number">11</span>][<span class="number">11</span>]=&#123;<span class="number">0</span>&#125;,sd[<span class="number">10</span>][<span class="number">10</span>]=&#123;<span class="number">0</span>&#125;;</span><br><span class="line"><span class="keyword">int</span> lis[<span class="number">81</span>][<span class="number">2</span>],tot=<span class="number">0</span>;</span><br><span class="line"><span class="keyword">int</span> tans[<span class="number">10</span>][<span class="number">10</span>]=&#123;<span class="number">0</span>&#125;;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">get</span><span class="params">(<span class="keyword">int</span> at)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> mini=<span class="number">99</span>,p,x,y,o;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=at+<span class="number">1</span>;i&lt;tot;i++)&#123;</span><br><span class="line">        x=lis[i][<span class="number">0</span>],y=lis[i][<span class="number">1</span>],o=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">1</span>;j&lt;=<span class="number">9</span>;j++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(vis[<span class="number">0</span>][x][j]||vis[<span class="number">1</span>][y][j]||vis[<span class="number">2</span>][(x/<span class="number">3</span>)*<span class="number">3</span>+y/<span class="number">3</span>][j])<span class="keyword">continue</span>;</span><br><span class="line">            <span class="keyword">else</span> o++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(o&lt;mini)mini=o,p=i;</span><br><span class="line">    &#125;</span><br><span class="line">    x=lis[at+<span class="number">1</span>][<span class="number">0</span>],y=lis[at+<span class="number">1</span>][<span class="number">1</span>];</span><br><span class="line">    lis[at+<span class="number">1</span>][<span class="number">0</span>]=lis[p][<span class="number">0</span>],lis[at+<span class="number">1</span>][<span class="number">1</span>]=lis[p][<span class="number">1</span>];</span><br><span class="line">    lis[p][<span class="number">0</span>]=x,lis[p][<span class="number">1</span>]=y;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> at)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> x=lis[at][<span class="number">0</span>],y=lis[at][<span class="number">1</span>];</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=<span class="number">9</span>;i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(vis[<span class="number">0</span>][x][i]||vis[<span class="number">1</span>][y][i]||vis[<span class="number">2</span>][(x/<span class="number">3</span>)*<span class="number">3</span>+y/<span class="number">3</span>][i])<span class="keyword">continue</span>;</span><br><span class="line">        vis[<span class="number">0</span>][x][i]=vis[<span class="number">1</span>][y][i]=vis[<span class="number">2</span>][(x/<span class="number">3</span>)*<span class="number">3</span>+y/<span class="number">3</span>][i]=<span class="number">1</span>,sd[x][y]=i;</span><br><span class="line">        <span class="keyword">if</span>(at&lt;tot<span class="number">-1</span>)&#123;</span><br><span class="line">            <span class="keyword">if</span>(at!=tot<span class="number">-2</span>)get(at);</span><br><span class="line">            dfs(at+<span class="number">1</span>);</span><br><span class="line">        &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="built_in">memcpy</span>(tans, sd, <span class="keyword">sizeof</span>(sd));</span><br><span class="line">        &#125;</span><br><span class="line">        vis[<span class="number">0</span>][x][i]=vis[<span class="number">1</span>][y][i]=vis[<span class="number">2</span>][(x/<span class="number">3</span>)*<span class="number">3</span>+y/<span class="number">3</span>][i]=<span class="number">0</span>,sd[x][y]=<span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//0 行 1 列 2 宫 </span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> ans = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">char</span> s1[<span class="number">10</span>], s2[<span class="number">10</span>];</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">50</span>; ++i)&#123;</span><br><span class="line">        <span class="keyword">int</span> tmp;</span><br><span class="line">        tot = <span class="number">0</span>;</span><br><span class="line">        <span class="built_in">memset</span>(sd, <span class="number">0</span>, <span class="keyword">sizeof</span>(sd));</span><br><span class="line">        <span class="built_in">memset</span>(lis, <span class="number">0</span>, <span class="keyword">sizeof</span>(lis));</span><br><span class="line">        <span class="built_in">memset</span>(vis, <span class="number">0</span>, <span class="keyword">sizeof</span>(vis));</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">"%s%s"</span>, s1, s2);</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">9</span>;i++)</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;<span class="number">9</span>;j++)&#123;</span><br><span class="line">                <span class="built_in">scanf</span>(<span class="string">"%1d"</span>,&amp;tmp);</span><br><span class="line">                <span class="keyword">if</span>(tmp)&#123;</span><br><span class="line">                    sd[i][j]=tmp;</span><br><span class="line">                    vis[<span class="number">0</span>][i][tmp]=vis[<span class="number">1</span>][j][tmp]=vis[<span class="number">2</span>][(i/<span class="number">3</span>)*<span class="number">3</span>+j/<span class="number">3</span>][tmp]=<span class="number">1</span>;</span><br><span class="line">                &#125;<span class="keyword">else</span> lis[tot][<span class="number">0</span>]=i,lis[tot++][<span class="number">1</span>]=j;</span><br><span class="line">            &#125;</span><br><span class="line">        dfs(<span class="number">0</span>);</span><br><span class="line">        ans += tans[<span class="number">0</span>][<span class="number">0</span>] * <span class="number">100</span> + tans[<span class="number">0</span>][<span class="number">1</span>] * <span class="number">10</span> + tans[<span class="number">0</span>][<span class="number">2</span>];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%d\n"</span>, ans);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>答案：24702</p>
+<h2 id="PE97"><a href="#PE97" class="headerlink" title="PE97"></a>PE97</h2><p>python，这个我还能说什么。。。<br>答案：8739992577</p>
+<h2 id="PE99"><a href="#PE99" class="headerlink" title="PE99"></a>PE99</h2><p>化成对数比即可。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">double</span> maxm = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">int</span> ans;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">solve</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= <span class="number">1000</span>; ++i)&#123;</span><br><span class="line">        <span class="keyword">int</span> b = read(), e = read();</span><br><span class="line">        <span class="keyword">double</span> tt = <span class="number">1.0</span> * e * <span class="built_in">log</span>(b);</span><br><span class="line">        <span class="keyword">if</span>(tt &gt; maxm)</span><br><span class="line">            maxm = tt, ans = i;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%d\n"</span>, ans);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>答案：709</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/数学/" rel="tag"># 数学</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/08/11/uva489/" rel="next" title="UVa489 Hangman Judge">
+                <i class="fa fa-chevron-left"></i> UVa489 Hangman Judge
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/08/15/continued-fraction-and-pell-equation/" rel="prev" title="连分数和佩尔方程 学习笔记">
+                连分数和佩尔方程 学习笔记 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">z q y</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">263</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">40</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">78</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#PE61"><span class="nav-number">1.</span> <span class="nav-text">PE61</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PE62"><span class="nav-number">2.</span> <span class="nav-text">PE62</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PE63"><span class="nav-number">3.</span> <span class="nav-text">PE63</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PE64"><span class="nav-number">4.</span> <span class="nav-text">PE64</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PE65"><span class="nav-number">5.</span> <span class="nav-text">PE65</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PE66"><span class="nav-number">6.</span> <span class="nav-text">PE66</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PE67"><span class="nav-number">7.</span> <span class="nav-text">PE67</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PE68"><span class="nav-number">8.</span> <span class="nav-text">PE68</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PE69"><span class="nav-number">9.</span> <span class="nav-text">PE69</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PE70"><span class="nav-number">10.</span> <span class="nav-text">PE70</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PE71"><span class="nav-number">11.</span> <span class="nav-text">PE71</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PE72"><span class="nav-number">12.</span> <span class="nav-text">PE72</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PE73"><span class="nav-number">13.</span> <span class="nav-text">PE73</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PE74"><span class="nav-number">14.</span> <span class="nav-text">PE74</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PE75"><span class="nav-number">15.</span> <span class="nav-text">PE75</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PE79"><span class="nav-number">16.</span> <span class="nav-text">PE79</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PE80"><span class="nav-number">17.</span> <span class="nav-text">PE80</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PE81"><span class="nav-number">18.</span> <span class="nav-text">PE81</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PE82"><span class="nav-number">19.</span> <span class="nav-text">PE82</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PE83"><span class="nav-number">20.</span> <span class="nav-text">PE83</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PE84"><span class="nav-number">21.</span> <span class="nav-text">PE84</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PE85"><span class="nav-number">22.</span> <span class="nav-text">PE85</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PE87"><span class="nav-number">23.</span> <span class="nav-text">PE87</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PE90"><span class="nav-number">24.</span> <span class="nav-text">PE90</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PE91"><span class="nav-number">25.</span> <span class="nav-text">PE91</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PE92"><span class="nav-number">26.</span> <span class="nav-text">PE92</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PE94"><span class="nav-number">27.</span> <span class="nav-text">PE94</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PE95"><span class="nav-number">28.</span> <span class="nav-text">PE95</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PE96"><span class="nav-number">29.</span> <span class="nav-text">PE96</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PE97"><span class="nav-number">30.</span> <span class="nav-text">PE97</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PE99"><span class="nav-number">31.</span> <span class="nav-text">PE99</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">z q y</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+</body>
+</html>

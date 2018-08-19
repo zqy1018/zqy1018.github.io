@@ -1,6 +1,137 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[shortest-path-problems]]></title>
+    <url>%2F2018%2F08%2F19%2Fshortest-path-problems%2F</url>
+    <content type="text"></content>
+  </entry>
+  <entry>
+    <title><![CDATA[SPFA 学习笔记]]></title>
+    <url>%2F2018%2F08%2F19%2FSPFA%2F</url>
+    <content type="text"></content>
+      <categories>
+        <category>杂谈</category>
+      </categories>
+      <tags>
+        <tag>最短路</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[UVa106 Fermat vs. Pythagoras]]></title>
+    <url>%2F2018%2F08%2F18%2Fuva106%2F</url>
+    <content type="text"><![CDATA[题目链接 题解考察了素毕达哥拉斯三元组的生成。貌似没必要加很多的优化？12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152#include &lt;cstdio&gt;#include &lt;cstdlib&gt;#include &lt;algorithm&gt;#include &lt;cstring&gt;#include &lt;cctype&gt;#define INF 2000000000using namespace std;typedef long long ll;int read()&#123; int f = 1, x = 0; char c = getchar(); while(c &lt; '0' || c &gt; '9')&#123;if(c == '-') f = -f; c = getchar(); &#125; while(c &gt;= '0' &amp;&amp; c &lt;= '9')x = x * 10 + c - '0', c = getchar(); return f * x; &#125;int ans1[1000005] = &#123;0&#125;, ans2[1000005] = &#123;0&#125;;bool vis[1000005] = &#123;0&#125;;int n;int gcd(int a, int b)&#123; return (!b) ? a : gcd(b, a % b);&#125;void init()&#123; for(int v = 2; v &lt;= 1000; ++v)&#123; if(v * v &gt; n)break; for(int u = (v % 2 == 0) ? 1 : 2; u &lt; v; u += 2)&#123; if(u * u + v * v &gt; n) break; if(gcd(v, u) != 1) continue; int aa = v * v - u * u, bb = 2 * u * v, cc = v * v + u * u; ans1[cc]++; for(int i = 1; i * cc &lt;= n; ++i) vis[i * aa] = 1, vis[i * bb] = 1, vis[i * cc] = 1; &#125; &#125; for(int i = 1; i &lt;= n; ++i) ans1[i] += ans1[i - 1], ans1[i - 1] = 0, ans2[i] = ans2[i - 1] + 1 - vis[i], ans2[i - 1] = 0, vis[i] = 0;&#125;void solve()&#123; printf("%d %d\n", ans1[n], ans2[n]); ans1[n] = ans2[n] = 0;&#125;int main()&#123; while(scanf("%d", &amp;n) == 1)&#123; init(); solve(); &#125; return 0;&#125;]]></content>
+      <categories>
+        <category>UVa</category>
+      </categories>
+      <tags>
+        <tag>数学</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[勾股数探究]]></title>
+    <url>%2F2018%2F08%2F18%2FPythagorean-triple%2F</url>
+    <content type="text"><![CDATA[勾股数，又叫毕达哥拉斯三元数， 是由正整数构成的三元组。其三个数对应一个直角三角形的三条边。这里对勾股数的性质做一些探究。 基本性质一般用一个三元组表示一组勾股数：$(a, b, c)$其中有 a ^ 2 + b ^ 2 = c ^2容易看出，一组勾股数中每一个数乘上一个正整数$n$，得到的三元组$(na, nb, nc)$仍为一组勾股数。正因如此，我们希望找到这样的勾股数，使它不为除自己外某一个勾股数的倍数。换句话说，我们希望有一种方法可以枚举出所有的素勾股数，即使$(a, b, c)=1$。 构造方式先直接给出这样的构造方式：设$u &lt; v(u ,v\in \mathbb{N}^*)$，并且$u,v$奇偶性不同，且$(u, v) = 1$，那么令 \begin{cases} a = v ^ 2 - u ^ 2\\ b = 2 u v \\ c = v ^ 2 + u ^ 2\end{cases}即可构造出全部的素勾股数。证明：假设这样产生的勾股数存在$(a, b, c)= d$，那么由于$u, v$奇偶性不同， 故$a, c$必为奇数。故$d$为奇数。则对于$c$则必须有$u|d, v|d$，导出$(u, v)\ge d$，与前提中的$(u, v)=1$矛盾。故原命题得证，证毕。 由此可见，使用这样的方式构造出素勾股数之后再进行倍增，即可构造出所有可能的勾股数。 问题扩展问题：已知$a, b, c\in \mathbb{N}^*$和$b$，求满足$a ^ 2 + b ^ 2 = c ^ 2$的所有解。解题：把式子化为$b ^ 2 = (c - a)(c + a)$，设$x = c + a, y= c - a$，那么就有$b ^2 = x y$。对$b$枚举一次因数，然后对因数进行组合，同时考虑一下奇偶性带来的问题，计算出$x,y$，解出$a,c$即可。因为因数的个数为$O(\sqrt b)$，组合因数的时候会产生$O(b)$的因数个数，所以该方法的时间复杂度应为$O(b)$。 相关运用UVa106（同Poj1305） 参考资料 《什么是数学》 百度百科]]></content>
+      <categories>
+        <category>杂谈</category>
+      </categories>
+      <tags>
+        <tag>数学</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[模板 最短路]]></title>
+    <url>%2F2018%2F08%2F18%2Ftemplate-shortest-path%2F</url>
+    <content type="text"><![CDATA[各种最短路的模板！首先可以利用反证法证明一个定理：最短路径的子路径也是最短路径。这个定理构成了之后算法的基石。 同时还有一个重要的不等式： d(v)\le d(u)+w(u, v)这个不等式叫三角不等式，它是松弛操作的理论基础。 Bellman-Ford算法容易知道，当一个图$G=(V, E)$中不存在负环时，该图中的最短路最多经过$|V|-1$条边。最短路上是不可能存在一个路径的权重和为正的环的。因此进行松弛操作时，最多进行$|V|-1$次就可以算出最短路。若在第$|V|$次仍可以进行松弛，那么就说明存在一个负环。Bellman-Ford算法基于上述思路，对每一条边都进行$|V|-1$次的松弛，从而就可求出最短路。同时，也可以用于判断负环是否存在。从上述说明也可以看出，Bellman-Ford算法允许图中有负权边。1234567891011121314bool Bellman_Ford()&#123; for(int i = 1; i &lt; V; ++i) for(int j = 0; j &lt; E; ++j)&#123; int u = edge[j].from, v = edge[j].to; if(d[v] &gt; d[u] + edge[j].cost) d[v] = d[u] + edge[j].cost; &#125; for(int j = 0; j &lt; E; ++j)&#123; int u = edge[j].from, v = edge[j].to; if(d[v] &gt; d[u] + edge[j].cost) return false;//还能松弛说明这个图存在负环 &#125; return true;&#125; 除了上述写法，还有一种经过了一定优化的写法：12345678910111213141516bool Bellman_Ford()&#123; for(int i = 1; i &lt;= V; ++i)&#123; int flag = 0; for(int j = 0; j &lt; E; ++j)&#123; int u = edge[j].from, v = edge[j].to; if(d[v] &gt; d[u] + edge[j].cost)&#123; d[v] = d[u] + edge[j].cost, flag = 1; if(i == V) return false; &#125; &#125; if(!flag) break;//松弛的次数已经足够了，没有必要再进行下去 &#125; return true;&#125; 容易看出，Bellman-Ford算法的时间复杂度为$O(|V|\times |E|)$。因此，大部分情况下Bellman-Ford算法在解决问题的时候时间复杂度都不够好。但是，它的一个优化版本——SPFA的应用场合就相当多了。 Dijkstra算法DIjkstra算法在求单源最短路方面表现相当稳定。朴素实现时它的时间复杂度为$O(|V|^2+|E|)$，而在使用一定的数据结构时可以将时间复杂度降到$O(|E|log|V|)$。Dijkstra算法的使用条件是图中没有负权边。当图中的边权全为正时，可以从起点出发，采用贪心的方法，一步一步得到最短路径。具体方法是：找出所有没有使用过的顶点中离起点最近的点，然后松弛所有与其相邻的边，重复这一步骤。 SPFASPFA一般被视为Bellman-Ford算法的改良版本。虽然其名字由某一篇论文提出，但似乎这个方法在很早以前就已经出现了。SPFA更详细的介绍在另一篇博客里，在此就不详细说明。 朴素搜索当边权相同或者图很特殊（如$DAG$）时，可以直接采用搜索或者递推的方式计算最短路。由于这不是一个统一的模型，故在此不给出代码。 以上算法一般用于解决单源最短路问题。 矩阵乘法将图上的边距离对应成矩阵中相应行列的一个点，即可构造出一个矩阵 Floyd算法Floyd最短路算法可以在$O(|V|^3)$的时间复杂度下解决多源最短路问题。Floyd算法用到了动态规划的思想。考虑原始情况下，令$d[i][j]$表示点$i$和点$j$之间的最短距离。但这并不够用来表示一个状态，因此我们加上一维$k$，令$d[k][i][j]$表示利用编号为$0$到$k - 1$的点作为中转站时，$i$和$j$之间的最短距离。初始化时令$d[0][i][j] = cost[i][j]$（此时认为不使用中转站），其他值设为$INF$。在$0$到$k-1$的答案被算出来后，考虑$k$的情况。当不以$k$为中转站时，有$d[k+1][i][j]=d[k][i][j]$；当以$k$为中转站时，有$d[k+1][i][j]=d[k][i][k]+d[k][k][j]$。结合一下就是 d[k+1][i][j]=\min\left\{d[k][i][j],d[k][i][k]+d[k][k][j]\right\}可以发现，此时第一维已经没有什么必要。故最后我们可以得到以下代码。1234567void Floyd()&#123; //此时d数组里面已经存了相关信息 for(int k = 0; k &lt; V; ++k) for(int i = 0; i &lt; V; ++i) for(int j = 0; j &lt; V; ++j) d[i][j] = min(d[i][j], d[i][k] + d[k][j]);&#125; Floyd算法允许负权边的存在，同时也可以用来判断负环是否存在。当负环存在时，存在$i$使得$d[i][i]&lt;0$。Floyd算法在一些和动态规划有所联系的图论题目里也有不错的表现，比如题目最小密度路径里面，可以增加一维记录当前走过的路径的条数，然后求出恰好经过一定数目路径的最短路的长度。同时Floyd算法的实现性也很强，很容易实现。不过似乎Floyd算法无法求出最短路径树。 参考资料 《算法导论》 《挑战程序设计竞赛（第2版）》 相关博客]]></content>
+      <categories>
+        <category>模板</category>
+      </categories>
+  </entry>
+  <entry>
+    <title><![CDATA[UVa524 Prime Ring Problem]]></title>
+    <url>%2F2018%2F08%2F17%2Fuva524%2F</url>
+    <content type="text"><![CDATA[题目链接 题解直接DFS即可。回溯法的入门型题目。12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455#include &lt;cstdio&gt;#include &lt;cstdlib&gt;#include &lt;algorithm&gt;#include &lt;cstring&gt;#include &lt;cctype&gt;#define INF 2000000000using namespace std;typedef long long ll;int read()&#123; int f = 1, x = 0; char c = getchar(); while(c &lt; '0' || c &gt; '9')&#123;if(c == '-') f = -f; c = getchar(); &#125; while(c &gt;= '0' &amp;&amp; c &lt;= '9')x = x * 10 + c - '0', c = getchar(); return f * x; &#125;int n, ring[20];bool isnt[50] = &#123;0&#125;, vis[20] = &#123;0&#125;;void init()&#123; isnt[1] = 1; for(int i = 2; i &lt;= 32; ++i) if(!isnt[i])&#123; for(int j = i &lt;&lt; 1; j &lt;= 32; j += i) isnt[j] = 1; &#125;&#125;void dfs(int index, int cur)&#123; ring[cur] = index; if(cur == n)&#123; if(!isnt[ring[1] + index])&#123; for(int i = 1; i &lt; n; ++i) printf("%d ", ring[i]); printf("%d\n", ring[n]); &#125; return ; &#125; vis[index] = 1; for(int i = 2; i &lt;= n; ++i) if(!vis[i] &amp;&amp; !isnt[i + ring[cur]]) dfs(i, cur + 1); vis[index] = 0;&#125;void solve()&#123; dfs(1, 1);&#125;int main()&#123; init(); int T = 1; while(scanf("%d", &amp;n) == 1)&#123; if(T &gt; 1)printf("\n"); printf("Case %d:\n", T); solve(); T++; &#125; return 0;&#125;]]></content>
+      <categories>
+        <category>UVa</category>
+      </categories>
+      <tags>
+        <tag>DFS</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[UVa140 Bandwidth]]></title>
+    <url>%2F2018%2F08%2F16%2Fuva140%2F</url>
+    <content type="text"><![CDATA[题目链接 题解枚举全排列，然后模拟即可。12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970#include &lt;cstdio&gt;#include &lt;cstdlib&gt;#include &lt;algorithm&gt;#include &lt;cstring&gt;#include &lt;cctype&gt;#define INF 2000000000using namespace std;typedef long long ll;int read()&#123; int f = 1, x = 0; char c = getchar(); while(c &lt; '0' || c &gt; '9')&#123;if(c == '-') f = -f; c = getchar(); &#125; while(c &gt;= '0' &amp;&amp; c &lt;= '9')x = x * 10 + c - '0', c = getchar(); return f * x; &#125;char s[1005];bool mat[50][50], vis[50];int p[10], n, b[10], ansp[10];void init()&#123; memset(mat, 0, sizeof(mat)); memset(vis, 0, sizeof(vis)); for(int i = 0; isalpha(s[i]); ++i)&#123; int cur = s[i++] - 'A'; vis[cur] = 1; for(i++; isalpha(s[i]); ++i)&#123; int to = s[i] - 'A'; mat[cur][to] = mat[to][cur] = 1; vis[to] = 1; &#125; &#125;&#125;void solve()&#123; n = 0; for(int i = 0; i &lt; 26; ++i) if(vis[i]) p[n++] = i; int ans = INF; do&#123; int cur = 0; memset(b, 0, sizeof(b)); for(int i = 0; i &lt; n; ++i)&#123; for(int j = i - 1; j &gt;= 0; --j) if(mat[p[i]][p[j]]) b[i] = max(b[i], i - j); for(int j = i + 1; j &lt; n; ++j) if(mat[p[i]][p[j]]) b[i] = max(b[i], j - i); cur = max(cur, b[i]); if(cur &gt;= ans) break; &#125; if(cur &lt; ans)&#123; memcpy(ansp, p, sizeof(p)); ans = cur; &#125; &#125;while(next_permutation(p, p + n)); for(int i = 0; i &lt; n; ++i) printf("%c ", ansp[i] + 'A'); printf("-&gt; %d\n", ans);&#125;int main()&#123; for(; ; )&#123; scanf("%s", s); if(s[0] == '#')break; init(); solve(); memset(s, 0, sizeof(s)); &#125; return 0;&#125;]]></content>
+      <categories>
+        <category>UVa</category>
+      </categories>
+      <tags>
+        <tag>搜索</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[UVa10976 Fractions Again?!]]></title>
+    <url>%2F2018%2F08%2F16%2Fuva10976%2F</url>
+    <content type="text"><![CDATA[题目链接 题解由于$x \ge y$可以发现$\frac{1}{x} \le \frac{1}{y}$。故$y$的下限为$k+1$，上限为$2k$。将$y$从$k+1$开始枚举到$2k$即可。12345678910111213141516171819202122232425262728293031323334#include &lt;cstdio&gt;#include &lt;cstdlib&gt;#include &lt;algorithm&gt;#include &lt;cstring&gt;#include &lt;cctype&gt;#define INF 2000000000using namespace std;typedef long long ll;int read()&#123; int f = 1, x = 0; char c = getchar(); while(c &lt; '0' || c &gt; '9')&#123;if(c == '-') f = -f; c = getchar(); &#125; while(c &gt;= '0' &amp;&amp; c &lt;= '9')x = x * 10 + c - '0', c = getchar(); return f * x; &#125;int n, ans[10005][2], cnt;void solve()&#123; cnt = 0; for(int i = n + 1; i &lt;= n + n; ++i)&#123; int fz = i - n, fm = n * i; if(fm % fz == 0) ans[cnt][0] = fm / fz, ans[cnt++][1] = i; &#125; printf("%d\n", cnt); for(int i = 0; i &lt; cnt; ++i) printf("1/%d = 1/%d + 1/%d\n", n, ans[i][0], ans[i][1]);&#125;int main()&#123; while(scanf("%d", &amp;n) == 1)&#123; solve(); &#125; return 0;&#125;]]></content>
+      <categories>
+        <category>UVa</category>
+      </categories>
+      <tags>
+        <tag>枚举</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[UVa11059 Maximum Product]]></title>
+    <url>%2F2018%2F08%2F16%2Fuva11059%2F</url>
+    <content type="text"><![CDATA[题目链接 题解枚举两端即可。数据比较小，直接用long long。123456789101112131415161718192021222324252627282930313233343536373839404142#include &lt;cstdio&gt;#include &lt;cstdlib&gt;#include &lt;algorithm&gt;#include &lt;cstring&gt;#include &lt;cctype&gt;#define INF 2000000000using namespace std;typedef long long ll;int read()&#123; int f = 1, x = 0; char c = getchar(); while(c &lt; '0' || c &gt; '9')&#123;if(c == '-') f = -f; c = getchar(); &#125; while(c &gt;= '0' &amp;&amp; c &lt;= '9')x = x * 10 + c - '0', c = getchar(); return f * x; &#125;int n;ll seq[50];void init()&#123; for(int i = 0; i &lt; n; ++i) seq[i] = read();&#125;void solve()&#123; ll ans = 0; for(int i = 0; i &lt; n; ++i) for(int j = i; j &lt; n; ++j)&#123; ll st = 1; for(int k = i; k &lt;= j; ++k) st *= seq[k]; ans = max(ans, st); &#125; printf("%lld.\n\n", ans);&#125;int main()&#123; int T = 0; while(scanf("%d", &amp;n) == 1)&#123; T++; printf("Case #%d: The maximum product is ", T); init(); solve(); &#125; return 0;&#125;]]></content>
+      <categories>
+        <category>UVa</category>
+      </categories>
+      <tags>
+        <tag>枚举</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[UVa725 Division]]></title>
+    <url>%2F2018%2F08%2F16%2Fuva725%2F</url>
+    <content type="text"><![CDATA[题目链接 题解直接枚举除数即可。1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950#include &lt;cstdio&gt;#include &lt;cstdlib&gt;#include &lt;algorithm&gt;#include &lt;cstring&gt;#include &lt;cctype&gt;#define INF 2000000000using namespace std;typedef long long ll;int read()&#123; int f = 1, x = 0; char c = getchar(); while(c &lt; '0' || c &gt; '9')&#123;if(c == '-') f = -f; c = getchar(); &#125; while(c &gt;= '0' &amp;&amp; c &lt;= '9')x = x * 10 + c - '0', c = getchar(); return f * x; &#125;int n, cnt[20];void solve()&#123; int flag = 0; for(int i = 1234; ; ++i)&#123; int j = i * n; if(j &lt; 10000 &amp;&amp; i &lt; 10000) continue; int tot = 0; while(j) cnt[tot++] = j % 10, j /= 10; j = i; while(j) cnt[tot++] = j % 10, j /= 10; if(i &lt; 10000)cnt[tot++] = 0; if(tot &gt; 10)break; sort(cnt, cnt + 10); for(j = 0; j &lt; 10; ++j) if(cnt[j] != j) break; if(j == 10) printf("%d / %05d = %d\n", i * n, i, n), flag = 1; &#125; if(!flag) printf("There are no solutions for %d.\n", n);&#125;int main()&#123; for(int T = 1; ; ++T)&#123; n = read(); if(!n)break; if(T &gt; 1)printf("\n"); solve(); &#125; return 0;&#125;]]></content>
+      <categories>
+        <category>UVa</category>
+      </categories>
+      <tags>
+        <tag>枚举</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[数学英语]]></title>
+    <url>%2F2018%2F08%2F16%2Fmath-english%2F</url>
+    <content type="text"><![CDATA[列出一些常见的数学英语 Aadjacentadj. 毗邻的Ccuboidn. 立方体 Eequilateraladj. 等边的，等面的Iintegraladj. 整的，整数的，完整的，积分的n. 积分，整体 Mmaximumadj. 最大值的，最大量的n. 最大的量、体积、强度等 minimumn. 最低限度; 最小量; 最低消费; 极小值adj. 最小的; 最低的; 最少的 Pperimetern. 周长，周围 primen. 质数 adj. 质的TtotientEuler’s totient function: 欧拉函数Rrelatively prime互质e.g. 15 is relatively prime to 2.]]></content>
+      <categories>
+        <category>杂谈</category>
+      </categories>
+  </entry>
+  <entry>
+    <title><![CDATA[连分数和佩尔方程 学习笔记]]></title>
+    <url>%2F2018%2F08%2F15%2Fcontinued-fraction-and-pell-equation%2F</url>
+    <content type="text"></content>
+      <categories>
+        <category>杂谈</category>
+      </categories>
+      <tags>
+        <tag>数学</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[ProjectEuler 61-100题解]]></title>
+    <url>%2F2018%2F08%2F15%2Fpe61-100%2F</url>
+    <content type="text"><![CDATA[继续探索 PE61先枚举排列，然后按照排列顺序进行搜索即可。或者按照图论，构图搜索也可以。1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253int p[6][10005], cnt[6] = &#123;0&#125;;int per[] = &#123;0, 1, 2, 3, 4, 5&#125;;int ans[6], t_ans[6];void init()&#123; int i; for(i = 1; (i * (i + 1) &gt;&gt; 1) &lt; 1000; ++i); for(; (i * (i + 1) &gt;&gt; 1) &lt; 10000; ++i) p[0][cnt[0]++] = (i * (i + 1) &gt;&gt; 1); for(i = 1; i * i &lt; 1000; ++i); for(; i * i &lt; 10000; ++i) p[1][cnt[1]++] = i * i; for(i = 1; (i * (i * 3 - 1) &gt;&gt; 1) &lt; 1000; ++i); for(; (i * (i * 3 - 1) &gt;&gt; 1) &lt; 10000; ++i) p[2][cnt[2]++] = (i * (i * 3 - 1) &gt;&gt; 1); for(i = 1; i * (2 * i - 1) &lt; 1000; ++i); for(; i * (2 * i - 1) &lt; 10000; ++i) p[3][cnt[3]++] = i * (2 * i - 1); for(i = 1; (i * (i * 5 - 3) &gt;&gt; 1) &lt; 1000; ++i); for(; (i * (i * 5 - 3) &gt;&gt; 1) &lt; 10000; ++i) p[4][cnt[4]++] = (i * (i * 5 - 3) &gt;&gt; 1); for(i = 1; i * (i * 3 - 2) &lt; 1000; ++i); for(; i * (i * 3 - 2) &lt; 10000; ++i) p[5][cnt[5]++] = i * (i * 3 - 2);&#125;void getN(int index, int tail)&#123; if(index == 6)&#123; if(ans[5] % 100 == ans[0] / 100) memcpy(t_ans, ans, sizeof(ans)); return ; &#125; int id = per[index], hd = tail * 100; int _index = lower_bound(p[id], p[id] + cnt[id], hd) - p[id]; if(p[id][_index] / 100 != tail) return ; for(int i = _index; i &lt; cnt[id]; ++i)&#123; if(p[id][i] / 100 != tail) break ; ans[index] = p[id][i]; getN(index + 1, p[id][i] % 100); &#125;&#125;void solve()&#123; do&#123; int st = per[0]; for(int i = 0; i &lt; cnt[st]; ++i) ans[0] = p[st][i], getN(1, p[st][i] % 100); &#125;while(next_permutation(per, per + 6)); int sum = 0; for(int i = 0; i &lt; 6; ++i) sum += t_ans[i]; printf("%d\n", sum);&#125; 答案：28684 PE62一个一个长度去试12345678910111213141516171819map&lt;string, int&gt; mp;map&lt;string, ll&gt; mp2;ll ans = INF;void solve()&#123; char s[20]; for(ll i = 4642ll; i * i * i &lt; 1000000000000ll; ++i)&#123; sprintf(s, "%lld", i * i * i); sort(s, s + 12); string ss(s); if(!mp.count(ss)) mp[ss] = 1, mp2[ss] = i; else&#123; mp[ss]++; if(mp[ss] == 5) ans = min(ans, mp2[ss]); &#125; &#125; printf("%lld\n", ans * ans * ans);&#125; 答案：127035954683 PE63拿python水过12345678ans = 0for n in range(1, 22, 1): for i in range(1, 10, 1): x = i ** n if len(str(x)) == n: ans += 1print(ans) 答案：49 PE64这个连分数的构造方法一开始还不太容易看出来。。。答案写在另一篇博文里了。12 答案： PE65用python水过12345678910111213141516171819202122232425262728p = 1q = 1def gcd(a, b): if b == 0: return a else: return gcd(b, a % b)for i in range(1, 99, 1): a = 0 if (99 - i) % 3 == 2: a = ((98 - i) / 3 + 1) * 2 else: a = 1 pp = q qq = p + q * a p = pp q = qqp = p + q + qp /= gcd(p, q)ans = 0while p &gt; 0: ans += p % 10 p /= 10print(ans) 答案：272 PE66这个方程有名字，叫做佩尔方程。它的解和连分数有着很大的关系，将其写在了另一篇博文里12 PE67水DP答案：7273 PE68PE69筛出欧拉函数然后直接枚举。。。123456789void solve()&#123; getPhi(); int maxi; double d = 0; for(int i = 2; i &lt;= 1000000; ++i) if(d &lt; 1.0 * i / phi[i]) d = 1.0 * i / phi[i], maxi = i; printf("%d\n", maxi);&#125; 答案：510510 PE70枚举即可123456789101112131415161718192021void solve()&#123; getPhi(); int maxi; double d = 10000000; char s1[10], s2[10]; for(int i = 2; i &lt; 10000000; ++i)&#123; sprintf(s1, "%d", i); sprintf(s2, "%d", phi[i]); int len1 = strlen(s1), len2 = strlen(s2); if(len1 == len2)&#123; sort(s1, s1 + len1); sort(s2, s2 + len2); if(!strcmp(s1, s2))&#123; double dd = 1.0 * i / phi[i]; if(dd &lt; d) d = dd, maxi = i; &#125; &#125; &#125; printf("%d\n", maxi);&#125; 答案：8319823 PE71对于每一个$d$二分即可123456789101112131415161718void solve()&#123; double rd = 1.0 * 3 / 7, eps = 1e6; int fz, fm; for(int d = 9; d &lt;= 1000000; ++d)&#123; if(d % 7 == 0)continue; int l = 1, r = d - 1; while(r - l)&#123; int mid = (r + l + 1) &gt;&gt; 1; double rr = 1.0 * mid / d; if(rr &gt; rd)r = mid - 1; else l = mid; &#125; double rr = 1.0 * r / d; if(rd - rr &lt; eps) eps = rd - rr, fz = r, fm = d; &#125; printf("%d %d\n", fz, fm);&#125; 答案：428570 PE72就是对1~1000000的欧拉函数求和。。。1234567891011121314151617181920212223242526bool vis[1000005] = &#123;0&#125;;int prime[500005], tot = 0;int phi[1000005];ll sum = 0;void getPhi()&#123; phi[1] = 1; for(int i = 2; i &lt;= 1000000; ++i)&#123; if(!vis[i]) phi[i] = i - 1, prime[++tot] = i; for(int j = 1; j &lt;= tot; ++j)&#123; if(1ll * prime[j] * i &gt; 1000000) break; vis[prime[j] * i] = 1; if(i % prime[j] == 0)&#123; phi[i * prime[j]] = phi[i] * prime[j]; break; &#125;else phi[i * prime[j]] = phi[i] * (prime[j] - 1); &#125; sum += 1ll * phi[i]; &#125;&#125;void solve()&#123; getPhi(); printf("%lld\n", sum);&#125; 答案：303963552391 PE73注意分数为不可约。12345678910111213141516171819int ans = 0;int gcd(int a, int b)&#123; return (!b) ? a : gcd(b, a % b);&#125;void solve()&#123; double l = 1.0 / 3, r = 1.0 / 2; for(int i = 4; i &lt;= 12000; ++i)&#123; for(int j = 1; j &lt; i; ++j)&#123; if(gcd(i, j) &gt; 1) continue; double cur = 1.0 * j / i; if(abs(cur - l) &lt; 1e-7 || abs(cur - r) &lt; 1e-7) continue ; if(cur &gt; l &amp;&amp; cur &lt; r) ans++; &#125; &#125; printf("%d\n", ans);&#125; 答案：7295372 PE74虽然这道题我给出了一个正确的答案但我还是觉得我写错了。。。怎么回事？做法就是顺着一个数DFS下去，然后记录步数。12345678910111213141516171819202122232425262728293031323334int fac[] = &#123;1, 1, 2, 6, 24, 120, 720, 5040, 40320, 362880&#125;;int d[10000005], ans = 0, st[10000005] = &#123;0&#125;;bool vis[10000005] = &#123;0&#125;;void getD()&#123; for(int i = 0; i &lt; 10; ++i) d[i] = fac[i]; for(int i = 10; i &lt;= 10000000; ++i) d[i] = d[i / 10] + fac[i % 10];&#125;void dfs(int x)&#123; vis[x] = 1; int nx = d[x]; if(!vis[nx]) dfs(nx); else&#123; if(!st[nx])&#123; st[x] = 1; return ; &#125; &#125; st[x] = st[nx] + 1;&#125;void solve()&#123; getD(); vis[1] = vis[2] = true; st[1] = st[2] = 1; for(int i = 3; i &lt; 1000000; ++i) if(!vis[i]) dfs(i); for(int i = 3; i &lt; 1000000; ++i) if(st[i] == 60) ans++; printf("%d\n", ans);&#125; 答案：402 PE75一开始我写了一个暴力枚举，然后很干脆的挂掉了。。。后来我想到可以枚举所有的素毕达哥拉斯三元数， 然后用类似筛法的方法让其倍数的方法数$+1$， 最后统计方法数仅为$1$的对数。这样做就快多了。123456789101112131415161718192021222324int ans = 0;int cnt[1500005] = &#123;0&#125;;int gcd(int a, int b)&#123; return (!b) ? a : gcd(b, a % b);&#125;void pre()&#123; for(int v = 2; v &lt;= 1000; ++v) for(int u = 1; u &lt; v; ++u)&#123; if((u &amp; 1) &amp;&amp; (v &amp; 1))continue; if(gcd(u, v) != 1)continue; int dis = 2 * v * v + 2 * u * v; if(dis &gt; 1500000) break; for(int i = dis; i &lt;= 1500000; i += dis) cnt[i]++; &#125;&#125;void solve()&#123; pre(); for(int i = 12; i &lt;= 1500000; i += 2) if(cnt[i] == 1) ans++; printf("%d\n", ans);&#125; 答案：161667 PE79…手算…?对所有询问排个序，去个重，就差不多可以发现一些问题了。答案：73162890 PE80考虑到精度问题，我们考虑对一个大整数开根号。比如计算$\sqrt 2$的前一百位，可以改为计算$10^{100}\times \sqrt 2$的前一百位。即先把根号的值放大，然后二分出具体的值即可。12345678910111213141516171819x = 10 ** 300ans = 0for i in range(2, 100, 1): y = math.floor(math.sqrt(i) + 0.5) if y * y != i: z = i * x l = 1 r = z while r - l &gt; 0: mid = (r + l) &gt;&gt; 1 if mid * mid &lt; z: l = mid + 1 else: r = mid s = str(l) for j in range(0, 100, 1): ans += eval(s[j: j + 1])print(ans) 答案：40886 PE81水DP答案：427337 PE82根据矩阵和走路的方式建图，跑最短路即可。12 答案： PE83同上。 PE84我不会这样的神奇概率题。。。我就模拟这个游戏足够多次，然后根据访问次数判断哪三个地方访问概率最大。1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071727374757677787980818283848586878889909192939495int vis[49] = &#123;0&#125;, cur = 0;int curc = 0, curh = 0;int cc[20] = &#123;0&#125;, ch[20] = &#123;0&#125;;pair&lt;int, int&gt; pp[45];pair&lt;int, int&gt; getS()&#123; int i = 1 + rand() % 4, j = 1 + rand() % 4; return make_pair(i, j);&#125;int getR(int x)&#123; if(x == 7)return 15; if(x == 22)return 25; if(x == 36)return 5;&#125;int getU(int x)&#123; if(x == 7)return 12; if(x == 22)return 28; if(x == 36)return 12;&#125;void init()&#123; srand(time(NULL)); cc[rand() % 16] = 1; int i = rand() % 16; while(cc[i]) i = rand() % 16; cc[i] = 2; for(int j = 1; j &lt;= 10; ++j)&#123; i = rand() % 16; while(ch[i]) i = rand() % 16; ch[i] = j; &#125;&#125;void solve()&#123; int lst = 0; for(int i = 1; i &lt;= 100000000; ++i)&#123; pair&lt;int, int&gt; p = getS(); int d = p.first + p.second; if(p.first == p.second) lst++; else lst = 0; if(lst == 3)&#123; cur = 10, lst = 0; &#125;else&#123; int to = (cur + d) % 40; if(to == 2 || to == 17 || to == 33)&#123; int id = cc[curc]; curc = (curc + 1) % 16; if(id == 1)&#123; cur = 0; &#125;else if(id == 2)&#123; cur = 10; &#125;else&#123; cur = to; &#125; &#125;else if(to == 7 || to == 22 || to == 36)&#123; int id = ch[curh]; curh = (curh + 1) % 16; if(id == 1)&#123; cur = 0; &#125;else if(id == 2)&#123; cur = 10; &#125;else if(id == 3)&#123; cur = 11; &#125;else if(id == 4)&#123; cur = 24; &#125;else if(id == 5)&#123; cur = 39; &#125;else if(id == 6)&#123; cur = 5; &#125;else if(id == 7 || id == 8)&#123; cur = getR(to); &#125;else if(id == 9)&#123; cur = getU(to); &#125;else if(id == 10)&#123; cur = to - 3; &#125;else&#123; cur = to; &#125; &#125;else if(to == 30)&#123; cur = 10; &#125;else&#123; cur = to; &#125; &#125; vis[cur]++; &#125; for(int i = 0; i &lt; 40; ++i) pp[i] = make_pair(vis[i], i); sort(pp, pp + 40); for(int i = 39; i &gt; 36; --i) printf("%d", pp[i].second);&#125; 答案：101524 PE85小学奥数题。边长为$n,m$的矩形内部有C_{n+1}^2 C_{m+1}^2个小矩形。123456789101112ll ans = INF, maxi;void solve()&#123; for(int i = 1; i &lt;= 2000; ++i)&#123; for(int j = 1; j &lt;= 2000; ++j)&#123; ll pp = 1ll * i * j * (i + 1) * (j + 1); pp &gt;&gt;= 2; if(abs(pp - 2000000) &lt; ans) ans = abs(pp - 2000000), maxi = 1ll * i * j; &#125; &#125; printf("%lld\n", maxi);&#125; 答案：2772 PE87直接3重循环，算出所有可能即可。1234567891011121314151617181920212223242526272829303132bool vis[10005] = &#123;0&#125;;int prime[4][10005], tot[4] = &#123;0&#125;;bool dd[50000005] = &#123;0&#125;;void getP()&#123; for(int i = 2; i &lt;= 8000; ++i) if(!vis[i])&#123; for(int j = i + i; j &lt;= 8000; j += i) vis[j] = 1; prime[0][++tot[0]] = i; &#125;&#125;void solve()&#123; getP(); for(int i = 1; i &lt; 4; ++i)&#123; for(int j = 1; j &lt;= tot[i - 1]; ++j)&#123; if(1ll * prime[0][j] * prime[i - 1][j] &gt;= 50000000ll)&#123; tot[i] = j - 1; break; &#125; prime[i][j] = prime[0][j] * prime[i - 1][j]; &#125; &#125; for(int k = 1; k &lt;= tot[1]; ++k) for(int i = 1; i &lt;= tot[2]; ++i) for(int j = 1; j &lt;= tot[3]; ++j) if(prime[1][k] + prime[2][i] + prime[3][j] &lt; 50000000) dd[prime[1][k] + prime[2][i] + prime[3][j]] = 1; int ans = 0; for(int i = 1; i &lt; 50000000; ++i) ans += dd[i]; printf("%d\n", ans);&#125; 答案：1097343 PE90生成组合，然后测试即可。123456789101112131415161718192021222324252627282930313233343536373839404142434445464748int cb[2][10], ans = 0;void judge()&#123; int l[2]; l[0] = l[1] = 0; for(int o = 0; o &lt; 2; ++o)&#123; int flag = 0; for(int i = 0; i &lt; 6; ++i)&#123; l[o] |= (1 &lt;&lt; cb[o][i]); if(cb[o][i] == 6 || cb[o][i] == 9) flag += cb[o][i]; &#125; if(flag == 6) l[o] |= (1 &lt;&lt; 9); if(flag == 9) l[o] |= (1 &lt;&lt; 6); &#125; int flag = 1; for(int i = 1; i &lt; 10; ++i)&#123; int g = (i * i) % 10, s = (i * i) / 10; g = 1 &lt;&lt; g, s = 1 &lt;&lt; s; if(((s &amp; l[0]) &amp;&amp; (g &amp; l[1])) || (s &amp; l[1]) &amp;&amp; (g &amp; l[0]))&#123; continue; &#125;else&#123; flag = 0; break; &#125; &#125; ans += flag;&#125;void getC(int o, int index, int left)&#123; cb[o][5 - left] = index; if(!left)&#123; if(!o) for(int i = 0; i &lt;= 4; ++i) getC(1, i, 5); else&#123; judge(); &#125; return ; &#125; for(int i = index + 1; i &lt;= 10 - left; ++i) getC(o, i, left - 1);&#125;void solve()&#123; for(int i = 0; i &lt;= 4; ++i) getC(0, i, 5); printf("%d\n", ans &gt;&gt; 1);&#125; 答案：1217 PE91四重循环。。。12345678910111213141516int ans = 0;void solve()&#123; for(int i = 0; i &lt;= 50; ++i) for(int j = 0; j &lt;= 50; ++j) for(int k = 0; k &lt;= 50; ++k) for(int l = 0; l &lt;= 50; ++l)&#123; if(!i &amp;&amp; !j)continue; if(!k &amp;&amp; !l)continue; if(i == k &amp;&amp; j == l)continue; int a = i * i + j * j, b = k * k + l * l, c = (i - k) *(i - k) + (j - l) * (j - l); if(a + b == c || a + c == b || b + c == a) ans++; &#125; printf("%d\n", ans &gt;&gt; 1);&#125; 答案：14234 PE92直接模拟即可。。89的比例还是挺高的。1234567891011121314151617int ans = 0;int sqr(int x)&#123; return x * x;&#125;void solve()&#123; for(int i = 2; i &lt; 10000000; ++i)&#123; int j = i; for(; j != 1 &amp;&amp; j != 89; )&#123; int sum = 0; while(j) sum += sqr(j % 10), j /= 10; j = sum; &#125; if(j == 89)ans++; &#125; printf("%d\n", ans);&#125; 答案：8581146 PE94做一些数学上的分析根据海伦公式有：$S=\sqrt{p(p-a)(p-b)(p-c)}$其中$a,b,c$均为边长在这道题中上式可以化为$S=(p-i)\sqrt{p(p-i-1)}$或$S=(p-i)\sqrt{p(p-i+1)}$然后由于面积要求为正整数，所以需要$p(p-i+1)$为完全平方数按照这个枚举即可。123456789101112131415161718bool sqr(ll x)&#123; ll r = (ll)floor(sqrt(x) + 0.5); return r * r == x;&#125;void solve()&#123; int ans = 0; for(int i = 3; i &lt;= 333333333; i += 2)&#123; ll p = (3 * i - 1) &gt;&gt; 1; p *= (i + 1) &gt;&gt; 1; if(sqr(p)) ans += 3 * i - 1; p = (3 * i + 1) &gt;&gt; 1; p *= (i - 1) &gt;&gt; 1; if(sqr(p)) ans += 3 * i + 1; &#125; printf("%d\n", ans);&#125; 答案：518408346 PE95对每一个数DFS一遍即可。1234567891011121314151617181920212223242526272829303132int d[1000005] = &#123;0&#125;;int ans = 0, mini;int vis[1000005] = &#123;0&#125;, tot = 0;void getD()&#123; for(int i = 2; i &lt;= 1000000; ++i)&#123; int j; for(j = 1; j * j &lt; i; ++j) if(i % j == 0) d[i] += j + i / j; if(j * j == i)d[i] += j; d[i] -= i; &#125;&#125;void dfs(int x, int st)&#123; vis[x] = tot; if(d[x] &gt; 1000000 || !d[x]) return ; if(vis[d[x]] == tot)&#123; if(st &gt; ans) ans = st, mini = d[x]; return ; &#125;else if(!vis[d[x]])&#123; dfs(d[x], st + 1); &#125;&#125;void solve()&#123; getD(); for(int i = 2; i &lt;= 1000000; ++i) if(!vis[i]) tot++, dfs(i, 1); printf("%d %d\n", mini, ans);&#125; 答案：14316 PE96把现成的数独模板丢上去即可。12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758#include &lt;bits/stdc++.h&gt;using namespace std;int vis[3][11][11]=&#123;0&#125;,sd[10][10]=&#123;0&#125;;int lis[81][2],tot=0;int tans[10][10]=&#123;0&#125;;void get(int at)&#123; int mini=99,p,x,y,o; for(int i=at+1;i&lt;tot;i++)&#123; x=lis[i][0],y=lis[i][1],o=0; for(int j=1;j&lt;=9;j++)&#123; if(vis[0][x][j]||vis[1][y][j]||vis[2][(x/3)*3+y/3][j])continue; else o++; &#125; if(o&lt;mini)mini=o,p=i; &#125; x=lis[at+1][0],y=lis[at+1][1]; lis[at+1][0]=lis[p][0],lis[at+1][1]=lis[p][1]; lis[p][0]=x,lis[p][1]=y;&#125;void dfs(int at)&#123; int x=lis[at][0],y=lis[at][1]; for(int i=1;i&lt;=9;i++)&#123; if(vis[0][x][i]||vis[1][y][i]||vis[2][(x/3)*3+y/3][i])continue; vis[0][x][i]=vis[1][y][i]=vis[2][(x/3)*3+y/3][i]=1,sd[x][y]=i; if(at&lt;tot-1)&#123; if(at!=tot-2)get(at); dfs(at+1); &#125;else &#123; memcpy(tans, sd, sizeof(sd)); &#125; vis[0][x][i]=vis[1][y][i]=vis[2][(x/3)*3+y/3][i]=0,sd[x][y]=0; &#125;&#125;//0 行 1 列 2 宫 int main()&#123; int ans = 0; char s1[10], s2[10]; for(int i = 0; i &lt; 50; ++i)&#123; int tmp; tot = 0; memset(sd, 0, sizeof(sd)); memset(lis, 0, sizeof(lis)); memset(vis, 0, sizeof(vis)); scanf("%s%s", s1, s2); for(int i=0;i&lt;9;i++) for(int j=0;j&lt;9;j++)&#123; scanf("%1d",&amp;tmp); if(tmp)&#123; sd[i][j]=tmp; vis[0][i][tmp]=vis[1][j][tmp]=vis[2][(i/3)*3+j/3][tmp]=1; &#125;else lis[tot][0]=i,lis[tot++][1]=j; &#125; dfs(0); ans += tans[0][0] * 100 + tans[0][1] * 10 + tans[0][2]; &#125; printf("%d\n", ans); return 0; &#125; 答案：24702 PE97python，这个我还能说什么。。。答案：8739992577 PE99化成对数比即可。1234567891011double maxm = 0;int ans;void solve()&#123; for(int i = 1; i &lt;= 1000; ++i)&#123; int b = read(), e = read(); double tt = 1.0 * e * log(b); if(tt &gt; maxm) maxm = tt, ans = i; &#125; printf("%d\n", ans);&#125; 答案：709]]></content>
+      <categories>
+        <category>ProjectEuler</category>
+      </categories>
+      <tags>
+        <tag>数学</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[UVa489 Hangman Judge]]></title>
     <url>%2F2018%2F08%2F11%2Fuva489%2F</url>
     <content type="text"><![CDATA[题目链接 题解模拟即可。1234567891011121314151617181920212223242526272829303132333435363738#include &lt;stdio.h&gt; #include &lt;string.h&gt; #include &lt;stdlib.h&gt; #include &lt;ctype.h&gt; #include &lt;math.h&gt; char b1[27]=&#123;0&#125;,n1[100005],n2[100005];int n=-1,solve(),res,lim1,i;int solve()&#123; int chance=6,all=0; lim1=strlen(n1); for(i=0;i&lt;lim1;i++)&#123; if(!b1[n1[i]-'a'])&#123; b1[n1[i]-'a']++;all++; &#125; &#125; lim1=strlen(n2); for(i=0;i&lt;lim1;i++)&#123; if(b1[n2[i]-'a'])&#123; b1[n2[i]-'a']--;all--; if(all==0&amp;&amp;(chance&gt;=0))return 1; &#125; else chance--; &#125; if(chance&lt;0)return -1; if(all&gt;0)return 0;&#125;int main()&#123; for(scanf("%d",&amp;n);n!=-1;n=-1,scanf("%d",&amp;n))&#123; scanf("%s%s",n1,n2); res=solve(); printf("Round %d\n",n); if(res==1)printf("You win.\n"); if(res==0)printf("You chickened out.\n"); if(res==-1)printf("You lose.\n"); memset(b1,0,sizeof(b1)); &#125; return 0; &#125;]]></content>
@@ -325,8 +456,8 @@
         <category>各省省选</category>
       </categories>
       <tags>
-        <tag>MST</tag>
         <tag>二分</tag>
+        <tag>MST</tag>
       </tags>
   </entry>
   <entry>
@@ -913,8 +1044,8 @@
         <category>其他</category>
       </categories>
       <tags>
-        <tag>经典问题</tag>
         <tag>最短路</tag>
+        <tag>经典问题</tag>
       </tags>
   </entry>
   <entry>
@@ -937,8 +1068,8 @@
         <category>其他</category>
       </categories>
       <tags>
-        <tag>树形DP</tag>
         <tag>经典问题</tag>
+        <tag>树形DP</tag>
       </tags>
   </entry>
   <entry>
@@ -949,8 +1080,8 @@
         <category>COCI</category>
       </categories>
       <tags>
-        <tag>经典问题</tag>
         <tag>单调栈</tag>
+        <tag>经典问题</tag>
       </tags>
   </entry>
   <entry>
@@ -1013,6 +1144,18 @@
       </categories>
       <tags>
         <tag>博弈论</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[HDU4203 Pythagoras]]></title>
+    <url>%2F2018%2F08%2F04%2Fhdu6211%2F</url>
+    <content type="text"><![CDATA[题目地址 题解枚举素勾股数。这道题由于数据很大，所以肯定要一开始就枚举好。枚举的时候要注意，使用gcd会超时，所以改为使用枚举素因子判断互质。由于$\sqrt{1000000000} \approx 31622$，而$2\times 3\times 5\times 7\times 11\times 13\times 17 &gt; 31622$，所以素因子最多不会超过6个。这样的话效率就比较好了。12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667#include &lt;cstdio&gt;#include &lt;cstdlib&gt;#include &lt;algorithm&gt;#include &lt;cstring&gt;#include &lt;cctype&gt;#define INF 2000000000using namespace std;typedef long long ll;int read()&#123; int f = 1, x = 0; char c = getchar(); while(c &lt; '0' || c &gt; '9')&#123;if(c == '-') f = -f; c = getchar(); &#125; while(c &gt;= '0' &amp;&amp; c &lt;= '9')x = x * 10 + c - '0', c = getchar(); return f * x; &#125;int cnt[200005] = &#123;0&#125;, tot = 0;int p[10], a[200005];void init()&#123; for(int v = 2; v &lt;= 31622; ++v)&#123; int pcnt = 0, t = v; for(int i = 2; i * i &lt;= v; ++i)&#123; if(t % i == 0)&#123; t /= i; while(t % i == 0) t /= i; p[++pcnt] = i; if(t == 1) break ; &#125; &#125; if(t != 1) p[++pcnt] = t; for(int u = (v % 2 == 0) ? 1 : 2; u &lt; v; u += 2)&#123; int cc = u * u + v * v, flag = 1; if(cc &gt; 1000000000) break; for(int i = 1; i &lt;= pcnt; ++i) if(u % p[i] == 0)&#123; flag = 0; break ; &#125; if(!flag) continue ; int aa = v * v - u * u, bb = 2 * u * v; if(aa &gt; bb) cnt[(aa &amp; 131071)]++; else cnt[(bb &amp; 131071)]++; &#125; &#125;&#125;void solve()&#123; int k = read(), t; k = (1 &lt;&lt; k), t = k - 1; for(int i = 0; i &lt; k; ++i) a[i] = read(); ll ans = 0; for(int i = 0; i &lt; 131072; ++i) ans += 1ll * cnt[i] * a[(i &amp; t)]; printf("%lld\n", ans);&#125;int main()&#123; int T = read(); init(); while(T--) solve(); return 0;&#125;]]></content>
+      <categories>
+        <category>HDU</category>
+      </categories>
+      <tags>
+        <tag>数学</tag>
+        <tag>暴力</tag>
       </tags>
   </entry>
   <entry>
@@ -1479,8 +1622,8 @@
         <category>USACO</category>
       </categories>
       <tags>
-        <tag>二分</tag>
         <tag>最短路</tag>
+        <tag>二分</tag>
       </tags>
   </entry>
   <entry>
@@ -1971,8 +2114,8 @@
         <category>NOIP2012</category>
       </categories>
       <tags>
-        <tag>线段树</tag>
         <tag>二分</tag>
+        <tag>线段树</tag>
         <tag>差分</tag>
       </tags>
   </entry>
@@ -2790,8 +2933,8 @@
         <category>NOIP2001</category>
       </categories>
       <tags>
-        <tag>二分</tag>
         <tag>数学</tag>
+        <tag>二分</tag>
       </tags>
   </entry>
   <entry>
