@@ -80,9 +80,9 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[UVa11059 Maximum Product]]></title>
-    <url>%2F2018%2F08%2F16%2Fuva11059%2F</url>
-    <content type="text"><![CDATA[题目链接 题解枚举两端即可。数据比较小，直接用long long。123456789101112131415161718192021222324252627282930313233343536373839404142#include &lt;cstdio&gt;#include &lt;cstdlib&gt;#include &lt;algorithm&gt;#include &lt;cstring&gt;#include &lt;cctype&gt;#define INF 2000000000using namespace std;typedef long long ll;int read()&#123; int f = 1, x = 0; char c = getchar(); while(c &lt; '0' || c &gt; '9')&#123;if(c == '-') f = -f; c = getchar(); &#125; while(c &gt;= '0' &amp;&amp; c &lt;= '9')x = x * 10 + c - '0', c = getchar(); return f * x; &#125;int n;ll seq[50];void init()&#123; for(int i = 0; i &lt; n; ++i) seq[i] = read();&#125;void solve()&#123; ll ans = 0; for(int i = 0; i &lt; n; ++i) for(int j = i; j &lt; n; ++j)&#123; ll st = 1; for(int k = i; k &lt;= j; ++k) st *= seq[k]; ans = max(ans, st); &#125; printf("%lld.\n\n", ans);&#125;int main()&#123; int T = 0; while(scanf("%d", &amp;n) == 1)&#123; T++; printf("Case #%d: The maximum product is ", T); init(); solve(); &#125; return 0;&#125;]]></content>
+    <title><![CDATA[UVa725 Division]]></title>
+    <url>%2F2018%2F08%2F16%2Fuva725%2F</url>
+    <content type="text"><![CDATA[题目链接 题解直接枚举除数即可。1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950#include &lt;cstdio&gt;#include &lt;cstdlib&gt;#include &lt;algorithm&gt;#include &lt;cstring&gt;#include &lt;cctype&gt;#define INF 2000000000using namespace std;typedef long long ll;int read()&#123; int f = 1, x = 0; char c = getchar(); while(c &lt; '0' || c &gt; '9')&#123;if(c == '-') f = -f; c = getchar(); &#125; while(c &gt;= '0' &amp;&amp; c &lt;= '9')x = x * 10 + c - '0', c = getchar(); return f * x; &#125;int n, cnt[20];void solve()&#123; int flag = 0; for(int i = 1234; ; ++i)&#123; int j = i * n; if(j &lt; 10000 &amp;&amp; i &lt; 10000) continue; int tot = 0; while(j) cnt[tot++] = j % 10, j /= 10; j = i; while(j) cnt[tot++] = j % 10, j /= 10; if(i &lt; 10000)cnt[tot++] = 0; if(tot &gt; 10)break; sort(cnt, cnt + 10); for(j = 0; j &lt; 10; ++j) if(cnt[j] != j) break; if(j == 10) printf("%d / %05d = %d\n", i * n, i, n), flag = 1; &#125; if(!flag) printf("There are no solutions for %d.\n", n);&#125;int main()&#123; for(int T = 1; ; ++T)&#123; n = read(); if(!n)break; if(T &gt; 1)printf("\n"); solve(); &#125; return 0;&#125;]]></content>
       <categories>
         <category>UVa</category>
       </categories>
@@ -91,9 +91,9 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[UVa725 Division]]></title>
-    <url>%2F2018%2F08%2F16%2Fuva725%2F</url>
-    <content type="text"><![CDATA[题目链接 题解直接枚举除数即可。1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950#include &lt;cstdio&gt;#include &lt;cstdlib&gt;#include &lt;algorithm&gt;#include &lt;cstring&gt;#include &lt;cctype&gt;#define INF 2000000000using namespace std;typedef long long ll;int read()&#123; int f = 1, x = 0; char c = getchar(); while(c &lt; '0' || c &gt; '9')&#123;if(c == '-') f = -f; c = getchar(); &#125; while(c &gt;= '0' &amp;&amp; c &lt;= '9')x = x * 10 + c - '0', c = getchar(); return f * x; &#125;int n, cnt[20];void solve()&#123; int flag = 0; for(int i = 1234; ; ++i)&#123; int j = i * n; if(j &lt; 10000 &amp;&amp; i &lt; 10000) continue; int tot = 0; while(j) cnt[tot++] = j % 10, j /= 10; j = i; while(j) cnt[tot++] = j % 10, j /= 10; if(i &lt; 10000)cnt[tot++] = 0; if(tot &gt; 10)break; sort(cnt, cnt + 10); for(j = 0; j &lt; 10; ++j) if(cnt[j] != j) break; if(j == 10) printf("%d / %05d = %d\n", i * n, i, n), flag = 1; &#125; if(!flag) printf("There are no solutions for %d.\n", n);&#125;int main()&#123; for(int T = 1; ; ++T)&#123; n = read(); if(!n)break; if(T &gt; 1)printf("\n"); solve(); &#125; return 0;&#125;]]></content>
+    <title><![CDATA[UVa11059 Maximum Product]]></title>
+    <url>%2F2018%2F08%2F16%2Fuva11059%2F</url>
+    <content type="text"><![CDATA[题目链接 题解枚举两端即可。数据比较小，直接用long long。123456789101112131415161718192021222324252627282930313233343536373839404142#include &lt;cstdio&gt;#include &lt;cstdlib&gt;#include &lt;algorithm&gt;#include &lt;cstring&gt;#include &lt;cctype&gt;#define INF 2000000000using namespace std;typedef long long ll;int read()&#123; int f = 1, x = 0; char c = getchar(); while(c &lt; '0' || c &gt; '9')&#123;if(c == '-') f = -f; c = getchar(); &#125; while(c &gt;= '0' &amp;&amp; c &lt;= '9')x = x * 10 + c - '0', c = getchar(); return f * x; &#125;int n;ll seq[50];void init()&#123; for(int i = 0; i &lt; n; ++i) seq[i] = read();&#125;void solve()&#123; ll ans = 0; for(int i = 0; i &lt; n; ++i) for(int j = i; j &lt; n; ++j)&#123; ll st = 1; for(int k = i; k &lt;= j; ++k) st *= seq[k]; ans = max(ans, st); &#125; printf("%lld.\n\n", ans);&#125;int main()&#123; int T = 0; while(scanf("%d", &amp;n) == 1)&#123; T++; printf("Case #%d: The maximum product is ", T); init(); solve(); &#125; return 0;&#125;]]></content>
       <categories>
         <category>UVa</category>
       </categories>
@@ -480,8 +480,8 @@
         <category>各省省选</category>
       </categories>
       <tags>
-        <tag>矩阵乘法</tag>
         <tag>递推</tag>
+        <tag>矩阵乘法</tag>
       </tags>
   </entry>
   <entry>
@@ -1136,17 +1136,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[HDU4203 Doubloon Game]]></title>
-    <url>%2F2018%2F08%2F04%2Fhdu4203%2F</url>
-    <content type="text"><![CDATA[题目地址 题解先大力打表，看SG函数有没有什么规律发现打表结果非常神奇：当$K$是奇数的时候，SG函数是$010101$变化的。$K$是偶数的时候，每逢$K$的倍数，$SG（x\cdot K）$就为$2$。否则仍然按照$010101$变化。比如$K=2:0,1,2,0,1,2 …$$K=4:0,1,0,1,2,0,1,0,1,2…$之后就简单了。123456789101112131415161718192021222324252627282930313233343536373839404142#include &lt;cstdio&gt;#include &lt;cstdlib&gt;#include &lt;algorithm&gt;#include &lt;cstring&gt;#include &lt;cctype&gt;#define INF 2000000000using namespace std;typedef long long ll;int read()&#123; int f=1,x=0;char c=getchar(); while(c&lt;'0'||c&gt;'9')&#123;if(c=='-')f=-f;c=getchar();&#125; while(c&gt;='0'&amp;&amp;c&lt;='9')x=x*10+c-'0',c=getchar(); return f*x; &#125;int S,k,T;int SG(int x)&#123; if(k%2)return x%2; else &#123; int mod=x%(k+1); if(mod&lt;k)return mod%2; else return 2; &#125; &#125;void solve()&#123; T=read(); while(T--)&#123; S=read(),k=read(); int ans=SG(S); if(ans!=2)printf("%d\n",ans); else &#123; for(int j=1;S-j&gt;=0;j*=k) if(!SG(S-j))&#123; printf("%d\n",j); break; &#125; &#125; &#125;&#125;int main()&#123; solve(); return 0;&#125;]]></content>
-      <categories>
-        <category>HDU</category>
-      </categories>
-      <tags>
-        <tag>博弈论</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[HDU4203 Pythagoras]]></title>
     <url>%2F2018%2F08%2F04%2Fhdu6211%2F</url>
     <content type="text"><![CDATA[题目地址 题解枚举素勾股数。这道题由于数据很大，所以肯定要一开始就枚举好。枚举的时候要注意，使用gcd会超时，所以改为使用枚举素因子判断互质。由于$\sqrt{1000000000} \approx 31622$，而$2\times 3\times 5\times 7\times 11\times 13\times 17 &gt; 31622$，所以素因子最多不会超过6个。这样的话效率就比较好了。12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667#include &lt;cstdio&gt;#include &lt;cstdlib&gt;#include &lt;algorithm&gt;#include &lt;cstring&gt;#include &lt;cctype&gt;#define INF 2000000000using namespace std;typedef long long ll;int read()&#123; int f = 1, x = 0; char c = getchar(); while(c &lt; '0' || c &gt; '9')&#123;if(c == '-') f = -f; c = getchar(); &#125; while(c &gt;= '0' &amp;&amp; c &lt;= '9')x = x * 10 + c - '0', c = getchar(); return f * x; &#125;int cnt[200005] = &#123;0&#125;, tot = 0;int p[10], a[200005];void init()&#123; for(int v = 2; v &lt;= 31622; ++v)&#123; int pcnt = 0, t = v; for(int i = 2; i * i &lt;= v; ++i)&#123; if(t % i == 0)&#123; t /= i; while(t % i == 0) t /= i; p[++pcnt] = i; if(t == 1) break ; &#125; &#125; if(t != 1) p[++pcnt] = t; for(int u = (v % 2 == 0) ? 1 : 2; u &lt; v; u += 2)&#123; int cc = u * u + v * v, flag = 1; if(cc &gt; 1000000000) break; for(int i = 1; i &lt;= pcnt; ++i) if(u % p[i] == 0)&#123; flag = 0; break ; &#125; if(!flag) continue ; int aa = v * v - u * u, bb = 2 * u * v; if(aa &gt; bb) cnt[(aa &amp; 131071)]++; else cnt[(bb &amp; 131071)]++; &#125; &#125;&#125;void solve()&#123; int k = read(), t; k = (1 &lt;&lt; k), t = k - 1; for(int i = 0; i &lt; k; ++i) a[i] = read(); ll ans = 0; for(int i = 0; i &lt; 131072; ++i) ans += 1ll * cnt[i] * a[(i &amp; t)]; printf("%lld\n", ans);&#125;int main()&#123; int T = read(); init(); while(T--) solve(); return 0;&#125;]]></content>
@@ -1156,6 +1145,17 @@
       <tags>
         <tag>数学</tag>
         <tag>暴力</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[HDU4203 Doubloon Game]]></title>
+    <url>%2F2018%2F08%2F04%2Fhdu4203%2F</url>
+    <content type="text"><![CDATA[题目地址 题解先大力打表，看SG函数有没有什么规律发现打表结果非常神奇：当$K$是奇数的时候，SG函数是$010101$变化的。$K$是偶数的时候，每逢$K$的倍数，$SG（x\cdot K）$就为$2$。否则仍然按照$010101$变化。比如$K=2:0,1,2,0,1,2 …$$K=4:0,1,0,1,2,0,1,0,1,2…$之后就简单了。123456789101112131415161718192021222324252627282930313233343536373839404142#include &lt;cstdio&gt;#include &lt;cstdlib&gt;#include &lt;algorithm&gt;#include &lt;cstring&gt;#include &lt;cctype&gt;#define INF 2000000000using namespace std;typedef long long ll;int read()&#123; int f=1,x=0;char c=getchar(); while(c&lt;'0'||c&gt;'9')&#123;if(c=='-')f=-f;c=getchar();&#125; while(c&gt;='0'&amp;&amp;c&lt;='9')x=x*10+c-'0',c=getchar(); return f*x; &#125;int S,k,T;int SG(int x)&#123; if(k%2)return x%2; else &#123; int mod=x%(k+1); if(mod&lt;k)return mod%2; else return 2; &#125; &#125;void solve()&#123; T=read(); while(T--)&#123; S=read(),k=read(); int ans=SG(S); if(ans!=2)printf("%d\n",ans); else &#123; for(int j=1;S-j&gt;=0;j*=k) if(!SG(S-j))&#123; printf("%d\n",j); break; &#125; &#125; &#125;&#125;int main()&#123; solve(); return 0;&#125;]]></content>
+      <categories>
+        <category>HDU</category>
+      </categories>
+      <tags>
+        <tag>博弈论</tag>
       </tags>
   </entry>
   <entry>
@@ -2092,6 +2092,19 @@
       </tags>
   </entry>
   <entry>
+    <title><![CDATA[NOIP2012提高 同余方程]]></title>
+    <url>%2F2018%2F08%2F02%2Fnoip2012tgt4%2F</url>
+    <content type="text"><![CDATA[题目地址 题解就是让你求一个逆元。用快速幂+欧拉函数或者扩欧都行。我只写了扩欧，但是前者应该好写一点。时间复杂度：$O(logn)$12345678910111213141516171819#include &lt;bits/stdc++.h&gt; using namespace std;typedef long long ll;ll extgcd(ll a,ll b,ll &amp;x,ll &amp;y)&#123; ll d=a; if(b)&#123; d=extgcd(b,a%b,y,x); y-=(a/b)*x; &#125;else x=1,y=0; return d; &#125;int main()&#123; ll a,m,x,y; scanf("%lld%lld",&amp;a,&amp;m); extgcd(a,m,x,y); x=(x%m+m)%m; printf("%lld\n",x); return 0; &#125;]]></content>
+      <categories>
+        <category>NOIP题解</category>
+        <category>NOIP2012</category>
+      </categories>
+      <tags>
+        <tag>扩展欧几里得</tag>
+        <tag>逆元</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[NOIP2012提高 借教室]]></title>
     <url>%2F2018%2F08%2F02%2Fnoip2012tgt5%2F</url>
     <content type="text"><![CDATA[题目地址 题解方法一维护一种数据结构，它支持:1.区间减法2.检查最小值的正负性线段树即可。这种方法常数很大。时间复杂度：$O((n+m)logn)$。1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859#include &lt;cstdio&gt;#include &lt;cstdlib&gt;#include &lt;algorithm&gt;#include &lt;cstring&gt;#include &lt;cmath&gt;#define INF 2000000000using namespace std;typedef long long ll;int seg[2200000],tag[2200000]=&#123;0&#125;;int n,size,_a,_b,m,rec[3][1000005],_v;int read()&#123; int x=0;char ch=getchar(); while(ch&lt;'0'||ch&gt;'9')ch=getchar(); while(ch&gt;='0'&amp;&amp;ch&lt;='9')x=x*10+ch-'0',ch=getchar(); return x;&#125;void pushdown(int id)&#123; if(tag[id]&amp;&amp;id&lt;size) tag[id&lt;&lt;1]+=tag[id],tag[id&lt;&lt;1|1]+=tag[id], seg[id&lt;&lt;1]+=tag[id],seg[id&lt;&lt;1|1]+=tag[id], tag[id]=0; &#125;void init()&#123; int i; for(size=1;size&lt;n;size&lt;&lt;=1); for(i=size;i-size&lt;n;i++)seg[i]=read(); for(;i&lt;(size&lt;&lt;1);i++)seg[i]=INF; for(i=size-1;i&gt;=1;i--) seg[i]=min(seg[i&lt;&lt;1],seg[i&lt;&lt;1|1]);&#125;void minus(int id,int l,int r)&#123; if(l&gt;_b||r&lt;_a)return ; if(_a&lt;=l&amp;&amp;r&lt;=_b)&#123; tag[id]+=_v,seg[id]+=_v; return ; &#125; pushdown(id); minus(id&lt;&lt;1,l,(l+r)&gt;&gt;1); minus(id&lt;&lt;1|1,(l+r+1)&gt;&gt;1,r); seg[id]=min(seg[id&lt;&lt;1],seg[id&lt;&lt;1|1]);&#125;int solve()&#123; for(int i=0;i&lt;m;i++)&#123; _v=-rec[0][i],_a=rec[1][i],_b=rec[2][i], minus(1,1,size); if(seg[1]&lt;0)return i+1; &#125; return -1;&#125;int main()&#123; n=read(),m=read(); init(); for(int i=0;i&lt;m;i++) rec[0][i]=read(),rec[1][i]=read(),rec[2][i]=read(); int ans=solve(); if(ans&lt;0)printf("0\n"); else printf("-1\n%d\n",ans); return 0;&#125; 方法二我们发现随着订单的增多，可用教室的数量是只减不增的，所以我们尝试二分。二分一个最大订单量，然后区间减法用差分实现，最后扫一遍，看看是否存在负值即可。（差分：假设我们有一个数列:a_1,a_2,a_3,...,a_n 定义它的差分数列是a_1,a_2-a_1,a_3-a_2,...a_n-a_{n-1} 这样可以发现差分数列中前$n$个元素的和就是原来数列当前位置元素的值。然后为什么说他可以用来做区间减法呢？比方有$5$个数，$a_1,a_2,a_3,a_4,a_5$，差分数列就是$a_1,a_2-a_1,a_3-a_2,a_4-a_3,a_5-a_4$，然后第$2$到$4$个每一个减掉$p$，那么原数列就是 a_1,a_2-p,a_3-p,a_4-p,a_5新的差分数列就是 a_1,a_2-a_1-p,a_3-a_2,a_4-a_3,a_5-a_4+p可以发现，本来要修改多个元素，在差分数列里就只要修改$2$个元素。由于我们只要在处理完所有区间操作后再扫一遍查询负数，所以这么做能满足我们的需求。时间复杂度：$O((n+m)logn)$。123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960#include &lt;bits/stdc++.h&gt;#define N 1000005using namespace std;typedef long long ll;int read()&#123; int f=1,x=0;char c=getchar(); while(c&lt;'0'||c&gt;'9')&#123;if(c=='-')f=-f;c=getchar();&#125; while(c&gt;='0'&amp;&amp;c&lt;='9')x=x*10+c-'0',c=getchar(); return f*x; &#125;int n,m,d[N],q[N],s[N],e[N];int oold,nnew;void update()&#123; if(nnew&gt;oold)&#123; for(int i=oold+1;i&lt;=nnew;i++) d[s[i]]-=q[i],d[e[i]+1]+=q[i]; &#125;else&#123; for(int i=oold;i&gt;nnew;i--) d[s[i]]+=q[i],d[e[i]+1]-=q[i]; &#125;&#125;bool C()&#123; int flag=0,sum=0; update(); for(int i=1;i&lt;=n;i++)&#123; sum+=d[i]; if(sum&lt;0)&#123; flag=1; break; &#125; &#125; return flag;&#125;void init()&#123; n=read(),m=read(); int lst=read(); d[1]=lst; for(int i=2;i&lt;=n;i++) d[i]=read(),d[i]-=lst,lst+=d[i]; d[n+1]=-lst; for(int i=1;i&lt;=m;i++) q[i]=read(),s[i]=read(),e[i]=read();&#125;void solve()&#123; int L=1,R=m; oold=0; while(R&gt;L)&#123; nnew=(L+R)&gt;&gt;1; if(C())R=nnew; else L=nnew+1; oold=nnew; &#125; if(L==m)printf("0\n"); else printf("-1\n%d\n",L);&#125;int main()&#123; init(); solve(); return 0;&#125;]]></content>
@@ -2100,8 +2113,8 @@
         <category>NOIP2012</category>
       </categories>
       <tags>
-        <tag>线段树</tag>
         <tag>二分</tag>
+        <tag>线段树</tag>
         <tag>差分</tag>
       </tags>
   </entry>
@@ -2117,19 +2130,6 @@
         <tag>二分</tag>
         <tag>贪心</tag>
         <tag>倍增</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[NOIP2012提高 同余方程]]></title>
-    <url>%2F2018%2F08%2F02%2Fnoip2012tgt4%2F</url>
-    <content type="text"><![CDATA[题目地址 题解就是让你求一个逆元。用快速幂+欧拉函数或者扩欧都行。我只写了扩欧，但是前者应该好写一点。时间复杂度：$O(logn)$12345678910111213141516171819#include &lt;bits/stdc++.h&gt; using namespace std;typedef long long ll;ll extgcd(ll a,ll b,ll &amp;x,ll &amp;y)&#123; ll d=a; if(b)&#123; d=extgcd(b,a%b,y,x); y-=(a/b)*x; &#125;else x=1,y=0; return d; &#125;int main()&#123; ll a,m,x,y; scanf("%lld%lld",&amp;a,&amp;m); extgcd(a,m,x,y); x=(x%m+m)%m; printf("%lld\n",x); return 0; &#125;]]></content>
-      <categories>
-        <category>NOIP题解</category>
-        <category>NOIP2012</category>
-      </categories>
-      <tags>
-        <tag>扩展欧几里得</tag>
-        <tag>逆元</tag>
       </tags>
   </entry>
   <entry>

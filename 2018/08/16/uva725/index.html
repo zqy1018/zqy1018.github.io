@@ -362,6 +362,16 @@
 
           
             
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/08/16/uva725/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2018/08/16/uva725/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
           
 
           
@@ -448,8 +458,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/08/16/math-english/" rel="next" title="数学英语">
-                <i class="fa fa-chevron-left"></i> 数学英语
+              <a href="/2018/08/16/uva11059/" rel="next" title="UVa11059 Maximum Product">
+                <i class="fa fa-chevron-left"></i> UVa11059 Maximum Product
               </a>
             
           </div>
@@ -458,8 +468,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/08/16/uva11059/" rel="prev" title="UVa11059 Maximum Product">
-                UVa11059 Maximum Product <i class="fa fa-chevron-right"></i>
+              <a href="/2018/08/16/uva140/" rel="prev" title="UVa140 Bandwidth">
+                UVa140 Bandwidth <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -786,10 +796,8 @@
 
 
 
-
-  
   <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
-  <script src="/js/src/Valine.min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
   
   <script type="text/javascript">
     var GUEST = ['nick','mail','link'];
@@ -798,13 +806,19 @@
       return GUEST.indexOf(item)>-1;
     });
     new Valine({
-        av: AV, 
         el: '#comments' ,
+        verify: false,
+        notify: false,
         appId: 'X4PSdvLViY4pfjyqvDEkpvIN-gzGzoHsz',
         appKey: 'IR3NlAjCwyRMypA2bbGW5GC1',
-        placeholder: 'ヾﾉ≧∀≦)o来啊，快活啊!',
+        placeholder: 'Write something?',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
     });
   </script>
+
+
 
   
 

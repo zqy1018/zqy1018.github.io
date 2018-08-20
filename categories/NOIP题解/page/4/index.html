@@ -353,9 +353,9 @@
 
       <h2 class="post-title">
         
-            <a class="post-title-link" href="/2018/08/02/noip2012tgt5/" itemprop="url">
+            <a class="post-title-link" href="/2018/08/02/noip2012tgt4/" itemprop="url">
               
-                <span itemprop="name">NOIP2012提高 借教室</span>
+                <span itemprop="name">NOIP2012提高 同余方程</span>
               
             </a>
         
@@ -381,9 +381,9 @@
 
       <h2 class="post-title">
         
-            <a class="post-title-link" href="/2018/08/02/noip2012tgt4/" itemprop="url">
+            <a class="post-title-link" href="/2018/08/02/noip2012tgt5/" itemprop="url">
               
-                <span itemprop="name">NOIP2012提高 同余方程</span>
+                <span itemprop="name">NOIP2012提高 借教室</span>
               
             </a>
         
@@ -851,10 +851,8 @@
 
 
 
-
-  
   <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
-  <script src="/js/src/Valine.min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
   
   <script type="text/javascript">
     var GUEST = ['nick','mail','link'];
@@ -863,13 +861,19 @@
       return GUEST.indexOf(item)>-1;
     });
     new Valine({
-        av: AV, 
         el: '#comments' ,
+        verify: false,
+        notify: false,
         appId: 'X4PSdvLViY4pfjyqvDEkpvIN-gzGzoHsz',
         appKey: 'IR3NlAjCwyRMypA2bbGW5GC1',
-        placeholder: 'ヾﾉ≧∀≦)o来啊，快活啊!',
+        placeholder: 'Write something?',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
     });
   </script>
+
+
 
   
 

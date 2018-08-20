@@ -610,9 +610,9 @@
 
       <h2 class="post-title">
         
-            <a class="post-title-link" href="/2018/08/16/uva11059/" itemprop="url">
+            <a class="post-title-link" href="/2018/08/16/uva725/" itemprop="url">
               
-                <span itemprop="name">UVa11059 Maximum Product</span>
+                <span itemprop="name">UVa725 Division</span>
               
             </a>
         
@@ -647,9 +647,9 @@
 
       <h2 class="post-title">
         
-            <a class="post-title-link" href="/2018/08/16/uva725/" itemprop="url">
+            <a class="post-title-link" href="/2018/08/16/uva11059/" itemprop="url">
               
-                <span itemprop="name">UVa725 Division</span>
+                <span itemprop="name">UVa11059 Maximum Product</span>
               
             </a>
         
@@ -950,10 +950,8 @@
 
 
 
-
-  
   <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
-  <script src="/js/src/Valine.min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
   
   <script type="text/javascript">
     var GUEST = ['nick','mail','link'];
@@ -962,13 +960,19 @@
       return GUEST.indexOf(item)>-1;
     });
     new Valine({
-        av: AV, 
         el: '#comments' ,
+        verify: false,
+        notify: false,
         appId: 'X4PSdvLViY4pfjyqvDEkpvIN-gzGzoHsz',
         appKey: 'IR3NlAjCwyRMypA2bbGW5GC1',
-        placeholder: 'ヾﾉ≧∀≦)o来啊，快活啊!',
+        placeholder: 'Write something?',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
     });
   </script>
+
+
 
   
 
