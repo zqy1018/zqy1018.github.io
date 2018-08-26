@@ -4,20 +4,507 @@
 
     
   <url>
-    <loc>http://yoursite.com/2018/08/20/aoapc-chapter6/</loc>
-    <lastmod>2018-08-21T16:07:11.054Z</lastmod>
+    <loc>http://yoursite.com/2018/08/26/poj2559/</loc>
+    <lastmod>2018-08-26T02:48:29.786Z</lastmod>
     <data>
         <display>
-        <title>紫书习题 第六章</title>
-        <pubTime>2018-08-20T09:23:03.000Z</pubTime>
+        <title>poj2559</title>
+        <pubTime>2018-08-26T02:48:29.000Z</pubTime>
         
-        <tag>栈</tag>
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2018/08/23/poj2893/</loc>
+    <lastmod>2018-08-26T02:44:41.826Z</lastmod>
+    <data>
+        <display>
+        <title>POJ2893 M × N Puzzle</title>
+        <pubTime>2018-08-23T11:03:53.000Z</pubTime>
+        
+        <tag>逆序对</tag>
+         
+         
+           
+             
+              <breadCrumb title="POJ" url="http://yoursite.com/categories/POJ/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2018/08/23/poj2299/</loc>
+    <lastmod>2018-08-26T02:40:22.096Z</lastmod>
+    <data>
+        <display>
+        <title>POJ2299 Ultra-QuickSort</title>
+        <pubTime>2018-08-23T11:03:53.000Z</pubTime>
+        
+        <tag>逆序对</tag>
+         
+         
+           
+             
+              <breadCrumb title="POJ" url="http://yoursite.com/categories/POJ/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2018/08/26/template-math-1/</loc>
+    <lastmod>2018-08-25T16:14:37.409Z</lastmod>
+    <data>
+        <display>
+        <title>模板 数学（1）</title>
+        <pubTime>2018-08-25T16:02:16.000Z</pubTime>
+        
+         
+           
+             
+              <breadCrumb title="模板" url="http://yoursite.com/categories/%E6%A8%A1%E6%9D%BF/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2018/08/25/noi1997-2002/</loc>
+    <lastmod>2018-08-25T15:58:28.324Z</lastmod>
+    <data>
+        <display>
+        <title>NOI1997-2002 题解</title>
+        <pubTime>2018-08-25T10:23:19.000Z</pubTime>
+        
+        <tag>最短路</tag>
+         
+        <tag>数学</tag>
          
         <tag>模拟</tag>
          
-        <tag>链表</tag>
+        <tag>枚举</tag>
+         
+        <tag>其他DP</tag>
+         
+        <tag>并查集</tag>
+         
+        <tag>递推</tag>
+         
+        <tag>trie树</tag>
+         
+        <tag>BFS</tag>
+         
+         
+           
+             
+              <breadCrumb title="NOI题解" url="http://yoursite.com/categories/NOI%E9%A2%98%E8%A7%A3/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2018/08/23/poj3468/</loc>
+    <lastmod>2018-08-25T10:19:53.098Z</lastmod>
+    <data>
+        <display>
+        <title>POJ3468 A Simple Problem with Integers</title>
+        <pubTime>2018-08-23T11:03:53.000Z</pubTime>
+        
+        <tag>线段树</tag>
+         
+         
+           
+             
+              <breadCrumb title="POJ" url="http://yoursite.com/categories/POJ/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2018/08/25/bzoj2440/</loc>
+    <lastmod>2018-08-25T10:12:42.600Z</lastmod>
+    <data>
+        <display>
+        <title>BZOJ2440 完全平方数</title>
+        <pubTime>2018-08-25T09:55:52.000Z</pubTime>
+        
+        <tag>二分</tag>
+         
+        <tag>数论</tag>
+         
+         
+           
+             
+              <breadCrumb title="BZOJ" url="http://yoursite.com/categories/BZOJ/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2018/08/25/poj3614/</loc>
+    <lastmod>2018-08-25T09:39:35.725Z</lastmod>
+    <data>
+        <display>
+        <title>poj3614</title>
+        <pubTime>2018-08-25T09:39:35.000Z</pubTime>
+        
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2018/08/23/poj3784/</loc>
+    <lastmod>2018-08-25T09:37:48.460Z</lastmod>
+    <data>
+        <display>
+        <title>POJ3784 Running Median</title>
+        <pubTime>2018-08-23T11:03:53.000Z</pubTime>
+        
+        <tag>堆</tag>
+         
+         
+           
+             
+              <breadCrumb title="POJ" url="http://yoursite.com/categories/POJ/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2018/08/25/contest-cf1029/</loc>
+    <lastmod>2018-08-25T09:00:53.748Z</lastmod>
+    <data>
+        <display>
+        <title>Codeforces Round 506 (Div. 3) 题解</title>
+        <pubTime>2018-08-24T16:13:30.000Z</pubTime>
+        
+        <tag>模拟</tag>
+         
+        <tag>字符串</tag>
+         
+        <tag>贪心</tag>
+         
+         
+           
+             
+              <breadCrumb title="Codeforces" url="http://yoursite.com/categories/Codeforces/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2018/08/24/luogu4317/</loc>
+    <lastmod>2018-08-24T14:20:17.102Z</lastmod>
+    <data>
+        <display>
+        <title>luogu4317</title>
+        <pubTime>2018-08-24T14:20:17.000Z</pubTime>
+        
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2018/08/24/cf438d/</loc>
+    <lastmod>2018-08-24T14:16:09.266Z</lastmod>
+    <data>
+        <display>
+        <title>Codeforces 438D The Child and Sequence</title>
+        <pubTime>2018-08-24T08:57:06.000Z</pubTime>
+        
+        <tag>线段树</tag>
+         
+         
+           
+             
+              <breadCrumb title="Codeforces" url="http://yoursite.com/categories/Codeforces/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2018/08/24/cf813c/</loc>
+    <lastmod>2018-08-24T14:05:08.722Z</lastmod>
+    <data>
+        <display>
+        <title>Codeforces 813C The Tag Game</title>
+        <pubTime>2018-08-24T08:57:06.000Z</pubTime>
+        
+        <tag>树形结构</tag>
+         
+        <tag>贪心</tag>
+         
+         
+           
+             
+              <breadCrumb title="Codeforces" url="http://yoursite.com/categories/Codeforces/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2018/08/24/cf405c/</loc>
+    <lastmod>2018-08-24T12:05:55.935Z</lastmod>
+    <data>
+        <display>
+        <title>Codeforces 405C Unusual Product</title>
+        <pubTime>2018-08-24T08:57:06.000Z</pubTime>
+        
+        <tag>模拟</tag>
+         
+         
+           
+             
+              <breadCrumb title="Codeforces" url="http://yoursite.com/categories/Codeforces/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2018/08/24/template-bi-or-trinary/</loc>
+    <lastmod>2018-08-24T09:03:31.303Z</lastmod>
+    <data>
+        <display>
+        <title>模板 二分法和三分法</title>
+        <pubTime>2018-08-24T07:18:48.000Z</pubTime>
+        
+         
+           
+             
+              <breadCrumb title="模板" url="http://yoursite.com/categories/%E6%A8%A1%E6%9D%BF/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2018/08/24/cf670c/</loc>
+    <lastmod>2018-08-24T09:03:25.707Z</lastmod>
+    <data>
+        <display>
+        <title>Codeforces 670C Cinema</title>
+        <pubTime>2018-08-24T08:57:06.000Z</pubTime>
+        
+        <tag>离散化</tag>
+         
+         
+           
+             
+              <breadCrumb title="Codeforces" url="http://yoursite.com/categories/Codeforces/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2018/08/24/poj2018/</loc>
+    <lastmod>2018-08-24T08:38:40.518Z</lastmod>
+    <data>
+        <display>
+        <title>POJ2018 Best Cow Fences</title>
+        <pubTime>2018-08-23T16:03:13.000Z</pubTime>
+        
+        <tag>二分</tag>
+         
+         
+           
+             
+              <breadCrumb title="POJ" url="http://yoursite.com/categories/POJ/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2018/08/24/poj1845/</loc>
+    <lastmod>2018-08-24T05:51:24.361Z</lastmod>
+    <data>
+        <display>
+        <title>POJ1458 Sumdiv</title>
+        <pubTime>2018-08-23T16:03:13.000Z</pubTime>
+        
+        <tag>分治</tag>
+         
+         
+           
+             
+              <breadCrumb title="POJ" url="http://yoursite.com/categories/POJ/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2018/08/24/luogu2879/</loc>
+    <lastmod>2018-08-24T03:53:23.573Z</lastmod>
+    <data>
+        <display>
+        <title>USACO07JAN Tallest Cow</title>
+        <pubTime>2018-08-24T03:49:28.000Z</pubTime>
+        
+        <tag>贪心</tag>
+         
+        <tag>差分</tag>
+         
+         
+           
+             
+              <breadCrumb title="USACO" url="http://yoursite.com/categories/USACO/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2018/08/24/poj1958/</loc>
+    <lastmod>2018-08-23T16:07:49.718Z</lastmod>
+    <data>
+        <display>
+        <title>POJ1958 Strange Towers of Hanoi</title>
+        <pubTime>2018-08-23T16:03:13.000Z</pubTime>
+        
+        <tag>递推</tag>
+         
+         
+           
+             
+              <breadCrumb title="POJ" url="http://yoursite.com/categories/POJ/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2018/08/23/noip2001-2005/</loc>
+    <lastmod>2018-08-23T15:45:35.672Z</lastmod>
+    <data>
+        <display>
+        <title>NOIP2001-2005 题解</title>
+        <pubTime>2018-08-23T02:45:37.000Z</pubTime>
+        
+        <tag>最短路</tag>
+         
+        <tag>数学</tag>
+         
+        <tag>模拟</tag>
+         
+        <tag>二分</tag>
+         
+        <tag>栈</tag>
+         
+        <tag>DFS</tag>
+         
+        <tag>数论</tag>
          
         <tag>树形结构</tag>
+         
+        <tag>拓扑排序</tag>
+         
+        <tag>背包DP</tag>
+         
+        <tag>递推</tag>
+         
+        <tag>非完美算法</tag>
+         
+        <tag>计算几何</tag>
+         
+         
+           
+             
+              <breadCrumb title="NOIP题解" url="http://yoursite.com/categories/NOIP%E9%A2%98%E8%A7%A3/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2018/08/15/pe61-100/</loc>
+    <lastmod>2018-08-23T13:25:15.775Z</lastmod>
+    <data>
+        <display>
+        <title>ProjectEuler 61-100题解</title>
+        <pubTime>2018-08-15T14:31:56.000Z</pubTime>
+        
+        <tag>数学</tag>
+         
+         
+           
+             
+              <breadCrumb title="ProjectEuler" url="http://yoursite.com/categories/ProjectEuler/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2018/08/23/poj1995/</loc>
+    <lastmod>2018-08-23T11:05:02.199Z</lastmod>
+    <data>
+        <display>
+        <title>POJ1995 Raising Modulo Numbers</title>
+        <pubTime>2018-08-23T11:03:53.000Z</pubTime>
+        
+        <tag>快速幂</tag>
+         
+         
+           
+             
+              <breadCrumb title="POJ" url="http://yoursite.com/categories/POJ/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2018/08/23/aoapc-chapter9/</loc>
+    <lastmod>2018-08-23T11:02:29.226Z</lastmod>
+    <data>
+        <display>
+        <title>紫书习题 第九章</title>
+        <pubTime>2018-08-23T08:18:39.000Z</pubTime>
+        
+        <tag>其他DP</tag>
+         
+        <tag>背包DP</tag>
          
          
            
@@ -30,18 +517,46 @@
 
     
   <url>
-    <loc>http://yoursite.com/2018/08/21/noip1996-2001/</loc>
-    <lastmod>2018-08-21T06:21:34.834Z</lastmod>
+    <loc>http://yoursite.com/2018/08/23/aoapc-chapter8/</loc>
+    <lastmod>2018-08-23T04:07:02.677Z</lastmod>
     <data>
         <display>
-        <title>NOIP1996-2001 题解</title>
+        <title>紫书习题 第八章</title>
+        <pubTime>2018-08-23T04:00:45.000Z</pubTime>
+        
+        <tag>模拟</tag>
+         
+        <tag>二分</tag>
+         
+         
+           
+             
+              <breadCrumb title="UVa" url="http://yoursite.com/categories/UVa/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2018/08/21/noip1996-2000/</loc>
+    <lastmod>2018-08-23T03:20:30.362Z</lastmod>
+    <data>
+        <display>
+        <title>NOIP1996-2000 题解</title>
         <pubTime>2018-08-21T06:01:36.000Z</pubTime>
         
-        <tag>枚举</tag>
-         
         <tag>数学</tag>
          
+        <tag>堆</tag>
+         
+        <tag>枚举</tag>
+         
+        <tag>贪心</tag>
+         
         <tag>背包DP</tag>
+         
+        <tag>线性DP</tag>
          
         <tag>图上DP</tag>
          
@@ -49,10 +564,82 @@
          
         <tag>棋盘DP</tag>
          
+        <tag>部分搜索</tag>
+         
          
            
              
               <breadCrumb title="NOIP题解" url="http://yoursite.com/categories/NOIP%E9%A2%98%E8%A7%A3/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2018/08/20/aoapc-chapter6/</loc>
+    <lastmod>2018-08-23T03:05:30.154Z</lastmod>
+    <data>
+        <display>
+        <title>紫书习题 第六章</title>
+        <pubTime>2018-08-20T09:23:03.000Z</pubTime>
+        
+        <tag>模拟</tag>
+         
+        <tag>栈</tag>
+         
+        <tag>搜索</tag>
+         
+        <tag>链表</tag>
+         
+        <tag>树形结构</tag>
+         
+        <tag>拓扑排序</tag>
+         
+         
+           
+             
+              <breadCrumb title="UVa" url="http://yoursite.com/categories/UVa/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2018/08/10/problem-fibonacci/</loc>
+    <lastmod>2018-08-22T14:31:14.843Z</lastmod>
+    <data>
+        <display>
+        <title>待更 斐波那契系列问题</title>
+        <pubTime>2018-08-10T14:31:20.000Z</pubTime>
+        
+        <tag>数学</tag>
+         
+         
+           
+             
+              <breadCrumb title="杂谈" url="http://yoursite.com/categories/%E6%9D%82%E8%B0%88/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2018/08/04/luogu2176/</loc>
+    <lastmod>2018-08-22T08:22:29.758Z</lastmod>
+    <data>
+        <display>
+        <title>USACO14FEB Roadblock</title>
+        <pubTime>2018-08-04T02:57:08.000Z</pubTime>
+        
+        <tag>最短路</tag>
+         
+         
+           
+             
+              <breadCrumb title="USACO" url="http://yoursite.com/categories/USACO/"/>
           
         </display>
     </data>
@@ -67,9 +654,9 @@
         <title>NOIP2006 题解</title>
         <pubTime>2018-08-21T03:09:26.000Z</pubTime>
         
-        <tag>模拟</tag>
-         
         <tag>数学</tag>
+         
+        <tag>模拟</tag>
          
         <tag>背包DP</tag>
          
@@ -132,8 +719,6 @@
         <title>紫书习题 第五章</title>
         <pubTime>2018-08-20T09:11:06.000Z</pubTime>
         
-        <tag>栈</tag>
-         
         <tag>模拟</tag>
          
         <tag>字符串</tag>
@@ -141,6 +726,8 @@
         <tag>STL</tag>
          
         <tag>二分</tag>
+         
+        <tag>栈</tag>
          
         <tag>堆</tag>
          
@@ -212,11 +799,11 @@
         <title>紫书习题 第三章</title>
         <pubTime>2018-08-20T08:40:02.000Z</pubTime>
         
+        <tag>数学</tag>
+         
         <tag>模拟</tag>
          
         <tag>字符串</tag>
-         
-        <tag>数学</tag>
          
          
            
@@ -242,11 +829,11 @@
          
         <tag>DFS</tag>
          
+        <tag>数论</tag>
+         
         <tag>单调队列</tag>
          
         <tag>状压DP</tag>
-         
-        <tag>数论</tag>
          
         <tag>LCA</tag>
          
@@ -272,7 +859,11 @@
         <title>NOIP2015 题解</title>
         <pubTime>2018-08-20T05:29:37.000Z</pubTime>
         
+        <tag>数学</tag>
+         
         <tag>模拟</tag>
+         
+        <tag>二分</tag>
          
         <tag>枚举</tag>
          
@@ -280,21 +871,17 @@
          
         <tag>搜索</tag>
          
-        <tag>数学</tag>
-         
-        <tag>二分</tag>
+        <tag>贪心</tag>
          
         <tag>其他DP</tag>
          
-        <tag>贪心</tag>
-         
         <tag>字符串DP</tag>
+         
+        <tag>差分</tag>
          
         <tag>强连通分量</tag>
          
         <tag>LCA</tag>
-         
-        <tag>差分</tag>
          
          
            
@@ -318,19 +905,19 @@
          
         <tag>模拟</tag>
          
-        <tag>树形结构</tag>
+        <tag>二分</tag>
          
         <tag>枚举</tag>
          
-        <tag>二分</tag>
+        <tag>树形结构</tag>
          
         <tag>背包DP</tag>
          
         <tag>非完美算法</tag>
          
-        <tag>部分搜索</tag>
-         
         <tag>BFS</tag>
+         
+        <tag>部分搜索</tag>
          
          
            
@@ -365,27 +952,27 @@
         <title>NOIP2013 题解</title>
         <pubTime>2018-08-20T05:29:37.000Z</pubTime>
         
-        <tag>栈</tag>
-         
         <tag>模拟</tag>
          
+        <tag>栈</tag>
+         
         <tag>搜索</tag>
+         
+        <tag>拓扑排序</tag>
+         
+        <tag>贪心</tag>
          
         <tag>MST</tag>
          
         <tag>线性DP</tag>
          
-        <tag>贪心</tag>
-         
         <tag>树状数组</tag>
-         
-        <tag>拓扑排序</tag>
-         
-        <tag>分治</tag>
          
         <tag>差分约束</tag>
          
         <tag>快速幂</tag>
+         
+        <tag>分治</tag>
          
         <tag>LCA</tag>
          
@@ -409,19 +996,19 @@
         
         <tag>模拟</tag>
          
+        <tag>二分</tag>
+         
         <tag>搜索</tag>
          
-        <tag>二分</tag>
+        <tag>数论</tag>
+         
+        <tag>贪心</tag>
          
         <tag>其他DP</tag>
          
         <tag>SPFA</tag>
          
-        <tag>贪心</tag>
-         
         <tag>倍增</tag>
-         
-        <tag>数论</tag>
          
         <tag>高精度</tag>
          
@@ -443,19 +1030,19 @@
         <title>NOIP2011 题解</title>
         <pubTime>2018-08-20T05:29:37.000Z</pubTime>
         
-        <tag>栈</tag>
+        <tag>数学</tag>
          
         <tag>模拟</tag>
+         
+        <tag>字符串</tag>
+         
+        <tag>二分</tag>
+         
+        <tag>栈</tag>
          
         <tag>枚举</tag>
          
         <tag>搜索</tag>
-         
-        <tag>字符串</tag>
-         
-        <tag>数学</tag>
-         
-        <tag>二分</tag>
          
         <tag>贪心</tag>
          
@@ -483,17 +1070,17 @@
         
         <tag>模拟</tag>
          
-        <tag>搜索</tag>
-         
         <tag>堆</tag>
          
         <tag>队列</tag>
          
+        <tag>搜索</tag>
+         
+        <tag>贪心</tag>
+         
         <tag>其他DP</tag>
          
         <tag>并查集</tag>
-         
-        <tag>贪心</tag>
          
          
            
@@ -515,15 +1102,15 @@
         
         <tag>模拟</tag>
          
+        <tag>字符串</tag>
+         
         <tag>搜索</tag>
          
-        <tag>字符串</tag>
+        <tag>数论</tag>
          
         <tag>其他DP</tag>
          
         <tag>单调队列</tag>
-         
-        <tag>数论</tag>
          
         <tag>强连通分量</tag>
          
@@ -547,17 +1134,17 @@
         
         <tag>模拟</tag>
          
+        <tag>字符串</tag>
+         
         <tag>枚举</tag>
          
         <tag>DFS</tag>
          
-        <tag>字符串</tag>
+        <tag>贪心</tag>
          
         <tag>暴力</tag>
          
         <tag>递推</tag>
-         
-        <tag>贪心</tag>
          
         <tag>二分图</tag>
          
@@ -728,26 +1315,6 @@
 
     
   <url>
-    <loc>http://yoursite.com/2018/08/15/pe61-100/</loc>
-    <lastmod>2018-08-18T11:08:15.019Z</lastmod>
-    <data>
-        <display>
-        <title>ProjectEuler 61-100题解</title>
-        <pubTime>2018-08-15T14:31:56.000Z</pubTime>
-        
-        <tag>数学</tag>
-         
-         
-           
-             
-              <breadCrumb title="ProjectEuler" url="http://yoursite.com/categories/ProjectEuler/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://yoursite.com/2018/08/18/uva106/</loc>
     <lastmod>2018-08-18T06:36:14.478Z</lastmod>
     <data>
@@ -781,26 +1348,6 @@
            
              
               <breadCrumb title="ProjectEuler" url="http://yoursite.com/categories/ProjectEuler/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://yoursite.com/2018/08/10/problem-fibonacci/</loc>
-    <lastmod>2018-08-10T14:38:10.572Z</lastmod>
-    <data>
-        <display>
-        <title>待更 斐波那契系列问题</title>
-        <pubTime>2018-08-10T14:31:20.000Z</pubTime>
-        
-        <tag>数学</tag>
-         
-         
-           
-             
-              <breadCrumb title="杂谈" url="http://yoursite.com/categories/%E6%9D%82%E8%B0%88/"/>
           
         </display>
     </data>
@@ -1437,9 +1984,9 @@
         <title>POI2014 HOT-Hotels</title>
         <pubTime>2018-08-09T02:48:53.000Z</pubTime>
         
-        <tag>树形结构</tag>
-         
         <tag>枚举</tag>
+         
+        <tag>树形结构</tag>
          
          
            
@@ -1481,9 +2028,9 @@
         <title>NOI2011 兔农</title>
         <pubTime>2018-08-09T02:32:58.000Z</pubTime>
         
-        <tag>矩阵乘法</tag>
-         
         <tag>数论</tag>
+         
+        <tag>矩阵乘法</tag>
          
          
            
@@ -1512,52 +2059,6 @@
            
              
               <breadCrumb title="UVa" url="http://yoursite.com/categories/UVa/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://yoursite.com/2018/08/06/noi2001t1/</loc>
-    <lastmod>2018-08-06T15:22:21.894Z</lastmod>
-    <data>
-        <display>
-        <title>NOI2001 反正切函数的应用</title>
-        <pubTime>2018-08-06T15:21:42.000Z</pubTime>
-        
-        <tag>数学</tag>
-         
-         
-           
-             
-              <breadCrumb title="NOI题解" url="http://yoursite.com/categories/NOI%E9%A2%98%E8%A7%A3/"/>
-          
-             
-              <breadCrumb title="NOI2001" url="http://yoursite.com/categories/NOI%E9%A2%98%E8%A7%A3/NOI2001/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://yoursite.com/2018/08/06/noi2002t2/</loc>
-    <lastmod>2018-08-06T15:17:15.849Z</lastmod>
-    <data>
-        <display>
-        <title>NOI2002 调皮的小孩</title>
-        <pubTime>2018-08-06T15:13:43.000Z</pubTime>
-        
-        <tag>模拟</tag>
-         
-         
-           
-             
-              <breadCrumb title="NOI题解" url="http://yoursite.com/categories/NOI%E9%A2%98%E8%A7%A3/"/>
-          
-             
-              <breadCrumb title="NOI2002" url="http://yoursite.com/categories/NOI%E9%A2%98%E8%A7%A3/NOI2002/"/>
           
         </display>
     </data>
@@ -1856,290 +2357,6 @@
 
     
   <url>
-    <loc>http://yoursite.com/2018/07/16/noip2001pjt2/</loc>
-    <lastmod>2018-08-04T14:56:30.451Z</lastmod>
-    <data>
-        <display>
-        <title>NOIP2001普及 最大公约数与最小公倍数问题</title>
-        <pubTime>2018-07-16T09:53:56.000Z</pubTime>
-        
-        <tag>数论</tag>
-         
-         
-           
-             
-              <breadCrumb title="NOIP题解" url="http://yoursite.com/categories/NOIP%E9%A2%98%E8%A7%A3/"/>
-          
-             
-              <breadCrumb title="NOIP2001" url="http://yoursite.com/categories/NOIP%E9%A2%98%E8%A7%A3/NOIP2001/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://yoursite.com/2018/07/16/noip2001tgt4/</loc>
-    <lastmod>2018-08-04T14:56:16.358Z</lastmod>
-    <data>
-        <display>
-        <title>NOIP2001提高 Car的旅行路线</title>
-        <pubTime>2018-07-16T09:52:23.000Z</pubTime>
-        
-        <tag>最短路</tag>
-         
-        <tag>计算几何</tag>
-         
-         
-           
-             
-              <breadCrumb title="NOIP题解" url="http://yoursite.com/categories/NOIP%E9%A2%98%E8%A7%A3/"/>
-          
-             
-              <breadCrumb title="NOIP2001" url="http://yoursite.com/categories/NOIP%E9%A2%98%E8%A7%A3/NOIP2001/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://yoursite.com/2018/07/16/noip2001pjt3/</loc>
-    <lastmod>2018-08-04T14:55:42.344Z</lastmod>
-    <data>
-        <display>
-        <title>NOIP2001普及 求先序排列</title>
-        <pubTime>2018-07-16T09:50:49.000Z</pubTime>
-        
-        <tag>分治</tag>
-         
-         
-           
-             
-              <breadCrumb title="NOIP题解" url="http://yoursite.com/categories/NOIP%E9%A2%98%E8%A7%A3/"/>
-          
-             
-              <breadCrumb title="NOIP2001" url="http://yoursite.com/categories/NOIP%E9%A2%98%E8%A7%A3/NOIP2001/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://yoursite.com/2018/07/15/noip2001pjt1/</loc>
-    <lastmod>2018-08-04T14:51:42.760Z</lastmod>
-    <data>
-        <display>
-        <title>NOIP2001普及 数的计算</title>
-        <pubTime>2018-07-15T14:06:38.000Z</pubTime>
-        
-        <tag>递推</tag>
-         
-         
-           
-             
-              <breadCrumb title="NOIP题解" url="http://yoursite.com/categories/NOIP%E9%A2%98%E8%A7%A3/"/>
-          
-             
-              <breadCrumb title="NOIP2001" url="http://yoursite.com/categories/NOIP%E9%A2%98%E8%A7%A3/NOIP2001/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://yoursite.com/2018/07/15/noip2001tgt1/</loc>
-    <lastmod>2018-08-04T14:51:19.197Z</lastmod>
-    <data>
-        <display>
-        <title>NOIP2001提高 一元三次方程求解</title>
-        <pubTime>2018-07-15T04:13:33.000Z</pubTime>
-        
-        <tag>数学</tag>
-         
-        <tag>二分</tag>
-         
-         
-           
-             
-              <breadCrumb title="NOIP题解" url="http://yoursite.com/categories/NOIP%E9%A2%98%E8%A7%A3/"/>
-          
-             
-              <breadCrumb title="NOIP2001" url="http://yoursite.com/categories/NOIP%E9%A2%98%E8%A7%A3/NOIP2001/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://yoursite.com/2018/07/15/noip1999pjt1/</loc>
-    <lastmod>2018-08-04T14:50:50.943Z</lastmod>
-    <data>
-        <display>
-        <title>NOIP1999普及 Cantor表</title>
-        <pubTime>2018-07-15T04:11:19.000Z</pubTime>
-        
-        <tag>数学</tag>
-         
-         
-           
-             
-              <breadCrumb title="NOIP题解" url="http://yoursite.com/categories/NOIP%E9%A2%98%E8%A7%A3/"/>
-          
-             
-              <breadCrumb title="NOIP1999" url="http://yoursite.com/categories/NOIP%E9%A2%98%E8%A7%A3/NOIP1999/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://yoursite.com/2018/07/15/noip1999tgt3/</loc>
-    <lastmod>2018-08-04T14:50:26.162Z</lastmod>
-    <data>
-        <display>
-        <title>NOIP1999提高 旅行家的预算</title>
-        <pubTime>2018-07-15T04:08:05.000Z</pubTime>
-        
-        <tag>堆</tag>
-         
-        <tag>贪心</tag>
-         
-         
-           
-             
-              <breadCrumb title="NOIP题解" url="http://yoursite.com/categories/NOIP%E9%A2%98%E8%A7%A3/"/>
-          
-             
-              <breadCrumb title="NOIP1999" url="http://yoursite.com/categories/NOIP%E9%A2%98%E8%A7%A3/NOIP1999/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://yoursite.com/2018/07/15/noip1999tgt1/</loc>
-    <lastmod>2018-08-04T14:50:11.216Z</lastmod>
-    <data>
-        <display>
-        <title>NOIP1999提高 导弹拦截</title>
-        <pubTime>2018-07-15T04:03:50.000Z</pubTime>
-        
-        <tag>线性DP</tag>
-         
-        <tag>贪心</tag>
-         
-         
-           
-             
-              <breadCrumb title="NOIP题解" url="http://yoursite.com/categories/NOIP%E9%A2%98%E8%A7%A3/"/>
-          
-             
-              <breadCrumb title="NOIP1999" url="http://yoursite.com/categories/NOIP%E9%A2%98%E8%A7%A3/NOIP1999/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://yoursite.com/2018/07/16/noip2003tgt1/</loc>
-    <lastmod>2018-08-04T14:48:41.208Z</lastmod>
-    <data>
-        <display>
-        <title>NOIP2003提高 神经网络</title>
-        <pubTime>2018-07-16T09:58:15.000Z</pubTime>
-        
-        <tag>拓扑排序</tag>
-         
-         
-           
-             
-              <breadCrumb title="NOIP题解" url="http://yoursite.com/categories/NOIP%E9%A2%98%E8%A7%A3/"/>
-          
-             
-              <breadCrumb title="NOIP2003" url="http://yoursite.com/categories/NOIP%E9%A2%98%E8%A7%A3/NOIP2003/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://yoursite.com/2018/07/17/noip2004tgt1/</loc>
-    <lastmod>2018-08-04T14:46:46.971Z</lastmod>
-    <data>
-        <display>
-        <title>NOIP2004提高 津津的储蓄计划</title>
-        <pubTime>2018-07-17T07:59:38.000Z</pubTime>
-        
-        <tag>模拟</tag>
-         
-         
-           
-             
-              <breadCrumb title="NOIP题解" url="http://yoursite.com/categories/NOIP%E9%A2%98%E8%A7%A3/"/>
-          
-             
-              <breadCrumb title="NOIP2004" url="http://yoursite.com/categories/NOIP%E9%A2%98%E8%A7%A3/NOIP2004/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://yoursite.com/2018/07/18/noip2002pjt2/</loc>
-    <lastmod>2018-08-04T14:46:09.568Z</lastmod>
-    <data>
-        <display>
-        <title>NOIP2002普及 选数</title>
-        <pubTime>2018-07-18T02:56:41.000Z</pubTime>
-        
-        <tag>DFS</tag>
-         
-         
-           
-             
-              <breadCrumb title="NOIP题解" url="http://yoursite.com/categories/NOIP%E9%A2%98%E8%A7%A3/"/>
-          
-             
-              <breadCrumb title="NOIP2002" url="http://yoursite.com/categories/NOIP%E9%A2%98%E8%A7%A3/NOIP2002/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://yoursite.com/2018/07/18/noip2005tgt4/</loc>
-    <lastmod>2018-08-04T14:44:46.581Z</lastmod>
-    <data>
-        <display>
-        <title>NOIP2005提高 等价表达式</title>
-        <pubTime>2018-07-18T03:20:54.000Z</pubTime>
-        
-        <tag>栈</tag>
-         
-         
-           
-             
-              <breadCrumb title="NOIP题解" url="http://yoursite.com/categories/NOIP%E9%A2%98%E8%A7%A3/"/>
-          
-             
-              <breadCrumb title="NOIP2005" url="http://yoursite.com/categories/NOIP%E9%A2%98%E8%A7%A3/NOIP2005/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://yoursite.com/2018/08/02/noi2012t1/</loc>
     <lastmod>2018-08-04T14:14:14.722Z</lastmod>
     <data>
@@ -2158,29 +2375,6 @@
           
              
               <breadCrumb title="NOI2012" url="http://yoursite.com/categories/NOI%E9%A2%98%E8%A7%A3/NOI2012/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://yoursite.com/2018/08/02/noi1998t1/</loc>
-    <lastmod>2018-08-04T14:13:50.342Z</lastmod>
-    <data>
-        <display>
-        <title>NOI1998 个人所得税</title>
-        <pubTime>2018-08-02T12:50:21.000Z</pubTime>
-        
-        <tag>模拟</tag>
-         
-         
-           
-             
-              <breadCrumb title="NOI题解" url="http://yoursite.com/categories/NOI%E9%A2%98%E8%A7%A3/"/>
-          
-             
-              <breadCrumb title="NOI1998" url="http://yoursite.com/categories/NOI%E9%A2%98%E8%A7%A3/NOI1998/"/>
           
         </display>
     </data>
@@ -2750,26 +2944,6 @@
         <pubTime>2018-08-04T02:53:23.000Z</pubTime>
         
         <tag>二分</tag>
-         
-         
-           
-             
-              <breadCrumb title="USACO" url="http://yoursite.com/categories/USACO/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://yoursite.com/2018/08/04/luogu2176/</loc>
-    <lastmod>2018-08-04T14:08:30.921Z</lastmod>
-    <data>
-        <display>
-        <title>USACO14FEB 路障Roadblock</title>
-        <pubTime>2018-08-04T02:57:08.000Z</pubTime>
-        
-        <tag>最短路</tag>
          
          
            
