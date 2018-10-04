@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="最短路,数学,模拟,二分,栈,DFS,数论,树形结构,拓扑排序,背包DP,递推,非完美算法,计算几何," />
+  <meta name="keywords" content="数学,DFS,模拟,二分,栈,树形结构,拓扑排序,数论,背包DP,最短路,递推,非完美算法,计算几何," />
 
 
 
@@ -80,14 +80,14 @@
 
 
 <meta name="description" content="本文包含了NOIP2001-2005题目的题解。">
-<meta name="keywords" content="最短路,数学,模拟,二分,栈,DFS,数论,树形结构,拓扑排序,背包DP,递推,非完美算法,计算几何">
+<meta name="keywords" content="数学,DFS,模拟,二分,栈,树形结构,拓扑排序,数论,背包DP,最短路,递推,非完美算法,计算几何">
 <meta property="og:type" content="article">
 <meta property="og:title" content="NOIP2001-2005 题解">
 <meta property="og:url" content="http://yoursite.com/2018/08/23/noip2001-2005/index.html">
 <meta property="og:site_name" content="zqy1018的博客">
 <meta property="og:description" content="本文包含了NOIP2001-2005题目的题解。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-08-23T15:45:35.672Z">
+<meta property="og:updated_time" content="2018-08-29T11:46:48.946Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="NOIP2001-2005 题解">
 <meta name="twitter:description" content="本文包含了NOIP2001-2005题目的题解。">
@@ -401,7 +401,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  2,753 字
+                  2,941 字
                 </span>
               
 
@@ -438,7 +438,7 @@ dp\left(1\right) = 1</script><figure class="highlight cpp"><table><tr><td class=
 <p>由后序得根，然后中序的两半继续分治。<br>递归建立一颗树。<br>具体过程是，在中序中找到根，然后由于左右子树分别在其左右，故可以再为左右子树建树。<br>如果到了树为空的情况就返回。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdlib&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cctype&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> INF 2000000000</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</span><br><span class="line"><span class="keyword">char</span> s1[<span class="number">30</span>], s2[<span class="number">30</span>];</span><br><span class="line"><span class="keyword">int</span> root, lc[<span class="number">250</span>], rc[<span class="number">250</span>];</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">get</span><span class="params">(<span class="keyword">int</span> il, <span class="keyword">int</span> ir, <span class="keyword">int</span> pl, <span class="keyword">int</span> pr)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(ir - il &lt; <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> id = s2[pr], i;</span><br><span class="line">    <span class="keyword">for</span>(i = il; i &lt;= ir; ++i)</span><br><span class="line">        <span class="keyword">if</span>(s1[i] == id) <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">int</span> len = i - il;</span><br><span class="line">    lc[id] = get(il, i - <span class="number">1</span>, pl, pl + len - <span class="number">1</span>);</span><br><span class="line">    rc[id] = get(i + <span class="number">1</span>, ir, pl + len, pr - <span class="number">1</span>);</span><br><span class="line">    <span class="keyword">return</span> id;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">getP</span><span class="params">(<span class="keyword">int</span> id)</span></span>&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%c"</span>, id);</span><br><span class="line">    <span class="keyword">if</span>(lc[id]) getP(lc[id]);</span><br><span class="line">    <span class="keyword">if</span>(rc[id]) getP(rc[id]);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">solve</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> len = <span class="built_in">strlen</span>(s1);</span><br><span class="line">    root = get(<span class="number">0</span>, len - <span class="number">1</span>, <span class="number">0</span>, len - <span class="number">1</span>);</span><br><span class="line">    getP(root);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%s%s"</span>, s1, s2);</span><br><span class="line">    solve();</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <hr>
 <h2 id="普及T4-装箱问题"><a href="#普及T4-装箱问题" class="headerlink" title="普及T4 装箱问题"></a>普及T4 装箱问题</h2><p><a href="https://www.luogu.org/problemnew/show/P1049" target="_blank" rel="noopener">题目地址</a></p>
-<p>一个简单的背包问题。<br>不过稍微要做一些处理，</p>
+<p>一个简单的背包问题。<br>不过稍微要做一些处理，只要考虑状态的合法性即可。初始合法的状态就是箱子为空，随后按照01背包扩展到其他状态。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> INF 2000000000</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">read</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> f = <span class="number">1</span>, x = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">char</span> c = getchar();</span><br><span class="line">    <span class="keyword">while</span>(c &lt; <span class="string">'0'</span> || c &gt; <span class="string">'9'</span>)&#123;<span class="keyword">if</span>(c == <span class="string">'-'</span>) f = -f; c = getchar(); &#125;</span><br><span class="line">    <span class="keyword">while</span>(c &gt;= <span class="string">'0'</span> &amp;&amp; c &lt;= <span class="string">'9'</span>)x = x * <span class="number">10</span> + c - <span class="string">'0'</span>, c = getchar();</span><br><span class="line">    <span class="keyword">return</span> f * x; </span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">int</span> V, n, f[<span class="number">20005</span>] = &#123;<span class="number">0</span>&#125;, v[<span class="number">35</span>];</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">init</span><span class="params">()</span></span>&#123;</span><br><span class="line">    V = read(), n = read();</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; ++i)</span><br><span class="line">        v[i] = read();</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">solve</span><span class="params">()</span></span>&#123;</span><br><span class="line">    f[<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; ++i)  </span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j = V; j &gt;= v[i]; --j)</span><br><span class="line">            f[j] |= f[j - v[i]];</span><br><span class="line">    <span class="keyword">int</span> ans;</span><br><span class="line">    <span class="keyword">for</span>(ans = V; !f[ans]; --ans)</span><br><span class="line">        ;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%d\n"</span>, V - ans);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    init();</span><br><span class="line">    solve();</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <h2 id="提高T1-一元三次方程求解"><a href="#提高T1-一元三次方程求解" class="headerlink" title="提高T1 一元三次方程求解"></a>提高T1 一元三次方程求解</h2><p><a href="https://www.luogu.org/problemnew/show/P1024" target="_blank" rel="noopener">题目地址</a></p>
 <p>有4种方法：</p>
 <ol>
@@ -488,9 +488,9 @@ dp\left(1\right) = 1</script><figure class="highlight cpp"><table><tr><td class=
       
         <div class="post-tags">
           
-            <a href="/tags/最短路/" rel="tag"># 最短路</a>
-          
             <a href="/tags/数学/" rel="tag"># 数学</a>
+          
+            <a href="/tags/DFS/" rel="tag"># DFS</a>
           
             <a href="/tags/模拟/" rel="tag"># 模拟</a>
           
@@ -498,15 +498,15 @@ dp\left(1\right) = 1</script><figure class="highlight cpp"><table><tr><td class=
           
             <a href="/tags/栈/" rel="tag"># 栈</a>
           
-            <a href="/tags/DFS/" rel="tag"># DFS</a>
-          
-            <a href="/tags/数论/" rel="tag"># 数论</a>
-          
             <a href="/tags/树形结构/" rel="tag"># 树形结构</a>
           
             <a href="/tags/拓扑排序/" rel="tag"># 拓扑排序</a>
           
+            <a href="/tags/数论/" rel="tag"># 数论</a>
+          
             <a href="/tags/背包DP/" rel="tag"># 背包DP</a>
+          
+            <a href="/tags/最短路/" rel="tag"># 最短路</a>
           
             <a href="/tags/递推/" rel="tag"># 递推</a>
           
@@ -617,7 +617,7 @@ dp\left(1\right) = 1</script><figure class="highlight cpp"><table><tr><td class=
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">156</span>
+                  <span class="site-state-item-count">197</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -628,7 +628,7 @@ dp\left(1\right) = 1</script><figure class="highlight cpp"><table><tr><td class=
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">18</span>
+                  <span class="site-state-item-count">21</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -639,7 +639,7 @@ dp\left(1\right) = 1</script><figure class="highlight cpp"><table><tr><td class=
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">74</span>
+                  <span class="site-state-item-count">82</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -706,7 +706,7 @@ dp\left(1\right) = 1</script><figure class="highlight cpp"><table><tr><td class=
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">127.6k</span>
+    <span title="Site words total count">143.0k</span>
   
 </div>
 
