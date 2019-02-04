@@ -86,7 +86,7 @@
 <meta property="og:site_name" content="zqy1018的博客">
 <meta property="og:description" content="一些简单的数学相关算法模板。本文主要集中于模相关的问题。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-08-29T08:47:29.939Z">
+<meta property="og:updated_time" content="2018-12-13T13:07:25.346Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="模板 数学（2）">
 <meta name="twitter:description" content="一些简单的数学相关算法模板。本文主要集中于模相关的问题。">
@@ -400,7 +400,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  312 字
+                  788 字
                 </span>
               
 
@@ -431,9 +431,23 @@
 <h3 id="Stein算法"><a href="#Stein算法" class="headerlink" title="Stein算法"></a>Stein算法</h3><p>该算法相对欧几里得算法而言，在计算机上实现的效率更高，尤其是对于一些大数的计算。<br>该算法的步骤也非常简单，即为以下式子：</p>
 <script type="math/tex; mode=display">\gcd(a, b) = \begin{cases}2\gcd(\frac {a}{2}, \frac{b}{2}) \quad (a为偶数,b为偶数)\\ \gcd(\frac{a}{2}, b) \quad (a为偶数,b为奇数) \\ \gcd(\frac{\left| a-  b\right|}{2}, b)\quad (a为奇数,b为奇数)\end{cases}</script><p>以上式子的正确性可以用同余式的性质证明，此处不给出。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">gcd</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(!b) <span class="keyword">return</span> a;</span><br><span class="line">    <span class="keyword">if</span>(!a) <span class="keyword">return</span> b;</span><br><span class="line">    <span class="keyword">if</span>(a &amp; <span class="number">1</span>)&#123;</span><br><span class="line">        <span class="keyword">if</span>(b &amp; <span class="number">1</span>) <span class="keyword">return</span> gcd(b, <span class="built_in">abs</span>(a - b) &gt;&gt; <span class="number">1</span>);</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">return</span> gcd(a, b &gt;&gt; <span class="number">1</span>);</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(b &amp; <span class="number">1</span>) <span class="keyword">return</span> gcd(a &gt;&gt; <span class="number">1</span>, b);</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">return</span> gcd(a &gt;&gt; <span class="number">1</span>, b &gt;&gt; <span class="number">1</span>) &lt;&lt; <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <hr>
-<h2 id="扩展欧几里得"><a href="#扩展欧几里得" class="headerlink" title="扩展欧几里得"></a>扩展欧几里得</h2><h3 id=""><a href="#" class="headerlink" title=" "></a> </h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">extgcd</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b, <span class="keyword">int</span> &amp;x, <span class="keyword">int</span> &amp;y)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(!b)&#123;</span><br><span class="line">        x = <span class="number">1</span>, y = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">return</span> a;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> d = extgcd(b, a % b, y, x);</span><br><span class="line">    y -= x * (a / b);</span><br><span class="line">    <span class="keyword">return</span> d;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="扩展欧几里得"><a href="#扩展欧几里得" class="headerlink" title="扩展欧几里得"></a>扩展欧几里得</h2><p>扩展欧几里得可以用来求解线性同余方程组。</p>
+<h3 id=""><a href="#" class="headerlink" title=" "></a> </h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">extgcd</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b, <span class="keyword">int</span> &amp;x, <span class="keyword">int</span> &amp;y)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(!b)&#123;</span><br><span class="line">        x = <span class="number">1</span>, y = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">return</span> a;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> d = extgcd(b, a % b, y, x);</span><br><span class="line">    y -= x * (a / b);</span><br><span class="line">    <span class="keyword">return</span> d;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <hr>
-<h2 id="欧拉函数"><a href="#欧拉函数" class="headerlink" title="欧拉函数"></a>欧拉函数</h2><h3 id="欧拉定理"><a href="#欧拉定理" class="headerlink" title="欧拉定理"></a>欧拉定理</h3><h3 id="欧拉定理降幂公式"><a href="#欧拉定理降幂公式" class="headerlink" title="欧拉定理降幂公式"></a>欧拉定理降幂公式</h3>
+<h2 id="欧拉函数"><a href="#欧拉函数" class="headerlink" title="欧拉函数"></a>欧拉函数</h2><h3 id="欧拉定理"><a href="#欧拉定理" class="headerlink" title="欧拉定理"></a>欧拉定理</h3><p>欧拉定理叙述如下：</p>
+<h3 id="欧拉定理降幂公式"><a href="#欧拉定理降幂公式" class="headerlink" title="欧拉定理降幂公式"></a>欧拉定理降幂公式</h3><hr>
+<h2 id="解线性同余方程组"><a href="#解线性同余方程组" class="headerlink" title="解线性同余方程组"></a>解线性同余方程组</h2><h3 id="中国剩余定理"><a href="#中国剩余定理" class="headerlink" title="中国剩余定理"></a>中国剩余定理</h3><p>中国剩余定理（CRT）可以用来求解线性同余方程组。它的描述如下：<br>有$n$个线性同余方程组：</p>
+<script type="math/tex; mode=display">\begin{cases}
+x \equiv a_1 \pmod {m_1} \\
+x \equiv a_2 \pmod {m_2} \\
+\vdots \\
+x \equiv a_n \pmod {m_n} \\
+\end{cases}</script><p>其中<script type="math/tex">m_1, m_2, \cdots, m_n</script>两两互质，那么存在唯一的一个$x$在模<script type="math/tex">M = \Pi_{i = 1}^{n} m_i</script>使得上述方程组成立。<br>证明如下：首先构造一个这样的$x$证明存在性。令<script type="math/tex">M_i</script>为除<script type="math/tex">m_i</script>外所有<script type="math/tex">m_j</script>的积，那么<script type="math/tex">\gcd(M_i, m_i)=1</script>。解<script type="math/tex">b_i \dot M_i \equiv 1 \pmod {m_i}</script>。然后令<script type="math/tex">x=\sum_{i = 1}^{n} a_i \dot b_i \dot M_i</script>，则这个$x$就是答案。（容易验证这一点）<br>然后再证明唯一性。假设存在另一个不同的解$y$，那么$x-y$同时是<script type="math/tex">m_i(\forall i)</script>的倍数。因为<script type="math/tex">m_i</script>两两互质。所以$x-y$是$M$的倍数。所以$x\equiv y \pmod M$。矛盾。<br>这样就可以利用这个构造性算法构造出这个问题的解了：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">CRT</span><span class="params">(<span class="keyword">int</span> m[], <span class="keyword">int</span> a[], <span class="keyword">int</span> n)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> M = <span class="number">1</span>, x = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; ++i)</span><br><span class="line">        M *= m[i];</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; ++i)&#123;</span><br><span class="line">        <span class="keyword">int</span> Mi = M / m[i], b, q;</span><br><span class="line">        extgcd(Mi, m[i], b, q);</span><br><span class="line">        Mi = ((Mi * a[i]) % M) * b % M;</span><br><span class="line">        x = (x + Mi) % M;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> (x + M) % M;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="扩展中国剩余定理（线性同余方程一般形式）"><a href="#扩展中国剩余定理（线性同余方程一般形式）" class="headerlink" title="扩展中国剩余定理（线性同余方程一般形式）"></a>扩展中国剩余定理（线性同余方程一般形式）</h3><p>当<script type="math/tex">m_i</script>不两两互质怎么办？依然可以求出线性同余方程组的解。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">ll <span class="title">extCRT</span><span class="params">(ll m[], ll a[], ll n)</span></span>&#123;</span><br><span class="line">    ll M = m[<span class="number">0</span>], ans = a[<span class="number">0</span>], x, y;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; n; ++i)&#123;</span><br><span class="line">        ll d = extgcd(M, m[i], x, y), a_ = ((a[i] - ans) % M + M) % M;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="组合数取模"><a href="#组合数取模" class="headerlink" title="组合数取模"></a>组合数取模</h2><h3 id="卢卡斯定理"><a href="#卢卡斯定理" class="headerlink" title="卢卡斯定理"></a>卢卡斯定理</h3><p>一句话描述卢卡斯定理，就是：</p>
+<script type="math/tex; mode=display">C_n^m \equiv C_{\lfloor \frac{n}{p} \rfloor}^{\lfloor \frac{m}{p} \rfloor} C_{n \mod p}^{m \mod p} \pmod p</script><p>其中$p$是质数。<br>容易发现卢卡斯定理的表达式里面有一个递归结构，所以可以把它做成递归的。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">ll <span class="title">Lucas</span><span class="params">(ll n, ll m)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> (!m) ? <span class="number">1</span> : C(n % p, m % p) * Lucas(n / p, m / p) % p;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="求逆元"><a href="#求逆元" class="headerlink" title="求逆元"></a>求逆元</h2>
       
     </div>
     
@@ -457,8 +471,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/08/25/writing/noi1997-2002/" rel="next" title="NOI1997-2002 题解">
-                <i class="fa fa-chevron-left"></i> NOI1997-2002 题解
+              <a href="/2018/08/26/template-math-1/" rel="next" title="模板 数学（1）">
+                <i class="fa fa-chevron-left"></i> 模板 数学（1）
               </a>
             
           </div>
@@ -467,8 +481,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/08/26/template-math-1/" rel="prev" title="模板 数学（1）">
-                模板 数学（1） <i class="fa fa-chevron-right"></i>
+              <a href="/2018/08/26/writing/poj2559/" rel="prev" title="poj2559">
+                poj2559 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -549,7 +563,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">204</span>
+                  <span class="site-state-item-count">231</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -560,7 +574,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">22</span>
+                  <span class="site-state-item-count">23</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -588,6 +602,20 @@
 
           
           
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://hodam.top" title="big_yellow_doge" target="_blank">big_yellow_doge</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
 
           
 
@@ -604,7 +632,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#求-gcd"><span class="nav-number">1.</span> <span class="nav-text">求$\gcd$</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#欧几里得算法（辗转相除法）"><span class="nav-number">1.1.</span> <span class="nav-text">欧几里得算法（辗转相除法）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Stein算法"><span class="nav-number">1.2.</span> <span class="nav-text">Stein算法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#扩展欧几里得"><span class="nav-number">2.</span> <span class="nav-text">扩展欧几里得</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#"><span class="nav-number">2.1.</span> <span class="nav-text"> </span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#欧拉函数"><span class="nav-number">3.</span> <span class="nav-text">欧拉函数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#欧拉定理"><span class="nav-number">3.1.</span> <span class="nav-text">欧拉定理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#欧拉定理降幂公式"><span class="nav-number">3.2.</span> <span class="nav-text">欧拉定理降幂公式</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#求-gcd"><span class="nav-number">1.</span> <span class="nav-text">求$\gcd$</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#欧几里得算法（辗转相除法）"><span class="nav-number">1.1.</span> <span class="nav-text">欧几里得算法（辗转相除法）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Stein算法"><span class="nav-number">1.2.</span> <span class="nav-text">Stein算法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#扩展欧几里得"><span class="nav-number">2.</span> <span class="nav-text">扩展欧几里得</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#"><span class="nav-number">2.1.</span> <span class="nav-text"> </span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#欧拉函数"><span class="nav-number">3.</span> <span class="nav-text">欧拉函数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#欧拉定理"><span class="nav-number">3.1.</span> <span class="nav-text">欧拉定理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#欧拉定理降幂公式"><span class="nav-number">3.2.</span> <span class="nav-text">欧拉定理降幂公式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解线性同余方程组"><span class="nav-number">4.</span> <span class="nav-text">解线性同余方程组</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#中国剩余定理"><span class="nav-number">4.1.</span> <span class="nav-text">中国剩余定理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#扩展中国剩余定理（线性同余方程一般形式）"><span class="nav-number">4.2.</span> <span class="nav-text">扩展中国剩余定理（线性同余方程一般形式）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#组合数取模"><span class="nav-number">5.</span> <span class="nav-text">组合数取模</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#卢卡斯定理"><span class="nav-number">5.1.</span> <span class="nav-text">卢卡斯定理</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#求逆元"><span class="nav-number">6.</span> <span class="nav-text">求逆元</span></a></li></ol></div>
             
 
           </div>
@@ -624,7 +652,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
@@ -638,7 +666,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">149.5k</span>
+    <span title="Site words total count">173.6k</span>
   
 </div>
 
