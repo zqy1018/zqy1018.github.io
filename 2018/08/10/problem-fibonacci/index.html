@@ -82,15 +82,15 @@
 <meta name="description" content="我不会数学orz">
 <meta name="keywords" content="数学">
 <meta property="og:type" content="article">
-<meta property="og:title" content="待更 斐波那契系列问题">
+<meta property="og:title" content="斐波那契系列问题">
 <meta property="og:url" content="http://yoursite.com/2018/08/10/problem-fibonacci/index.html">
 <meta property="og:site_name" content="zqy1018的博客">
 <meta property="og:description" content="我不会数学orz">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://yoursite.com/2018/08/10/problem-fibonacci/1.png">
-<meta property="og:updated_time" content="2018-08-22T14:31:14.843Z">
+<meta property="og:updated_time" content="2019-02-22T14:19:47.270Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="待更 斐波那契系列问题">
+<meta name="twitter:title" content="斐波那契系列问题">
 <meta name="twitter:description" content="我不会数学orz">
 <meta name="twitter:image" content="http://yoursite.com/2018/08/10/problem-fibonacci/1.png">
 
@@ -128,7 +128,7 @@
 
 
 
-  <title>待更 斐波那契系列问题 | zqy1018的博客</title>
+  <title>斐波那契系列问题 | zqy1018的博客</title>
   
 
 
@@ -316,7 +316,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">待更 斐波那契系列问题</h1>
+          <h1 class="post-title" itemprop="name headline">斐波那契系列问题</h1>
         
 
         <div class="post-meta">
@@ -378,7 +378,7 @@
 
           
           
-             <span id="/2018/08/10/problem-fibonacci/" class="leancloud_visitors" data-flag-title="待更 斐波那契系列问题">
+             <span id="/2018/08/10/problem-fibonacci/" class="leancloud_visitors" data-flag-title="斐波那契系列问题">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -403,7 +403,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  260 字
+                  554 字
                 </span>
               
 
@@ -429,12 +429,40 @@
 
       
         <p>我不会数学orz<br><a id="more"></a></p>
-<h2 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h2><p>首先看一个喜闻乐见的题目<br><img src="/2018/08/10/problem-fibonacci/1.png" alt="1"></p>
-<p>$\forall x\in \mathbb{N}^*,(x,1)$可行。<br>$x=1$时此数列即为斐波那契数列（以下用$F(n)$代替）。<br>先证：$gcd(F(n),F(n-1)) = 1\quad (1)$<br>证明：由辗转相除：<br>$gcd(F(n), F(n-1))=gcd(F(n-1),F(n-2))=…=gcd(F(2),F(1))=1$</p>
-<p>再证：$F(m+n)=F(n+1)F(m)+F(m-1)F(n)\quad (2)$<br>证明：<br>$F(m+n)=F(m+n-1)+F(m+n-2)$<br>$=2F(m+n-2)+F(m+n-3)$<br>$=3F(m+n-3)+2F(m+n-4)$<br>$=…=F(i+1)F(m+n-i)+F(i)F(m+n-i-1)$<br>$=F(n+1)F(m)+F(m-1)F(n)$</p>
-<p>因此：$gcd(F(m),F(n))$<br>$=gcd(F(n+1)F(m-n)+F(n)F(m-n-1),F(n))$（由$(2)$）<br>$=gcd(F(n+1)F(m-n),F(n))$<br>而由$(1)$，$F(n+1)$和$F(n)$互质<br>故$gcd(F(m),F(n))=gcd(F(m-n),F(n))$<br>相当于对$F$的下标做辗转相除<br>所以最后的答案即为$F(gcd(m,n))$</p>
-<p>$x\ge 2$时，$(1)(2)$也均满足<br>$Q.E.D.$</p>
-<h2 id="斐波那契的模问题"><a href="#斐波那契的模问题" class="headerlink" title="斐波那契的模问题"></a>斐波那契的模问题</h2>
+<h2 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h2><p>斐波那契数列定义式：</p>
+<script type="math/tex; mode=display">F(0) = 0, F(1) = 1, F(n) = F(n+1)+F(n+2) \quad (n\ge 2)</script><p>通项公式是$F(n)=\frac{1}{\sqrt 5} \left[\left(\frac{1+\sqrt 5}{2} \right)^n - \left(\frac{1-\sqrt 5}{2}\right)^n\right]$。这个通项公式可以通过数列的特征方程或对矩阵求特征值得到。<br>因为这个定义式也是一个线性齐次递推，所以也可以用矩阵来表示，写成</p>
+<script type="math/tex; mode=display">\begin{bmatrix} F(n) \\ F(n - 1) \end{bmatrix} = \begin{bmatrix} 1 & 1 \\ 1 & 0 \end{bmatrix} \begin{bmatrix} F(n - 1) \\ F(n - 2) \end{bmatrix}</script><h2 id="意义"><a href="#意义" class="headerlink" title="意义"></a>意义</h2><p>斐波那契数列可以表示很多意义，即等价表示。</p>
+<h3 id="生兔子"><a href="#生兔子" class="headerlink" title="生兔子"></a>生兔子</h3><p>这个例子太经典了，跳过。</p>
+<h3 id="爬楼梯"><a href="#爬楼梯" class="headerlink" title="爬楼梯"></a>爬楼梯</h3><p>有$n-1$阶楼梯，每次可以爬1阶或者2阶，求总共上楼梯方法数。<br>由递推易知答案为$F(n)$。而由排列组合容易知答案是<script type="math/tex">\sum _{i = 0} ^{\lfloor \frac{n-1}{2} \rfloor} \tbinom{n-1-i}{n-1-2i} = \sum _{i = 0} ^{\lfloor \frac{n-1}{2} \rfloor} \tbinom{n-1-i}{i}</script>。所以有</p>
+<script type="math/tex; mode=display">F(n)=\sum _{i = 0} ^{\lfloor \frac{n-1}{2} \rfloor} \tbinom{n-1-i}{i} \quad (n>0)</script><h2 id="用途"><a href="#用途" class="headerlink" title="用途"></a>用途</h2><h3 id="分解-phi-n"><a href="#分解-phi-n" class="headerlink" title="分解$\phi ^n$"></a>分解$\phi ^n$</h3><p>其中$\phi = \frac{1+\sqrt 5}{2}$。因为$\phi^2 = \phi + 1$，因此可以把$\phi$的高次幂反复用这个式子，分解成$\phi$和$1$的线性组合。用归纳可以证明$\phi^n = F(n)\phi + F(n-1)$。</p>
+<h3 id="证明辗转相除法复杂度"><a href="#证明辗转相除法复杂度" class="headerlink" title="证明辗转相除法复杂度"></a>证明辗转相除法复杂度</h3><p>拉梅就是用了斐波那契数列证明了辗转相除法的时间复杂度是$O(\log n)$级别的。即Lame’s theorem。</p>
+<h2 id="性质"><a href="#性质" class="headerlink" title="性质"></a>性质</h2><h3 id="判定一个数是否是斐波那契数"><a href="#判定一个数是否是斐波那契数" class="headerlink" title="判定一个数是否是斐波那契数"></a>判定一个数是否是斐波那契数</h3><p>对通项公式解方程可以得出</p>
+<script type="math/tex; mode=display">n=\log _{\phi} \left( \frac{\sqrt 5F(n) + \sqrt{5F^2(n) \pm 4}}{2}\right)</script><p>因此$x$是斐波那契数$\iff$$5x^2+4$或者$5x^2-4$是完全平方数。</p>
+<h2 id="广义斐波那契数列"><a href="#广义斐波那契数列" class="headerlink" title="广义斐波那契数列"></a>广义斐波那契数列</h2><p>首先看一个喜闻乐见的题目<br><img src="/2018/08/10/problem-fibonacci/1.png" alt="1"></p>
+<p>（题目来源于中科大）<br>答案：只要$\gcd (a, b) = 1$即可。下面对此进行证明：<br>先证：<script type="math/tex">\gcd(b, x_n) = 1 (n\ge 1) \quad (1)</script><br>证明：用归纳，对于$n=1$显然成立。假设对于$n=k(k\ge 1)$成立，对于$n=k+1$：<br>有<script type="math/tex">\gcd(x_{k+1}, b)=\gcd(ax_{k}+bx_{k-1},b)=\gcd(ax_{k},b))=1</script>。证毕。</p>
+<p>再证：<script type="math/tex">\gcd(x_n, x_{n-1})=1 (n\ge 2)\quad (2)</script><br>证明：用归纳，对于$n=2$显然成立。假设对于$n=k(k\ge 2)$成立，对于$n=k+1$：<br>有<script type="math/tex">\gcd(x_{k+1}, x_k) = \gcd(ax_k+bx_{k-1}, x_k) = \gcd(bx_{k-1}, x_k) \overset{(1)}{=} \gcd(x_{k-1}, x_k)=1</script>。证毕。</p>
+<p>再证：<script type="math/tex">x_{m+n}=x_mx_{n+1}+bx_{m-1}x_n(m, n\in \mathbb{N}) \quad (3)</script><br>证明：</p>
+<script type="math/tex; mode=display">\begin{aligned} 
+x_{m+n} &= ax_{m+n-1}+bx_{m+n-2} \\
+&= x_2x_{m+n-1}+bx_1x_{m+n-2} \\
+&= (ax_2+bx_1)x_{m+n-2}+bx_2x_{m+n-3} \\
+&= x_3x_{m+n-2} + bx_2x_{m+n-3} \\
+&= \cdots = x_{i+1}x_{m+n-i}+bx_ix_{m+n-i-1}\end{aligned}</script><p>令$i=n$有<script type="math/tex">x_{m+n}=x_mx_{n+1}+bx_{m-1}x_n</script>。证毕。</p>
+<p>因此：</p>
+<script type="math/tex; mode=display">\begin{aligned}
+\gcd(x_{m+n},x_n) &\overset{(3)}{=} \gcd(x_mx_{n+1}+bx_{m-1}x_n, x_n) \\
+&= \gcd(x_mx_{n+1}, x_n) \\
+&\overset{(2)}{=} \gcd(x_m, x_n)
+\end{aligned}</script><p>相当于对$x$的下标做更相减损。<br>所以最后的答案即为$x_{\gcd(m,n)}$。</p>
+<p>若$\gcd(a, b)&gt; 1$，那么<script type="math/tex">\gcd(x_2, x_3)\neq x_1</script>。<br>从而上述条件的充分性和必要性满足，证毕。</p>
+<h2 id="斐波那契的模问题"><a href="#斐波那契的模问题" class="headerlink" title="斐波那契的模问题"></a>斐波那契的模问题</h2><p>古代人的难题要写。</p>
+<hr>
+<p>参考材料：</p>
+<ol>
+<li>维基百科</li>
+<li></li>
+</ol>
+
       
     </div>
     
@@ -556,7 +584,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">231</span>
+                  <span class="site-state-item-count">259</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -567,7 +595,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">23</span>
+                  <span class="site-state-item-count">26</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -578,7 +606,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">82</span>
+                  <span class="site-state-item-count">85</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -625,7 +653,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#题解"><span class="nav-number">1.</span> <span class="nav-text">题解</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#斐波那契的模问题"><span class="nav-number">2.</span> <span class="nav-text">斐波那契的模问题</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#基础"><span class="nav-number">1.</span> <span class="nav-text">基础</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#意义"><span class="nav-number">2.</span> <span class="nav-text">意义</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#生兔子"><span class="nav-number">2.1.</span> <span class="nav-text">生兔子</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#爬楼梯"><span class="nav-number">2.2.</span> <span class="nav-text">爬楼梯</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#用途"><span class="nav-number">3.</span> <span class="nav-text">用途</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#分解-phi-n"><span class="nav-number">3.1.</span> <span class="nav-text">分解$\phi ^n$</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#证明辗转相除法复杂度"><span class="nav-number">3.2.</span> <span class="nav-text">证明辗转相除法复杂度</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#性质"><span class="nav-number">4.</span> <span class="nav-text">性质</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#判定一个数是否是斐波那契数"><span class="nav-number">4.1.</span> <span class="nav-text">判定一个数是否是斐波那契数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#广义斐波那契数列"><span class="nav-number">5.</span> <span class="nav-text">广义斐波那契数列</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#斐波那契的模问题"><span class="nav-number">6.</span> <span class="nav-text">斐波那契的模问题</span></a></li></ol></div>
             
 
           </div>
@@ -659,7 +687,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">173.6k</span>
+    <span title="Site words total count">229.5k</span>
   
 </div>
 
