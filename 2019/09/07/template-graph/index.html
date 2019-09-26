@@ -1,0 +1,1190 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="本文记录一些基本的图论算法。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="模板 图论">
+<meta property="og:url" content="http://yoursite.com/2019/09/07/template-graph/index.html">
+<meta property="og:site_name" content="zqy1018的博客">
+<meta property="og:description" content="本文记录一些基本的图论算法。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-09-09T06:17:23.037Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="模板 图论">
+<meta name="twitter:description" content="本文记录一些基本的图论算法。">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/09/07/template-graph/"/>
+
+
+
+
+
+  <title>模板 图论 | zqy1018的博客</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">zqy1018的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/07/template-graph/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="zqy">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="zqy1018的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">模板 图论</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-09-07T10:18:25+08:00">
+                2019-09-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/09/07/template-graph/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/09/07/template-graph/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  2,755 字
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>本文记录一些基本的图论算法。<br><a id="more"></a></p>
+<h2 id="强连通分量分解"><a href="#强连通分量分解" class="headerlink" title="强连通分量分解"></a>强连通分量分解</h2><p>强连通分量分解常常用于缩点和求解2-SAT问题。</p>
+<h3 id="Tarjan算法"><a href="#Tarjan算法" class="headerlink" title="Tarjan算法"></a>Tarjan算法</h3><p>求一个图的强连通分量比较常用的一个方法是 Tarjan 算法。</p>
+<p>Tarjan 算法基于深度优先搜索，每一个搜索到的强连通分量都是搜索树的一棵子树。同时也用到了栈。</p>
+<p>Tarjan 算法用到了两个十分重要的数组：$dfn$ 和 $low$。两个数组均和节点相关。前者保存搜索时每个节点的时间戳（即被搜索到的次序），每个节点的时间戳各不相同，并且一旦确定就不再改变。后者保存每个节点本身及其子树，这些节点所能<strong>回溯</strong>到的在栈中的节点的 $dfn$ 的最小值。当最终得到 $dfn[v]$ 和 $low[v]$ 相等时，就说明 $v$ 及其子树构成一个强连通分量。</p>
+<p>执行这个算法时分以下几个步骤：</p>
+<ol>
+<li>由于图不一定联通，对每一个点都应当遍历。如果 $dfn=0$ 就进入搜索。</li>
+<li>设当前节点为 $v$。把点加入栈中，更新 $dfn[v]$，并令 $low[v]=dfn[v]$。</li>
+<li>检查每一个 $v$ 可以到达的点，设为 $u$。若 $u$ 未被搜索过，就令其进入搜索，并更新 $low[v]=\min\lbrace low[v], low[u] \rbrace$。若 $u$ 已被搜索过且在栈中，就更新 $low[v]=\min\lbrace low[v], dfn[u] \rbrace$。（可以看出，两次更新均符合 $low$ 的定义）</li>
+<li>如果 $dfn[v]=low[v]$，就将 $v$ 及其子树所含节点从栈中弹出，弹出的这些节点构成一个强连通分量。对 $v$ 的搜索结束。</li>
+</ol>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> dfn[<span class="number">100005</span>], low[<span class="number">100005</span>], D, in[<span class="number">100005</span>]; </span><br><span class="line"><span class="keyword">int</span> <span class="built_in">stack</span>[<span class="number">100005</span>], top;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">tarjan_scc</span><span class="params">(<span class="keyword">int</span> id)</span></span>&#123;</span><br><span class="line">    dfn[id] = low[id] = ++D;</span><br><span class="line">    in[id] = <span class="literal">true</span>;</span><br><span class="line">    <span class="built_in">stack</span>[top++] = id;</span><br><span class="line">    <span class="keyword">int</span> i = at[id], vv;</span><br><span class="line">    <span class="keyword">while</span>(i)&#123;</span><br><span class="line">        vv = e[i].v;</span><br><span class="line">        <span class="keyword">if</span>(!dfn[vv]) tarjan_scc(vv), low[id] = min(low[id], low[vv]);</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(in[vv]) low[id] = min(low[id], dfn[vv]);</span><br><span class="line">        i = e[i].nxt;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(dfn[id] == low[id])&#123;</span><br><span class="line">        <span class="comment">//do something</span></span><br><span class="line">        <span class="keyword">do</span>&#123;</span><br><span class="line">            top--;</span><br><span class="line">            in[<span class="built_in">stack</span>[top]] = <span class="literal">false</span>;</span><br><span class="line">        &#125;<span class="keyword">while</span>(<span class="built_in">stack</span>[top] != id);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>按照上面的算法过程得到的强连通分量的顺序是逆拓扑序。</p>
+<h3 id="Kosaraju算法"><a href="#Kosaraju算法" class="headerlink" title="Kosaraju算法"></a>Kosaraju算法</h3><p>另一个常用的强连通分解算法为Kosaraju算法。</p>
+<p>该算法基于以下两个事实：</p>
+<ol>
+<li>一个DAG的拓扑序即为该DAG在DFS之后的顶点的逆后序排列。</li>
+<li>有向图的两个顶点可以互相访问，那么这两个顶点在同一个强连通分量之中。</li>
+</ol>
+<p>该算法的运行也很简单，只分三步：</p>
+<ol>
+<li>对当前图$G$进行DFS，得到所有点的后序遍历。</li>
+<li>对当前图$G$构造反图$G^-$。</li>
+<li>按照后序遍历编号从大到小对顶点进行检查，如果顶点未被DFS过就以该点为起点在$G^-$上进入搜索，每次搜索经过的所有点就构成一个强连通分量。</li>
+</ol>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 在e_和at_保存了反图 */</span></span><br><span class="line"><span class="keyword">int</span> at_[<span class="number">10005</span>] = &#123;<span class="number">0</span>&#125;, cnt_ = <span class="number">0</span>, rk_cmp[<span class="number">10005</span>], R = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">bool</span> in[<span class="number">10005</span>] = &#123;<span class="number">0</span>&#125;; </span><br><span class="line"><span class="keyword">int</span> st[<span class="number">10005</span>], top = <span class="number">0</span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> id)</span></span>&#123;</span><br><span class="line">    in[id] = <span class="literal">true</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = at[id]; i; i = e[i].nxt)</span><br><span class="line">        <span class="keyword">if</span>(!in[e[i].v]) dfs(e[i].v);</span><br><span class="line">    st[top++] = id;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">rdfs</span><span class="params">(<span class="keyword">int</span> id)</span></span>&#123;</span><br><span class="line">    in[id] = <span class="literal">false</span>;</span><br><span class="line">    rk_cmp[id] = R;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = at_[id]; i; i = e_[i].nxt)</span><br><span class="line">        <span class="keyword">if</span>(in[e_[i].v]) rdfs(e_[i].v);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">kosaraju</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= V; ++i)</span><br><span class="line">        <span class="keyword">if</span>(!in[i]) dfs(i);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = top - <span class="number">1</span>; i &gt;= <span class="number">0</span>; --i)</span><br><span class="line">        <span class="keyword">if</span>(in[st[i]]) R++, rdfs(st[i]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>该算法相较Tarjan算法比较麻烦，但能方便的得到强连通分量之间的拓扑序，因此可以较为方便地用于求解2-SAT问题。</p>
+<h3 id="2-SAT问题"><a href="#2-SAT问题" class="headerlink" title="2-SAT问题"></a>2-SAT问题</h3><p>给定一个布尔方程， 判断是否存在一组布尔变量的真值指派使整个方程为真的问题，被称为布尔方程的可满足性问题（SAT）。可以把布尔方程写成析取式的合取，即合取范式的形式。如果该布尔方程中，每个析取式至多只包含两个变量，就称该问题为2-SAT问题。</p>
+<p>利用强连通分量分解可以在线性时间复杂度内解决2-SAT问题。把$a\vee b$改写成$(\neg a \rightarrow b) \wedge (\neg b \rightarrow a)$的形式，并且把每个变量拆成$a$和$\neg a$两个点，根据蕴含关系建立边。随后，对整个图进行强连通分量分解，易知在同一个强连通分量中的变量真值必须相同。</p>
+<p>分解完成后，如果一个变量$a$和$\neg a$在同一个强连通分量中，那么显然这时无解。否则，可以根据强连通分量的拓扑序来给变量赋值，如果$a$所在分量的拓扑序在$\neg a$之后就令$a$为真，否则为假。这是为了保证$a\vee a$这样的条件可以得到满足。如此就完成了2-SAT问题的求解。</p>
+<p>2-SAT问题可以推广，只要能将命题的形式写成合取范式，然后变形即可。</p>
+<h2 id="二分图"><a href="#二分图" class="headerlink" title="二分图"></a>二分图</h2><h3 id="判定二分图"><a href="#判定二分图" class="headerlink" title="判定二分图"></a>判定二分图</h3><p>通常使用“一个图是二分图当且仅当这个图中没有奇环”的衍生结论：一个图是二分图当且仅当可以只用两种颜色染色，使得相邻节点不同色，来判定二分图。</p>
+<p>我们可以通过 DFS 来实现。由于实现比较简单，此处不给出代码。</p>
+<h3 id="二分图最大匹配"><a href="#二分图最大匹配" class="headerlink" title="二分图最大匹配"></a>二分图最大匹配</h3><p>有多个算法可以用来求二分图的最大匹配。</p>
+<p>方便起见，下面我们约定，二分图的两个顶点集为 $U$ 和 $V$。</p>
+<h4 id="匈牙利算法"><a href="#匈牙利算法" class="headerlink" title="匈牙利算法"></a>匈牙利算法</h4><p>匈牙利算法是一个思想简单易懂的算法。</p>
+<p>我们依次考虑 $U$ 中的点，尝试对其做匹配。设当前点为 $u$。</p>
+<p>依次考虑和 $u$ 相连接的所有点，设考虑到了 $v$。如果 $v$ 没被匹配，就增加一个 $(u, v)$ 的匹配；否则，看能不能让和 $v$ 匹配的点（设为 $w$）和 $v$ 之外的点匹配。如果能，那就增加一个 $(u, v)$ 的匹配。可以看出，给 $w$ “找下家”的过程是可以和给 $u$ 找匹配一样递归去做的。</p>
+<p>还有一个问题需要考虑，即对于同一个 $u$，所有的 $v$ 只能被使用一次（无论是对 $u$ 本身还是在时候递归的过程里），否则不能保证时间复杂度和程序正确性。事实上，如果 $v$ 已经被使用过了，那么就说明 $v$ 要么在递归的上层作为目标，要么已经被尝试“腾出位置”过而没有成功。无论是哪种情况都说明 $v$ 已经没有再被使用的意义。</p>
+<p>下面给出一个简单的实现。其中 <code>from</code> 代表右边节点的匹配对象，<code>vis</code> 代表是否被使用过。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">match</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = at[x]; i; i = nxt[i])&#123;</span><br><span class="line">        <span class="keyword">int</span> v = to[i];</span><br><span class="line">        <span class="keyword">if</span> (!vis[v])&#123;</span><br><span class="line">            vis[v] = <span class="literal">true</span>;</span><br><span class="line">            <span class="keyword">if</span> (!from[v] || match(from[v]))&#123;</span><br><span class="line">                from[v] = x;</span><br><span class="line">                <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Hungary</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> match_size = <span class="number">0</span>;</span><br><span class="line">    <span class="built_in">memset</span>(from, <span class="number">0</span>, <span class="keyword">sizeof</span>(from));</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i)&#123;</span><br><span class="line">        <span class="built_in">memset</span>(vis, <span class="number">0</span>, <span class="keyword">sizeof</span>(vis));</span><br><span class="line">        match_size += match(i);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>可以看出，匈牙利算法的时间复杂度是 $O(|V||E|)$，一般不适用于数据量大的场合。但是在一种特殊情况下却很好用：如果要求的是二分图的<strong>最小字典序匹配</strong>（这里指的是按顺序比较 $U$ 中 1 号点，2 号点，等等匹配到的点的标号），只需要对匈牙利算法稍加改动即可。</p>
+<p>改动的地方就是主程序中的循环顺序，只需要将下标（也就是点的标号）从大到小循环即可。为什么要这么做？直观的说，是因为这么做可以让 $U$ 中标号最小的点尽可能的匹配到标号小的点，也就是让 $U$ 中标号大的点尽可能腾位子给小的点。（具体证明待补充）</p>
+<h4 id="Hopcroft-Karp-算法（HK-算法）"><a href="#Hopcroft-Karp-算法（HK-算法）" class="headerlink" title="Hopcroft-Karp 算法（HK 算法）"></a>Hopcroft-Karp 算法（HK 算法）</h4><p>HK 算法是一个基于匈牙利算法，但比其效率要高的算法。</p>
+<p>HK 算法的优势在于它同时对一系列路径进行增广。在这里有多个数据需要维护：设 <code>dx</code>,<code>dy</code> 分别为 $U, V$ 两部分点的距离标号；<code>mx</code>，<code>my</code> 为 $U, V$ 两部分点的匹配对象。</p>
+<p>每一轮，我们都将没被匹配的节点放入队列中，令这些点的距离标号为 0。然后对队列中的元素依次考虑，直到队列为空。设当前被考虑到的是 $u$。考虑 $u$ 的所有邻居，设当前为 $v$。</p>
+<p>如果 $v$ 没有被匹配，那么表明存在增广路径。否则，将 $v$ 的匹配对象放入队列，以便后续检查是否有增广路径。无论哪种情况，都要对 $v$，以及可能存在的 $v$ 的匹配对象更新距离标号（如 <code>d[v]:=d[u]+1</code>）。</p>
+<p>如果直到队列为空都没有出现增广路径就表明算法结束（用一个 flag 判断）。否则，对 $U$ 中所有没有匹配对象的点做一次匈牙利算法中的 match 操作。这里稍有不同的是，match 操作中只能使用距离相差为 1 的点，详细见代码。</p>
+<p>和上面匈牙利算法一样，要考虑一个占用的问题，也就是说，$V$ 中的点不能同时在两条增广路径上。我们用 <code>dy</code> 数组标识 $V$ 中的点的占用情况，如果不为 0 就表明被占用。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> dx[<span class="number">3005</span>], dy[<span class="number">3005</span>], mx[<span class="number">3005</span>], my[<span class="number">3005</span>], n, m;</span><br><span class="line"><span class="keyword">bool</span> vis[<span class="number">3005</span>];</span><br><span class="line"><span class="built_in">queue</span>&lt;<span class="keyword">int</span>&gt; que;</span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; G[<span class="number">3005</span>];</span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">match</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; G[x].size(); ++i)&#123;</span><br><span class="line">        <span class="keyword">int</span> v = G[x][i];</span><br><span class="line">        <span class="keyword">if</span> (!vis[v] &amp;&amp; dy[v] == dx[x] + <span class="number">1</span>)&#123;</span><br><span class="line">            vis[v] = <span class="literal">true</span>;</span><br><span class="line">            <span class="keyword">if</span> (!my[v] || match(my[v]))&#123;</span><br><span class="line">                mx[x] = v, my[v] = x;</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">HK</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">memset</span>(mx, <span class="number">0</span>, <span class="keyword">sizeof</span>(mx));</span><br><span class="line">    <span class="built_in">memset</span>(my, <span class="number">0</span>, <span class="keyword">sizeof</span>(my));</span><br><span class="line">    <span class="keyword">int</span> ans = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (; ; )&#123;</span><br><span class="line">        <span class="keyword">bool</span> flag = <span class="literal">false</span>;</span><br><span class="line">        <span class="keyword">while</span> (!que.empty()) que.pop();</span><br><span class="line">        <span class="built_in">memset</span>(dx, <span class="number">0</span>, <span class="keyword">sizeof</span>(dx));</span><br><span class="line">        <span class="built_in">memset</span>(dy, <span class="number">0</span>, <span class="keyword">sizeof</span>(dy));</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i)</span><br><span class="line">            <span class="keyword">if</span> (!mx[i]) que.push(i);</span><br><span class="line">        <span class="keyword">while</span> (!que.empty())&#123;</span><br><span class="line">            <span class="keyword">int</span> u = que.front();</span><br><span class="line">            que.pop();</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; G[u].size(); ++i)&#123;</span><br><span class="line">                <span class="keyword">int</span> v = G[u][i];</span><br><span class="line">                <span class="keyword">if</span> (!dy[v])&#123;</span><br><span class="line">                    dy[v] = dx[u] + <span class="number">1</span>;</span><br><span class="line">                    <span class="keyword">if</span> (my[v])&#123;</span><br><span class="line">                        dx[my[v]] = dy[v] + <span class="number">1</span>;</span><br><span class="line">                        que.push(my[v]);</span><br><span class="line">                    &#125;<span class="keyword">else</span> flag = <span class="literal">true</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (!flag) <span class="keyword">break</span>;</span><br><span class="line">        <span class="built_in">memset</span>(vis, <span class="number">0</span>, <span class="keyword">sizeof</span>(vis));</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i)</span><br><span class="line">            <span class="keyword">if</span> (!mx[i] &amp;&amp; match(i))</span><br><span class="line">                ++ans;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>基于种种证明，HK 算法的时间复杂度为 $O(|E|\sqrt {|V|})$。</p>
+<h4 id="KM-算法"><a href="#KM-算法" class="headerlink" title="KM 算法"></a>KM 算法</h4><p>KM 算法用于求解最大<strong>完备</strong>匹配。</p>
+<p>实际上 KM 算法的应用面比较窄，一般如果没有特殊要求还是用费用流求最大权匹配。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/09/06/contest-cf1217/" rel="next" title="Educational Codeforces Round 70 题解">
+                <i class="fa fa-chevron-left"></i> Educational Codeforces Round 70 题解
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/09/07/summary-graph/" rel="prev" title="图论学习总结">
+                图论学习总结 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+
+  
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">zqy</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">264</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">26</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">88</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://hodam.top" title="big_yellow_doge" target="_blank">big_yellow_doge</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#强连通分量分解"><span class="nav-number">1.</span> <span class="nav-text">强连通分量分解</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Tarjan算法"><span class="nav-number">1.1.</span> <span class="nav-text">Tarjan算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Kosaraju算法"><span class="nav-number">1.2.</span> <span class="nav-text">Kosaraju算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-SAT问题"><span class="nav-number">1.3.</span> <span class="nav-text">2-SAT问题</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二分图"><span class="nav-number">2.</span> <span class="nav-text">二分图</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#判定二分图"><span class="nav-number">2.1.</span> <span class="nav-text">判定二分图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二分图最大匹配"><span class="nav-number">2.2.</span> <span class="nav-text">二分图最大匹配</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#匈牙利算法"><span class="nav-number">2.2.1.</span> <span class="nav-text">匈牙利算法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Hopcroft-Karp-算法（HK-算法）"><span class="nav-number">2.2.2.</span> <span class="nav-text">Hopcroft-Karp 算法（HK 算法）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#KM-算法"><span class="nav-number">2.2.3.</span> <span class="nav-text">KM 算法</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">zqy</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">206.9k</span>
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'X4PSdvLViY4pfjyqvDEkpvIN-gzGzoHsz',
+        appKey: 'IR3NlAjCwyRMypA2bbGW5GC1',
+        placeholder: 'Write something?',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+
+  
+
+  
+
+</body>
+</html>

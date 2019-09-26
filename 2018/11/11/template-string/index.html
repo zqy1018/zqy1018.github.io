@@ -86,10 +86,13 @@
 <meta property="og:site_name" content="zqy1018的博客">
 <meta property="og:description" content="字符串相关算法的模板。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-11-13T12:57:24.870Z">
+<meta property="og:image" content="http://yoursite.com/2018/11/11/template-string/manacher-1.jpg">
+<meta property="og:image" content="http://yoursite.com/2018/11/11/template-string/manacher-2.jpg">
+<meta property="og:updated_time" content="2019-09-07T12:41:31.098Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="模板 字符串">
 <meta name="twitter:description" content="字符串相关算法的模板。">
+<meta name="twitter:image" content="http://yoursite.com/2018/11/11/template-string/manacher-1.jpg">
 
 
 
@@ -375,17 +378,6 @@
 
           
           
-             <span id="/2018/11/11/template-string/" class="leancloud_visitors" data-flag-title="模板 字符串">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
 
           
 
@@ -400,7 +392,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  799 字
+                  3,168 字
                 </span>
               
 
@@ -426,20 +418,64 @@
 
       
         <p>字符串相关算法的模板。<br><a id="more"></a></p>
-<h2 id="KMP算法"><a href="#KMP算法" class="headerlink" title="KMP算法"></a>KMP算法</h2><p>KMP算法的核心是<strong>后缀配对前缀</strong>，从而可以在配对失败的时候不用总是从头开始，而是从可以成功匹配的某一个前缀开始继续匹配。</p>
-<p>KMP算法的匹配方式非常容易，但是需要预处理出一个next（或称fail）数组，表示匹配失败的时候跳转的位置。</p>
-<p>若$m$是模板的长度，$n$是文本串的长度，那么时间复杂度：$O(m+n)$，空间复杂度：$O(m)$。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//构建fail数组</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">build_fail</span><span class="params">(<span class="keyword">char</span> *pat, <span class="keyword">int</span> len, <span class="keyword">int</span> *fail)</span></span>&#123;</span><br><span class="line">    fail[<span class="number">0</span>] = <span class="number">-1</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>, j = <span class="number">-1</span>; i &lt; len; ++i)&#123;</span><br><span class="line">        <span class="keyword">while</span>(j &gt; <span class="number">-1</span> &amp;&amp; pat[i] != pat[j + <span class="number">1</span>])<span class="comment">//j+1表示当前模板串内要匹配的前缀的字符</span></span><br><span class="line">            j = fail[j];</span><br><span class="line">        <span class="keyword">if</span>(pat[i] == pat[j + <span class="number">1</span>])</span><br><span class="line">            fail[i] = ++j;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            fail[i] = <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//匹配过程</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">KMP_match</span><span class="params">(<span class="keyword">char</span> *text, <span class="keyword">int</span> l1, <span class="keyword">char</span> *pat, <span class="keyword">int</span> l2, <span class="keyword">int</span> *fail)</span></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>, j = <span class="number">-1</span>; i &lt; l1; ++i)&#123;</span><br><span class="line">        <span class="keyword">while</span>(j &gt; <span class="number">-1</span> &amp;&amp; text[i] != pat[j + <span class="number">1</span>])</span><br><span class="line">            j = fail[j];</span><br><span class="line">        <span class="keyword">if</span>(text[i] == pat[j + <span class="number">1</span>])</span><br><span class="line">            j++;</span><br><span class="line">        <span class="keyword">if</span>(j == l2 - <span class="number">1</span>)&#123;</span><br><span class="line">            <span class="comment">//do something... 因为你已经匹配到了。</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h2 id="扩展KMP算法"><a href="#扩展KMP算法" class="headerlink" title="扩展KMP算法"></a>扩展KMP算法</h2><p>扩展KMP算法用于解决这样的问题：给定两个字符串$S$和$T$（长度分别为$n$和$m$），下标从$0$开始，定义$extend[i]$等$S[i…n-1]$与$T$的最长相同前缀的长度，求出所有的$extend[i]$。</p>
-<p>解决这个问题需要引入一个额外的数组：$next[0…m-1]$，其中$next[i]$表示$T[i…m-1]$和$T$的最长公共前缀的长度。这个数组的用途先不说明，先直接考虑$extend$的求解过程。</p>
-<p>假设$extend[0…i-1]$已经解决完成，那么现在考虑求出$extend[i]$。令$p = \max_\limits{1\le j &lt;i} {j + extend[j]}$，即为之前在$S$中已经匹配完成的最右边界。设$a$为取这个最大值的$j$，那么按照题目要求，有$T[0…p-a) = S[a…p)$。之后按照两种情况进行讨论：</p>
+<h2 id="Trie-树"><a href="#Trie-树" class="headerlink" title="Trie 树"></a>Trie 树</h2><p>Trie 树（前缀树/字典树）是一种保存字符串的数据结构。它是一种树结构，除了根之外，节点都代表某个字符。将从根到某个节点的路径上的字符依次写下，就构成一个字符串。因此我们可以用 Trie 树判断一个字符串是否在一堆串中，或者判断一个字符串是否是某一个串的前缀。</p>
+<p>我们用数组的形式表示 Trie 树，其中 <code>trie[i][j]</code> 就表示第 $i$ 个节点下属的字符 $j$ 的节点编号。</p>
+<p>构建 Trie 树的时间复杂度是 $O(\sum |S|)$，即串长的和；空间复杂度是 $O(n|\Sigma|)$，即节点个数乘以字符总数。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> trie[<span class="number">100005</span>][<span class="number">26</span>] = &#123;<span class="number">0</span>&#125;, cnt = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">bool</span> isend[<span class="number">100005</span>] = &#123;<span class="number">0</span>&#125;;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">insert</span><span class="params">(<span class="keyword">char</span> *s)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> p = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span> (*s)&#123;</span><br><span class="line">        <span class="keyword">if</span> (!trie[p][*s - <span class="string">'a'</span>])</span><br><span class="line">            trie[p][*s - <span class="string">'a'</span>] = ++cnt;</span><br><span class="line">        p = trie[p][*s - <span class="string">'a'</span>];</span><br><span class="line">        ++s;</span><br><span class="line">    &#125;</span><br><span class="line">    isend[p] = <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">Find</span><span class="params">(<span class="keyword">char</span> *s)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> p = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span> (*s &amp;&amp; p)</span><br><span class="line">        p = trie[p][*s - <span class="string">'a'</span>], ++s;</span><br><span class="line">    <span class="keyword">return</span> p &amp;&amp; isend[p];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>Trie 树虽然原理简单，实现方便，但是却是一些高级数据结构的基础。</p>
+<h2 id="Manacher-算法"><a href="#Manacher-算法" class="headerlink" title="Manacher 算法"></a>Manacher 算法</h2><p>Manacher 算法可以用于求以所有可能的中心点扩展出的，最长回文串的长度。换言之，它是专门用来处理回文子串问题的算法。它的时间复杂度是线性的。</p>
+<p>在介绍它之前，不妨对“回文子串”问题中的串做一个变形：向串中每一对相邻字符间都插入一个占位符（这里用 <code>#</code> 表示）。这样，我们就将偶数长度的回文情况转换成了奇数长度的回文情况（即变为以 <code>#</code> 为中心）。这样的推广带来了方便，因为下面我们可以只针对“以某个字符为中心的回文”这种情况讨论。</p>
+<blockquote>
+<p>例如：<code>AABBAA</code> 变成 <code>A#A#B#B#A#A</code></p>
+</blockquote>
+<p>Manacher 算法的特点在于它利用了隐藏的匹配信息。我们考虑下面这种情况：</p>
+<p><img src="/2018/11/11/template-string/manacher-1.jpg" alt=""></p>
+<p>图中黑色直线代表串，蓝色代表当前位置，红色代表到了蓝色位置时，<strong>右端点最靠右</strong>的回文串。可以发现，由回文串的性质，如果将蓝色位置以红色回文串的中心做一次对称，得到绿色位置，那么绿色位置向两侧延伸的情况应该是和蓝色位置一样。</p>
+<p><img src="/2018/11/11/template-string/manacher-2.jpg" alt=""></p>
+<p>而在这之前，我们已经求出了以绿色位置的字符为中心的最长回文串。这样，我们就可以依照绿色位置的情况，直接先让蓝色位置的回文串向两侧延伸一段距离，然后再暴力判断蓝色位置的回文串是否能够延伸。</p>
+<p>可以发现，这样一种对称的操作省略了以蓝色位置为中心时，向两侧延伸时的部分比较操作。实际上，因为最靠右的回文串的右端点是<strong>单调向右移动的</strong>，而只有暴力判断才会将右端点向右延伸，所以该算法最终的时间复杂度是线性的。</p>
+<p>下面给出该算法的实现。具体实现中，并不向字符串中加入具体化的占位字符，而是用中心位置的下标加以区别：</p>
 <ol>
-<li>如果$p - i &gt; next[i - a]$，那么由于$next$中保存的都是最长的长度，$extend[i]$不可能超过$next[i-a]$，故此时令$extend[i] = next[i - a]$。</li>
-<li>如果$p - i = next[i - a]$，那么只能保证$S[i…p)$这一部分是$T$的前缀，这个时候需要暴力匹配。此时可以看出，在$extend[i]$被求出来之后，$p$和$a$的值都会被更新。</li>
-<li>如果$p - i &lt; next[i - a]$，那么在2的基础上追加了$T[0…p-i]=T[i-a…p-a]$的条件，即得到$S[p] \neq T[p-a] \implies S[p]\neq T[p-i]$，此时令$extend[i] = p - i$即可。</li>
+<li>如果下标是偶数就代表当前中心位置对应原字符串中的字符，解码方式是下标除以 2。</li>
+<li>下标是奇数就代表当前中心位置是占位符，此时中心位置用原字符串中中心位置左右两个字符的位置表示，解码方式是下标除以 2 和 (下标除以 2 加 1) 分别对应原字符串这左、右两个字符。</li>
 </ol>
-<p>这样我们就得到了$extend$数组的求解过程。而求解$next$数组的过程就是对$T$求$extend$的过程。</p>
-<p>由于$p$是不降的，所以在匹配的时候最多会遍历一次$S$和$T$串，因此算法的时间复杂度是$O(m+n)$。</p>
-<p>可以说这个算法虽然被称为扩展KMP算法，但内核思想却和manacher算法相近，都是利用了在特定情况下的重复信息。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure></p>
+<p>（注：这个设定是针对于下标起始是 0 的时候）</p>
+<p>另外一个细节是：对于每一个位置，求出的答案都是<strong>以该位置为中心的回文串的个数</strong>。使用个数这个设定比长度在某些情况下会更加方便。如果要使用长度作为目标函数，那么在程序的某些地方需要减掉一个 1。</p>
+<p>有了这些前提，阅读下面这份代码就很容易了。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/** </span></span><br><span class="line"><span class="comment"> *  l: left position; r: right position</span></span><br><span class="line"><span class="comment"> *  res: the answer for each position</span></span><br><span class="line"><span class="comment"> *  rpos: the right endpoint of the rightmost palindrome</span></span><br><span class="line"><span class="comment"> *  rmost: the index of the rightmost palindrome</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">manacher</span><span class="params">(<span class="built_in">string</span>&amp; s, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; res)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n = s.length();</span><br><span class="line">    res[<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>, rmost = <span class="number">0</span>; i &lt; (n &lt;&lt; <span class="number">1</span>) - <span class="number">1</span>; ++i)&#123;</span><br><span class="line">        <span class="keyword">int</span> l = (i &gt;&gt; <span class="number">1</span>), r = i - l, rpos = ((rmost + <span class="number">1</span>) &gt;&gt; <span class="number">1</span>) + res[rmost] - <span class="number">1</span>;</span><br><span class="line">        res[i] = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">if</span> ((rmost &lt;&lt; <span class="number">1</span>) &gt;= i)</span><br><span class="line">            res[i] = min(rpos - r + <span class="number">1</span>, res[(rmost &lt;&lt; <span class="number">1</span>) - i]);</span><br><span class="line">        <span class="keyword">while</span> (l - res[i] &gt;= <span class="number">0</span> &amp;&amp; r + res[i] &lt; n </span><br><span class="line">            &amp;&amp; s[l - res[i]] == s[r + res[i]])</span><br><span class="line">            ++res[i];</span><br><span class="line">        <span class="keyword">if</span> (r + res[i] - <span class="number">1</span> &gt; rpos)</span><br><span class="line">            rmost = i;</span><br><span class="line">    &#125; </span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/** </span></span><br><span class="line"><span class="comment"> * C-style version</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">manacher</span><span class="params">(<span class="keyword">char</span> s[], <span class="keyword">int</span> res[], <span class="keyword">int</span> n)</span></span>&#123;</span><br><span class="line">    res[<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>, rmost = <span class="number">0</span>; i &lt; (n &lt;&lt; <span class="number">1</span>) - <span class="number">1</span>; ++i)&#123;</span><br><span class="line">        <span class="keyword">int</span> l = (i &gt;&gt; <span class="number">1</span>), r = i - l, rpos = ((rmost + <span class="number">1</span>) &gt;&gt; <span class="number">1</span>) + res[rmost] - <span class="number">1</span>;</span><br><span class="line">        res[i] = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">if</span> ((rmost &lt;&lt; <span class="number">1</span>) &gt;= i)</span><br><span class="line">            res[i] = min(rpos - r + <span class="number">1</span>, res[(rmost &lt;&lt; <span class="number">1</span>) - i]);</span><br><span class="line">        <span class="keyword">while</span> (l - res[i] &gt;= <span class="number">0</span> &amp;&amp; r + res[i] &lt; n </span><br><span class="line">            &amp;&amp; s[l - res[i]] == s[r + res[i]])</span><br><span class="line">            ++res[i];</span><br><span class="line">        <span class="keyword">if</span> (r + res[i] - <span class="number">1</span> &gt; rpos)</span><br><span class="line">            rmost = i;</span><br><span class="line">    &#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>必须指出，上述算法的实现虽然避免了加入填充字符的过程，但是效率却不如填充字符的版本。原因可能在于上述实现中运算量比较大。因此，在对时间复杂度要求较高而对于空间复杂度要求并不那么严格的场合，可以使用下面的实现。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">manacher</span><span class="params">(<span class="keyword">char</span> s[], <span class="keyword">char</span> tmp[], <span class="keyword">int</span> res[], <span class="keyword">int</span> n)</span></span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; ++i)</span><br><span class="line">        tmp[i &lt;&lt; <span class="number">1</span> | <span class="number">1</span>] = s[i], tmp[i &lt;&lt; <span class="number">1</span>] = <span class="string">'#'</span>;</span><br><span class="line">    tmp[<span class="number">0</span>] = tmp[n &lt;&lt; <span class="number">1</span>] = <span class="string">'$'</span>;   <span class="comment">// stuff</span></span><br><span class="line">    </span><br><span class="line">    res[<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>, rmost = <span class="number">0</span>; i &lt; (n &lt;&lt; <span class="number">1</span>); ++i)&#123;</span><br><span class="line">        <span class="keyword">int</span> rpos = rmost + res[rmost] - <span class="number">1</span>;</span><br><span class="line">        res[i] = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">if</span> (rpos &gt;= i)</span><br><span class="line">            res[i] = min(rpos - i + <span class="number">1</span>, res[(rmost &lt;&lt; <span class="number">1</span>) - i]);</span><br><span class="line">        <span class="keyword">else</span> res[i] = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">while</span> (s[i - res[i]] == s[i + res[i]])</span><br><span class="line">            ++res[i];</span><br><span class="line">        <span class="keyword">if</span> (i + res[i] - <span class="number">1</span> &gt; rpos)</span><br><span class="line">            rmost = i;</span><br><span class="line">    &#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="KMP-算法"><a href="#KMP-算法" class="headerlink" title="KMP 算法"></a>KMP 算法</h2><p>KMP算法的核心是<strong>后缀配对前缀</strong>，从而可以在配对失败的时候不用总是从头开始，而是从可以成功匹配的某一个前缀开始继续匹配。</p>
+<p>KMP算法的匹配方式非常容易，但是需要预处理出一个next（或称fail）数组，表示匹配失败的时候跳转的位置。</p>
+<p>若 $m$ 是模板的长度，$n$ 是文本串的长度，那么时间复杂度：$O(m+n)$，空间复杂度：$O(m)$。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//构建fail数组</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">build_fail</span><span class="params">(<span class="keyword">char</span> *pat, <span class="keyword">int</span> len, <span class="keyword">int</span> *fail)</span></span>&#123;</span><br><span class="line">    fail[<span class="number">0</span>] = <span class="number">-1</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>, j = <span class="number">-1</span>; i &lt; len; ++i)&#123;</span><br><span class="line">        <span class="keyword">while</span> (j &gt; <span class="number">-1</span> &amp;&amp; pat[i] != pat[j + <span class="number">1</span>])<span class="comment">//j+1表示当前模板串内要匹配的前缀的字符</span></span><br><span class="line">            j = fail[j];</span><br><span class="line">        <span class="keyword">if</span> (pat[i] == pat[j + <span class="number">1</span>])</span><br><span class="line">            fail[i] = ++j;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            fail[i] = <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//匹配过程</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">KMP_match</span><span class="params">(<span class="keyword">char</span> *text, <span class="keyword">int</span> l1, <span class="keyword">char</span> *pat, <span class="keyword">int</span> l2, <span class="keyword">int</span> *fail)</span></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>, j = <span class="number">-1</span>; i &lt; l1; ++i)&#123;</span><br><span class="line">        <span class="keyword">while</span>(j &gt; <span class="number">-1</span> &amp;&amp; text[i] != pat[j + <span class="number">1</span>])</span><br><span class="line">            j = fail[j];</span><br><span class="line">        <span class="keyword">if</span>(text[i] == pat[j + <span class="number">1</span>])</span><br><span class="line">            j++;</span><br><span class="line">        <span class="keyword">if</span>(j == l2 - <span class="number">1</span>)&#123;</span><br><span class="line">            <span class="comment">//do something... 因为你已经匹配到了。</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="扩展-KMP-算法（Z-算法）"><a href="#扩展-KMP-算法（Z-算法）" class="headerlink" title="扩展 KMP 算法（Z 算法）"></a>扩展 KMP 算法（Z 算法）</h2><p>定义 Z 函数：对于串 $S[0…n), T[0…m)$，$z[i]$ 表示 $S[i…n)$ 和 $T$ 的最长公共前缀。我们希望有一个算法，能够求出每一个位置上的 Z 函数。</p>
+<p>这个定义和名字有一些关系：因为如果 $\exists i, z[i]=m$，那么就表明 $T$ 在 $S$ 中出现过。这和 KMP 算法的目标是一样的，所以一般称该算法为扩展 KMP 算法。</p>
+<p>要求 Z 函数，$O(n^2)$ 的暴力是容易实现的。我们考虑像 KMP 算法一样利用一些有用的信息。先假设我们已经求出了 $z[0…i)$，现在我们要求 $z[i]$。类比 Manacher 算法的思想，我们考虑某一个位置 $p = \arg \max (i+z[i]-1)$。它的直观意义是和 $T$ 相匹配时延伸到最右的，$S$ 的某个后缀的起始位置。同样，我们讨论 $p$ 和 $i$ 的关系：（方便起见，下面设 $r=p + z[p]-1$）</p>
+<ol>
+<li>$i &gt; r$。这时，我们似乎不能得到任何的有效信息，于是只有通过暴力匹配计算 $z[i]$。</li>
+<li><p>$i \le r$。这时，通过匹配关系，我们可以得出：$S[p…r] = T[0…r-p]$。那么 $S[i…r] = T[i-p…r-p]$。这件事似乎并没有说明什么，因此我们不妨先考虑一个特殊情况：$S=T$。假设我们已经求出来了这种情况下的 Z 函数数组，并设其为 next。（这里和 KMP 中的在定义上稍微有些不同）</p>
+<p> 回到一般情况，我们可以用上述 next 数组方便求解。考虑 $next[i-p]$，设其为 $l$。则：</p>
+<ol>
+<li>$l \le r-i$。那么直接令 $z[i]=l$。因为如果 $z[i]&gt;l$，那么至少存在 $l’&gt;l$，使得 $S[i…i+l’)=T[0…l’)=T[i-p…i-p+l’)$。而根据 next 数组的定义，这表明 $next[i-p]&gt;l$，矛盾。</li>
+<li>$l &gt;r-i$。那么先令 $z[i]=l$，而在 $S[r]$ 之后的情况就完全不清楚了，所以这时候直接从 $S[r+1]$ 开始暴力匹配，并且更新 $p$ 和 $r$。</li>
+</ol>
+</li>
+</ol>
+<p>在 $S=T$ 时，我们可以使用之前已经得到了的 next 数组求解剩余部分。这样，我们可以先对 $T$ 自身做一次扩展 KMP（相当于预处理），然后再对 $S$ 做一次。</p>
+<p>和对 Manacher 算法分析时间复杂度的过程类似，可以证明两种情况下的时间复杂度都是线性的。所以整个扩展 KMP 的时间复杂度是线性的。</p>
+<p>下面给出一个简单的实现：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">exKMP</span><span class="params">(<span class="keyword">char</span> s[], <span class="keyword">char</span> t[], <span class="keyword">int</span> n, <span class="keyword">int</span> m, <span class="keyword">int</span> nxt[], <span class="keyword">int</span> z[])</span></span>&#123;</span><br><span class="line">    nxt[<span class="number">0</span>] = m;</span><br><span class="line">    <span class="keyword">int</span> j = <span class="number">0</span>, p = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span> (j + <span class="number">1</span> &lt; m &amp;&amp; t[j] == t[j + <span class="number">1</span>])</span><br><span class="line">        ++j;</span><br><span class="line">    nxt[<span class="number">1</span>] = j;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">2</span>; i &lt; m; ++i) &#123;</span><br><span class="line">        <span class="keyword">int</span> r = p + nxt[p] - <span class="number">1</span>, l = nxt[i - p];</span><br><span class="line">        <span class="keyword">if</span> (l &lt;= r - i) nxt[i] = l;</span><br><span class="line">        <span class="keyword">else</span> &#123;</span><br><span class="line">            j = max(<span class="number">0</span>, r - i + <span class="number">1</span>);</span><br><span class="line">            <span class="keyword">while</span> (j + i &lt; m &amp;&amp; t[j] == t[j + i])</span><br><span class="line">                ++j;</span><br><span class="line">            nxt[i] = j, p = i;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    j = <span class="number">0</span>, p = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span> (j &lt; n &amp;&amp; j &lt; m &amp;&amp; s[j] == t[j])</span><br><span class="line">        ++j;</span><br><span class="line">    z[<span class="number">0</span>] = j;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; n; ++i)&#123;</span><br><span class="line">        <span class="keyword">int</span> r = p + z[p] - <span class="number">1</span>, l = nxt[i - p];</span><br><span class="line">        <span class="keyword">if</span> (l &lt;= r - i) z[i] = l;</span><br><span class="line">        <span class="keyword">else</span> &#123;</span><br><span class="line">            j = max(<span class="number">0</span>, r - i + <span class="number">1</span>);</span><br><span class="line">            <span class="keyword">while</span> (j + i &lt; n &amp;&amp; j &lt; m &amp;&amp; t[j] == s[j + i])</span><br><span class="line">                ++j;</span><br><span class="line">            z[i] = j, p = i;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>上述代码将 $i&gt;r$ 和 $l &gt;r-i$ 的情况做了整合。</p>
+<h2 id="最小表示法"><a href="#最小表示法" class="headerlink" title="最小表示法"></a>最小表示法</h2><p>给定串 $S[0…n)$，设 $T(i)=S[i…n) + S[0…i)$。设字典序意义下 $\min T(i)$ 为 $S$ 的<strong>最小表示</strong>。</p>
+<p>最简单的求最小表示的方法是暴力，在数据随机的情况下暴力表现很好，但是在串中有大量重复子串的时候，暴力的时间复杂度退化到 $O(n^2)$。</p>
+<p>我们针对这种情况优化。考虑两个不同的数 $i, j$，设 $T(i), T(j)$ 的前 $k$ 个字符相同，当到达 $k+1$ 个字符的时候：</p>
+<ol>
+<li>$T(i)[k] &gt; T(j)[k]$。那么对于所有的 $l\in [i…i+k]$，$T(l)$ 必然不能成为答案，因为此时 $T(j+l-i)$ 必然比其更优。</li>
+<li>$T(i)[k] &lt; T(j)[k]$。那么对于所有的 $l\in [j…j+k]$，$T(l)$ 必然不能成为答案，因为此时 $T(i+l-j)$ 必然比其更优。</li>
+<li>$T(i)[k] = T(j)[k]$。那么 $k:=k+1$，继续比较。</li>
+</ol>
+<p>可以发现，无论是哪一种情况，都要么为之后排除一部分选项做了准备，要么直接排除了一部分选项。因为选项至多有 $n$ 个，所以我们可以设计一个算法，让这 $n$ 个选项相互比较、排除。算法的实现如下：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">minrep</span><span class="params">(<span class="keyword">char</span> *s, <span class="keyword">int</span> n)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i = <span class="number">0</span>, j = <span class="number">1</span>, k = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span> (i &lt; n &amp;&amp; j &lt; n &amp;&amp; k &lt; n)&#123;</span><br><span class="line">        <span class="keyword">int</span> ri = (i + k) % n, rj = (j + k) % n;</span><br><span class="line">        <span class="keyword">if</span> (s[ri] == s[rj]) ++k;</span><br><span class="line">        <span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="keyword">if</span> (s[ri] &gt; s[rj]) i += k + <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">else</span> j += k + <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">if</span> (i == j) ++j;</span><br><span class="line">            k = <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> min(i, j);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>该算法基本按照上述原理实现。最后返回的是 $i$ 和 $j$ 的最小者，这是因为若整个字符串全部由同一种字符构成，则返回 $0$ 是比较好的选择；否则 $k$ 必然小于 $n$，这时 $i$ 和 $j$ 必然有一个越界，因此我们选择较小的那个也就是选择了没有越界的那个。</p>
+<p>例题：HDU 2609</p>
 
       
     </div>
@@ -556,7 +592,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">259</span>
+                  <span class="site-state-item-count">264</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -578,7 +614,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">85</span>
+                  <span class="site-state-item-count">88</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -625,7 +661,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#KMP算法"><span class="nav-number">1.</span> <span class="nav-text">KMP算法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#扩展KMP算法"><span class="nav-number">2.</span> <span class="nav-text">扩展KMP算法</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Trie-树"><span class="nav-number">1.</span> <span class="nav-text">Trie 树</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Manacher-算法"><span class="nav-number">2.</span> <span class="nav-text">Manacher 算法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#KMP-算法"><span class="nav-number">3.</span> <span class="nav-text">KMP 算法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#扩展-KMP-算法（Z-算法）"><span class="nav-number">4.</span> <span class="nav-text">扩展 KMP 算法（Z 算法）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#最小表示法"><span class="nav-number">5.</span> <span class="nav-text">最小表示法</span></a></li></ol></div>
             
 
           </div>
@@ -659,7 +695,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">229.5k</span>
+    <span title="Site words total count">206.9k</span>
   
 </div>
 
@@ -1164,113 +1200,6 @@
 
 
   
-
-  
-  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
-  <script>AV.initialize("Q3MTYoDUCrhHUXOabd91DbOM-gzGzoHsz", "rghJaSuameCOIla10btdkgPd");</script>
-  <script>
-    function showTime(Counter) {
-      var query = new AV.Query(Counter);
-      var entries = [];
-      var $visitors = $(".leancloud_visitors");
-
-      $visitors.each(function () {
-        entries.push( $(this).attr("id").trim() );
-      });
-
-      query.containedIn('url', entries);
-      query.find()
-        .done(function (results) {
-          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
-
-          if (results.length === 0) {
-            $visitors.find(COUNT_CONTAINER_REF).text(0);
-            return;
-          }
-
-          for (var i = 0; i < results.length; i++) {
-            var item = results[i];
-            var url = item.get('url');
-            var time = item.get('time');
-            var element = document.getElementById(url);
-
-            $(element).find(COUNT_CONTAINER_REF).text(time);
-          }
-          for(var i = 0; i < entries.length; i++) {
-            var url = entries[i];
-            var element = document.getElementById(url);
-            var countSpan = $(element).find(COUNT_CONTAINER_REF);
-            if( countSpan.text() == '') {
-              countSpan.text(0);
-            }
-          }
-        })
-        .fail(function (object, error) {
-          console.log("Error: " + error.code + " " + error.message);
-        });
-    }
-
-    function addCount(Counter) {
-      var $visitors = $(".leancloud_visitors");
-      var url = $visitors.attr('id').trim();
-      var title = $visitors.attr('data-flag-title').trim();
-      var query = new AV.Query(Counter);
-
-      query.equalTo("url", url);
-      query.find({
-        success: function(results) {
-          if (results.length > 0) {
-            var counter = results[0];
-            counter.fetchWhenSave(true);
-            counter.increment("time");
-            counter.save(null, {
-              success: function(counter) {
-                var $element = $(document.getElementById(url));
-                $element.find('.leancloud-visitors-count').text(counter.get('time'));
-              },
-              error: function(counter, error) {
-                console.log('Failed to save Visitor num, with error message: ' + error.message);
-              }
-            });
-          } else {
-            var newcounter = new Counter();
-            /* Set ACL */
-            var acl = new AV.ACL();
-            acl.setPublicReadAccess(true);
-            acl.setPublicWriteAccess(true);
-            newcounter.setACL(acl);
-            /* End Set ACL */
-            newcounter.set("title", title);
-            newcounter.set("url", url);
-            newcounter.set("time", 1);
-            newcounter.save(null, {
-              success: function(newcounter) {
-                var $element = $(document.getElementById(url));
-                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
-              },
-              error: function(newcounter, error) {
-                console.log('Failed to create');
-              }
-            });
-          }
-        },
-        error: function(error) {
-          console.log('Error:' + error.code + " " + error.message);
-        }
-      });
-    }
-
-    $(function() {
-      var Counter = AV.Object.extend("Counter");
-      if ($('.leancloud_visitors').length == 1) {
-        addCount(Counter);
-      } else if ($('.post-title-link').length > 1) {
-        showTime(Counter);
-      }
-    });
-  </script>
-
-
 
   
 

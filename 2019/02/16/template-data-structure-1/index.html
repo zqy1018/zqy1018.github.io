@@ -79,17 +79,17 @@
 
 
 
-<meta name="description" content="数据结构的第一份模板。">
+<meta name="description" content="数据结构的第一份模板，包含了栈，队列，并查集等内容。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="模板 数据结构（1）">
 <meta property="og:url" content="http://yoursite.com/2019/02/16/template-data-structure-1/index.html">
 <meta property="og:site_name" content="zqy1018的博客">
-<meta property="og:description" content="数据结构的第一份模板。">
+<meta property="og:description" content="数据结构的第一份模板，包含了栈，队列，并查集等内容。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-02-20T16:05:37.822Z">
+<meta property="og:updated_time" content="2019-09-07T08:46:56.024Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="模板 数据结构（1）">
-<meta name="twitter:description" content="数据结构的第一份模板。">
+<meta name="twitter:description" content="数据结构的第一份模板，包含了栈，队列，并查集等内容。">
 
 
 
@@ -375,17 +375,6 @@
 
           
           
-             <span id="/2019/02/16/template-data-structure-1/" class="leancloud_visitors" data-flag-title="模板 数据结构（1）">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
 
           
 
@@ -400,7 +389,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1,875 字
+                  1,911 字
                 </span>
               
 
@@ -425,13 +414,23 @@
       
 
       
-        <p>数据结构的第一份模板。<br><a id="more"></a></p>
-<h2 id="并查集"><a href="#并查集" class="headerlink" title="并查集"></a>并查集</h2><h3 id="基本实现"><a href="#基本实现" class="headerlink" title="基本实现"></a>基本实现</h3><p>并查集是一个实现起来较为简单的数据结构。它维护的是一系列不相交集合，每一个集合都由该集合中的一个代表元表示。<br>整个并查集实际上是一个森林，每一个元素$x$都有一个属性$fa[x]$作为$x$所在的树的父节点。树根的父节点设为它本身。这样只要不断沿着$fa[x]$走就能走到这一棵树的根，从而知道一个元素的归属。<br>事实上整棵树的形态并不重要，因为我们需要知道的是一个元素所在树的根节点。因此可以在递归找根时，令经过路径上的节点的$fa$全部设为最后找到的根，这样可以方便之后的查询。这种优化称为<strong>路径压缩</strong>。路径压缩后的并查集查找操作的均摊时间复杂度是$O(\log n)$。<br>并查集还要支持合并两个集合的操作。这个操作的基本实现方式是找出两个集合对应的树根，然后令其中一个根的$fa$设为另外一个树根。这时的合并是可以指定方向的，即指定新集合的代表元是哪一个根。<br>如果不需要指定代表元就可以使用<strong>按秩合并</strong>。它是一种启发式合并。它将秩（一般定义为集合大小或者合并次数）较小的集合合并到秩较大的集合上，这样就只增加了小集合的查询代价。这样总共增加的总代价是$O(n\log n)$级别的。这时查询操作的均摊时间复杂度也是$O(\log n)$。<br>两种优化都使用的并查集的查询时间复杂度近似于常数级别。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> fa[<span class="number">100005</span>], rank[<span class="number">100005</span>], n;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">init</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i)</span><br><span class="line">        fa[i] = i, rank[i] = <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">Find</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(x == fa[x]) <span class="keyword">return</span> x;</span><br><span class="line">    <span class="keyword">return</span> (fa[x] = Find(fa[x]));</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">joint</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> xa = Find(x), ya = Find(y);</span><br><span class="line">    <span class="keyword">if</span>(xa == ya) <span class="keyword">return</span> ;</span><br><span class="line">    <span class="keyword">if</span>(rank[xa] &gt; rank[ya])</span><br><span class="line">        fa[ya] = xa, rank[xa] += rank[ya];</span><br><span class="line">    <span class="keyword">else</span> </span><br><span class="line">        fa[xa] = ya, rank[ya] += rank[xa];</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">joint</span><span class="params">(<span class="keyword">int</span> from, <span class="keyword">int</span> to)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> xa = Find(from), ya = Find(to);</span><br><span class="line">    <span class="keyword">if</span>(xa == ya) <span class="keyword">return</span> ;</span><br><span class="line">    fa[xa] = ya;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>基于并查集树的性质，可以将并查集的树边视作有向边或者无向边，这两种视角可以分别处理不同的问题。<br>无向边的并查集常用于维护无向图的连通性。这在Kruskal算法中得到了体现。扩展一下：并查集擅长维护等价关系（集合即等价类）。<br>有向边的并查集常用于维护一个数组中空闲和占用的情况。比如，可以令一个集合的根表示当前可用位置，如果占用了这个位置就把该位置所在集合和该位置之前的一个位置所在集合合并。也可以用来维护链状或者树形的关系。</p>
-<h3 id="带权并查集"><a href="#带权并查集" class="headerlink" title="带权并查集"></a>带权并查集</h3><p>并查集的边可以拥有边权，而边权可以表示一些信息。<br>带权并查集和普通并查集主要在两个地方有所不同：一是在查找操作中，路径压缩时要进行边权的更新；二是在合并操作中，要确定合并方向，以及合并中新产生的边的边权。根据不同的问题会有不同的处理方法。重点在于弄清楚边权的意义。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> fa[<span class="number">100005</span>], dis[<span class="number">100005</span>], n;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">Find</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(x == fa[x]) <span class="keyword">return</span> x;</span><br><span class="line">    <span class="keyword">int</span> rt = Find(fa[x]);</span><br><span class="line">    <span class="comment">//更新边权操作</span></span><br><span class="line">    <span class="keyword">return</span> (fa[x] = rt);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">joint</span><span class="params">(<span class="keyword">int</span> from, <span class="keyword">int</span> to)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> xa = Find(from), ya = Find(to);</span><br><span class="line">    <span class="keyword">if</span>(xa == ya) <span class="keyword">return</span> ;</span><br><span class="line">    fa[xa] = ya;</span><br><span class="line">    <span class="comment">//更新dis[xa]</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h3 id="多重关系并查集"><a href="#多重关系并查集" class="headerlink" title="多重关系并查集"></a>多重关系并查集</h3><p>联想到并查集能够维护一系列等价关系，我们可以将一个点拆成多个点，每一个点表示“满足某一个条件的集合”，如和x相同或者和x不同。这样如果题目中给出的都是双蕴含（或者异或）类型的条件，就可以利用这种并查集高效地维护这样的关系。<br>典型例题：NOI2001 食物链</p>
-<h2 id="树状数组"><a href="#树状数组" class="headerlink" title="树状数组"></a>树状数组</h2><p>能用一个二进制数分出$O(\log n)$个小区间：从$[x - \text{lowbit}(x) + 1, x]$递归下去。利用这种思想，对于一个数组$a[i]$，可以构造出一个数组$c[i]$，其中$c[x] = \sum _{i=x - \text{lowbit}(x) + 1}^{x} a[i]$。树状数组就是这样一个数组。</p>
-<h3 id="单点修改，单点求值"><a href="#单点修改，单点求值" class="headerlink" title="单点修改，单点求值"></a>单点修改，单点求值</h3><p>树状数组的基本模型是单点修改和求和。<br>要修改$a[i]$，就要修改掉所有包含$a[i]$的$c[x]$。根据$c[x]$的公式，只有所有$x\ge i$且$\text{lowbit}(x) \ge \text{lowbit}(i)$的$x$满足条件。因此可以使用<code>i += lowbit(i)</code>不断获取下一个要更新的节点。<br>要查询$a[1]+\cdots + a[r]$，就按照上面分区间的思想，使用<code>r -= lowbit(r)</code>不断获取下一个要累计的区间。<br>上面两个操作的时间复杂度均为$O(\log n)$。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">lowbit</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> (-x) &amp; x;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> k, <span class="keyword">int</span> v)</span></span>&#123;</span><br><span class="line">    <span class="keyword">while</span>(k &lt;= n)</span><br><span class="line">        c[k] += v, k += lowbit(k);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">query</span><span class="params">(<span class="keyword">int</span> r)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> res = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span>(r)</span><br><span class="line">        res += c[r], r -= lowbit(r);</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+        <p>数据结构的第一份模板，包含了栈，队列，并查集等内容。<br><a id="more"></a></p>
+<h2 id="并查集"><a href="#并查集" class="headerlink" title="并查集"></a>并查集</h2><h3 id="基本实现"><a href="#基本实现" class="headerlink" title="基本实现"></a>基本实现</h3><p>并查集是一个实现起来较为简单的数据结构。它维护的是一系列不相交集合，每一个集合都由该集合中的一个代表元表示。</p>
+<p>整个并查集实际上是一个森林，每一个元素 $x$ 都有一个属性 $fa[x]$ 作为 $x$ 所在的树的父节点。树根的父节点设为它本身。这样只要不断沿着 $fa[x]$ 走就能走到这一棵树的根，从而知道一个元素的归属。</p>
+<p>事实上整棵树的形态并不重要，因为我们需要知道的是一个元素所在树的根节点。因此可以在递归找根时，令经过路径上的节点的 $fa$ 全部设为最后找到的根，这样可以方便之后的查询。这种优化称为<strong>路径压缩</strong>。路径压缩后的并查集查找操作的均摊时间复杂度是 $O(\log n)$。</p>
+<p>并查集还要支持合并两个集合的操作。这个操作的基本实现方式是找出两个集合对应的树根，然后令其中一个根的 $fa$ 设为另外一个树根。这时的合并是可以指定方向的，即指定新集合的代表元是哪一个根。</p>
+<p>如果不需要指定代表元就可以使用<strong>按秩合并</strong>。它是一种启发式合并。它将秩（一般定义为集合大小或者合并次数）较小的集合合并到秩较大的集合上，这样就只增加了小集合的查询代价。这样总共增加的总代价是 $O(n\log n)$ 级别的。这时查询操作的均摊时间复杂度也是 $O(\log n)$。</p>
+<p>两种优化都使用的并查集的查询时间复杂度近似于常数级别。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> fa[<span class="number">100005</span>], rank[<span class="number">100005</span>], n;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">init</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i)</span><br><span class="line">        fa[i] = i, rank[i] = <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">Find</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(x == fa[x]) <span class="keyword">return</span> x;</span><br><span class="line">    <span class="keyword">return</span> (fa[x] = Find(fa[x]));</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">joint</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> xa = Find(x), ya = Find(y);</span><br><span class="line">    <span class="keyword">if</span>(xa == ya) <span class="keyword">return</span> ;</span><br><span class="line">    <span class="keyword">if</span>(rank[xa] &gt; rank[ya])</span><br><span class="line">        fa[ya] = xa, rank[xa] += rank[ya];</span><br><span class="line">    <span class="keyword">else</span> </span><br><span class="line">        fa[xa] = ya, rank[ya] += rank[xa];</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">joint</span><span class="params">(<span class="keyword">int</span> from, <span class="keyword">int</span> to)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> xa = Find(from), ya = Find(to);</span><br><span class="line">    <span class="keyword">if</span>(xa == ya) <span class="keyword">return</span> ;</span><br><span class="line">    fa[xa] = ya;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>基于并查集树的性质，可以将并查集的树边视作有向边或者无向边，这两种视角可以分别处理不同的问题。</p>
+<p>无向边的并查集常用于维护无向图的连通性。这在 Kruskal 算法中得到了体现。扩展一下：并查集擅长维护等价关系（集合即等价类）。</p>
+<p>有向边的并查集常用于维护一个数组中空闲和占用的情况。比如，可以令一个集合的根表示当前可用位置，如果占用了这个位置就把该位置所在集合和该位置之前的一个位置所在集合合并，这么做就可以快速查询一个位置之前最近的空闲位置。也可以用来维护链状或者树形的关系。</p>
+<h3 id="带权并查集"><a href="#带权并查集" class="headerlink" title="带权并查集"></a>带权并查集</h3><p>并查集的边可以拥有边权，而边权可以表示一些信息。</p>
+<p>带权并查集和普通并查集主要在两个地方有所不同：一是在查找操作中，路径压缩时要进行边权的更新；二是在合并操作中，要确定合并方向，以及合并中新产生的边的边权。根据不同的问题会有不同的处理方法。重点在于弄清楚边权的意义。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> fa[<span class="number">100005</span>], dis[<span class="number">100005</span>], n;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">Find</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(x == fa[x]) <span class="keyword">return</span> x;</span><br><span class="line">    <span class="keyword">int</span> rt = Find(fa[x]);</span><br><span class="line">    <span class="comment">//更新边权操作</span></span><br><span class="line">    <span class="keyword">return</span> (fa[x] = rt);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">joint</span><span class="params">(<span class="keyword">int</span> from, <span class="keyword">int</span> to)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> xa = Find(from), ya = Find(to);</span><br><span class="line">    <span class="keyword">if</span>(xa == ya) <span class="keyword">return</span> ;</span><br><span class="line">    fa[xa] = ya;</span><br><span class="line">    <span class="comment">//更新dis[xa]</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="多重关系并查集"><a href="#多重关系并查集" class="headerlink" title="多重关系并查集"></a>多重关系并查集</h3><p>联想到并查集能够维护一系列等价关系，我们可以将一个点拆成多个点，每一个点表示“满足某一个条件的集合”，如和 x 相同或者和 x 不同。这样如果题目中给出的都是双蕴含（或者异或）类型的条件，就可以利用这种并查集高效地维护这样的关系。</p>
+<p>典型例题：NOI2001 食物链</p>
+<h2 id="树状数组"><a href="#树状数组" class="headerlink" title="树状数组"></a>树状数组</h2><p>能用一个二进制数分出 $O(\log n)$ 个小区间：从 $[x - \text{lowbit}(x) + 1, x]$ 递归下去。利用这种思想，对于一个数组 $a[i]$，可以构造出一个数组 $c[i]$，其中 $c[x] = \sum _{i=x - \text{lowbit}(x) + 1}^{x} a[i]$。树状数组就是这样一个数组。</p>
+<h3 id="单点修改，单点求值"><a href="#单点修改，单点求值" class="headerlink" title="单点修改，单点求值"></a>单点修改，单点求值</h3><p>树状数组的基本模型是单点修改和求和。</p>
+<p>要修改 $a[i]$，就要修改掉所有包含 $a[i]$ 的 $c[x]$。根据 $c[x]$ 的公式，只有所有 $x\ge i$且$\text{lowbit}(x) \ge \text{lowbit}(i)$的$x$满足条件。因此可以使用<code>i += lowbit(i)</code>不断获取下一个要更新的节点。<br>要查询$a[1]+\cdots + a[r]$，就按照上面分区间的思想，使用<code>r -= lowbit(r)</code>不断获取下一个要累计的区间。<br>上面两个操作的时间复杂度均为$O(\log n)$。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">lowbit</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> (-x) &amp; x;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> k, <span class="keyword">int</span> v)</span></span>&#123;</span><br><span class="line">    <span class="keyword">while</span>(k &lt;= n)</span><br><span class="line">        c[k] += v, k += lowbit(k);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">query</span><span class="params">(<span class="keyword">int</span> r)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> res = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span>(r)</span><br><span class="line">        res += c[r], r -= lowbit(r);</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <h3 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h3><p>初始化一个树状数组可以使用依次单点更新的方法，这样做是$O(n\log n)$的。实际上，可以使用和堆类似的建立方法，先对相邻的2个元素建立，再对相邻的4个元素建立，如此反复。这样做是$n+\frac{n}{2}+\frac{n}{4}+\cdots = O(n)$的。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">build</span><span class="params">(<span class="keyword">int</span> a[], <span class="keyword">int</span> n)</span></span>&#123;</span><br><span class="line">    <span class="built_in">memcpy</span>(c, a, <span class="keyword">sizeof</span>(a));</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> len = <span class="number">2</span>; len &lt;= n; len &lt;&lt;= <span class="number">1</span>)</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = len; i &lt;= n; i += len)</span><br><span class="line">            c[i] += c[i - (len &gt;&gt; <span class="number">1</span>)];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <h3 id="区间修改，单点求值"><a href="#区间修改，单点求值" class="headerlink" title="区间修改，单点求值"></a>区间修改，单点求值</h3><p>维护原来数列的差分数列即可。</p>
 <h3 id="区间修改，区间求值"><a href="#区间修改，区间求值" class="headerlink" title="区间修改，区间求值"></a>区间修改，区间求值</h3><p>还是维护原来数列的差分数列。设$a[0]=0$，则$d[i] = a[i] - a[i - 1], a[i]=\sum_{j = 1}^{i}d[j]$。因此有</p>
@@ -555,7 +554,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">259</span>
+                  <span class="site-state-item-count">264</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -577,7 +576,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">85</span>
+                  <span class="site-state-item-count">88</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -658,7 +657,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">229.5k</span>
+    <span title="Site words total count">206.9k</span>
   
 </div>
 
@@ -1163,113 +1162,6 @@
 
 
   
-
-  
-  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
-  <script>AV.initialize("Q3MTYoDUCrhHUXOabd91DbOM-gzGzoHsz", "rghJaSuameCOIla10btdkgPd");</script>
-  <script>
-    function showTime(Counter) {
-      var query = new AV.Query(Counter);
-      var entries = [];
-      var $visitors = $(".leancloud_visitors");
-
-      $visitors.each(function () {
-        entries.push( $(this).attr("id").trim() );
-      });
-
-      query.containedIn('url', entries);
-      query.find()
-        .done(function (results) {
-          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
-
-          if (results.length === 0) {
-            $visitors.find(COUNT_CONTAINER_REF).text(0);
-            return;
-          }
-
-          for (var i = 0; i < results.length; i++) {
-            var item = results[i];
-            var url = item.get('url');
-            var time = item.get('time');
-            var element = document.getElementById(url);
-
-            $(element).find(COUNT_CONTAINER_REF).text(time);
-          }
-          for(var i = 0; i < entries.length; i++) {
-            var url = entries[i];
-            var element = document.getElementById(url);
-            var countSpan = $(element).find(COUNT_CONTAINER_REF);
-            if( countSpan.text() == '') {
-              countSpan.text(0);
-            }
-          }
-        })
-        .fail(function (object, error) {
-          console.log("Error: " + error.code + " " + error.message);
-        });
-    }
-
-    function addCount(Counter) {
-      var $visitors = $(".leancloud_visitors");
-      var url = $visitors.attr('id').trim();
-      var title = $visitors.attr('data-flag-title').trim();
-      var query = new AV.Query(Counter);
-
-      query.equalTo("url", url);
-      query.find({
-        success: function(results) {
-          if (results.length > 0) {
-            var counter = results[0];
-            counter.fetchWhenSave(true);
-            counter.increment("time");
-            counter.save(null, {
-              success: function(counter) {
-                var $element = $(document.getElementById(url));
-                $element.find('.leancloud-visitors-count').text(counter.get('time'));
-              },
-              error: function(counter, error) {
-                console.log('Failed to save Visitor num, with error message: ' + error.message);
-              }
-            });
-          } else {
-            var newcounter = new Counter();
-            /* Set ACL */
-            var acl = new AV.ACL();
-            acl.setPublicReadAccess(true);
-            acl.setPublicWriteAccess(true);
-            newcounter.setACL(acl);
-            /* End Set ACL */
-            newcounter.set("title", title);
-            newcounter.set("url", url);
-            newcounter.set("time", 1);
-            newcounter.save(null, {
-              success: function(newcounter) {
-                var $element = $(document.getElementById(url));
-                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
-              },
-              error: function(newcounter, error) {
-                console.log('Failed to create');
-              }
-            });
-          }
-        },
-        error: function(error) {
-          console.log('Error:' + error.code + " " + error.message);
-        }
-      });
-    }
-
-    $(function() {
-      var Counter = AV.Object.extend("Counter");
-      if ($('.leancloud_visitors').length == 1) {
-        addCount(Counter);
-      } else if ($('.post-title-link').length > 1) {
-        showTime(Counter);
-      }
-    });
-  </script>
-
-
 
   
 

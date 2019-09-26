@@ -86,7 +86,7 @@
 <meta property="og:site_name" content="zqy1018的博客">
 <meta property="og:description" content="各种最短路的模板！">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-03-12T12:09:41.268Z">
+<meta property="og:updated_time" content="2019-09-11T13:23:04.025Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="模板 最短路">
 <meta name="twitter:description" content="各种最短路的模板！">
@@ -375,17 +375,6 @@
 
           
           
-             <span id="/2018/08/18/template-shortest-path/" class="leancloud_visitors" data-flag-title="模板 最短路">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
 
           
 
@@ -400,7 +389,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1,638 字
+                  1,844 字
                 </span>
               
 
@@ -427,12 +416,22 @@
       
         <p>各种最短路的模板！<br><a id="more"></a><br>首先可以利用反证法证明一个定理：<br><strong>最短路径的子路径也是最短路径。</strong><br>这个定理构成了之后算法的基石。</p>
 <p>同时还有一个重要的不等式：</p>
-<script type="math/tex; mode=display">d(v)\le d(u)+w(u, v)</script><p>这个不等式叫三角不等式，它是<strong>松弛</strong>操作的理论基础。</p>
-<h2 id="Bellman-Ford算法"><a href="#Bellman-Ford算法" class="headerlink" title="Bellman-Ford算法"></a>Bellman-Ford算法</h2><p>容易知道，当一个图$G=(V, E)$中不存在负环时，该图中的最短路最多经过$|V|-1$条边。最短路上是不可能存在一个路径的权重和为正的环的。因此进行松弛操作时，最多进行$|V|-1$次就可以算出最短路。若在第$|V|$次仍可以进行松弛，那么就说明存在一个负环。<br>Bellman-Ford算法基于上述思路，对每一条边都进行$|V|-1$次的松弛，从而就可求出最短路。同时，也可以用于判断负环是否存在。<br>从上述说明也可以看出，Bellman-Ford算法允许图中有负权边。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">Bellman_Ford</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; V; ++i)</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; E; ++j)&#123;</span><br><span class="line">            <span class="keyword">int</span> u = edge[j].from, v = edge[j].to;</span><br><span class="line">            <span class="keyword">if</span>(d[v] &gt; d[u] + edge[j].cost)</span><br><span class="line">                d[v] = d[u] + edge[j].cost;</span><br><span class="line">        &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; E; ++j)&#123;</span><br><span class="line">        <span class="keyword">int</span> u = edge[j].from, v = edge[j].to;</span><br><span class="line">        <span class="keyword">if</span>(d[v] &gt; d[u] + edge[j].cost)</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;<span class="comment">//还能松弛说明这个图存在负环</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<script type="math/tex; mode=display">
+d(v)\le d(u)+w(u, v)</script><p>这个不等式叫三角不等式，它是<strong>松弛</strong>操作的理论基础。</p>
+<h2 id="Bellman-Ford-算法"><a href="#Bellman-Ford-算法" class="headerlink" title="Bellman-Ford 算法"></a>Bellman-Ford 算法</h2><p>容易知道，当一个图 $G=(V, E)$ 中不存在负环时，该图中的最短路最多经过 $|V|-1$ 条边。最短路上是不可能存在一个路径的权重和为正的环的。因此进行松弛操作时，最多进行 $|V|-1$ 次就可以算出最短路。若在第 $|V|$ 次仍可以进行松弛，那么就说明存在一个负环。</p>
+<p>Bellman-Ford 算法基于上述思路，对每一条边都进行 $|V|-1$ 次的松弛，从而就可求出最短路。同时，也可以用于判断负环是否存在。</p>
+<p>从上述说明也可以看出，Bellman-Ford 算法允许图中有负权边。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">Bellman_Ford</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; V; ++i)</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; E; ++j)&#123;</span><br><span class="line">            <span class="keyword">int</span> u = edge[j].from, v = edge[j].to;</span><br><span class="line">            <span class="keyword">if</span>(d[v] &gt; d[u] + edge[j].cost)</span><br><span class="line">                d[v] = d[u] + edge[j].cost;</span><br><span class="line">        &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; E; ++j)&#123;</span><br><span class="line">        <span class="keyword">int</span> u = edge[j].from, v = edge[j].to;</span><br><span class="line">        <span class="keyword">if</span>(d[v] &gt; d[u] + edge[j].cost)</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;<span class="comment">//还能松弛说明这个图存在负环</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>除了上述写法，还有一种经过了一定优化的写法：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">Bellman_Ford</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= V; ++i)&#123;</span><br><span class="line">        <span class="keyword">int</span> flag = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; E; ++j)&#123;</span><br><span class="line">            <span class="keyword">int</span> u = edge[j].from, v = edge[j].to;</span><br><span class="line">            <span class="keyword">if</span>(d[v] &gt; d[u] + edge[j].cost)&#123;</span><br><span class="line">                d[v] = d[u] + edge[j].cost, flag = <span class="number">1</span>;</span><br><span class="line">                <span class="keyword">if</span>(i == V)</span><br><span class="line">                    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(!flag)</span><br><span class="line">            <span class="keyword">break</span>;<span class="comment">//松弛的次数已经足够了，没有必要再进行下去</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>容易看出，Bellman-Ford算法的时间复杂度为$O(|V|\times |E|)$。因此，大部分情况下Bellman-Ford算法在解决问题的时候时间复杂度都不够好。但是，它的一个优化版本——SPFA的应用场合就相当多了。</p>
-<h2 id="Dijkstra算法"><a href="#Dijkstra算法" class="headerlink" title="Dijkstra算法"></a>Dijkstra算法</h2><p>DIjkstra算法在求单源最短路方面表现相当稳定。朴素实现时它的时间复杂度为$O(|V|^2+|E|)$，而在使用一定的数据结构时可以将时间复杂度降到$O(|E|log|V|)$。<br>Dijkstra算法的使用条件是图中没有负权边。当图中的边权全为正时，可以从起点出发，采用贪心的方法，一步一步得到最短路径。<br>具体方法是：找出所有没有使用过的顶点中离起点最近的点，然后松弛所有与其相邻的边，将其加入已使用过的点的集合，重复这一步骤。这样可以保证：每一次点在被使用时，之前算出来的它到起点的“最短距离”就是实际的它到起点的最短距离。这可以用归纳法证明。</p>
-<p>朴素版本如下：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dijkstra</span><span class="params">(<span class="keyword">int</span> S)</span></span>&#123;</span><br><span class="line">    <span class="built_in">memset</span>(d, <span class="number">0x3f</span>, <span class="keyword">sizeof</span>(d));</span><br><span class="line">    d[S] = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; V; ++i)&#123;</span><br><span class="line">        <span class="keyword">int</span> mind = <span class="number">2000000000</span>, minp = <span class="number">-1</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; V; ++i)</span><br><span class="line">            <span class="keyword">if</span>(mind &gt; d[i] &amp;&amp; !vis[i])</span><br><span class="line">                mind = d[i], minp = i;<span class="comment">//寻找当前扩展点</span></span><br><span class="line">        vis[i] = <span class="literal">true</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = at[minp]; i; i = e[i].nxt)</span><br><span class="line">            d[e[i].v] = min(d[e[i].v], d[minp] + e[i].cost);<span class="comment">//松弛</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>容易看出，Bellman-Ford 算法的时间复杂度为 $O(|V|\times |E|)$。因此，大部分情况下 Bellman-Ford 算法在解决问题的时候时间复杂度都不够好。但是，它的一个优化版本——SPFA 的应用场合就相当多了。</p>
+<h2 id="SPFA-算法"><a href="#SPFA-算法" class="headerlink" title="SPFA 算法"></a>SPFA 算法</h2><p>SPFA 算法其实应该叫做队列优化了的 Bellman-Ford 算法，SPFA 只是国内的一种叫法。</p>
+<p>它的实现基于队列：先将源点放入队列，然后重复以下过程：从队列中取出点，尝试对和它相邻的所有点进行松弛操作，若对其邻居 $v$ 松弛成功并且 $v$ 不在队列中则将 $v$ 放入队列。队列为空则表明没有可以再松弛的边。</p>
+<p>和在 Bellman-Ford 算法中的分析类似，如果一个点进入队列达到 $|V|$ 次，就表明存在负环。</p>
+<p>SPFA 算法在稀疏图上表现效果很好，但是在经过构造的数据下表现和 Bellman-Ford 算法基本相同。因此，SPFA 算法的使用有一定的危险性。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="Dijkstra-算法"><a href="#Dijkstra-算法" class="headerlink" title="Dijkstra 算法"></a>Dijkstra 算法</h2><p>DIjkstra 算法在求单源最短路方面表现相当稳定。朴素实现时它的时间复杂度为 $O(|V|^2+|E|)$，而在使用一定的数据结构时可以将时间复杂度降到 $O(|E|log|V|)$。</p>
+<p>Dijkstra算法的使用条件是图中没有负权边。当图中的边权全为正时，可以从起点出发，采用贪心的方法，一步一步得到最短路径。</p>
+<p>具体方法是：找出所有没有使用过的顶点中离起点最近的点，然后松弛所有与其相邻的边，将其加入已使用过的点的集合，重复这一步骤。这样可以保证：每一次点在被使用时，之前算出来的起点到它的“最短距离”就是实际的起点到它的最短距离。这可以用归纳法证明。</p>
+<p>朴素版本如下：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dijkstra</span><span class="params">(<span class="keyword">int</span> S)</span></span>&#123;</span><br><span class="line">    <span class="built_in">memset</span>(d, <span class="number">0x3f</span>, <span class="keyword">sizeof</span>(d));</span><br><span class="line">    d[S] = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; V; ++i)&#123;</span><br><span class="line">        <span class="keyword">int</span> mind = <span class="number">2000000000</span>, minp = <span class="number">-1</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; V; ++j)</span><br><span class="line">            <span class="keyword">if</span>(mind &gt; d[j] &amp;&amp; !vis[j])</span><br><span class="line">                mind = d[j], minp = j;<span class="comment">//寻找当前扩展点</span></span><br><span class="line">        vis[minp] = <span class="literal">true</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j = at[minp]; j; j = e[j].nxt)</span><br><span class="line">            d[e[j].v] = min(d[e[j].v], d[minp] + e[j].cost);<span class="comment">//松弛</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>用堆优化的版本如下：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Node</span>&#123;</span></span><br><span class="line">    <span class="keyword">int</span> id, curd;</span><br><span class="line">    Node(<span class="keyword">int</span> _id, <span class="keyword">int</span> _curd)&#123;</span><br><span class="line">        id = _id, curd = _curd;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">cmp</span>&#123;</span></span><br><span class="line">    <span class="function"><span class="keyword">inline</span> <span class="keyword">bool</span> <span class="title">operator</span><span class="params">()</span> <span class="params">(<span class="keyword">const</span> Node &amp;na, <span class="keyword">const</span> Node &amp;nb)</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> na.curd &gt; nb.curd;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line">priority_queue&lt;Node, <span class="built_in">vector</span>&lt;Node&gt;, cmp&gt; pq;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dijkstra</span><span class="params">(<span class="keyword">int</span> S)</span></span>&#123;</span><br><span class="line">    <span class="built_in">memset</span>(d, <span class="number">0x3f</span>, <span class="keyword">sizeof</span>(d));</span><br><span class="line">    d[S] = <span class="number">0</span>;</span><br><span class="line">    pq.push(Node(S, <span class="number">0</span>));</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; V; ++i)&#123;</span><br><span class="line">        <span class="keyword">while</span>(!pq.empty())&#123;</span><br><span class="line">            <span class="keyword">if</span>(pq.top().curd &gt; d[pq.top().id])<span class="comment">//用这种方式省去了一个vis数组</span></span><br><span class="line">                pq.pop();</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> minp = pq.top().id;</span><br><span class="line">        pq.pop();</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = at[minp]; i; i = e[i].nxt)&#123;</span><br><span class="line">            <span class="keyword">if</span>(d[e[i].v] &gt; d[minp] + e[i].cost)</span><br><span class="line">                d[e[i].v] = d[minp] + e[i].cost, pq.push(Node(e[i].v, d[e[i].v]));<span class="comment">//通过这种方式判断是否已被访问</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <h2 id="朴素搜索"><a href="#朴素搜索" class="headerlink" title="朴素搜索"></a>朴素搜索</h2><p>当边权相同或者图很特殊（如$DAG$）时，可以直接采用搜索或者递推的方式计算最短路。由于这不是一个统一的模型，故在此不给出代码。</p>
 <hr>
@@ -481,7 +480,7 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/08/18/Pythagorean-triple/" rel="prev" title="勾股数探究">
+              <a href="/2018/08/18/summary-Pythagorean-triple/" rel="prev" title="勾股数探究">
                 勾股数探究 <i class="fa fa-chevron-right"></i>
               </a>
             
@@ -563,7 +562,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">259</span>
+                  <span class="site-state-item-count">264</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -585,7 +584,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">85</span>
+                  <span class="site-state-item-count">88</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -632,7 +631,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Bellman-Ford算法"><span class="nav-number">1.</span> <span class="nav-text">Bellman-Ford算法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Dijkstra算法"><span class="nav-number">2.</span> <span class="nav-text">Dijkstra算法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#朴素搜索"><span class="nav-number">3.</span> <span class="nav-text">朴素搜索</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#矩阵乘法"><span class="nav-number">4.</span> <span class="nav-text">矩阵乘法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Floyd算法"><span class="nav-number">5.</span> <span class="nav-text">Floyd算法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考资料"><span class="nav-number">6.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Bellman-Ford-算法"><span class="nav-number">1.</span> <span class="nav-text">Bellman-Ford 算法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SPFA-算法"><span class="nav-number">2.</span> <span class="nav-text">SPFA 算法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Dijkstra-算法"><span class="nav-number">3.</span> <span class="nav-text">Dijkstra 算法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#朴素搜索"><span class="nav-number">4.</span> <span class="nav-text">朴素搜索</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#矩阵乘法"><span class="nav-number">5.</span> <span class="nav-text">矩阵乘法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Floyd算法"><span class="nav-number">6.</span> <span class="nav-text">Floyd算法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考资料"><span class="nav-number">7.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
             
 
           </div>
@@ -666,7 +665,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">229.5k</span>
+    <span title="Site words total count">206.9k</span>
   
 </div>
 
@@ -1171,113 +1170,6 @@
 
 
   
-
-  
-  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
-  <script>AV.initialize("Q3MTYoDUCrhHUXOabd91DbOM-gzGzoHsz", "rghJaSuameCOIla10btdkgPd");</script>
-  <script>
-    function showTime(Counter) {
-      var query = new AV.Query(Counter);
-      var entries = [];
-      var $visitors = $(".leancloud_visitors");
-
-      $visitors.each(function () {
-        entries.push( $(this).attr("id").trim() );
-      });
-
-      query.containedIn('url', entries);
-      query.find()
-        .done(function (results) {
-          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
-
-          if (results.length === 0) {
-            $visitors.find(COUNT_CONTAINER_REF).text(0);
-            return;
-          }
-
-          for (var i = 0; i < results.length; i++) {
-            var item = results[i];
-            var url = item.get('url');
-            var time = item.get('time');
-            var element = document.getElementById(url);
-
-            $(element).find(COUNT_CONTAINER_REF).text(time);
-          }
-          for(var i = 0; i < entries.length; i++) {
-            var url = entries[i];
-            var element = document.getElementById(url);
-            var countSpan = $(element).find(COUNT_CONTAINER_REF);
-            if( countSpan.text() == '') {
-              countSpan.text(0);
-            }
-          }
-        })
-        .fail(function (object, error) {
-          console.log("Error: " + error.code + " " + error.message);
-        });
-    }
-
-    function addCount(Counter) {
-      var $visitors = $(".leancloud_visitors");
-      var url = $visitors.attr('id').trim();
-      var title = $visitors.attr('data-flag-title').trim();
-      var query = new AV.Query(Counter);
-
-      query.equalTo("url", url);
-      query.find({
-        success: function(results) {
-          if (results.length > 0) {
-            var counter = results[0];
-            counter.fetchWhenSave(true);
-            counter.increment("time");
-            counter.save(null, {
-              success: function(counter) {
-                var $element = $(document.getElementById(url));
-                $element.find('.leancloud-visitors-count').text(counter.get('time'));
-              },
-              error: function(counter, error) {
-                console.log('Failed to save Visitor num, with error message: ' + error.message);
-              }
-            });
-          } else {
-            var newcounter = new Counter();
-            /* Set ACL */
-            var acl = new AV.ACL();
-            acl.setPublicReadAccess(true);
-            acl.setPublicWriteAccess(true);
-            newcounter.setACL(acl);
-            /* End Set ACL */
-            newcounter.set("title", title);
-            newcounter.set("url", url);
-            newcounter.set("time", 1);
-            newcounter.save(null, {
-              success: function(newcounter) {
-                var $element = $(document.getElementById(url));
-                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
-              },
-              error: function(newcounter, error) {
-                console.log('Failed to create');
-              }
-            });
-          }
-        },
-        error: function(error) {
-          console.log('Error:' + error.code + " " + error.message);
-        }
-      });
-    }
-
-    $(function() {
-      var Counter = AV.Object.extend("Counter");
-      if ($('.leancloud_visitors').length == 1) {
-        addCount(Counter);
-      } else if ($('.post-title-link').length > 1) {
-        showTime(Counter);
-      }
-    });
-  </script>
-
-
 
   
 

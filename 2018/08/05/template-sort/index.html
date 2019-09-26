@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="排序," />
 
 
 
@@ -80,13 +80,14 @@
 
 
 <meta name="description" content="不能忘的基本排序！">
+<meta name="keywords" content="排序">
 <meta property="og:type" content="article">
 <meta property="og:title" content="模板 排序算法">
 <meta property="og:url" content="http://yoursite.com/2018/08/05/template-sort/index.html">
 <meta property="og:site_name" content="zqy1018的博客">
 <meta property="og:description" content="不能忘的基本排序！">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-08-06T13:05:11.458Z">
+<meta property="og:updated_time" content="2019-09-06T10:57:09.030Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="模板 排序算法">
 <meta name="twitter:description" content="不能忘的基本排序！">
@@ -375,17 +376,6 @@
 
           
           
-             <span id="/2018/08/05/template-sort/" class="leancloud_visitors" data-flag-title="模板 排序算法">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
 
           
 
@@ -400,7 +390,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1,508 字
+                  2,267 字
                 </span>
               
 
@@ -426,28 +416,39 @@
 
       
         <p>不能忘的基本排序！<br><a id="more"></a></p>
-<h2 id="插入排序"><a href="#插入排序" class="headerlink" title="插入排序"></a>插入排序</h2><p>重点在于：在排第$k$个元素的时候，前$k-1$个已经有序。因此只要把第$k$个元素放到它应该在的地方即可。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">sort1</span><span class="params">(<span class="keyword">int</span>* a, <span class="keyword">int</span> n)</span></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; n; ++i)&#123;</span><br><span class="line">        <span class="keyword">int</span> tmp = a[i], j;</span><br><span class="line">        <span class="keyword">for</span>(j = i; j &gt; <span class="number">0</span>; --j)&#123;</span><br><span class="line">            <span class="keyword">if</span>(tmp &lt; a[j - <span class="number">1</span>])</span><br><span class="line">                a[j] = a[j - <span class="number">1</span>];<span class="comment">//向后面移动</span></span><br><span class="line">            <span class="keyword">else</span> </span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">        &#125;<span class="comment">//寻找位置</span></span><br><span class="line">        a[j] = tmp;<span class="comment">//插入</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="插入排序"><a href="#插入排序" class="headerlink" title="插入排序"></a>插入排序</h2><p>插入排序的重点在于：在排第 $k$ 个元素的时候，前 $k-1$ 个已经有序。因此只要把第 $k$ 个元素放到它应该在的地方即可。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">sort1</span><span class="params">(<span class="keyword">int</span>* a, <span class="keyword">int</span> n)</span></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; n; ++i)&#123;</span><br><span class="line">        <span class="keyword">int</span> tmp = a[i], j;</span><br><span class="line">        <span class="keyword">for</span>(j = i; j &gt; <span class="number">0</span>; --j)&#123;</span><br><span class="line">            <span class="keyword">if</span>(tmp &lt; a[j - <span class="number">1</span>])</span><br><span class="line">                a[j] = a[j - <span class="number">1</span>];<span class="comment">//向后面移动</span></span><br><span class="line">            <span class="keyword">else</span> </span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">        &#125;<span class="comment">//寻找位置</span></span><br><span class="line">        a[j] = tmp;<span class="comment">//插入</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <h2 id="选择排序"><a href="#选择排序" class="headerlink" title="选择排序"></a>选择排序</h2><p>简单直观的排序方法。<br>始终寻找当前的最小值，放在它应当在的地方。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">sort2</span><span class="params">(<span class="keyword">int</span> *a, <span class="keyword">int</span> n)</span></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n - <span class="number">1</span>; ++i)</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j = i + <span class="number">1</span>; j &lt; n; ++j)</span><br><span class="line">            <span class="keyword">if</span>(a[i] &gt; a[j])swap(a[i], a[j]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <h2 id="冒泡排序"><a href="#冒泡排序" class="headerlink" title="冒泡排序"></a>冒泡排序</h2><p>比较相邻元素，调整顺序以达到排序的目的。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">sort3</span><span class="params">(<span class="keyword">int</span> *a, <span class="keyword">int</span> n)</span></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n - <span class="number">1</span>; ++i)</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; n - i; ++j)</span><br><span class="line">            <span class="keyword">if</span>(a[j] &gt; a[j + <span class="number">1</span>])</span><br><span class="line">                swap(a[j], a[j + <span class="number">1</span>]);<span class="comment">//交换过程</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <h2 id="希尔排序"><a href="#希尔排序" class="headerlink" title="希尔排序"></a>希尔排序</h2><p>希尔排序使用了一个序列（称之为增量序列）</p>
-<script type="math/tex; mode=display">h_1,h_2,h_3,...,h_n</script><p>其中<script type="math/tex">h_1=1</script>。<br>排序时将序列划为<script type="math/tex">h_k</script>组，元素之间间隔为<script type="math/tex">h_k</script>，然后每组内部进行一个插入排序。随着增量减小数据间的有序程度也就越高，最终在增量达到$1$时达到有序。<br>增量序列的选择直接与算法的效率挂钩。此处用的为$Hibbard$增量，即$1,3,7,…,2^k-1$。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">sort4</span><span class="params">(<span class="keyword">int</span> *a, <span class="keyword">int</span> n)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> h[] = &#123;<span class="number">1</span>, <span class="number">3</span>, <span class="number">7</span>, <span class="number">15</span>, <span class="number">31</span>&#125;;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = lower_bound(h, h + <span class="number">5</span>, n) - h - <span class="number">1</span>; i &gt;= <span class="number">0</span>; --i)&#123;<span class="comment">//寻找最大增量</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j = h[i]; j &lt; n; ++j)&#123;</span><br><span class="line">            <span class="keyword">int</span> tmp = a[j], k;</span><br><span class="line">            <span class="keyword">for</span>(k = j; k &gt;= h[i]; k -= h[i])&#123;</span><br><span class="line">                <span class="keyword">if</span>(tmp &lt; a[k - h[i]])</span><br><span class="line">                    a[k] = a[k - h[i]];</span><br><span class="line">                <span class="keyword">else</span> </span><br><span class="line">                    <span class="keyword">break</span>; </span><br><span class="line">            &#125;</span><br><span class="line">            a[k] = tmp;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>以上为常见的$O(n^2)$排序算法。</p>
+<script type="math/tex; mode=display">
+h_1,h_2,h_3,...,h_n</script><p>其中 <script type="math/tex">h_1=1</script>。<br>排序时，从大到小依次选择增量。设当前选择的增量为 <script type="math/tex">h_k</script>，则将序列划为若干组，元素之间间隔为 <script type="math/tex">h_k</script>，然后每组内部进行一个插入排序。随着增量减小数据间的有序程度也就越高，最终在增量达到 $1$ 时达到有序。<br>增量序列的选择直接与算法的效率挂钩。此处用的为 $Hibbard$ 增量，即 $1,3,7,…,2^k-1$。如果选择的增量较好的话可以达到比较高的效率，如 $O(n^{7/6})$。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">sort4</span><span class="params">(<span class="keyword">int</span> *a, <span class="keyword">int</span> n)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> h[] = &#123;<span class="number">1</span>, <span class="number">3</span>, <span class="number">7</span>, <span class="number">15</span>, <span class="number">31</span>&#125;;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = lower_bound(h, h + <span class="number">5</span>, n) - h - <span class="number">1</span>; i &gt;= <span class="number">0</span>; --i)&#123;<span class="comment">//寻找最大增量</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j = h[i]; j &lt; n; ++j)&#123;</span><br><span class="line">            <span class="keyword">int</span> tmp = a[j], k;</span><br><span class="line">            <span class="keyword">for</span>(k = j; k &gt;= h[i]; k -= h[i])&#123;</span><br><span class="line">                <span class="keyword">if</span>(tmp &lt; a[k - h[i]])</span><br><span class="line">                    a[k] = a[k - h[i]];</span><br><span class="line">                <span class="keyword">else</span> </span><br><span class="line">                    <span class="keyword">break</span>; </span><br><span class="line">            &#125;</span><br><span class="line">            a[k] = tmp;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>以上为常见的 $O(n^2)$ 排序算法。</p>
 <hr>
-<h2 id="归并排序"><a href="#归并排序" class="headerlink" title="归并排序"></a>归并排序</h2><p>分治算法的典型应用，将数据层层分割，直到最简单的两个一组的情况，然后不断进行二路归并。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Merge</span><span class="params">(<span class="keyword">int</span> *a, <span class="keyword">int</span> *tmp, <span class="keyword">int</span> lhead, <span class="keyword">int</span> rhead, <span class="keyword">int</span> rend)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> lpos = lhead, rpos = rhead, tpos = lhead;</span><br><span class="line">    <span class="keyword">while</span>(lpos &lt; rhead &amp;&amp; rpos &lt; rend)&#123;</span><br><span class="line">        <span class="keyword">if</span>(a[lpos] &lt; a[rpos])</span><br><span class="line">            tmp[tpos++] = a[lpos++];</span><br><span class="line">        <span class="keyword">else</span> </span><br><span class="line">            tmp[tpos++] = a[rpos++];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">while</span>(lpos &lt; rhead)tmp[tpos++] = a[lpos++];</span><br><span class="line">    <span class="keyword">while</span>(rpos &lt; rend)tmp[tpos++] = a[rpos++];</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = lhead; i &lt; rend; ++i)</span><br><span class="line">        a[i] = tmp[i];</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">MergeSort</span><span class="params">(<span class="keyword">int</span> *a, <span class="keyword">int</span> left, <span class="keyword">int</span> right)</span></span>&#123;<span class="comment">//左闭右开</span></span><br><span class="line">    <span class="keyword">int</span> n = right - left, mid = (right + left) &gt;&gt; <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">if</span>(n == <span class="number">1</span>)<span class="keyword">return</span> ;</span><br><span class="line">    MergeSort(a, left, mid);</span><br><span class="line">    MergeSort(a, mid, right);</span><br><span class="line">    Merge(a, b, left, mid, right);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h2 id="快速排序"><a href="#快速排序" class="headerlink" title="快速排序"></a>快速排序</h2><p>快速排序的关键在于选择基准以及分割策略，其余的工作交给递归即可。<br>一种比较优秀的选择基准的方法是对最左端，最右端，和最中间的三个数排序，选择第二大（即中间大小）的数作为基准。这种选择比纯粹的随机选择和固定的选择更加高明。之后，将基准和当前序列的倒数第二个值交换。<br>分割时，利用两个指针，其中一个（设为$i$）从最左边向右扫，另一个（设为$j$）从倒数第二个位置向左扫。$i$只会在大于或等于基准的位置停下，$j$只会在小于或等于基准的位置停下。此时若$i&lt;j$，那么交换$i$和$j$对应的数；若$i \ge j$，那么指针停止行动，本次分割结束。之后由于$i$指针左右分别为小于等于和大于等于基准的数，故把基准换到$i$所在位置，再对$i$两侧递归执行排序。</p>
-<p>以上的做法避免了几个隐患：</p>
+<h2 id="归并排序"><a href="#归并排序" class="headerlink" title="归并排序"></a>归并排序</h2><p>分治算法的典型应用，将数据层层分割，直到最简单的两个一组的情况，然后不断进行二路归并。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Merge</span><span class="params">(<span class="keyword">int</span> *a, <span class="keyword">int</span> *tmp, <span class="keyword">int</span> lhead, <span class="keyword">int</span> rhead, <span class="keyword">int</span> rend)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> lpos = lhead, rpos = rhead, tpos = lhead;</span><br><span class="line">    <span class="keyword">while</span> (lpos &lt; rhead &amp;&amp; rpos &lt; rend)&#123;</span><br><span class="line">        <span class="keyword">if</span> (a[lpos] &lt; a[rpos])</span><br><span class="line">            tmp[tpos++] = a[lpos++];</span><br><span class="line">        <span class="keyword">else</span> </span><br><span class="line">            tmp[tpos++] = a[rpos++];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">while</span>(lpos &lt; rhead) tmp[tpos++] = a[lpos++];</span><br><span class="line">    <span class="keyword">while</span>(rpos &lt; rend) tmp[tpos++] = a[rpos++];</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = lhead; i &lt; rend; ++i)</span><br><span class="line">        a[i] = tmp[i];</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">MergeSort</span><span class="params">(<span class="keyword">int</span> *a, <span class="keyword">int</span> left, <span class="keyword">int</span> right)</span></span>&#123;<span class="comment">//左闭右开</span></span><br><span class="line">    <span class="keyword">int</span> n = right - left, mid = (right + left) &gt;&gt; <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">if</span>(n == <span class="number">1</span>)<span class="keyword">return</span> ;</span><br><span class="line">    MergeSort(a, left, mid);</span><br><span class="line">    MergeSort(a, mid, right);</span><br><span class="line">    Merge(a, b, left, mid, right);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>归并排序一个典型的应用是用于统计逆序对的数量。我们知道，对一个逆序对，要么两个元素都在左半边。要么都在右半边，要么一个在左半边一个在右半边。都在左半边或者右半边的我们递归的去求，而对第三种情况我们在二路归并的时候统计。</p>
+<h2 id="原地归并排序"><a href="#原地归并排序" class="headerlink" title="原地归并排序"></a>原地归并排序</h2><p>原地归并排序的思想在于“交换”。<br>原版归并排序的瓶颈在于，进行二路归并的时候，必须要使用辅助数组帮助归并。而原地归并排序使用的是一种交换的策略。设当前要合并的两个数组的头指针分别为 $i, j$。我们先将 $i$ 向后移动，直到其到达 $j$ 处或者 $i$ 指向的数大于 $j$ 指向的数。然后，我们用另一个指针，设为 $k$，从 $j$ 处向后移动，直到 $k$ 指向的数大于 $i$ 指向的数。<br>这时容易发现，$i$ 之前的数都已经在应该在的位置上了。而如果把 $[j, k)$ 与 $[i, j)$ 这两段数交换位置，那么 $[j, k)$ 也将就位。而交换两段序列可以用经典的“手摇”算法在线性时间内解决。交换完之后，将 $i$ 向后移动 $k-j$ 个位置，将 $j$ 移动到 $k$ 的位置，然后递归的做下去，直到二路归并完成。<br>容易发现，在某些情况下原地归并排序的二路归并过程时间复杂度可以达到 $O(n^2)$ 的水平，因此一般情况下并不使用这种算法。</p>
+<h2 id="快速排序"><a href="#快速排序" class="headerlink" title="快速排序"></a>快速排序</h2><p>快速排序的关键在于选择基准以及分割策略，其余的工作交给递归即可。<br>一种比较优秀的选择基准的方法是对最左端，最右端，和最中间的三个数排序，选择第二大（即中间大小）的数作为基准。这种选择比纯粹的随机选择和固定的选择更加高明。之后，将基准和当前序列的倒数第二个值交换。（这种选择基准的方法出自《数据结构与算法分析：C 语言描述（第二版）》）<br>分割时，利用两个指针，其中一个（设为 $i$）从最左边向右扫，另一个（设为 $j$）从倒数第二个位置向左扫。$i$ 只会在大于或等于基准的位置停下，$j$ 只会在小于或等于基准的位置停下。此时若 $i&lt;j$，那么交换 $i$ 和 $j$ 对应的数；若 $i \ge j$，那么指针停止行动，本次分割结束。之后由于 $i$ 指针左右分别为小于等于和大于等于基准的数，故把基准换到 $i$ 所在位置，再对 $i$ 两侧递归执行排序。<br>以上的做法避免了几个隐患：</p>
 <ol>
-<li>基准换到倒数第二个位置，为$i$提供了一个界限；同时选择基准时进行的排序也为$j$提供了一个界限。</li>
-<li>$i$和$j$在遇到等于基准的值时都会停下，这是因为当多个相同元素存在时，若$i$和$j$都不停下，那么$i$会一直进行到接近末尾的地方，导致分割出来的左右两边序列长度不均衡，进而导致算法实际运行效率变差。</li>
+<li>基准换到倒数第二个位置，为 $i$ 提供了一个界限；同时选择基准时进行的排序也为 $j$ 提供了一个界限。</li>
+<li>$i$ 和 $j$ 在遇到等于基准的值时都会停下，这是因为当多个相同元素存在时，若 $i$ 和 $j$ 都不停下，那么 $i$ 会一直进行到接近末尾的地方，导致分割出来的左右两边序列长度不均衡，进而导致算法实际运行效率变差。</li>
 </ol>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Median3</span><span class="params">(<span class="keyword">int</span> *a, <span class="keyword">int</span> left, <span class="keyword">int</span> right)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> mid = (left + right) &gt;&gt; <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">if</span>(a[left] &gt; a[mid])swap(a[left], a[mid]);</span><br><span class="line">    <span class="keyword">if</span>(a[mid] &gt; a[right])swap(a[mid], a[right]);</span><br><span class="line">    <span class="keyword">if</span>(a[left] &gt; a[mid])swap(a[left], a[mid]);</span><br><span class="line">    swap(a[mid], a[right - <span class="number">1</span>]);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Qsort</span><span class="params">(<span class="keyword">int</span> *a, <span class="keyword">int</span> left, <span class="keyword">int</span> right)</span></span>&#123;<span class="comment">// 闭区间</span></span><br><span class="line">    <span class="keyword">int</span> len = right - left + <span class="number">1</span>, pivot;</span><br><span class="line">    <span class="keyword">if</span>(len &lt;= <span class="number">1</span>)<span class="keyword">return</span> ;</span><br><span class="line">    <span class="keyword">if</span>(len == <span class="number">2</span>)&#123;</span><br><span class="line">        <span class="keyword">if</span>(a[right] &lt; a[left])swap(a[left], a[right]);</span><br><span class="line">        <span class="keyword">return</span> ;</span><br><span class="line">    &#125;</span><br><span class="line">    Median3(a, left, right);</span><br><span class="line">    pivot = a[right - <span class="number">1</span>];</span><br><span class="line">    <span class="keyword">int</span> i = left, j = right - <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(;;)&#123;</span><br><span class="line">        <span class="keyword">while</span>(a[++i] &lt; pivot) ;</span><br><span class="line">        <span class="keyword">while</span>(a[--j] &gt; pivot) ;</span><br><span class="line">        <span class="keyword">if</span>(i &gt;= j)<span class="keyword">break</span>;</span><br><span class="line">        swap(a[i], a[j]);</span><br><span class="line">    &#125;</span><br><span class="line">    swap(a[i], a[right - <span class="number">1</span>]);</span><br><span class="line">    Qsort(a, left, i - <span class="number">1</span>);</span><br><span class="line">    Qsort(a, i + <span class="number">1</span>, right);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">QuickSort</span><span class="params">(<span class="keyword">int</span> *a, <span class="keyword">int</span> n)</span></span>&#123;</span><br><span class="line">    Qsort(a, <span class="number">0</span>, n - <span class="number">1</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Median3</span><span class="params">(<span class="keyword">int</span> *a, <span class="keyword">int</span> left, <span class="keyword">int</span> right)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> mid = (left + right) &gt;&gt; <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">if</span>(a[left] &gt; a[mid])swap(a[left], a[mid]);</span><br><span class="line">    <span class="keyword">if</span>(a[mid] &gt; a[right])swap(a[mid], a[right]);</span><br><span class="line">    <span class="keyword">if</span>(a[left] &gt; a[mid])swap(a[left], a[mid]);</span><br><span class="line">    swap(a[mid], a[right - <span class="number">1</span>]);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Qsort</span><span class="params">(<span class="keyword">int</span> *a, <span class="keyword">int</span> left, <span class="keyword">int</span> right)</span></span>&#123;<span class="comment">// 闭区间</span></span><br><span class="line">    <span class="keyword">int</span> len = right - left + <span class="number">1</span>, pivot;</span><br><span class="line">    <span class="keyword">if</span>(len &lt;= <span class="number">1</span>)<span class="keyword">return</span> ;</span><br><span class="line">    <span class="keyword">if</span>(len == <span class="number">2</span>)&#123;</span><br><span class="line">        <span class="keyword">if</span>(a[right] &lt; a[left]) swap(a[left], a[right]);</span><br><span class="line">        <span class="keyword">return</span> ;</span><br><span class="line">    &#125;</span><br><span class="line">    Median3(a, left, right);</span><br><span class="line">    pivot = a[right - <span class="number">1</span>];</span><br><span class="line">    <span class="keyword">int</span> i = left, j = right - <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(;;)&#123;</span><br><span class="line">        <span class="keyword">while</span>(a[++i] &lt; pivot) ;</span><br><span class="line">        <span class="keyword">while</span>(a[--j] &gt; pivot) ;</span><br><span class="line">        <span class="keyword">if</span>(i &gt;= j) <span class="keyword">break</span>;</span><br><span class="line">        swap(a[i], a[j]);</span><br><span class="line">    &#125;</span><br><span class="line">    swap(a[i], a[right - <span class="number">1</span>]);</span><br><span class="line">    Qsort(a, left, i - <span class="number">1</span>);</span><br><span class="line">    Qsort(a, i + <span class="number">1</span>, right);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">QuickSort</span><span class="params">(<span class="keyword">int</span> *a, <span class="keyword">int</span> n)</span></span>&#123;</span><br><span class="line">    Qsort(a, <span class="number">0</span>, n - <span class="number">1</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="堆排序"><a href="#堆排序" class="headerlink" title="堆排序"></a>堆排序</h2><p>建立一个堆，直接操作即可。此处不再赘述。</p>
-<p>以上为常见的$O(nlogn)$排序算法。</p>
+<p>以上为常见的 $O(n\log n)$ 排序算法。</p>
 <hr>
-<h2 id="记数排序"><a href="#记数排序" class="headerlink" title="记数排序"></a>记数排序</h2><p>计数排序的中心思想是：对于每一个输入的元素$x$，确定小于或等于$x$的元素的个数。利用这一信息，即可把该元素放在他应在的位置。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">CountingSort</span><span class="params">(<span class="keyword">int</span> *a, <span class="keyword">int</span> *cnt, <span class="keyword">int</span> *ans, <span class="keyword">int</span> n)</span></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= <span class="number">10</span>; ++i)</span><br><span class="line">        cnt[i] = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; ++i)</span><br><span class="line">        cnt[a[i]]++;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= <span class="number">10</span>; ++i)</span><br><span class="line">        cnt[i] += cnt[i - <span class="number">1</span>];</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = n - <span class="number">1</span>; i &gt;= <span class="number">0</span>; --i)</span><br><span class="line">        ans[--cnt[a[i]]] = a[i];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h2 id="基数排序"><a href="#基数排序" class="headerlink" title="基数排序"></a>基数排序</h2><p>基数排序执行这样一个过程：对$n$个$d$位数，从最低位开始，一直到最高位，以数的当前位上的数字作为关键字进行排序。</p>
-<h2 id="桶排序"><a href="#桶排序" class="headerlink" title="桶排序"></a>桶排序</h2><p>桶排序将$n$个分布在$[0,1)$上的实数放入$m$个“桶”里，每个桶对应着一个区间，并且对每一个桶里的数据进行排序，以达到总体的有序。</p>
+<h2 id="记数排序"><a href="#记数排序" class="headerlink" title="记数排序"></a>记数排序</h2><p>计数排序的中心思想是：对于每一个输入的元素 $x$，确定小于或等于 $x$ 的元素的个数。利用这一信息，即可把该元素放在他应在的位置。<br>它的时间复杂度是 $O(n+w)$，其中 $n$ 是被排序的数的数目，$w$ 是被排序的数的值域大小。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">CountingSort</span><span class="params">(<span class="keyword">int</span> *a, <span class="keyword">int</span> *cnt, <span class="keyword">int</span> *ans, <span class="keyword">int</span> n)</span></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= <span class="number">10</span>; ++i)</span><br><span class="line">        cnt[i] = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; ++i)</span><br><span class="line">        cnt[a[i]]++;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= <span class="number">10</span>; ++i)</span><br><span class="line">        cnt[i] += cnt[i - <span class="number">1</span>];</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = n - <span class="number">1</span>; i &gt;= <span class="number">0</span>; --i)</span><br><span class="line">        ans[--cnt[a[i]]] = a[i];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="基数排序"><a href="#基数排序" class="headerlink" title="基数排序"></a>基数排序</h2><p>基数排序执行这样一个过程：对 $n$ 个 $d$ 位数，从最低位开始，一直到最高位，以数的当前位上的数字作为关键字进行排序。</p>
+<h2 id="桶排序"><a href="#桶排序" class="headerlink" title="桶排序"></a>桶排序</h2><p>桶排序将 $n$ 个分布在 $[0,1)$ 上的实数放入 $m$ 个“桶”里，每个桶对应着一个区间，并且对每一个桶里的数据进行排序，以达到总体的有序。</p>
 <p>以上为常见的线性时间复杂度排序算法。</p>
+<hr>
+<h2 id="拓展：对-10-亿个互不相同的-32-位整数排序"><a href="#拓展：对-10-亿个互不相同的-32-位整数排序" class="headerlink" title="拓展：对 10 亿个互不相同的 32 位整数排序"></a>拓展：对 10 亿个互不相同的 32 位整数排序</h2><p>这是一个非常经典的问题。在这个题目中，直接使用 $O(n\log n)$ 级别的排序算法效率会很差。因此，我们考虑利用条件本身。</p>
+<p>条件是 10 亿个不同的 32 位整数，那么我们就可以用 32 亿个 bit 位用于标记。遍历这些数，对于数 $i$，将第 $i$ 个 bit 位置为 1。处理完所有的数后，按 bit 位的编号从小到大遍历一遍 bit 位，依次将是 1 的 bit 位的下标放进数组里。这样就完成了排序。这种排序方法和 $O(n\log n)$ 的排序方法相比，无论是时间还是空间都占优。</p>
+<hr>
+<p>参考资料：</p>
+<ol>
+<li>《数据结构与算法分析：C 语言描述（第二版）》</li>
+<li>《算法导论》</li>
+</ol>
 
       
     </div>
@@ -462,6 +463,12 @@
     
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/排序/" rel="tag"># 排序</a>
+          
+        </div>
       
 
       
@@ -564,7 +571,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">259</span>
+                  <span class="site-state-item-count">264</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -586,7 +593,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">85</span>
+                  <span class="site-state-item-count">88</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -633,7 +640,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#插入排序"><span class="nav-number">1.</span> <span class="nav-text">插入排序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#选择排序"><span class="nav-number">2.</span> <span class="nav-text">选择排序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#冒泡排序"><span class="nav-number">3.</span> <span class="nav-text">冒泡排序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#希尔排序"><span class="nav-number">4.</span> <span class="nav-text">希尔排序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#归并排序"><span class="nav-number">5.</span> <span class="nav-text">归并排序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#快速排序"><span class="nav-number">6.</span> <span class="nav-text">快速排序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#堆排序"><span class="nav-number">7.</span> <span class="nav-text">堆排序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#记数排序"><span class="nav-number">8.</span> <span class="nav-text">记数排序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基数排序"><span class="nav-number">9.</span> <span class="nav-text">基数排序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#桶排序"><span class="nav-number">10.</span> <span class="nav-text">桶排序</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#插入排序"><span class="nav-number">1.</span> <span class="nav-text">插入排序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#选择排序"><span class="nav-number">2.</span> <span class="nav-text">选择排序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#冒泡排序"><span class="nav-number">3.</span> <span class="nav-text">冒泡排序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#希尔排序"><span class="nav-number">4.</span> <span class="nav-text">希尔排序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#归并排序"><span class="nav-number">5.</span> <span class="nav-text">归并排序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#原地归并排序"><span class="nav-number">6.</span> <span class="nav-text">原地归并排序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#快速排序"><span class="nav-number">7.</span> <span class="nav-text">快速排序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#堆排序"><span class="nav-number">8.</span> <span class="nav-text">堆排序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#记数排序"><span class="nav-number">9.</span> <span class="nav-text">记数排序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基数排序"><span class="nav-number">10.</span> <span class="nav-text">基数排序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#桶排序"><span class="nav-number">11.</span> <span class="nav-text">桶排序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#拓展：对-10-亿个互不相同的-32-位整数排序"><span class="nav-number">12.</span> <span class="nav-text">拓展：对 10 亿个互不相同的 32 位整数排序</span></a></li></ol></div>
             
 
           </div>
@@ -667,7 +674,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">229.5k</span>
+    <span title="Site words total count">206.9k</span>
   
 </div>
 
@@ -1172,113 +1179,6 @@
 
 
   
-
-  
-  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
-  <script>AV.initialize("Q3MTYoDUCrhHUXOabd91DbOM-gzGzoHsz", "rghJaSuameCOIla10btdkgPd");</script>
-  <script>
-    function showTime(Counter) {
-      var query = new AV.Query(Counter);
-      var entries = [];
-      var $visitors = $(".leancloud_visitors");
-
-      $visitors.each(function () {
-        entries.push( $(this).attr("id").trim() );
-      });
-
-      query.containedIn('url', entries);
-      query.find()
-        .done(function (results) {
-          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
-
-          if (results.length === 0) {
-            $visitors.find(COUNT_CONTAINER_REF).text(0);
-            return;
-          }
-
-          for (var i = 0; i < results.length; i++) {
-            var item = results[i];
-            var url = item.get('url');
-            var time = item.get('time');
-            var element = document.getElementById(url);
-
-            $(element).find(COUNT_CONTAINER_REF).text(time);
-          }
-          for(var i = 0; i < entries.length; i++) {
-            var url = entries[i];
-            var element = document.getElementById(url);
-            var countSpan = $(element).find(COUNT_CONTAINER_REF);
-            if( countSpan.text() == '') {
-              countSpan.text(0);
-            }
-          }
-        })
-        .fail(function (object, error) {
-          console.log("Error: " + error.code + " " + error.message);
-        });
-    }
-
-    function addCount(Counter) {
-      var $visitors = $(".leancloud_visitors");
-      var url = $visitors.attr('id').trim();
-      var title = $visitors.attr('data-flag-title').trim();
-      var query = new AV.Query(Counter);
-
-      query.equalTo("url", url);
-      query.find({
-        success: function(results) {
-          if (results.length > 0) {
-            var counter = results[0];
-            counter.fetchWhenSave(true);
-            counter.increment("time");
-            counter.save(null, {
-              success: function(counter) {
-                var $element = $(document.getElementById(url));
-                $element.find('.leancloud-visitors-count').text(counter.get('time'));
-              },
-              error: function(counter, error) {
-                console.log('Failed to save Visitor num, with error message: ' + error.message);
-              }
-            });
-          } else {
-            var newcounter = new Counter();
-            /* Set ACL */
-            var acl = new AV.ACL();
-            acl.setPublicReadAccess(true);
-            acl.setPublicWriteAccess(true);
-            newcounter.setACL(acl);
-            /* End Set ACL */
-            newcounter.set("title", title);
-            newcounter.set("url", url);
-            newcounter.set("time", 1);
-            newcounter.save(null, {
-              success: function(newcounter) {
-                var $element = $(document.getElementById(url));
-                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
-              },
-              error: function(newcounter, error) {
-                console.log('Failed to create');
-              }
-            });
-          }
-        },
-        error: function(error) {
-          console.log('Error:' + error.code + " " + error.message);
-        }
-      });
-    }
-
-    $(function() {
-      var Counter = AV.Object.extend("Counter");
-      if ($('.leancloud_visitors').length == 1) {
-        addCount(Counter);
-      } else if ($('.post-title-link').length > 1) {
-        showTime(Counter);
-      }
-    });
-  </script>
-
-
 
   
 

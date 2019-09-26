@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="zqy1018的博客">
 <meta property="og:description" content="题目大意：有$n$个带有颜色的方块，消除一段长度为$x$的连续的相同颜色的方块可以得到$x^2$的分数，求一种最优的消除顺序消除所有方块使得得分最多。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-01-28T16:23:39.157Z">
+<meta property="og:updated_time" content="2019-09-04T13:59:25.876Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="UVa10559 Blocks">
 <meta name="twitter:description" content="题目大意：有$n$个带有颜色的方块，消除一段长度为$x$的连续的相同颜色的方块可以得到$x^2$的分数，求一种最优的消除顺序消除所有方块使得得分最多。">
@@ -376,17 +376,6 @@
 
           
           
-             <span id="/2019/01/28/uva10559/" class="leancloud_visitors" data-flag-title="UVa10559 Blocks">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
 
           
 
@@ -427,9 +416,11 @@
 
       
         <p>题目大意：有$n$个带有颜色的方块，消除一段长度为$x$的连续的相同颜色的方块可以得到$x^2$的分数，求一种最优的消除顺序消除所有方块使得得分最多。<br><a id="more"></a></p>
-<h2 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h2><p>设$f(i, j, k)$为当前区间为$[i, j]$，且区间中消除到有$k$个和$i$处颜色相同的方块时，可以得到的最大分数。显然，答案为$f(1, n, 0)$。<br>当$k\neq 0$时，要考虑从$k-1$转移过来。此时考虑从$[i, j]$中遍历$l$，当第$l$个方块颜色和第$i$个相同时，将从$l$左或者从$l$右开始的一部分作为从$k-1$转移过来的部分，另一部分消去。因为消去的顺序不影响结果，此处将右边一半消去。从而有：</p>
-<script type="math/tex; mode=display">f(i, j, k) = \max_{i\le l\le j}\lbrace f(i, l - 1, k - 1) + f(l + 1, j, 0) \rbrace</script><p>当$k=0$时，考虑将积累下来的方块消去，就有：</p>
-<script type="math/tex; mode=display">f(i, j, 0) = \max\lbrace f(i, j, k) + k^2\rbrace</script><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</span><br><span class="line"><span class="keyword">int</span> n, a[<span class="number">205</span>] = &#123;<span class="number">0</span>&#125;;</span><br><span class="line"><span class="keyword">int</span> f[<span class="number">205</span>][<span class="number">205</span>][<span class="number">205</span>] = &#123;<span class="number">0</span>&#125;;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> T;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;T);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> TT = <span class="number">1</span>; TT &lt;= T; ++TT)&#123;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;n);</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i)</span><br><span class="line">            <span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;a[i]);</span><br><span class="line">        <span class="built_in">memset</span>(f, <span class="number">-1</span>, <span class="keyword">sizeof</span>(f));</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i)</span><br><span class="line">            f[i][i][<span class="number">1</span>] = <span class="number">0</span>, f[i][i][<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= n; ++i)</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j = i - <span class="number">1</span>; j &gt;= <span class="number">0</span>; --j)</span><br><span class="line">                f[i][j][<span class="number">0</span>] = <span class="number">0</span>;</span><br><span class="line">        f[n + <span class="number">1</span>][n][<span class="number">0</span>] = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; n; ++i)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">1</span>; j + i &lt;= n; ++j)&#123;</span><br><span class="line">                <span class="keyword">for</span>(<span class="keyword">int</span> k = <span class="number">1</span>; k &lt;= i + <span class="number">1</span>; ++k)&#123;</span><br><span class="line">                    <span class="keyword">for</span>(<span class="keyword">int</span> l = j; l &lt;= j + i; ++l)&#123;</span><br><span class="line">                        <span class="keyword">if</span>(a[j] != a[l]) <span class="keyword">continue</span>;</span><br><span class="line">                        <span class="keyword">if</span>(f[j][l - <span class="number">1</span>][k - <span class="number">1</span>] &gt;= <span class="number">0</span>)</span><br><span class="line">                            f[j][j + i][k] = max(f[j][j + i][k], f[j][l - <span class="number">1</span>][k - <span class="number">1</span>] + f[l + <span class="number">1</span>][j + i][<span class="number">0</span>]);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">for</span>(<span class="keyword">int</span> k = <span class="number">1</span>; k &lt;= i + <span class="number">1</span>; ++k)&#123;</span><br><span class="line">                    <span class="keyword">if</span>(f[j][j + i][k] &gt;= <span class="number">0</span>)</span><br><span class="line">                        f[j][j + i][<span class="number">0</span>] = max(f[j][j + i][<span class="number">0</span>], f[j][j + i][k] + k * k);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"Case %d: %d\n"</span>, TT, f[<span class="number">1</span>][n][<span class="number">0</span>]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h2><p>设 $f(i, j, k)$ 为当前区间为 $[i, j]$，且区间中消除到有 $k$ 个和 $i$ 处颜色相同的方块时，可以得到的最大分数。显然，答案为 $f(1, n, 0)$。<br>当 $k\neq 0$ 时，要考虑从 $k-1$ 转移过来。此时考虑从 $[i, j]$ 中遍历 $l$，当第 $l$ 个方块颜色和第 $i$ 个相同时，将从 $l$ 左或者从 $l$ 右开始的一部分作为从 $k-1$ 转移过来的部分，另一部分消去。因为消去的顺序不影响结果，此处将右边一半消去。从而有：</p>
+<script type="math/tex; mode=display">
+f(i, j, k) = \max_{i\le l\le j}\lbrace f(i, l - 1, k - 1) + f(l + 1, j, 0) \rbrace</script><p>当 $k=0$ 时，考虑将积累下来的方块消去，就有：</p>
+<script type="math/tex; mode=display">
+f(i, j, 0) = \max\lbrace f(i, j, k) + k^2\rbrace</script><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</span><br><span class="line"><span class="keyword">int</span> n, a[<span class="number">205</span>] = &#123;<span class="number">0</span>&#125;;</span><br><span class="line"><span class="keyword">int</span> f[<span class="number">205</span>][<span class="number">205</span>][<span class="number">205</span>] = &#123;<span class="number">0</span>&#125;;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> T;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;T);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> TT = <span class="number">1</span>; TT &lt;= T; ++TT)&#123;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;n);</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i)</span><br><span class="line">            <span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;a[i]);</span><br><span class="line">        <span class="built_in">memset</span>(f, <span class="number">-1</span>, <span class="keyword">sizeof</span>(f));</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i)</span><br><span class="line">            f[i][i][<span class="number">1</span>] = <span class="number">0</span>, f[i][i][<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= n; ++i)</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j = i - <span class="number">1</span>; j &gt;= <span class="number">0</span>; --j)</span><br><span class="line">                f[i][j][<span class="number">0</span>] = <span class="number">0</span>;</span><br><span class="line">        f[n + <span class="number">1</span>][n][<span class="number">0</span>] = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; n; ++i)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">1</span>; j + i &lt;= n; ++j)&#123;</span><br><span class="line">                <span class="keyword">for</span>(<span class="keyword">int</span> k = <span class="number">1</span>; k &lt;= i + <span class="number">1</span>; ++k)&#123;</span><br><span class="line">                    <span class="keyword">for</span>(<span class="keyword">int</span> l = j; l &lt;= j + i; ++l)&#123;</span><br><span class="line">                        <span class="keyword">if</span>(a[j] != a[l]) <span class="keyword">continue</span>;</span><br><span class="line">                        <span class="keyword">if</span>(f[j][l - <span class="number">1</span>][k - <span class="number">1</span>] &gt;= <span class="number">0</span>)</span><br><span class="line">                            f[j][j + i][k] = max(f[j][j + i][k], f[j][l - <span class="number">1</span>][k - <span class="number">1</span>] + f[l + <span class="number">1</span>][j + i][<span class="number">0</span>]);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">for</span>(<span class="keyword">int</span> k = <span class="number">1</span>; k &lt;= i + <span class="number">1</span>; ++k)&#123;</span><br><span class="line">                    <span class="keyword">if</span>(f[j][j + i][k] &gt;= <span class="number">0</span>)</span><br><span class="line">                        f[j][j + i][<span class="number">0</span>] = max(f[j][j + i][<span class="number">0</span>], f[j][j + i][k] + k * k);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"Case %d: %d\n"</span>, TT, f[<span class="number">1</span>][n][<span class="number">0</span>]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -552,7 +543,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">259</span>
+                  <span class="site-state-item-count">264</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -574,7 +565,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">85</span>
+                  <span class="site-state-item-count">88</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -655,7 +646,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">229.5k</span>
+    <span title="Site words total count">206.9k</span>
   
 </div>
 
@@ -1160,113 +1151,6 @@
 
 
   
-
-  
-  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
-  <script>AV.initialize("Q3MTYoDUCrhHUXOabd91DbOM-gzGzoHsz", "rghJaSuameCOIla10btdkgPd");</script>
-  <script>
-    function showTime(Counter) {
-      var query = new AV.Query(Counter);
-      var entries = [];
-      var $visitors = $(".leancloud_visitors");
-
-      $visitors.each(function () {
-        entries.push( $(this).attr("id").trim() );
-      });
-
-      query.containedIn('url', entries);
-      query.find()
-        .done(function (results) {
-          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
-
-          if (results.length === 0) {
-            $visitors.find(COUNT_CONTAINER_REF).text(0);
-            return;
-          }
-
-          for (var i = 0; i < results.length; i++) {
-            var item = results[i];
-            var url = item.get('url');
-            var time = item.get('time');
-            var element = document.getElementById(url);
-
-            $(element).find(COUNT_CONTAINER_REF).text(time);
-          }
-          for(var i = 0; i < entries.length; i++) {
-            var url = entries[i];
-            var element = document.getElementById(url);
-            var countSpan = $(element).find(COUNT_CONTAINER_REF);
-            if( countSpan.text() == '') {
-              countSpan.text(0);
-            }
-          }
-        })
-        .fail(function (object, error) {
-          console.log("Error: " + error.code + " " + error.message);
-        });
-    }
-
-    function addCount(Counter) {
-      var $visitors = $(".leancloud_visitors");
-      var url = $visitors.attr('id').trim();
-      var title = $visitors.attr('data-flag-title').trim();
-      var query = new AV.Query(Counter);
-
-      query.equalTo("url", url);
-      query.find({
-        success: function(results) {
-          if (results.length > 0) {
-            var counter = results[0];
-            counter.fetchWhenSave(true);
-            counter.increment("time");
-            counter.save(null, {
-              success: function(counter) {
-                var $element = $(document.getElementById(url));
-                $element.find('.leancloud-visitors-count').text(counter.get('time'));
-              },
-              error: function(counter, error) {
-                console.log('Failed to save Visitor num, with error message: ' + error.message);
-              }
-            });
-          } else {
-            var newcounter = new Counter();
-            /* Set ACL */
-            var acl = new AV.ACL();
-            acl.setPublicReadAccess(true);
-            acl.setPublicWriteAccess(true);
-            newcounter.setACL(acl);
-            /* End Set ACL */
-            newcounter.set("title", title);
-            newcounter.set("url", url);
-            newcounter.set("time", 1);
-            newcounter.save(null, {
-              success: function(newcounter) {
-                var $element = $(document.getElementById(url));
-                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
-              },
-              error: function(newcounter, error) {
-                console.log('Failed to create');
-              }
-            });
-          }
-        },
-        error: function(error) {
-          console.log('Error:' + error.code + " " + error.message);
-        }
-      });
-    }
-
-    $(function() {
-      var Counter = AV.Object.extend("Counter");
-      if ($('.leancloud_visitors').length == 1) {
-        addCount(Counter);
-      } else if ($('.post-title-link').length > 1) {
-        showTime(Counter);
-      }
-    });
-  </script>
-
-
 
   
 
